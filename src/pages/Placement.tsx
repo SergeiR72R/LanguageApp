@@ -1,13 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { allUnits, getUnit, placementItems } from '../content';
-import { scorePlacement } from '../lib/placement';
+import { adjustForWriting, scorePlacement } from '../lib/placement';
 import { useStore, type PlacementResult } from '../lib/store';
 import { isLlmConfigured } from '../lib/ai/providers';
 import { assessSample } from '../lib/ai/prompts';
 import { countWords } from '../lib/grading';
 import { Card, ErrorBox, ProgressBar, Spinner } from '../components/ui';
-import { SpeakButton } from '../components/Speak';
+import { speak, stopSpeaking } from '../lib/ai/tts';
 
 const SKILL_RU: Record<string, string> = { grammar: 'Грамматика', vocab: 'Лексика', reading: 'Чтение', listening: 'Аудирование' };
 
@@ -22,6 +22,7 @@ export function Placement() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   const [chosenStart, setChosenStart] = useState('');
+  const [writingAdjusted, setWritingAdjusted] = useState(false);
   const settings = useStore((s) => s.settings);
   const setPlacement = useStore((s) => s.setPlacement);
   const nav = useNavigate();
@@ -63,7 +64,16 @@ export function Placement() {
     setBusy(true);
     setErr('');
     try {
-      setAi(await assessSample(sample));
+      const a = await assessSample(sample);
+      setAi(a);
+      if (result) {
+        const adj = adjustForWriting(result.recommendedUnitId, a.cefr);
+        if (adj.adjusted) {
+          setResult({ ...result, recommendedUnitId: adj.unitId });
+          setChosenStart(adj.unitId);
+          setWritingAdjusted(true);
+        }
+      }
       setPhase('result');
     } catch (e) {
       setErr((e as Error).message);
@@ -169,12 +179,15 @@ export function Placement() {
     <div className="page narrow">
       <h1>Результат теста</h1>
       <Card className="highlight">
-        <div className="big-level">{r.estimated === 'C1+' ? 'C1+' : r.estimated}</div>
+        <div className="eyebrow">Ваш текущий уровень по тесту</div>
+        <div className="big-level">{r.estimated}</div>
         <p>
-          {r.estimated === 'A2' &&
-            'Ваш уровень пока ниже B1. Начните с первого юнита B1 — в нём повторяются базовые времена, а объяснения рассчитаны на этот переход.'}
-          {r.estimated === 'B1' && 'Уровень B1. Курс начнётся с рекомендованного юнита — пробелы закроются по ходу.'}
-          {r.estimated === 'B2' && 'Уровень B2 — отличная база! Рекомендуем переходить к C1.'}
+          {r.estimated === 'A2' && 'Уровень B1 пока не достигнут — курс начнётся с самого начала B1.'}
+          {r.estimated === 'B1' &&
+            (rec?.level === 'B1'
+              ? 'Уровень B1 освоен частично — продолжите B1, чтобы закрыть пробелы.'
+              : 'Уровень B1 освоен — поэтому следующий шаг курса начинается с B2.')}
+          {r.estimated === 'B2' && 'Уровень B2 освоен — следующий шаг курса: C1.'}
           {r.estimated === 'C1+' && 'Уровень C1 и выше. Курс C1 поможет систематизировать и закрепить сложные темы.'}
         </p>
         <h3>По уровням</h3>
@@ -207,15 +220,21 @@ export function Placement() {
       <Card>
         <h3>С чего начать</h3>
         <p>
-          Рекомендация: <strong>{rec ? `${rec.level} · ${rec.order}. ${rec.title}` : r.recommendedUnitId}</strong>. Юниты до
-          него останутся открытыми для самостоятельного повторения.
+          Рекомендуем начать с <strong>уровня {rec?.level}, юнит {rec?.order} из 10: «{rec?.title}»</strong> ({rec?.grammar.topicRu}).
+          Юниты до него останутся открытыми для самостоятельного повторения.
         </p>
+        {writingAdjusted && (
+          <div className="info-box">
+            Тест показал более высокий уровень, но письмо ИИ оценил как {ai?.cefr}. Активное владение языком отстаёт от
+            понимания, поэтому рекомендуем начать на уровень ниже — так грамматика закрепится и в речи, и на письме.
+          </div>
+        )}
         <label className="field">
           Стартовый юнит
           <select value={chosenStart} onChange={(e) => setChosenStart(e.target.value)}>
             {allUnits.map((u) => (
               <option key={u.id} value={u.id}>
-                {u.level} · {u.order}. {u.title} — {u.grammar.topicRu}
+                {u.level} · юнит {u.order}: {u.title} — {u.grammar.topicRu}
               </option>
             ))}
           </select>
@@ -228,14 +247,29 @@ export function Placement() {
   );
 }
 
+/** Audio for listening items: may be played twice in full, as in real exams. */
 function ListenLimited({ text }: { text: string }) {
   const [plays, setPlays] = useState(0);
+  const [playing, setPlaying] = useState(false);
+  useEffect(() => () => stopSpeaking(), []);
+  const play = async () => {
+    if (playing || plays >= 2) return;
+    setPlaying(true);
+    try {
+      await speak(text);
+    } finally {
+      setPlaying(false);
+      setPlays((p) => p + 1);
+    }
+  };
   return (
-    <div className="listen-box" onClickCapture={() => setPlays((p) => p + 1)}>
+    <div className="listen-box row">
       {plays < 2 ? (
-        <SpeakButton text={text} label={plays === 0 ? 'Прослушать' : 'Ещё раз (последний)'} className="big" />
+        <button className={`btn-speak big ${playing ? 'playing' : ''}`} disabled={playing} onClick={play}>
+          🔊 <span>{playing ? 'Звучит…' : plays === 0 ? 'Прослушать' : 'Прослушать ещё раз (последний)'}</span>
+        </button>
       ) : (
-        <span className="muted">Прослушивания закончились</span>
+        <span className="muted">Прослушано 2 раза</span>
       )}
     </div>
   );

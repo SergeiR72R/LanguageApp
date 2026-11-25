@@ -61,6 +61,8 @@ function speakBrowser(text: string, rate: number, voiceName: string, fallbackInd
 
 const audioCache = new Map<string, string>();
 
+export const GEMINI_TTS_FALLBACKS = ['gemini-2.5-flash-preview-tts', 'gemini-3.8-flash-tts', 'gemini-3.8-flash-lite-tts', 'gemini-2.5-pro-preview-tts'];
+
 function pcmToWavUrl(base64: string, sampleRate = 24000): string {
   const bin = atob(base64);
   const pcm = new Uint8Array(bin.length);
@@ -105,21 +107,31 @@ async function geminiAudioUrl(text: string, dialog: boolean): Promise<string> {
   const prompt = dialog
     ? `Lies diesen deutschen Dialog natürlich und deutlich vor, in normalem Sprechtempo:\n${text}`
     : `Lies den folgenden deutschen Text natürlich und deutlich vor:\n${text}`;
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(s.geminiTtsModel)}:generateContent`,
-    {
+  // Model names change over time: try the configured one first, then known alternatives.
+  const candidates = [...new Set([s.geminiTtsModel, ...GEMINI_TTS_FALLBACKS])].filter(Boolean);
+  let res: Response | undefined;
+  let lastErr = '';
+  for (const model of candidates) {
+    res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: { responseModalities: ['AUDIO'], speechConfig },
       }),
-    },
-  );
-  if (!res.ok) {
-    const t = await res.text().catch(() => '');
-    if (res.status === 429) throw new AiError('Лимит Gemini TTS исчерпан (429). Переключаюсь на голос браузера.');
-    throw new AiError(`Gemini TTS ${res.status}: ${t.slice(0, 200)}`);
+    });
+    if (res.ok) {
+      if (model !== s.geminiTtsModel) useStore.getState().updateSettings({ geminiTtsModel: model });
+      break;
+    }
+    lastErr = await res.text().catch(() => '');
+    // 404 = model unknown, 400 = model can't do audio: try the next one; other errors are final
+    if (res.status !== 404 && res.status !== 400) break;
+  }
+  if (!res || !res.ok) {
+    if (res?.status === 429) throw new AiError('Лимит Gemini TTS исчерпан (429). Использую голос браузера.');
+    if (res?.status === 400 && /API key/i.test(lastErr)) throw new AiError('Ключ Gemini не принят. Проверьте его в настройках.');
+    throw new AiError(`Gemini TTS ${res?.status}: ${lastErr.slice(0, 200)}`);
   }
   const data = await res.json();
   const part = data?.candidates?.[0]?.content?.parts?.find((p: { inlineData?: { data: string } }) => p.inlineData);

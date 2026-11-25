@@ -56,3 +56,25 @@ export function scorePlacement(items: PlacementItem[], answers: Record<string, n
   }
   return { date: today(), byBand, bySkill, estimated, recommendedUnitId: recommended };
 }
+
+const RANK: Record<string, number> = { A1: 0, A2: 1, B1: 2, B2: 3, C1: 4, C2: 5 };
+
+export function parseCefr(s: string): number | undefined {
+  const m = /([ABC][12])/.exec(s.toUpperCase());
+  return m ? RANK[m[1]] : undefined;
+}
+
+/**
+ * The multiple-choice test measures recognition; free writing shows active command.
+ * If the writing sample is two or more levels below the level we would start at,
+ * start one level lower (never below B1).
+ */
+export function adjustForWriting(unitId: string, writingCefr: string): { unitId: string; adjusted: boolean } {
+  const unit = allUnits.find((u) => u.id === unitId);
+  const w = parseCefr(writingCefr);
+  if (!unit || w === undefined) return { unitId, adjusted: false };
+  const startRank = RANK[unit.level];
+  if (startRank - w < 2 || unit.level === 'B1') return { unitId, adjusted: false };
+  const lower = unit.level === 'C1' ? 'B2' : 'B1';
+  return { unitId: firstUnitOfLevel(lower)!.id, adjusted: true };
+}
