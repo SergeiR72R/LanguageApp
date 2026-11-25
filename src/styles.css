@@ -508,3 +508,5 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
   .word-card.big .word-img { max-width: 150px; margin-bottom: 6px; }
   .word-card.big .word-de { font-size: 1.6rem; }
 }
+.flash-img { display: block; width: 100%; max-width: 220px; aspect-ratio: 1; object-fit: cover; border-radius: 16px; margin: 0 auto; animation: card-in 0.35s ease; }
+@media (max-width: 600px) { .flash-img { max-width: 160px; } }

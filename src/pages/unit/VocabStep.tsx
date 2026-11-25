@@ -18,8 +18,8 @@ const POS_RU: Record<string, string> = {
   other: '',
 };
 
-export function WordCard({ v, big }: { v: VocabItem; big?: boolean }) {
-  const img = wordImage(v);
+export function WordCard({ v, big, noImage }: { v: VocabItem; big?: boolean; noImage?: boolean }) {
+  const img = noImage ? undefined : wordImage(v);
   return (
     <div className={`word-card ${big ? 'big' : ''} ${img ? 'has-img' : ''}`}>
       {img && <img className="word-img" src={img} alt="" loading="lazy" />}
