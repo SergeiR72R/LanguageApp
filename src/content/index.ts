@@ -41,7 +41,27 @@ const idFromPath = (path: string) => {
   return m ? `${m[1]}-${m[2]}` : '';
 };
 
-const wordBanks = new Map<string, VocabItem[]>(Object.entries(wordModules).map(([p, m]) => [idFromPath(p), m.words ?? []]));
+export const lemmaKey = (v: VocabItem) => `${v.article ?? ''} ${v.de}`.toLowerCase().replace(/\s+/g, ' ').trim();
+
+/**
+ * Word banks were written in parallel, so a word can appear in several of them.
+ * Keep only its first occurrence in course order (core vocab of all units first).
+ */
+const wordBanks = (() => {
+  const raw = new Map<string, VocabItem[]>(Object.entries(wordModules).map(([p, m]) => [idFromPath(p), m.words ?? []]));
+  const seen = new Set<string>(allUnits.flatMap((u) => u.vocab.map(lemmaKey)));
+  const out = new Map<string, VocabItem[]>();
+  for (const u of allUnits) {
+    const list = (raw.get(u.id) ?? []).filter((v) => {
+      const k = lemmaKey(v);
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+    out.set(u.id, list);
+  }
+  return out;
+})();
 const mores = new Map<string, UnitMore>(Object.entries(moreModules).map(([p, m]) => [idFromPath(p), m.more]));
 
 /** Extended vocabulary of a unit (introduced gradually as "words of the day"). */

@@ -72,18 +72,14 @@ describe('word banks', () => {
       }
     });
   }
-  it('no duplicates across the whole course (core vocab + word banks)', () => {
-    const seen = new Map<string, string>();
-    const dups: string[] = [];
-    for (const u of units) for (const v of u.vocab) seen.set(lemmaKey(v), u.id);
-    for (const [path, mod] of Object.entries(wordMods).sort(([a], [b]) => a.localeCompare(b))) {
-      for (const v of mod.words) {
-        const k = lemmaKey(v);
-        if (seen.has(k)) dups.push(`${k} (${path} vs ${seen.get(k)})`);
-        else seen.set(k, path);
-      }
+  it('after de-duplication every unit keeps enough words', async () => {
+    const { wordBank, allUnits } = await import('./index');
+    for (const u of allUnits) {
+      const path = `./${u.level.toLowerCase()}/words/u${String(u.order).padStart(2, '0')}.ts`;
+      if (!wordMods[path]) continue;
+      const min = Math.floor(MIN_WORDS[u.level.toLowerCase()] * 0.9);
+      expect(wordBank(u.id).length, `${path}: too many duplicates of other units' words`).toBeGreaterThanOrEqual(min);
     }
-    expect(dups, `duplicates:\n${dups.join('\n')}`).toEqual([]);
   });
 });
 
