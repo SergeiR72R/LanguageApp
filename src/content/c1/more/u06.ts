@@ -195,11 +195,15 @@ export const more: UnitMore = {
 
 Ein solches Komitee setzt sich in der Regel aus Medizinern, Pflegenden, Seelsorgern, Juristen und mitunter auch Patientenvertretern zusammen. [2] Gerade diese Vielfalt der Perspektiven gilt als seine größte Stärke: Wer täglich am Krankenbett steht, nimmt einen Fall anders wahr als jemand, der ihn ausschließlich aus rechtlicher Sicht beurteilt.
 
+Der Ablauf einer solchen Beratung ist meist klar strukturiert. Zunächst werden die medizinischen Fakten zusammengetragen: Wie ist die Prognose? Welche Behandlungsmöglichkeiten bestehen, und mit welchen Belastungen sind sie verbunden? Erst danach geht es um die ethische Bewertung. Ein geschulter Moderator achtet darauf, dass alle Beteiligten zu Wort kommen – auch die Pflegekraft, die sich in der täglichen Hierarchie des Krankenhauses vielleicht nicht trauen würde, dem Chefarzt zu widersprechen. Am Ende steht in der Regel ein schriftliches Votum, das in die Patientenakte aufgenommen wird.
+
 Wichtig ist allerdings, die Rolle des Gremiums nicht zu überschätzen. [3] Die Verantwortung für die Behandlung verbleibt bei den behandelnden Ärzten, und maßgeblich ist zuallererst der Wille des Patienten. Hat dieser eine Patientenverfügung verfasst, ist sie grundsätzlich zu befolgen – auch dann, wenn die Ärzte persönlich anders entscheiden würden. [4] Dann gilt es, den mutmaßlichen Willen zu ermitteln: Was hätte die Patientin gewollt, wenn sie sich noch äußern könnte? Hierzu werden Angehörige und Freunde befragt, frühere Äußerungen gesammelt und Wertvorstellungen rekonstruiert.
 
 Kritiker bemängeln, dass die Qualität der Beratung stark von Haus zu Haus schwankt. Verbindliche Standards existieren bislang nicht; ob und wie ein Komitee eingerichtet wird, entscheidet jede Klinik selbst. [5] Zudem sind die Mitglieder meist ehrenamtlich tätig und haben die Beratungen neben ihrer regulären Arbeit zu bewältigen – in Zeiten akuten Personalmangels eine nicht zu unterschätzende Belastung.
 
-Dennoch zeigen Befragungen, dass die Mehrheit der Beteiligten die Beratungen als hilfreich empfindet. Oft genügt es schon, dass alle an einem Tisch sitzen und ihre Sichtweisen offen darlegen können. [6] Viele Konflikte, so die Erfahrung der Moderatoren, entstehen weniger aus unterschiedlichen Werten als aus mangelnder Kommunikation.`,
+Dennoch zeigen Befragungen, dass die Mehrheit der Beteiligten die Beratungen als hilfreich empfindet. Oft genügt es schon, dass alle an einem Tisch sitzen und ihre Sichtweisen offen darlegen können. [6] Viele Konflikte, so die Erfahrung der Moderatoren, entstehen weniger aus unterschiedlichen Werten als aus mangelnder Kommunikation.
+
+Ethikkomitees, so lautet daher das Fazit vieler Fachleute, sind kein Allheilmittel. Doch dort, wo sie ernsthaft betrieben werden, tragen sie dazu bei, dass schwierige Entscheidungen nicht im Verborgenen, sondern nachvollziehbar und im Dialog getroffen werden.`,
         },
       ],
       tasks: [
@@ -271,22 +275,22 @@ Dennoch zeigen Befragungen, dass die Mehrheit der Beteiligten die Beratungen als
         {
           label: 'A',
           heading: 'Petra Ahlers, Richterin am Amtsgericht',
-          body: `Jede Woche verhandle ich Fälle, in denen Menschen ohne gültigen Fahrschein Bus oder Bahn gefahren sind. Die Verfahren binden Personal, das wir für schwerwiegende Delikte dringend bräuchten. Hinzu kommt ein Aspekt, der mich besonders umtreibt: Wer die verhängte Geldstrafe nicht bezahlen kann, muss ersatzweise ins Gefängnis. Ein Hafttag kostet den Staat weit über hundert Euro – also ein Vielfaches dessen, was die Fahrkarte gekostet hätte. Das ist weder ökonomisch noch moralisch zu rechtfertigen. Ich plädiere daher dafür, den entsprechenden Paragrafen ersatzlos zu streichen.`,
+          body: `Jede Woche verhandle ich Fälle, in denen Menschen ohne gültigen Fahrschein Bus oder Bahn gefahren sind. Die Verfahren binden Personal, das wir für schwerwiegende Delikte dringend bräuchten. Hinzu kommt ein Aspekt, der mich besonders umtreibt: Wer die verhängte Geldstrafe nicht bezahlen kann, muss ersatzweise ins Gefängnis. Ein Hafttag kostet den Staat weit über hundert Euro – also ein Vielfaches dessen, was die Fahrkarte gekostet hätte. Mit der eigentlichen Tat – einer Fahrt ohne Ticket für ein paar Euro – steht das in keinem Verhältnis. Das ist weder ökonomisch noch moralisch zu rechtfertigen. Ich plädiere daher dafür, den entsprechenden Paragrafen ersatzlos zu streichen.`,
         },
         {
           label: 'B',
           heading: 'Jens Morawski, Geschäftsführer eines Verkehrsverbunds',
-          body: `Ich halte die Debatte für gefährlich. Wer ohne Ticket fährt, nimmt eine Leistung in Anspruch, für die andere bezahlen – und zwar die große Mehrheit ehrlicher Fahrgäste. Würde man die Strafbarkeit abschaffen, wären die Leidtragenden genau diese Menschen, denn die Einnahmeausfälle müssten über höhere Preise ausgeglichen werden. Außerdem dürfen wir uns nichts vormachen: Unsere Kontrolleure können längst nicht jeden Zug überprüfen. Ihre Wirkung beruht darauf, dass am Ende ein Eintrag ins Führungszeugnis droht. Fällt diese Drohung weg, ist mit deutlich mehr Schwarzfahrern zu rechnen.`,
+          body: `Ich halte die Debatte für gefährlich. Wer ohne Ticket fährt, nimmt eine Leistung in Anspruch, für die andere bezahlen – und zwar die große Mehrheit ehrlicher Fahrgäste. Würde man die Strafbarkeit abschaffen, wären die Leidtragenden genau diese Menschen, denn die Einnahmeausfälle müssten über höhere Preise ausgeglichen werden. Wir investieren jedes Jahr Millionen in moderne Fahrzeuge und dichtere Takte; dieses Geld muss irgendwo herkommen. Außerdem dürfen wir uns nichts vormachen: Unsere Kontrolleure können längst nicht jeden Zug überprüfen. Ihre Wirkung beruht darauf, dass am Ende ein Eintrag ins Führungszeugnis droht. Fällt diese Drohung weg, ist mit deutlich mehr Schwarzfahrern zu rechnen.`,
         },
         {
           label: 'C',
           heading: 'Leonie Brandt, Sozialarbeiterin',
-          body: `In meiner Beratungsstelle begegne ich kaum jemandem, der aus Bequemlichkeit oder Abenteuerlust ohne Fahrschein fährt. Es sind Menschen, die sich das Ticket schlicht nicht leisten können – und trotzdem zum Jobcenter, zum Arzt oder zur Tafel müssen. Über das Strafrecht zu diskutieren, greift deshalb zu kurz. Solange Mobilität ein Luxus ist, wird sich an dem Verhalten wenig ändern lassen. Ein kostenloser Nahverkehr oder zumindest ein wirklich bezahlbares Sozialticket würde das Problem an der Wurzel packen, statt nur die Symptome zu bekämpfen.`,
+          body: `In meiner Beratungsstelle begegne ich kaum jemandem, der aus Bequemlichkeit oder Abenteuerlust ohne Fahrschein fährt. Es sind Menschen, die sich das Ticket schlicht nicht leisten können – und trotzdem zum Jobcenter, zum Arzt oder zur Tafel müssen. Viele von ihnen sind bereits verschuldet, und jede weitere Strafe verschärft ihre Lage nur. Über das Strafrecht zu diskutieren, greift deshalb zu kurz. Solange Mobilität ein Luxus ist, wird sich an dem Verhalten wenig ändern lassen. Ein kostenloser Nahverkehr oder zumindest ein wirklich bezahlbares Sozialticket würde das Problem an der Wurzel packen, statt nur die Symptome zu bekämpfen.`,
         },
         {
           label: 'D',
           heading: 'Prof. Dr. Ulrich Seidel, Rechtsphilosoph',
-          body: `In einem liberalen Rechtsstaat ist das Strafrecht als letztes Mittel zu verstehen: Es ist dort einzusetzen, wo ein Verhalten die Gemeinschaft erheblich schädigt und mildere Mittel nicht ausreichen. Ob das Erschleichen einer Fahrt dieses Gewicht hat, darf man bezweifeln. Gleichwohl halte ich es für falsch, das Verhalten einfach folgenlos zu stellen – das würde signalisieren, dass Regeln nur gelten, wenn man erwischt wird. Ein vernünftiger Mittelweg bestünde darin, Schwarzfahren als Ordnungswidrigkeit einzustufen. Dann bliebe es sanktionierbar, ohne dass jemand dafür im Gefängnis landet.`,
+          body: `In einem liberalen Rechtsstaat ist das Strafrecht als letztes Mittel zu verstehen: Es ist dort einzusetzen, wo ein Verhalten die Gemeinschaft erheblich schädigt und mildere Mittel nicht ausreichen. Das Strafrecht ist das schärfste Schwert, über das der Staat verfügt, und es hinterlässt Spuren in Biografien. Ob das Erschleichen einer Fahrt dieses Gewicht hat, darf man bezweifeln. Gleichwohl halte ich es für falsch, das Verhalten einfach folgenlos zu stellen – das würde signalisieren, dass Regeln nur gelten, wenn man erwischt wird. Ein vernünftiger Mittelweg bestünde darin, Schwarzfahren als Ordnungswidrigkeit einzustufen. Dann bliebe es sanktionierbar, ohne dass jemand dafür im Gefängnis landet.`,
         },
       ],
       tasks: [
