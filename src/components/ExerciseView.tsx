@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Exercise } from '../content/types';
 import { checkAnswer, normalize, shuffle, type CheckResult } from '../lib/grading';
+import { fillGaps } from '../lib/exerciseCheck';
+import { useStore } from '../lib/store';
 import { SpeakButton } from './Speak';
 import { sfx } from '../lib/sound';
 import { xpPop } from './Celebrate';
@@ -10,15 +12,6 @@ export interface ExerciseOutcome {
   /** what the learner answered (for mistake log) */
   given: string;
   expected: string;
-}
-
-/** Fill the ___ gaps of a prompt. Options like "hatte … vorbereitet" fill several gaps in order. */
-export function fillGaps(prompt: string, answer: string): string {
-  const parts = prompt.split('___');
-  if (parts.length === 1) return answer;
-  const pieces = parts.length > 2 ? answer.split(/\s*(?:\.\.\.|…)\s*/) : [answer];
-  if (pieces.length !== parts.length - 1) return parts.join(answer);
-  return parts.reduce((acc, p, i) => acc + p + (i < pieces.length ? pieces[i] : ''), '');
 }
 
 function expectedOf(ex: Exercise): string {
@@ -234,6 +227,19 @@ export function ExerciseView({ ex, onDone, seed }: { ex: Exercise; onDone: (o: E
             {!isCorrect && ex.type !== 'choice' && (
               <button type="button" className="btn ghost small" onClick={() => setOverridden(true)} title="Если ваш вариант тоже корректен">
                 Мой ответ тоже верный
+              </button>
+            )}
+            {!overridden && (
+              <button
+                type="button"
+                className="btn ghost small"
+                title="Ключ неверный или задание некорректно — ответ будет засчитан, а жалоба сохранится"
+                onClick={() => {
+                  useStore.getState().addReport({ exercise: ex, given: given() });
+                  setOverridden(true);
+                }}
+              >
+                ⚠️ Ошибка в задании
               </button>
             )}
           </div>

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { activeStorageKey } from './profiles';
-import type { Level } from '../content/types';
+import type { Exercise, Level } from '../content/types';
 import { allUnits, unitIndex } from '../content';
 import { today as todayStr } from './date';
 import { newSrs, schedule, type Grade, type SrsState } from './srs';
@@ -198,6 +198,8 @@ export interface AppState {
   conversations: ConversationEntry[];
   consolidations: ConsolidationEntry[];
   examResults: ExamResult[];
+  /** exercises the learner flagged as wrong (to send to the developer) */
+  reports: { date: string; exercise: Exercise; given: string }[];
   /** gamification bookkeeping: achievements already celebrated, last level seen, day the daily goal was celebrated */
   celebrated: { achievements: string[]; level: number; goalDay: string };
   plan?: { date: string; items: PlanItem[] };
@@ -219,6 +221,8 @@ export interface AppState {
   addConsolidation: (c: Omit<ConsolidationEntry, 'date'>) => void;
   addExamResult: (r: Omit<ExamResult, 'date'>) => void;
   setCelebrated: (p: Partial<AppState['celebrated']>) => void;
+  addReport: (r: { exercise: Exercise; given: string }) => void;
+  clearReports: () => void;
   setPlan: (plan: { date: string; items: PlanItem[] }) => void;
   importState: (data: Partial<AppState>) => void;
   resetAll: () => void;
@@ -259,6 +263,7 @@ const initialData = {
   conversations: [],
   consolidations: [],
   examResults: [],
+  reports: [],
   celebrated: { achievements: [], level: 1, goalDay: '' },
   plan: undefined,
 };
@@ -370,6 +375,8 @@ export const useStore = create<AppState>()(
         set((s) => ({ conversations: [{ ...c, id: uid(), date: todayStr() }, ...s.conversations].slice(0, 300) })),
       addConsolidation: (c) => set((s) => ({ consolidations: [...s.consolidations, { ...c, date: todayStr() }] })),
       addExamResult: (r) => set((s) => ({ examResults: [...s.examResults, { ...r, date: todayStr() }].slice(-300) })),
+      addReport: (r) => set((s) => ({ reports: [...(s.reports ?? []), { ...r, date: todayStr() }].slice(-200) })),
+      clearReports: () => set({ reports: [] }),
       setCelebrated: (p) => set((s) => ({ celebrated: { ...s.celebrated, ...p } })),
       setPlan: (plan) => set({ plan }),
 

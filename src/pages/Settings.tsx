@@ -390,6 +390,35 @@ export function Settings() {
         </button>
       </Card>
 
+      {(s.reports?.length ?? 0) > 0 && (
+        <Card>
+          <h2>⚠️ Жалобы на задания ({s.reports.length})</h2>
+          <p className="muted">
+            Задания, которые вы отметили кнопкой «Ошибка в задании». Скопируйте список и пришлите разработчику — неверные задания
+            будут исправлены.
+          </p>
+          <div className="row wrap">
+            <button
+              className="btn"
+              onClick={() => {
+                const text = s.reports
+                  .map((r, i) => `${i + 1}. [${r.date}] ${JSON.stringify(r.exercise)}\n   ответ ученика: ${r.given}`)
+                  .join('\n');
+                navigator.clipboard?.writeText(text).then(
+                  () => alert('Скопировано — вставьте в сообщение.'),
+                  () => prompt('Скопируйте текст:', text),
+                );
+              }}
+            >
+              📋 Скопировать список
+            </button>
+            <button className="btn ghost" onClick={() => confirm('Очистить список жалоб?') && s.clearReports()}>
+              Очистить
+            </button>
+          </div>
+        </Card>
+      )}
+
       <Card>
         <h2>💾 Данные</h2>
         <p className="muted">Данные профиля «{activeProfile().name}». Прогресс хранится в браузере. Делайте резервную копию, чтобы перенести на другое устройство (ключи в файл не попадают).</p>

@@ -1,6 +1,8 @@
 import type { Exercise, Level, Unit } from '../../content/types';
 import { MISTAKE_CATEGORIES, type MistakeCategory } from '../store';
 import { chatJson, type ChatMessage } from './llm';
+import { structuralProblem } from '../exerciseCheck';
+import { checkAnswer } from '../grading';
 
 const CATS = MISTAKE_CATEGORIES.join(' | ');
 
@@ -211,10 +213,70 @@ function sanitizeExercises(list: unknown): Exercise[] {
     else if (e.type === 'order' && Array.isArray(e.words) && e.words.length >= 3)
       out.push({ type: 'order', words: e.words.map(String), translationRu: String(e.translationRu ?? ''), explanationRu });
   }
-  return out;
+  return out.filter((ex) => !structuralProblem(ex));
+}
+
+/**
+ * Independent check: a second request solves every exercise WITHOUT seeing the key.
+ * Exercises where the solver disagrees with the key are dropped.
+ */
+export async function verifyExercises(level: Level, list: Exercise[]): Promise<Exercise[]> {
+  if (!list.length) return list;
+  const tasks = list.map((ex, i) => {
+    if (ex.type === 'choice') return { i, type: 'choice', sentence: ex.prompt, options: ex.options };
+    if (ex.type === 'gap') return { i, type: 'gap', sentence: ex.prompt };
+    if (ex.type === 'transform') return { i, type: 'check', task: ex.instructionRu, source: ex.prompt, proposed: ex.answers[0] };
+    return { i, type: 'check', task: 'Ist dieser Satz grammatisch korrekt und natürlich?', proposed: ex.words.join(' ') };
+  });
+  const r = await chatJson<{ results: { i: number; answer?: number | string; correct?: boolean }[] }>(
+    [
+      {
+        role: 'system',
+        content: `Du bist ein sehr genauer Deutschlehrer (Muttersprachler). Löse die Aufgaben (Niveau ${level}) selbst, ohne Lösungsschlüssel:
+- "choice": Welche Option (Index ab 0) passt grammatisch korrekt in die Lücke ___? Achte darauf, dass im Satz nach dem Einsetzen kein Wort doppelt steht.
+- "gap": Welches Wort / welche Wörter gehören in die Lücke ___? Gib nur den Lückentext zurück.
+- "check": Ist "proposed" eine korrekte Lösung der Aufgabe (bzw. ein korrekter, natürlicher deutscher Satz)? true/false.
+Antworte NUR mit JSON: {"results":[{"i":0,"answer":2},{"i":1,"answer":"hat"},{"i":2,"correct":true}]}`,
+      },
+      { role: 'user', content: JSON.stringify(tasks) },
+    ],
+    0,
+    'medium',
+  );
+  const byI = new Map((r.results ?? []).map((x) => [Number(x.i), x]));
+  return list.filter((ex, i) => {
+    const v = byI.get(i);
+    if (!v) return false;
+    if (ex.type === 'choice') return Number(v.answer) === ex.answer;
+    if (ex.type === 'gap') return typeof v.answer === 'string' && checkAnswer(v.answer, ex.answers) !== 'wrong';
+    return v.correct === true;
+  });
+}
+
+/** Generate, filter structurally, verify independently; keeps `count` good exercises. */
+async function generateVerified(level: Level, make: (n: number) => Promise<Exercise[]>, count: number): Promise<Exercise[]> {
+  const raw = await make(count + 4);
+  let good: Exercise[];
+  try {
+    good = await verifyExercises(level, raw);
+  } catch {
+    good = raw; // verifier unavailable (e.g. rate limit): structural checks still applied
+  }
+  return good.slice(0, count);
 }
 
 export async function generateExercises(params: {
+  level: Level;
+  topic: string;
+  explanation?: string;
+  count: number;
+  vocab?: string[];
+  focusRu?: string;
+}): Promise<Exercise[]> {
+  return generateVerified(params.level, (n) => generateExercisesRaw({ ...params, count: n }), params.count);
+}
+
+async function generateExercisesRaw(params: {
   level: Level;
   topic: string;
   explanation?: string;
@@ -226,7 +288,7 @@ export async function generateExercises(params: {
     [
       {
         role: 'system',
-        content: `Du erstellst Grammatikübungen für Deutschlernende (Muttersprache Russisch), Niveau ${params.level}. Alle deutschen Sätze müssen 100% korrekt und natürlich sein. Prüfe jede Lösung doppelt; bei mehreren korrekten Lösungen alle angeben. Mische die Formate. Antworte NUR mit JSON: {"exercises":[...]}.
+        content: `Du erstellst Grammatikübungen für Deutschlernende (Muttersprache Russisch), Niveau ${params.level}. Alle deutschen Sätze müssen 100% korrekt und natürlich sein. Prüfe jede Lösung doppelt: setze die Lösung in den Satz ein und lies ihn ganz — kein Wort darf doppelt stehen, die Lücke enthält nur, was im Satz fehlt. Bei "choice" darf genau EINE Option korrekt sein. Bei mehreren korrekten Lösungen (gap/transform) alle angeben. Mische die Formate. Antworte NUR mit JSON: {"exercises":[...]}.
 ${EXERCISE_FORMAT}`,
       },
       {
@@ -241,11 +303,15 @@ ${EXERCISE_FORMAT}`,
 }
 
 export async function generateMistakeDrill(mistakes: { original: string; correction: string; category: string }[], level: Level): Promise<Exercise[]> {
+  return generateVerified(level, () => generateMistakeDrillRaw(mistakes, level), 10);
+}
+
+async function generateMistakeDrillRaw(mistakes: { original: string; correction: string; category: string }[], level: Level): Promise<Exercise[]> {
   const r = await chatJson<{ exercises: unknown }>(
     [
       {
         role: 'system',
-        content: `Du bist Deutschlehrer. Der Lernende (Russisch, Niveau ${level}) macht wiederholt die unten aufgeführten Fehler. Erstelle 10 gezielte Übungen, die genau diese Fehlermuster trainieren (nicht dieselben Sätze kopieren). Alle Sätze 100% korrekt. Antworte NUR mit JSON: {"exercises":[...]}.
+        content: `Du bist Deutschlehrer. Der Lernende (Russisch, Niveau ${level}) macht wiederholt die unten aufgeführten Fehler. Erstelle 14 gezielte Übungen, die genau diese Fehlermuster trainieren (nicht dieselben Sätze kopieren). Alle Sätze 100% korrekt. Antworte NUR mit JSON: {"exercises":[...]}.
 ${EXERCISE_FORMAT}`,
       },
       { role: 'user', content: mistakes.map((m) => `[${m.category}] ${m.original} → ${m.correction}`).join('\n') },
