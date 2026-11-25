@@ -415,7 +415,7 @@ Die Eröffnungsausstellung läuft noch bis Ende Juni.`,
   },
   writing: {
     taskRu: 'Напишите для культурного блога рецензию на выставку, фильм или спектакль, который вы недавно посмотрели. Используйте элементы именного стиля.',
-    taskDe: 'Schreiben Sie für einen Kulturblog eine Rezension über eine Ausstellung, einen Film oder ein Theaterstück, die bzw. den bzw. das Sie vor Kurzem gesehen haben.',
+    taskDe: 'Sie haben vor Kurzem eine Ausstellung, einen Film oder ein Theaterstück gesehen. Schreiben Sie darüber eine Rezension für einen Kulturblog.',
     points: [
       'Um welche Veranstaltung es sich handelt (wann, wo)',
       'Kurze Beschreibung von Inhalt oder Konzept',
