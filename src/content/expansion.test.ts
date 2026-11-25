@@ -122,3 +122,17 @@ describe('mock exams', () => {
     });
   }
 });
+
+describe('completeness', () => {
+  it('every unit has a word bank and extra practice; 3 mock exams per level', () => {
+    for (const u of units) {
+      const n = String(u.order).padStart(2, '0');
+      const lvl = u.level.toLowerCase();
+      expect(wordMods[`./${lvl}/words/u${n}.ts`], `${u.id} word bank`).toBeDefined();
+      expect(moreMods[`./${lvl}/more/u${n}.ts`], `${u.id} extra practice`).toBeDefined();
+    }
+    for (const lvl of ['b1', 'b2', 'c1']) {
+      expect(Object.keys(examMods).filter((p) => p.includes(`/${lvl}-`)).length, `${lvl} exams`).toBe(3);
+    }
+  });
+});
