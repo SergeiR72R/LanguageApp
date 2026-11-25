@@ -104,9 +104,13 @@ export function mergeHouseholds(local: Household, remote: Partial<Household>): H
   const deleted = [...new Set([...(local.deleted ?? []), ...(remote.deleted ?? [])])];
   const byId = new Map<string, Profile>();
   for (const p of remote.profiles ?? []) byId.set(p.id, p);
+  const isDefaultName = (p: Profile) => /^Профиль \d+$/.test(p.name);
   for (const p of local.profiles) {
     const r = byId.get(p.id);
-    byId.set(p.id, !r || (p.updatedAt ?? 0) > (r.updatedAt ?? 0) ? p : r);
+    if (!r) byId.set(p.id, p);
+    // a name the user chose always beats the automatic "Профиль 1"; otherwise the later rename wins
+    else if (isDefaultName(r) !== isDefaultName(p)) byId.set(p.id, isDefaultName(r) ? p : r);
+    else byId.set(p.id, (p.updatedAt ?? 0) > (r.updatedAt ?? 0) ? p : r);
   }
   const profiles = [...byId.values()].filter((p) => !deleted.includes(p.id));
   const data: Household['data'] = {};
