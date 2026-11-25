@@ -4,10 +4,11 @@ import { useStore, type WritingEntry } from '../../lib/store';
 import { countWords } from '../../lib/grading';
 import { isLlmConfigured } from '../../lib/ai/providers';
 import { checkWriting, type WritingFeedback } from '../../lib/ai/prompts';
+import { profileScopedKey } from '../../lib/profiles';
 import { WritingFeedbackView } from '../../components/WritingFeedbackView';
 import { AiRequired, Card, ErrorBox, Spinner } from '../../components/ui';
 
-const draftKey = (id: string) => `draft-writing-${id}`;
+const draftKey = (id: string) => profileScopedKey(`draft-writing-${id}`);
 
 export function WritingStep({ unit, onNext }: { unit: Unit; onNext: () => void }) {
   const W = unit.writing;

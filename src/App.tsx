@@ -2,6 +2,7 @@ import { HashRouter, NavLink, Navigate, Route, Routes, useLocation } from 'react
 import { Component, useEffect, type ReactNode } from 'react';
 import { dueCards, streak, useStore } from './lib/store';
 import { Today } from './pages/Today';
+import { ProfileMenu } from './components/ProfileMenu';
 import { Welcome } from './pages/Welcome';
 import { Placement } from './pages/Placement';
 import { Course } from './pages/Course';
@@ -36,6 +37,9 @@ function Nav() {
         </span>
         <span>Deutsch&nbsp;B1–C1</span>
         {st > 0 && <span className="streak" title="Дней подряд">🔥 {st}</span>}
+      </div>
+      <div className="nav-profile">
+        <ProfileMenu />
       </div>
       <div className="nav-links">
         {links.map((l) => (

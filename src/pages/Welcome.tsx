@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { firstUnitOfLevel } from '../content';
 import { useStore } from '../lib/store';
 import { Card } from '../components/ui';
+import { ProfileMenu } from '../components/ProfileMenu';
+import { activeProfile, listProfiles } from '../lib/profiles';
 
 export function Welcome() {
   const setStartUnit = useStore((s) => s.setStartUnit);
@@ -13,7 +15,10 @@ export function Welcome() {
   };
   return (
     <div className="page narrow">
-      <h1>Willkommen! 👋</h1>
+      <div className="row between wrap">
+        <h1>Willkommen{listProfiles().length > 1 ? `, ${activeProfile().name}` : ''}! 👋</h1>
+        <ProfileMenu compact />
+      </div>
       <p className="lead">
         Персональный тренажёр немецкого от B1 до C1: слова, грамматика, аудирование, письмо и разговор с ИИ. Курс идёт
         последовательно — 30 юнитов, каждый из 6 шагов, а интервальные повторения закрепляют пройденное.

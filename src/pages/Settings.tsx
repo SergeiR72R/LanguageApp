@@ -4,6 +4,69 @@ import { PROVIDERS, browserSttSupported, providerInfo } from '../lib/ai/provider
 import { chat, listModels } from '../lib/ai/llm';
 import { germanVoices, onVoicesReady, speak } from '../lib/ai/tts';
 import { Card, ErrorBox, Spinner } from '../components/ui';
+import { newProfilePrompt } from '../components/ProfileMenu';
+import { EMOJIS, activeProfile, deleteProfile, listProfiles, switchProfile, updateProfile, type Profile } from '../lib/profiles';
+
+function ProfilesCard() {
+  const [profiles, setProfiles] = useState<Profile[]>(listProfiles());
+  const me = activeProfile();
+  const refresh = () => setProfiles(listProfiles());
+  return (
+    <Card>
+      <h2 id="profiles">👥 Ученики</h2>
+      <p className="muted">
+        У каждого ученика свой тест уровня, курс, повторение, ошибки и статистика. API-ключи и голоса копируются в новый профиль.
+      </p>
+      {profiles.map((p) => (
+        <div key={p.id} className="profile-row">
+          <select
+            className="emoji-select"
+            value={p.emoji}
+            onChange={(e) => {
+              updateProfile(p.id, { emoji: e.target.value });
+              refresh();
+            }}
+          >
+            {EMOJIS.map((x) => (
+              <option key={x}>{x}</option>
+            ))}
+          </select>
+          <input
+            className="text-input"
+            defaultValue={p.name}
+            onBlur={(e) => {
+              updateProfile(p.id, { name: e.target.value.trim() || p.name });
+              refresh();
+            }}
+          />
+          {p.id === me.id ? (
+            <span className="pill accent">сейчас</span>
+          ) : (
+            <>
+              <button className="btn small" onClick={() => switchProfile(p.id)}>
+                Переключиться
+              </button>
+              <button
+                className="btn small danger"
+                onClick={() => {
+                  if (confirm(`Удалить профиль «${p.name}» и весь его прогресс?`)) {
+                    deleteProfile(p.id);
+                    refresh();
+                  }
+                }}
+              >
+                Удалить
+              </button>
+            </>
+          )}
+        </div>
+      ))}
+      <button className="btn" onClick={newProfilePrompt}>
+        ➕ Добавить ученика
+      </button>
+    </Card>
+  );
+}
 
 const GEMINI_VOICES = ['Kore', 'Puck', 'Charon', 'Fenrir', 'Aoede', 'Leda', 'Orus', 'Zephyr', 'Callirrhoe', 'Autonoe', 'Enceladus', 'Iapetus', 'Algieba', 'Despina', 'Erinome', 'Gacrux', 'Achird', 'Sulafat'];
 
@@ -47,7 +110,7 @@ export function Settings() {
     const json = JSON.stringify(data, (_, v) => (typeof v === 'function' ? undefined : v), 2);
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
-    a.download = `deutsch-trainer-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `deutsch-trainer-${activeProfile().name}-${new Date().toISOString().slice(0, 10)}.json`;
     a.click();
   };
 
@@ -65,6 +128,8 @@ export function Settings() {
   return (
     <div className="page narrow">
       <h1>⚙️ Настройки</h1>
+
+      <ProfilesCard />
 
       <Card>
         <h2>🤖 Языковая модель (проверка, диалоги, анализ)</h2>
@@ -288,7 +353,7 @@ export function Settings() {
 
       <Card>
         <h2>💾 Данные</h2>
-        <p className="muted">Прогресс хранится в браузере. Делайте резервную копию, чтобы перенести на другое устройство (ключи в файл не попадают).</p>
+        <p className="muted">Данные профиля «{activeProfile().name}». Прогресс хранится в браузере. Делайте резервную копию, чтобы перенести на другое устройство (ключи в файл не попадают).</p>
         <div className="row wrap">
           <button className="btn" onClick={exportData}>
             Экспорт
@@ -299,7 +364,7 @@ export function Settings() {
           <input ref={fileRef} type="file" accept="application/json" hidden onChange={(e) => e.target.files?.[0] && importData(e.target.files[0])} />
           <button
             className="btn danger"
-            onClick={() => confirm('Удалить весь прогресс? Настройки и ключи сохранятся.') && s.resetAll()}
+            onClick={() => confirm(`Удалить весь прогресс профиля «${activeProfile().name}»? Настройки и ключи сохранятся.`) && s.resetAll()}
           >
             Сбросить прогресс
           </button>

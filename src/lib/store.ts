@@ -1,5 +1,6 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { createJSONStorage, persist } from 'zustand/middleware';
+import { activeStorageKey } from './profiles';
 import type { Level } from '../content/types';
 import { allUnits, unitIndex } from '../content';
 import { today as todayStr } from './date';
@@ -345,6 +346,12 @@ export const useStore = create<AppState>()(
     {
       name: 'deutsch-trainer-v1',
       version: 1,
+      // the actual key depends on the active learner profile
+      storage: createJSONStorage(() => ({
+        getItem: () => localStorage.getItem(activeStorageKey()),
+        setItem: (_name, value) => localStorage.setItem(activeStorageKey(), value),
+        removeItem: () => localStorage.removeItem(activeStorageKey()),
+      })),
       merge: (persisted, current) => {
         const p = (persisted ?? {}) as Partial<AppState>;
         return {

@@ -8,6 +8,8 @@ import { STEPS, stepMeta } from '../lib/steps';
 import { currentUnitId, dueCards, streak, useStore, type PlanItem } from '../lib/store';
 import { isLlmConfigured } from '../lib/ai/providers';
 import { Card, ProgressBar } from '../components/ui';
+import { ProfileMenu } from '../components/ProfileMenu';
+import { activeProfile, listProfiles } from '../lib/profiles';
 
 function itemView(item: PlanItem, due: number): { icon: string; title: string; sub: string; to: string } {
   switch (item.kind) {
@@ -64,10 +66,15 @@ export function Today() {
     <div className="page">
       <header className="page-head">
         <div>
-          <h1>Guten Tag! ☀️</h1>
+          <h1>
+            Guten Tag{listProfiles().length > 1 ? `, ${activeProfile().name}` : ''}! ☀️
+          </h1>
           <p className="muted">
             {formatDateRu(d)} · серия {streak(s.activity)} дн. · сегодня ответов {act?.answered ?? 0}
           </p>
+        </div>
+        <div className="today-profile">
+          <ProfileMenu compact />
         </div>
       </header>
 
