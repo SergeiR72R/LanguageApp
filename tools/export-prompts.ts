@@ -38,6 +38,8 @@ function lines(items: { v: VocabItem; unit: string }[]): string {
     .join('\n');
 }
 
+const hasPicture = (v: VocabItem) => ['webp', 'png', 'jpg'].some((e) => existsSync(`src/assets/words/${wordSlug(v.de)}.${e}`));
+
 const seen = new Set<string>();
 const take = (list: { v: VocabItem; unit: string }[]) =>
   list.filter(({ v }) => {
@@ -53,17 +55,21 @@ writeFileSync('tools/word-images/CLAUDE_CHROME_1_core_words.md', instructions('�
 console.log('core', core.length);
 
 // 1b) core words that still have no picture in src/assets/words
-const missing = core.filter(({ v }) => !['webp', 'png', 'jpg'].some((e) => existsSync(`src/assets/words/${wordSlug(v.de)}.${e}`)));
+const missing = core.filter(({ v }) => !hasPicture(v));
 writeFileSync('tools/word-images/CLAUDE_CHROME_0_missing_core.md', instructions('Картинки: недостающие основные слова', missing.length) + '\n' + lines(missing) + '\n');
 console.log('missing core', missing.length);
 
 // 2) word banks per level, split into parts of ~500 words
 for (const level of ['B1', 'B2', 'C1'] as const) {
-  const bank = take(allUnits.filter((u) => u.level === level).flatMap((u) => wordBank(u.id).map((v) => ({ v, unit: u.id }))));
+  // only words that still have no picture
+  const bank = take(allUnits.filter((u) => u.level === level).flatMap((u) => wordBank(u.id).map((v) => ({ v, unit: u.id })))).filter(
+    ({ v }) => !hasPicture(v),
+  );
   const size = 500;
   for (let i = 0; i * size < bank.length; i++) {
     const part = bank.slice(i * size, (i + 1) * size);
     const name = `tools/word-images/CLAUDE_CHROME_2_${level}_bank_part${i + 1}.md`;
+    // stale parts from earlier runs are removed below
     writeFileSync(name, instructions(`Картинки: словарь ${level}, часть ${i + 1}`, part.length) + '\n' + lines(part) + '\n');
     console.log(name, part.length);
   }
