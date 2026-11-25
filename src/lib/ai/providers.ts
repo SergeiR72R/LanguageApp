@@ -16,9 +16,9 @@ export const PROVIDERS: ProviderInfo[] = [
     name: 'Groq',
     baseUrl: 'https://api.groq.com/openai/v1',
     defaultModel: 'openai/gpt-oss-120b',
-    suggestedModels: ['openai/gpt-oss-120b', 'llama-3.3-70b-versatile', 'openai/gpt-oss-20b', 'qwen/qwen3.8-27b'],
+    suggestedModels: ['openai/gpt-oss-120b', 'openai/gpt-oss-20b', 'qwen/qwen3.8-27b'],
     keyUrl: 'https://console.groq.com/keys',
-    noteRu: 'Бесплатный ключ без карты. Один ключ даёт и языковую модель, и Whisper для распознавания речи. Рекомендуется.',
+    noteRu: 'Бесплатный ключ без карты. Один ключ даёт и языковую модель, и Whisper для распознавания речи. Рекомендуется модель openai/gpt-oss-120b; если её дневной лимит исчерпан, приложение само переключится на gpt-oss-20b, затем на qwen.',
   },
   {
     id: 'gemini',

@@ -70,7 +70,7 @@ Antworte NUR mit JSON in diesem Format:
       content: `Aufgabe: ${params.task}\nPunkte: ${params.points.join('; ')}\n${params.grammarFocus ? `Grammatikschwerpunkt der Lektion: ${params.grammarFocus}\n` : ''}\nText des Lernenden:\n"""${params.text}"""`,
     },
   ];
-  const r = await chatJson<Partial<WritingFeedback>>(messages, 0.2);
+  const r = await chatJson<Partial<WritingFeedback>>(messages, 0.2, 'medium');
   return {
     score: Number(r.score ?? 0),
     cefr: String(r.cefr ?? ''),
@@ -235,6 +235,7 @@ ${EXERCISE_FORMAT}`,
       },
     ],
     0.8,
+    'medium',
   );
   return sanitizeExercises(r.exercises);
 }
@@ -250,6 +251,7 @@ ${EXERCISE_FORMAT}`,
       { role: 'user', content: mistakes.map((m) => `[${m.category}] ${m.original} → ${m.correction}`).join('\n') },
     ],
     0.7,
+    'medium',
   );
   return sanitizeExercises(r.exercises);
 }

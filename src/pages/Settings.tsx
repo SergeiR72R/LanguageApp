@@ -194,6 +194,23 @@ export function Settings() {
         {test.msg && <div className="success-box de">{test.msg}</div>}
         <ErrorBox error={test.err} />
         <p className="tiny muted">Ключи хранятся только в этом браузере (localStorage) и отправляются напрямую провайдеру.</p>
+        {st.llmProvider === 'groq' && (
+          <details>
+            <summary>Хватит ли бесплатных лимитов?</summary>
+            <ul className="small">
+              <li>
+                Groq бесплатно: ~200 000 токенов в сутки на каждую модель (gpt-oss-120b, gpt-oss-20b, qwen — у каждой свой лимит),
+                до 8 000 в минуту. Лимит общий для всех, кто пользуется одним ключом.
+              </li>
+              <li>
+                Примерный расход: проверка письма ≈ 4–6 тыс., реплика в разговоре ≈ 1,5–2,5 тыс., разбор разговора ≈ 3 тыс.,
+                генерация упражнений ≈ 3–4 тыс. Час занятий с ИИ ≈ 40–60 тыс. — на одной модели это 3–4 часа в день.
+              </li>
+              <li>Whisper (распознавание речи): до 8 часов аудио в сутки — практически без ограничений.</li>
+              <li>Если лимит исчерпан, приложение само переключится на следующую модель; лимиты обновляются в течение суток.</li>
+            </ul>
+          </details>
+        )}
       </Card>
 
       <Card>
@@ -282,6 +299,10 @@ export function Settings() {
             <label className="field">
               Ключ Gemini
               <input className="text-input" type="password" value={st.keys.gemini} onChange={(e) => s.setKey('gemini', e.target.value.trim())} />
+            </label>
+            <label className="check">
+              <input type="checkbox" checked={st.geminiLongOnly} onChange={(e) => s.updateSettings({ geminiLongOnly: e.target.checked })} />
+              Экономить лимит: Gemini только для текстов аудирования и диалогов, отдельные слова и фразы — голосом браузера
             </label>
             <label className="field">
               Модель TTS

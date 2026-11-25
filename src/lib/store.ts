@@ -22,6 +22,8 @@ export interface Settings {
   geminiTtsModel: string;
   geminiVoice: string;
   geminiVoiceB: string;
+  /** use Gemini only for listening texts and dialogs; short words/sentences use the browser voice to save the free quota */
+  geminiLongOnly: boolean;
   speechRate: number;
   dailyMinutes: 20 | 40 | 60;
   reviewLimit: number;
@@ -41,6 +43,7 @@ export const defaultSettings: Settings = {
   geminiTtsModel: 'gemini-2.5-flash-preview-tts',
   geminiVoice: 'Kore',
   geminiVoiceB: 'Puck',
+  geminiLongOnly: true,
   speechRate: 0.95,
   dailyMinutes: 40,
   reviewLimit: 80,

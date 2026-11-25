@@ -173,7 +173,8 @@ export async function speak(text: string, opts: SpeakOptions = {}): Promise<void
   const s = useStore.getState().settings;
   const rate = opts.rate ?? s.speechRate;
 
-  if (s.ttsProvider === 'gemini' && s.keys.gemini) {
+  const useGemini = s.ttsProvider === 'gemini' && !!s.keys.gemini && (!s.geminiLongOnly || !!opts.dialog || text.length >= 150);
+  if (useGemini) {
     try {
       const url = await geminiAudioUrl(text, !!opts.dialog);
       if (ctrl.signal.aborted) return;
