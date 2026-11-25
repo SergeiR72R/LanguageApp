@@ -5,7 +5,6 @@ import { checkAnswer, shuffle, type CheckResult } from '../lib/grading';
 import type { Grade } from '../lib/srs';
 import { dueCards, useStore, type Card as SrsCard, type Mistake } from '../lib/store';
 import { findVocab, withArticle } from '../lib/vocab';
-import { wordImage } from '../lib/images';
 import { ExerciseView } from '../components/ExerciseView';
 import { SpeakButton } from '../components/Speak';
 import { WordCard } from './unit/VocabStep';
@@ -65,13 +64,9 @@ function VocabReview({ card, onGrade }: { card: SrsCard; onGrade: (g: Grade) => 
   const { v } = found;
   const target = withArticle(v);
 
-  const img = wordImage(v);
-  const front = img && <img className="flash-img" src={img} alt="" />;
-
   if (mode === 'recognize') {
     return (
       <div className="flash">
-        {front}
         <div className="flash-front de">
           {target} <SpeakButton text={target} />
         </div>
@@ -81,7 +76,7 @@ function VocabReview({ card, onGrade }: { card: SrsCard; onGrade: (g: Grade) => 
           </button>
         ) : (
           <>
-            <WordCard v={v} noImage />
+            <WordCard v={v} imgLarge />
             <GradeButtons onGrade={onGrade} suggested={2} />
           </>
         )}
@@ -102,10 +97,7 @@ function VocabReview({ card, onGrade }: { card: SrsCard; onGrade: (g: Grade) => 
           <SpeakButton text={target} className="big" label="Прослушать" />
         </div>
       ) : (
-        <>
-          {front}
-          <div className="flash-front">{v.ru}</div>
-        </>
+        <div className="flash-front">{v.ru}</div>
       )}
       <form
         className="row"
@@ -131,7 +123,7 @@ function VocabReview({ card, onGrade }: { card: SrsCard; onGrade: (g: Grade) => 
           <div className={`feedback ${res === 'correct' ? 'ok' : res === 'almost' ? 'almost' : 'bad'}`}>
             {res === 'correct' ? '✅ Верно' : res === 'almost' ? '🟡 Почти — проверьте написание' : '❌ Неверно'}
           </div>
-          <WordCard v={v} noImage={mode !== 'listen'} />
+          <WordCard v={v} imgLarge />
           <GradeButtons onGrade={onGrade} suggested={res === 'correct' ? 2 : res === 'almost' ? 1 : 0} />
         </>
       )}

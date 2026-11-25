@@ -18,10 +18,10 @@ const POS_RU: Record<string, string> = {
   other: '',
 };
 
-export function WordCard({ v, big, noImage }: { v: VocabItem; big?: boolean; noImage?: boolean }) {
-  const img = noImage ? undefined : wordImage(v);
+export function WordCard({ v, big, imgLarge }: { v: VocabItem; big?: boolean; imgLarge?: boolean }) {
+  const img = wordImage(v);
   return (
-    <div className={`word-card ${big ? 'big' : ''} ${img ? 'has-img' : ''}`}>
+    <div className={`word-card ${big ? 'big' : ''} ${img ? 'has-img' : ''} ${imgLarge ? 'img-large' : ''}`}>
       {img && <img className="word-img" src={img} alt="" loading="lazy" />}
       <div className="word-main">
         <span className={`word-de ${articleClass(v.article)}`}>
