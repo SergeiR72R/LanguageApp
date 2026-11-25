@@ -40,7 +40,7 @@ export const unit: Unit = {
 - перенос значений русских приставок: «переработать» ≠ *überarbeiten* (это «доработать» или «переутомиться»);
 - род сложного слова определяют по первому компоненту ✗;
 - пропускают соединительное *-s-*: *Arbeitmarkt* ✗;
-- путают *-bar* и *-lich*: *verständlich*, но не *verstehbar*.`,
+- образуют *-bar* от непереходных глаголов: *schlafbar* ✗ — суффикс сочетается прежде всего с переходными глаголами: *lesbar, machbar, finanzierbar*.`,
     table: [
       ['Приставка', 'Значение', 'Пример'],
       ['be-', 'делает глагол переходным', 'auf etw. antworten → etw. beantworten'],
@@ -155,7 +155,7 @@ export const unit: Unit = {
       },
       {
         type: 'transform',
-        instructionRu: 'Замените выделенную группу сложным существительным: «die Entwicklung der Bevölkerung».',
+        instructionRu: 'Замените группу «die Entwicklung der Bevölkerung» сложным существительным.',
         prompt: 'Die Entwicklung der Bevölkerung wird von der Politik oft unterschätzt.',
         answers: ['Die Bevölkerungsentwicklung wird von der Politik oft unterschätzt.'],
         explanationRu:
