@@ -2,7 +2,7 @@
  * Self-contained prompt files for Claude in Chrome + Google Flow (instructions + word data inside).
  * Run: npx vite-node tools/export-prompts.ts
  */
-import { writeFileSync } from 'node:fs';
+import { existsSync, writeFileSync } from 'node:fs';
 import { allUnits, wordBank } from '../src/content';
 import { wordSlug } from '../src/lib/images';
 import type { VocabItem } from '../src/content/types';
@@ -51,6 +51,11 @@ const take = (list: { v: VocabItem; unit: string }[]) =>
 const core = take(allUnits.flatMap((u) => u.vocab.map((v) => ({ v, unit: u.id }))));
 writeFileSync('tools/word-images/CLAUDE_CHROME_1_core_words.md', instructions('Картинки для основных слов курса (B1–C1)', core.length) + '\n' + lines(core) + '\n');
 console.log('core', core.length);
+
+// 1b) core words that still have no picture in src/assets/words
+const missing = core.filter(({ v }) => !['webp', 'png', 'jpg'].some((e) => existsSync(`src/assets/words/${wordSlug(v.de)}.${e}`)));
+writeFileSync('tools/word-images/CLAUDE_CHROME_0_missing_core.md', instructions('Картинки: недостающие основные слова', missing.length) + '\n' + lines(missing) + '\n');
+console.log('missing core', missing.length);
 
 // 2) word banks per level, split into parts of ~500 words
 for (const level of ['B1', 'B2', 'C1'] as const) {

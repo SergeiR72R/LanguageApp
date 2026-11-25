@@ -503,3 +503,8 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
   .profile-row .btn { flex: 1; }
   .seg-btn { white-space: normal; font-size: 0.88rem; }
 }
+@media (max-width: 600px) {
+  .word-card.big { padding: 16px; }
+  .word-card.big .word-img { max-width: 150px; margin-bottom: 6px; }
+  .word-card.big .word-de { font-size: 1.6rem; }
+}
