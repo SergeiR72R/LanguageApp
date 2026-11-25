@@ -3,6 +3,9 @@ import { Component, useEffect, useState, type ReactNode } from 'react';
 import { levelInfo, totalXp } from './lib/gamification';
 import { CelebrationWatcher } from './components/Celebrate';
 import { Compete } from './pages/Compete';
+import { startAutoSync } from './lib/sync';
+
+startAutoSync();
 import { dueCards, streak, useStore } from './lib/store';
 import { Today } from './pages/Today';
 import { ProfileMenu } from './components/ProfileMenu';

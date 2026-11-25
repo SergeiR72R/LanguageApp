@@ -6,11 +6,15 @@ export interface Profile {
   id: string;
   name: string;
   emoji: string;
+  /** last rename / emoji change (ms) – used when syncing between devices */
+  updatedAt?: number;
 }
 
 interface Registry {
   profiles: Profile[];
   active: string;
+  /** ids of deleted profiles, so sync doesn't bring them back */
+  deleted?: string[];
 }
 
 const REGISTRY_KEY = 'deutsch-trainer-profiles';
@@ -81,13 +85,13 @@ export function createProfile(name: string, settings: unknown) {
   } catch {
     /* ignore */
   }
-  write({ profiles: [...r.profiles, { id, name: name.trim() || `Профиль ${r.profiles.length + 1}`, emoji }], active: id });
+  write({ ...r, profiles: [...r.profiles, { id, name: name.trim() || `Профиль ${r.profiles.length + 1}`, emoji, updatedAt: Date.now() }], active: id });
   reload();
 }
 
 export function updateProfile(id: string, patch: Partial<Omit<Profile, 'id'>>) {
   const r = read();
-  write({ ...r, profiles: r.profiles.map((p) => (p.id === id ? { ...p, ...patch } : p)) });
+  write({ ...r, profiles: r.profiles.map((p) => (p.id === id ? { ...p, ...patch, updatedAt: Date.now() } : p)) });
 }
 
 export function deleteProfile(id: string) {
@@ -98,7 +102,7 @@ export function deleteProfile(id: string) {
   } catch {
     /* ignore */
   }
-  write({ ...r, profiles: r.profiles.filter((p) => p.id !== id) });
+  write({ ...r, profiles: r.profiles.filter((p) => p.id !== id), deleted: [...(r.deleted ?? []), id] });
 }
 
 /** Read another profile's saved progress (same device) – used for the leaderboard. */

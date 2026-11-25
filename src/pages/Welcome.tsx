@@ -2,6 +2,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { firstUnitOfLevel } from '../content';
 import { useStore } from '../lib/store';
 import { Card } from '../components/ui';
+import { SyncPanel } from '../components/SyncPanel';
+import { isSyncEnabled } from '../lib/sync';
 import { ProfileMenu } from '../components/ProfileMenu';
 import { activeProfile, listProfiles } from '../lib/profiles';
 
@@ -23,6 +25,14 @@ export function Welcome() {
         Персональный тренажёр немецкого от B1 до C1: слова, грамматика, аудирование, письмо и разговор с ИИ. Курс идёт
         последовательно — 30 юнитов, каждый из 6 шагов, а интервальные повторения закрепляют пройденное.
       </p>
+
+      {!isSyncEnabled() && (
+        <Card>
+          <h3>☁️ Уже занимаетесь на другом устройстве?</h3>
+          <p className="muted small">Введите пароль синхронизации — загрузятся ваши профили и весь прогресс.</p>
+          <SyncPanel compact />
+        </Card>
+      )}
 
       <Card className="highlight">
         <h2>1. Определим ваш уровень</h2>

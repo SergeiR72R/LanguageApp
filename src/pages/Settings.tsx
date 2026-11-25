@@ -5,6 +5,7 @@ import { chat, listModels } from '../lib/ai/llm';
 import { germanVoices, onVoicesReady, speak } from '../lib/ai/tts';
 import { Card, ErrorBox, Spinner } from '../components/ui';
 import { newProfilePrompt } from '../components/ProfileMenu';
+import { SyncPanel } from '../components/SyncPanel';
 import { EMOJIS, activeProfile, deleteProfile, listProfiles, switchProfile, updateProfile, type Profile } from '../lib/profiles';
 
 function ProfilesCard() {
@@ -130,6 +131,19 @@ export function Settings() {
       <h1>⚙️ Настройки</h1>
 
       <ProfilesCard />
+
+      <Card>
+        <h2>☁️ Синхронизация между устройствами</h2>
+        <SyncPanel />
+        <details>
+          <summary className="small">Как это работает</summary>
+          <p className="small muted">
+            Все профили и прогресс хранятся в облаке Netlify (там же, где сайт), доступ — по паролю, который задан в настройках
+            Netlify (переменная SYNC_PASSWORD). На каждом новом устройстве достаточно один раз ввести пароль. Изменения
+            объединяются: прогресс с телефона и компьютера суммируется, ничего не теряется. API-ключи тоже синхронизируются.
+          </p>
+        </details>
+      </Card>
 
       <Card>
         <h2>🤖 Языковая модель (проверка, диалоги, анализ)</h2>
