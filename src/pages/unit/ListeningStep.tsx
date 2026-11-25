@@ -5,6 +5,8 @@ import { wordDiff } from '../../lib/grading';
 import { isLlmConfigured } from '../../lib/ai/providers';
 import { generateListening, type GeneratedListening } from '../../lib/ai/prompts';
 import { SpeakButton } from '../../components/Speak';
+import { ListeningPractice } from '../../components/Tasks';
+import { unitMore } from '../../content';
 import { Card, ErrorBox, Spinner } from '../../components/ui';
 
 export function ListeningTask({
@@ -177,6 +179,11 @@ export function ListeningStep({ unit, onNext }: { unit: Unit; onNext: () => void
           }}
         />
       </Card>
+      {(unitMore(unit.id)?.listening ?? []).map((l, i) => (
+        <Card key={i}>
+          <ListeningPractice l={l} prefix={`l${i}`} />
+        </Card>
+      ))}
       <Card>
         <Dictation text={L.text} />
       </Card>

@@ -6,6 +6,7 @@ import { pendingSteps } from '../../lib/daily';
 import { VocabStep } from './VocabStep';
 import { GrammarStep } from './GrammarStep';
 import { ListeningStep } from './ListeningStep';
+import { ReadingStep } from './ReadingStep';
 import { WritingStep } from './WritingStep';
 import { SpeakingStep } from './SpeakingStep';
 import { TestStep } from './TestStep';
@@ -76,6 +77,7 @@ export function UnitPage() {
 
       {current === 'vocab' && <VocabStep unit={unit} onNext={goNext} />}
       {current === 'grammar' && <GrammarStep unit={unit} onNext={goNext} />}
+      {current === 'reading' && <ReadingStep unit={unit} onNext={goNext} />}
       {current === 'listening' && <ListeningStep unit={unit} onNext={goNext} />}
       {current === 'writing' && <WritingStep unit={unit} onNext={goNext} />}
       {current === 'speaking' && <SpeakingStep unit={unit} onNext={goNext} />}

@@ -305,3 +305,44 @@ export async function assessSample(text: string): Promise<{ cefr: string; commen
   );
   return { cefr: String(r.cefr ?? '?'), commentRu: String(r.commentRu ?? '') };
 }
+
+// ---------------- Exam evaluation ----------------
+
+export interface ExamSpeakingFeedback {
+  score: number;
+  criteria: { name: string; score: number }[];
+  feedbackRu: string;
+  tipsRu: string[];
+}
+
+/** Rate a speaking task (from a speech-recognition transcript) on the Goethe scale, 0–100. */
+export async function evaluateSpeaking(params: {
+  level: Level;
+  instruction: string;
+  situation: string;
+  points: string[];
+  mode: string;
+  transcript: string;
+}): Promise<ExamSpeakingFeedback> {
+  const r = await chatJson<Partial<ExamSpeakingFeedback>>(
+    [
+      {
+        role: 'system',
+        content: `Du bist zertifizierter Prüfer für das Goethe-Zertifikat ${params.level} (Modul Sprechen). Bewerte die Leistung des Kandidaten (Muttersprache Russisch) streng nach den offiziellen Kriterien dieses Niveaus: Erfüllung der Aufgabe, Kohärenz/Interaktion, Flüssigkeit, Wortschatz, Strukturen. Die Aussprache kann aus einem Transkript nicht beurteilt werden — ignoriere sie. Das Transkript stammt aus einer Spracherkennung (fehlende Satzzeichen ignorieren). Zu kurze oder themenfremde Beiträge erhalten wenige Punkte. Antworte NUR mit JSON:
+{"score":0-100 (60 = gerade bestanden auf Niveau ${params.level}),"criteria":[{"name":"Aufgabenerfüllung","score":0-5},{"name":"Kohärenz","score":0-5},{"name":"Wortschatz","score":0-5},{"name":"Strukturen","score":0-5}],"feedbackRu":"3-5 Sätze auf Russisch: Was war gut, was fehlte für mehr Punkte","tipsRu":["konkrete Tipps auf Russisch"]}`,
+      },
+      {
+        role: 'user',
+        content: `Aufgabe (${params.mode}): ${params.instruction}\nSituation: ${params.situation}\nPunkte: ${params.points.join('; ')}\n\nTranskript:\n${params.transcript}`,
+      },
+    ],
+    0.2,
+    'medium',
+  );
+  return {
+    score: Math.max(0, Math.min(100, Number(r.score ?? 0))),
+    criteria: Array.isArray(r.criteria) ? r.criteria.map((c) => ({ name: String(c.name), score: Number(c.score) })) : [],
+    feedbackRu: String(r.feedbackRu ?? ''),
+    tipsRu: Array.isArray(r.tipsRu) ? r.tipsRu.map(String) : [],
+  };
+}

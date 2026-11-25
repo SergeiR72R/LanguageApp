@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Exercise } from '../content/types';
 import { checkAnswer, normalize, shuffle, type CheckResult } from '../lib/grading';
 import { SpeakButton } from './Speak';
+import { sfx } from '../lib/sound';
+import { xpPop } from './Celebrate';
 
 export interface ExerciseOutcome {
   correct: boolean;
@@ -82,6 +84,10 @@ export function ExerciseView({ ex, onDone, seed }: { ex: Exercise; onDone: (o: E
     else if (ex.type === 'order') r = normalize(given()) === normalize(ex.words.join(' ')) ? 'correct' : 'wrong';
     else r = checkAnswer(text, ex.answers);
     setResult(r);
+    if (r === 'correct') {
+      sfx.correct();
+      xpPop('+3 XP', nextRef.current ?? inputRef.current);
+    } else sfx.wrong();
   };
 
   const canCheck = ex.type === 'choice' ? choice !== null : ex.type === 'order' ? picked.length === tokens.length : text.trim().length > 0;

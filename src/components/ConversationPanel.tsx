@@ -31,7 +31,7 @@ export function ConversationPanel({
   tasksRu: string[];
   unitId?: string;
   minTurns?: number;
-  onFinished?: (s: ConversationSummary, turns: number) => void;
+  onFinished?: (s: ConversationSummary, turns: number, history: ConversationTurn[]) => void;
 }) {
   const [turns, setTurns] = useState<ConversationTurn[]>([{ role: 'ai', text: opener }]);
   const [busy, setBusy] = useState(false);
@@ -95,7 +95,7 @@ export function ConversationPanel({
       const s = await summarizeConversation(level, topic, turns);
       setSummary(s);
       addConversation({ unitId, topic, turns: userTurns, summary: s });
-      onFinished?.(s, userTurns);
+      onFinished?.(s, userTurns, turns);
     } catch (e) {
       setErr((e as Error).message);
     } finally {

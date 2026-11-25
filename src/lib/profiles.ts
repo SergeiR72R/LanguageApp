@@ -100,3 +100,13 @@ export function deleteProfile(id: string) {
   }
   write({ ...r, profiles: r.profiles.filter((p) => p.id !== id) });
 }
+
+/** Read another profile's saved progress (same device) – used for the leaderboard. */
+export function readProfileState(id: string): Record<string, unknown> | null {
+  try {
+    const raw = localStorage.getItem(storageKeyFor(id));
+    return raw ? (JSON.parse(raw).state as Record<string, unknown>) : null;
+  } catch {
+    return null;
+  }
+}

@@ -9,6 +9,8 @@ import { vocabChoice } from '../../lib/vocab';
 import { pendingSteps } from '../../lib/daily';
 import { ExerciseSession } from '../../components/ExerciseSession';
 import { Card } from '../../components/ui';
+import { confetti } from '../../components/Celebrate';
+import { sfx } from '../../lib/sound';
 
 function buildTest(unit: Unit, seed: number): Exercise[] {
   const gram = shuffle(unit.grammar.exercises, seed).slice(0, 8);
@@ -59,7 +61,13 @@ export function TestStep({ unit, nextUnitId }: { unit: Unit; nextUnitId?: string
         key={seed}
         title="Тест юнита"
         exercises={exercises}
-        onFinish={(r) => completeStep(unit.id, 'test', r.score, r.score >= UNIT_PASS)}
+        onFinish={(r) => {
+          completeStep(unit.id, 'test', r.score, r.score >= UNIT_PASS);
+          if (r.score >= UNIT_PASS) {
+            confetti(220);
+            sfx.fanfare();
+          }
+        }}
         renderSummary={(r) =>
           r.score >= UNIT_PASS ? (
             <>

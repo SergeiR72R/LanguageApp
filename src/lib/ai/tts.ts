@@ -31,10 +31,10 @@ export function onVoicesReady(cb: () => void): () => void {
 
 function pickVoice(name: string, fallbackIndex = 0): SpeechSynthesisVoice | undefined {
   const voices = germanVoices();
-  return voices.find((v) => v.name === name) ?? voices[fallbackIndex] ?? voices[0];
+  return voices.find((v) => v.name === name) ?? voices[fallbackIndex % Math.max(1, voices.length)];
 }
 
-function speakBrowser(text: string, rate: number, voiceName: string, fallbackIndex: number, signal: AbortSignal): Promise<void> {
+function speakBrowser(text: string, rate: number, voiceName: string, fallbackIndex: number, signal: AbortSignal, pitch = 1): Promise<void> {
   return new Promise((resolve, reject) => {
     if (typeof speechSynthesis === 'undefined') return reject(new AiError('Браузер не поддерживает синтез речи.'));
     // Chrome cuts long utterances – split by sentences.
@@ -48,6 +48,7 @@ function speakBrowser(text: string, rate: number, voiceName: string, fallbackInd
       u.lang = voice?.lang ?? 'de-DE';
       if (voice) u.voice = voice;
       u.rate = rate;
+      u.pitch = pitch;
       u.onend = next;
       u.onerror = (e) => (e.error === 'interrupted' || e.error === 'canceled' ? resolve() : reject(new AiError(`TTS: ${e.error}`)));
       speechSynthesis.speak(u);
@@ -173,7 +174,9 @@ export async function speak(text: string, opts: SpeakOptions = {}): Promise<void
   const s = useStore.getState().settings;
   const rate = opts.rate ?? s.speechRate;
 
-  const useGemini = s.ttsProvider === 'gemini' && !!s.keys.gemini && (!s.geminiLongOnly || !!opts.dialog || text.length >= 150);
+  const moreThanTwo = !!opts.dialog && /^[CD]:/m.test(text);
+  const useGemini =
+    s.ttsProvider === 'gemini' && !!s.keys.gemini && !moreThanTwo && (!s.geminiLongOnly || !!opts.dialog || text.length >= 150);
   if (useGemini) {
     try {
       const url = await geminiAudioUrl(text, !!opts.dialog);
@@ -198,10 +201,15 @@ export async function speak(text: string, opts: SpeakOptions = {}): Promise<void
     const lines = text.split('\n').map((l) => l.trim()).filter(Boolean);
     for (const line of lines) {
       if (ctrl.signal.aborted) return;
-      const m = /^([AB]):\s*(.*)$/.exec(line);
+      const m = /^([ABCD]):\s*(.*)$/.exec(line);
       const speaker = m?.[1] ?? 'A';
       const content = m?.[2] ?? line;
-      await speakBrowser(content, rate, speaker === 'A' ? s.browserVoice : s.browserVoiceB, speaker === 'A' ? 0 : 1, ctrl.signal);
+      // A and B use the chosen voices; C and D take further German voices so each speaker sounds different
+      const idx = 'ABCD'.indexOf(speaker);
+      const name = idx === 0 ? s.browserVoice : idx === 1 ? s.browserVoiceB : '';
+      // with few installed voices, shift the pitch so C/D still sound like different people
+      const pitch = idx < 2 || germanVoices().length > idx ? 1 : idx === 2 ? 0.8 : 1.25;
+      await speakBrowser(content, rate, name, idx, ctrl.signal, pitch);
     }
     return;
   }

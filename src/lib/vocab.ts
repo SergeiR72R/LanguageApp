@@ -1,13 +1,18 @@
 import type { ChoiceExercise, Unit, VocabItem } from '../content/types';
-import { allUnits } from '../content';
+import { allUnits, wordBank } from '../content';
 import { shuffle } from './grading';
 
 export const withArticle = (v: VocabItem) => (v.article ? `${v.article} ${v.de}` : v.de);
 
 /** ru → de multiple choice; distractors from the same unit (same part of speech preferred). */
 export function vocabChoice(unit: Unit, idx: number, seed = idx): ChoiceExercise {
-  const v = unit.vocab[idx];
-  const pool = unit.vocab.filter((_, k) => k !== idx);
+  return vocabChoiceFrom(unit.vocab, idx, seed);
+}
+
+/** ru → de multiple choice from any word list. */
+export function vocabChoiceFrom(list: VocabItem[], idx: number, seed = idx): ChoiceExercise {
+  const v = list[idx];
+  const pool = list.filter((x, k) => k !== idx && withArticle(x) !== withArticle(v));
   const same = pool.filter((x) => x.pos === v.pos);
   const distract = shuffle(same.length >= 3 ? same : pool, seed).slice(0, 3);
   const options = shuffle([v, ...distract], seed + 1).map(withArticle);
@@ -31,9 +36,9 @@ export function articleChoice(v: VocabItem): ChoiceExercise {
   };
 }
 
-export function findVocab(unitId: string, index: number): { unit: Unit; v: VocabItem } | undefined {
+export function findVocab(unitId: string, index: number, bank = false): { unit: Unit; v: VocabItem } | undefined {
   const unit = allUnits.find((u) => u.id === unitId);
-  const v = unit?.vocab[index];
+  const v = bank ? wordBank(unitId)[index] : unit?.vocab[index];
   return unit && v ? { unit, v } : undefined;
 }
 

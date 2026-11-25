@@ -5,6 +5,7 @@ import { articleChoice, pluralForm, vocabChoice, withArticle } from '../../lib/v
 import { ExerciseSession } from '../../components/ExerciseSession';
 import { SpeakButton } from '../../components/Speak';
 import { Card, articleClass } from '../../components/ui';
+import { wordImage } from '../../lib/images';
 
 const POS_RU: Record<string, string> = {
   noun: 'сущ.',
@@ -18,8 +19,10 @@ const POS_RU: Record<string, string> = {
 };
 
 export function WordCard({ v, big }: { v: VocabItem; big?: boolean }) {
+  const img = wordImage(v);
   return (
-    <div className={`word-card ${big ? 'big' : ''}`}>
+    <div className={`word-card ${big ? 'big' : ''} ${img ? 'has-img' : ''}`}>
+      {img && <img className="word-img" src={img} alt="" loading="lazy" />}
       <div className="word-main">
         <span className={`word-de ${articleClass(v.article)}`}>
           {v.article && <span className="article">{v.article} </span>}

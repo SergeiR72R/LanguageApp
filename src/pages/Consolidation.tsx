@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Exercise } from '../content/types';
-import { allUnits } from '../content';
+import { allUnits, practiceExercises, wordBank } from '../content';
 import { shuffle } from '../lib/grading';
 import { useStore } from '../lib/store';
-import { vocabChoice } from '../lib/vocab';
+import { vocabChoice, vocabChoiceFrom } from '../lib/vocab';
 import { ExerciseSession } from '../components/ExerciseSession';
 import { Card } from '../components/ui';
 
@@ -22,13 +22,21 @@ export function Consolidation() {
       return c ? c.srs.lapses * 2 + (c.srs.ease < 2.3 ? 2 : 0) + 1 : 1;
     };
     const gram = done.flatMap((u) => u.grammar.exercises.map((ex, i) => ({ ex, id: `g:${u.id}:${i}`, w: weak(`g:${u.id}:${i}`) })));
+    const deep = done.flatMap((u) => practiceExercises(u.id).map((ex, i) => ({ ex, id: `gx:${u.id}:${i}`, w: weak(`gx:${u.id}:${i}`) })));
     const voc = done.flatMap((u) => u.vocab.map((_, i) => ({ ex: vocabChoice(u, i, seed + i), id: `v:${u.id}:${i}`, w: weak(`v:${u.id}:${i}`) })));
+    // words of the day that are already being learned (from any unit)
+    const bank = allUnits.flatMap((u) =>
+      wordBank(u.id)
+        .map((_, i) => i)
+        .filter((i) => s.cards[`w:${u.id}:${i}`])
+        .map((i) => ({ ex: vocabChoiceFrom(wordBank(u.id), i, seed + i), id: `w:${u.id}:${i}`, w: weak(`w:${u.id}:${i}`) })),
+    );
     const pick = (arr: { ex: Exercise; id: string; w: number }[], n: number) =>
       shuffle(arr, seed)
         .sort((a, b) => b.w - a.w + (Math.random() - 0.5) * 2)
         .slice(0, n)
         .map(({ ex, id }) => ({ ex, id }));
-    return shuffle([...pick(gram, 12), ...pick(voc, 8)], seed + 3);
+    return shuffle([...pick([...gram, ...deep], 14), ...pick([...voc, ...bank], 12)], seed + 3);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seed, done.length]);
   const exercises = items.map((x) => x.ex);
@@ -52,7 +60,7 @@ export function Consolidation() {
       {!started ? (
         <Card>
           <p>
-            20 заданий из всех пройденных юнитов ({done.length}). Чаще попадаются темы и слова, в которых вы ошибались.
+            26 заданий из всех пройденных юнитов ({done.length}). Чаще попадаются темы и слова, в которых вы ошибались.
             Рекомендуется раз в неделю.
           </p>
           {s.consolidations.length > 0 && (

@@ -3,6 +3,7 @@ import { addDays, today } from '../lib/date';
 import { isMature } from '../lib/srs';
 import { streak, useStore } from '../lib/store';
 import { Card, ProgressBar } from '../components/ui';
+import { bankStats } from '../lib/words';
 
 export function Progress() {
   const s = useStore();
@@ -36,6 +37,12 @@ export function Progress() {
         <div className="stat">
           <div className="stat-num">{vocab.filter((c) => isMature(c.srs)).length}/{vocab.length}</div>
           <div className="stat-cap">слов закреплено / изучается</div>
+        </div>
+        <div className="stat">
+          <div className="stat-num">
+            {bankStats(s).introduced}/{bankStats(s).total}
+          </div>
+          <div className="stat-cap">слов дня из словаря курса</div>
         </div>
         <div className="stat">
           <div className="stat-num">{totals.answered ? Math.round((totals.correct / totals.answered) * 100) : 0}%</div>
@@ -111,6 +118,7 @@ export function Progress() {
               <th>Юнит</th>
               <th>Слова</th>
               <th>Грамм.</th>
+              <th>Чтение</th>
               <th>Аудир.</th>
               <th>Письмо</th>
               <th>Речь</th>
@@ -130,6 +138,7 @@ export function Progress() {
                     </td>
                     <td>{f('vocab')}</td>
                     <td>{f('grammar')}</td>
+                    <td>{f('reading')}</td>
                     <td>{f('listening')}</td>
                     <td>{f('writing')}</td>
                     <td>{f('speaking')}</td>

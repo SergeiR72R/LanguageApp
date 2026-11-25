@@ -62,6 +62,13 @@ export function Course() {
                   </Link>
                 );
               })}
+              <Link to="/exams" className="unit-card exam-card">
+                <div className="unit-num">🎓</div>
+                <div className="unit-body">
+                  <div className="unit-title">Goethe-Zertifikat {lvl}</div>
+                  <div className="unit-sub">Пробные экзамены после уровня</div>
+                </div>
+              </Link>
             </div>
           </section>
         );

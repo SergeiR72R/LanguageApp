@@ -25,9 +25,12 @@ export interface Settings {
   /** use Gemini only for listening texts and dialogs; short words/sentences use the browser voice to save the free quota */
   geminiLongOnly: boolean;
   speechRate: number;
-  dailyMinutes: 20 | 40 | 60;
+  dailyMinutes: 20 | 40 | 60 | 90;
+  newWordsPerDay: number;
   reviewLimit: number;
   showRuHints: boolean;
+  sounds: boolean;
+  animations: boolean;
 }
 
 export const defaultSettings: Settings = {
@@ -46,8 +49,11 @@ export const defaultSettings: Settings = {
   geminiLongOnly: true,
   speechRate: 0.95,
   dailyMinutes: 40,
+  newWordsPerDay: 15,
   reviewLimit: 80,
   showRuHints: true,
+  sounds: true,
+  animations: true,
 };
 
 export interface PlacementResult {
@@ -80,6 +86,8 @@ export interface Card {
   unitId?: string;
   index?: number;
   mistakeId?: string;
+  /** true = from the unit's word bank / extra exercises instead of the core list */
+  bank?: boolean;
   srs: SrsState;
   added: string;
 }
@@ -140,6 +148,7 @@ export interface DayActivity {
   spokenTurns: number;
   wordsWritten: number;
   drills: number;
+  bankWords: number;
 }
 
 export interface WritingEntry {
@@ -162,6 +171,15 @@ export interface ConversationEntry {
   summary?: unknown;
 }
 
+export interface ExamResult {
+  examId: string;
+  date: string;
+  module: 'lesen' | 'hoeren' | 'schreiben' | 'sprechen';
+  /** 0..100 points as in the Goethe exam */
+  points: number;
+  details?: unknown;
+}
+
 export interface ConsolidationEntry {
   date: string;
   score: number;
@@ -179,6 +197,9 @@ export interface AppState {
   writings: WritingEntry[];
   conversations: ConversationEntry[];
   consolidations: ConsolidationEntry[];
+  examResults: ExamResult[];
+  /** gamification bookkeeping: achievements already celebrated, last level seen, day the daily goal was celebrated */
+  celebrated: { achievements: string[]; level: number; goalDay: string };
   plan?: { date: string; items: PlanItem[] };
 
   updateSettings: (p: Partial<Settings>) => void;
@@ -196,6 +217,8 @@ export interface AppState {
   addWriting: (w: Omit<WritingEntry, 'id' | 'date'>) => void;
   addConversation: (c: Omit<ConversationEntry, 'id' | 'date'>) => void;
   addConsolidation: (c: Omit<ConsolidationEntry, 'date'>) => void;
+  addExamResult: (r: Omit<ExamResult, 'date'>) => void;
+  setCelebrated: (p: Partial<AppState['celebrated']>) => void;
   setPlan: (plan: { date: string; items: PlanItem[] }) => void;
   importState: (data: Partial<AppState>) => void;
   resetAll: () => void;
@@ -206,7 +229,9 @@ export type PlanItem =
   | { kind: 'step'; unitId: string; step: StepId }
   | { kind: 'consolidation' }
   | { kind: 'conversation' }
-  | { kind: 'mistakes' };
+  | { kind: 'mistakes' }
+  | { kind: 'words' }
+  | { kind: 'exam'; level: Level };
 
 const emptyDay = (): DayActivity => ({
   reviews: 0,
@@ -217,6 +242,7 @@ const emptyDay = (): DayActivity => ({
   spokenTurns: 0,
   wordsWritten: 0,
   drills: 0,
+  bankWords: 0,
 });
 
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
@@ -232,6 +258,8 @@ const initialData = {
   writings: [],
   conversations: [],
   consolidations: [],
+  examResults: [],
+  celebrated: { achievements: [], level: 1, goalDay: '' },
   plan: undefined,
 };
 
@@ -341,6 +369,8 @@ export const useStore = create<AppState>()(
       addConversation: (c) =>
         set((s) => ({ conversations: [{ ...c, id: uid(), date: todayStr() }, ...s.conversations].slice(0, 300) })),
       addConsolidation: (c) => set((s) => ({ consolidations: [...s.consolidations, { ...c, date: todayStr() }] })),
+      addExamResult: (r) => set((s) => ({ examResults: [...s.examResults, { ...r, date: todayStr() }].slice(-300) })),
+      setCelebrated: (p) => set((s) => ({ celebrated: { ...s.celebrated, ...p } })),
       setPlan: (plan) => set({ plan }),
 
       importState: (data) => set({ ...initialData, ...data, settings: { ...defaultSettings, ...(data.settings ?? {}) } }),

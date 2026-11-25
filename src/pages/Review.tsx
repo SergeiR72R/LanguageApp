@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUnit } from '../content';
+import { getUnit, practiceExercises } from '../content';
 import { checkAnswer, shuffle, type CheckResult } from '../lib/grading';
 import type { Grade } from '../lib/srs';
 import { dueCards, useStore, type Card as SrsCard, type Mistake } from '../lib/store';
@@ -9,6 +9,8 @@ import { ExerciseView } from '../components/ExerciseView';
 import { SpeakButton } from '../components/Speak';
 import { WordCard } from './unit/VocabStep';
 import { Card, ProgressBar } from '../components/ui';
+import { sfx } from '../lib/sound';
+import { confetti } from '../components/Celebrate';
 
 interface QueueItem {
   card: SrsCard;
@@ -43,7 +45,7 @@ function GradeButtons({ onGrade, suggested }: { onGrade: (g: Grade) => void; sug
 }
 
 function VocabReview({ card, onGrade }: { card: SrsCard; onGrade: (g: Grade) => void }) {
-  const found = findVocab(card.unitId!, card.index!);
+  const found = findVocab(card.unitId!, card.index!, card.bank);
   const mode = useMemo<'recognize' | 'produce' | 'listen'>(() => {
     if (card.srs.reps < 2) return 'recognize';
     return card.srs.reps % 3 === 2 ? 'listen' : 'produce';
@@ -186,6 +188,13 @@ export function Review() {
   const [stats, setStats] = useState({ done: 0, good: 0 });
   const [practice, setPractice] = useState(false);
   const due = dueCards(s);
+  const finished = !!queue && pos >= queue.length && stats.done > 0;
+  useEffect(() => {
+    if (finished) {
+      confetti(90);
+      sfx.success();
+    }
+  }, [finished]);
 
   const start = (practiceMode = false) => {
     const source = practiceMode ? shuffle(Object.values(s.cards)).slice(0, 25) : due.slice(0, s.settings.reviewLimit);
@@ -268,6 +277,7 @@ export function Review() {
 
   const grade = (g: Grade) => {
     const c = item.card;
+    if (g > 0) sfx.flip();
     if (!item.relearn && !practice) {
       gradeCard(c.id, g);
       if (c.kind === 'mistake' && c.mistakeId && g >= 2 && c.srs.reps >= 2) updateMistake(c.mistakeId, { resolved: true });
@@ -299,8 +309,18 @@ export function Review() {
           </div>
         )}
         {c.kind === 'vocab' && <VocabReview card={c} onGrade={grade} />}
-        {c.kind === 'grammar' && unit && unit.grammar.exercises[c.index!] && (
-          <ExerciseView key={c.id + pos} ex={unit.grammar.exercises[c.index!]} seed={pos} onDone={(o) => grade(o.correct ? 2 : 0)} />
+        {c.kind === 'grammar' && unit && (c.bank ? practiceExercises(unit.id) : unit.grammar.exercises)[c.index!] && (
+          <ExerciseView
+            key={c.id + pos}
+            ex={(c.bank ? practiceExercises(unit.id) : unit.grammar.exercises)[c.index!]}
+            seed={pos}
+            onDone={(o) => grade(o.correct ? 2 : 0)}
+          />
+        )}
+        {c.kind === 'grammar' && !(unit && (c.bank ? practiceExercises(unit.id) : unit.grammar.exercises)[c.index!]) && (
+          <button className="btn" onClick={() => grade(3)}>
+            Пропустить
+          </button>
         )}
         {c.kind === 'mistake' && mistake && <MistakeReview m={mistake} onGrade={grade} />}
         {c.kind === 'mistake' && !mistake && (

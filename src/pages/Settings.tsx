@@ -349,9 +349,19 @@ export function Settings() {
         <label className="field">
           Время в день
           <div className="seg">
-            {([20, 40, 60] as const).map((m) => (
+            {([20, 40, 60, 90] as const).map((m) => (
               <button key={m} className={`seg-btn ${st.dailyMinutes === m ? 'active' : ''}`} onClick={() => s.updateSettings({ dailyMinutes: m })}>
                 {m} мин
+              </button>
+            ))}
+          </div>
+        </label>
+        <label className="field">
+          Новых слов в день (из словаря курса)
+          <div className="seg">
+            {[10, 15, 20, 30].map((n) => (
+              <button key={n} className={`seg-btn ${st.newWordsPerDay === n ? 'active' : ''}`} onClick={() => s.updateSettings({ newWordsPerDay: n })}>
+                {n}
               </button>
             ))}
           </div>
@@ -366,6 +376,14 @@ export function Settings() {
             value={st.reviewLimit}
             onChange={(e) => s.updateSettings({ reviewLimit: Math.max(10, Number(e.target.value) || 80) })}
           />
+        </label>
+        <label className="check">
+          <input type="checkbox" checked={st.sounds} onChange={(e) => s.updateSettings({ sounds: e.target.checked })} /> Звуки (правильно/ошибка,
+          достижения)
+        </label>
+        <label className="check">
+          <input type="checkbox" checked={st.animations} onChange={(e) => s.updateSettings({ animations: e.target.checked })} /> Анимации и
+          конфетти
         </label>
         <button className="btn ghost" onClick={() => s.setPlan({ date: '', items: [] })}>
           Пересобрать план на сегодня

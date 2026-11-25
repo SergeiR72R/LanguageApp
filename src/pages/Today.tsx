@@ -8,8 +8,69 @@ import { STEPS, stepMeta } from '../lib/steps';
 import { currentUnitId, dueCards, streak, useStore, type PlanItem } from '../lib/store';
 import { isLlmConfigured } from '../lib/ai/providers';
 import { Card, ProgressBar } from '../components/ui';
-import { ProfileMenu } from '../components/ProfileMenu';
 import { activeProfile, listProfiles } from '../lib/profiles';
+import { dailyGoalXp, levelInfo, todayXp, totalXp } from '../lib/gamification';
+import { allPlayers } from '../lib/compete';
+
+function GoalRing({ value, goal }: { value: number; goal: number }) {
+  const r = 46;
+  const c = 2 * Math.PI * r;
+  const p = Math.min(1, value / goal);
+  return (
+    <div className="ring" title={`Дневная цель: ${goal} XP`}>
+      <svg width="108" height="108" viewBox="0 0 108 108">
+        <defs>
+          <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#f5c400" />
+            <stop offset="100%" stopColor="#f97316" />
+          </linearGradient>
+        </defs>
+        <circle className="ring-bg" cx="54" cy="54" r={r} fill="none" strokeWidth="10" />
+        <circle className="ring-fg" cx="54" cy="54" r={r} fill="none" strokeWidth="10" strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - p)} />
+      </svg>
+      <div className="ring-label">
+        {p >= 1 ? '🎯' : `${value}`}
+        <small>{p >= 1 ? 'цель!' : `из ${goal} XP`}</small>
+      </div>
+    </div>
+  );
+}
+
+function Duel() {
+  const players = allPlayers();
+  if (players.length < 2) return null;
+  const me = players.find((p) => p.me)!;
+  const rival = players.filter((p) => !p.me).sort((a, b) => b.week - a.week)[0];
+  const sum = Math.max(1, me.week + rival.week);
+  const lead = me.week - rival.week;
+  return (
+    <Link to="/compete" className="card duel-card">
+      <div className="row between">
+        <strong>⚔️ Дуэль недели</strong>
+        <span className="tiny muted">{lead > 0 ? `вы впереди на ${lead} XP` : lead < 0 ? `отставание ${-lead} XP — догоняйте!` : 'ничья'}</span>
+      </div>
+      <div className="duel">
+        <div className="duel-side">
+          <div>
+            {me.profile.emoji} {me.profile.name}
+          </div>
+          <div className="big">{me.week}</div>
+        </div>
+        <div className="duel-vs">VS</div>
+        <div className="duel-side">
+          <div>
+            {rival.profile.emoji} {rival.profile.name}
+          </div>
+          <div className="big">{rival.week}</div>
+        </div>
+      </div>
+      <div className="duel-bar">
+        <div style={{ width: `${(me.week / sum) * 100}%` }} />
+        <div style={{ width: `${(rival.week / sum) * 100}%` }} />
+      </div>
+    </Link>
+  );
+}
 
 function itemView(item: PlanItem, due: number): { icon: string; title: string; sub: string; to: string } {
   switch (item.kind) {
@@ -36,6 +97,10 @@ function itemView(item: PlanItem, due: number): { icon: string; title: string; s
       return { icon: '🗣️', title: 'Разговорная практика с ИИ', sub: 'Свободный диалог 5–10 минут с разбором ошибок', to: '/speak' };
     case 'mistakes':
       return { icon: '🎯', title: 'Работа над ошибками', sub: 'ИИ составит упражнения по вашим частым ошибкам', to: '/drill' };
+    case 'words':
+      return { icon: '🆕', title: 'Слова дня', sub: 'Новая порция из словаря курса · ~10 мин', to: '/words' };
+    case 'exam':
+      return { icon: '🎓', title: `Пробный экзамен Goethe ${item.level}`, sub: 'Уровень пройден — проверьте готовность к экзамену', to: '/exams' };
   }
 }
 
@@ -58,25 +123,29 @@ export function Today() {
   const vocabCards = Object.values(s.cards).filter((c) => c.kind === 'vocab');
   const mature = vocabCards.filter((c) => isMature(c.srs)).length;
   const completedUnits = allUnits.filter((u) => s.units[u.id]?.completed).length;
-  const act = s.activity[d];
 
   const refresh = () => s.setPlan({ date: d, items: buildPlan(useStore.getState()) });
 
   return (
     <div className="page">
-      <header className="page-head">
+      <section className="card hero">
+        <GoalRing value={todayXp(s)} goal={dailyGoalXp(s)} />
         <div>
           <h1>
             Guten Tag{listProfiles().length > 1 ? `, ${activeProfile().name}` : ''}! ☀️
           </h1>
-          <p className="muted">
-            {formatDateRu(d)} · серия {streak(s.activity)} дн. · сегодня ответов {act?.answered ?? 0}
-          </p>
+          <div className="muted">{formatDateRu(d)}</div>
+          <div className="hero-stats">
+            <span title="Серия дней подряд">🔥 {streak(s.activity)} дн.</span>
+            <span title="Уровень игрока">
+              {levelInfo(totalXp(s)).icon} Ур. {levelInfo(totalXp(s)).level} · {levelInfo(totalXp(s)).rank}
+            </span>
+            <span>⭐ {totalXp(s)} XP</span>
+          </div>
         </div>
-        <div className="today-profile">
-          <ProfileMenu compact />
-        </div>
-      </header>
+      </section>
+
+      <Duel />
 
       {!isLlmConfigured(s.settings) && (
         <div className="info-box">

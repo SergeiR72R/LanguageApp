@@ -1,9 +1,10 @@
-export type StepId = 'vocab' | 'grammar' | 'listening' | 'writing' | 'speaking' | 'test';
+export type StepId = 'vocab' | 'grammar' | 'reading' | 'listening' | 'writing' | 'speaking' | 'test';
 
 export const STEPS: { id: StepId; title: string; de: string; icon: string; minutes: number }[] = [
   { id: 'vocab', title: 'Слова', de: 'Wortschatz', icon: '📚', minutes: 15 },
-  { id: 'grammar', title: 'Грамматика', de: 'Grammatik', icon: '🧩', minutes: 20 },
-  { id: 'listening', title: 'Аудирование', de: 'Hören', icon: '🎧', minutes: 15 },
+  { id: 'grammar', title: 'Грамматика', de: 'Grammatik', icon: '🧩', minutes: 30 },
+  { id: 'reading', title: 'Чтение', de: 'Lesen', icon: '📖', minutes: 20 },
+  { id: 'listening', title: 'Аудирование', de: 'Hören', icon: '🎧', minutes: 20 },
   { id: 'writing', title: 'Письмо', de: 'Schreiben', icon: '✍️', minutes: 20 },
   { id: 'speaking', title: 'Говорение', de: 'Sprechen', icon: '🗣️', minutes: 15 },
   { id: 'test', title: 'Тест юнита', de: 'Test', icon: '🏁', minutes: 10 },

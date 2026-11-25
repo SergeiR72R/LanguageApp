@@ -3,6 +3,7 @@ import type { Exercise } from '../content/types';
 import { useStore } from '../lib/store';
 import { ExerciseView, type ExerciseOutcome } from './ExerciseView';
 import { ProgressBar } from './ui';
+import { sfx } from '../lib/sound';
 
 export interface SessionResult {
   outcomes: ExerciseOutcome[];
@@ -74,6 +75,7 @@ export function ExerciseSession({
             const r = { outcomes: next, score: next.filter((x) => x.correct).length / next.length };
             setDone(r);
             onFinish(r);
+            if (r.score >= 0.8) sfx.success();
           } else setI(i + 1);
         }}
       />

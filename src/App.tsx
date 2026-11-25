@@ -1,5 +1,8 @@
 import { HashRouter, NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { Component, useEffect, type ReactNode } from 'react';
+import { Component, useEffect, useState, type ReactNode } from 'react';
+import { levelInfo, totalXp } from './lib/gamification';
+import { CelebrationWatcher } from './components/Celebrate';
+import { Compete } from './pages/Compete';
 import { dueCards, streak, useStore } from './lib/store';
 import { Today } from './pages/Today';
 import { ProfileMenu } from './components/ProfileMenu';
@@ -14,44 +17,120 @@ import { Progress } from './pages/Progress';
 import { Settings } from './pages/Settings';
 import { Consolidation } from './pages/Consolidation';
 import { Drill } from './pages/Drill';
+import { Words } from './pages/Words';
+import { Exams, ExamRunner } from './pages/Exams';
+
+const LINKS = [
+  { to: '/', label: 'Сегодня', icon: '☀️', end: true, primary: true },
+  { to: '/course', label: 'Курс', icon: '🗺️', primary: true },
+  { to: '/review', label: 'Повторение', icon: '🔁', primary: true, due: true },
+  { to: '/words', label: 'Слова дня', icon: '🆕' },
+  { to: '/speak', label: 'Разговор', icon: '🗣️', primary: true },
+  { to: '/exams', label: 'Экзамен', icon: '🎓' },
+  { to: '/compete', label: 'Соревнование', icon: '🏆' },
+  { to: '/mistakes', label: 'Ошибки', icon: '📕' },
+  { to: '/progress', label: 'Прогресс', icon: '📈' },
+  { to: '/settings', label: 'Настройки', icon: '⚙️' },
+];
 
 function Nav() {
   const due = useStore((s) => dueCards(s).length);
   const st = useStore((s) => streak(s.activity));
-  const links = [
-    { to: '/', label: 'Сегодня', icon: '☀️', end: true },
-    { to: '/course', label: 'Курс', icon: '🗺️' },
-    { to: '/review', label: 'Повторение', icon: '🔁', badge: due },
-    { to: '/speak', label: 'Разговор', icon: '🗣️' },
-    { to: '/mistakes', label: 'Ошибки', icon: '📕' },
-    { to: '/progress', label: 'Прогресс', icon: '📈' },
-    { to: '/settings', label: 'Настройки', icon: '⚙️' },
-  ];
+  const xp = useStore((s) => totalXp(s));
+  const li = levelInfo(xp);
+  const [more, setMore] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => setMore(false), [pathname]);
+  const secondaryActive = LINKS.some((l) => !l.primary && l.to !== '/' && pathname.startsWith(l.to));
+
+  const link = (l: (typeof LINKS)[number]) => (
+    <NavLink
+      key={l.to}
+      to={l.to}
+      end={l.end}
+      className={({ isActive }) => `nav-link ${isActive ? 'active' : ''} ${l.primary ? 'primary' : 'secondary'}`}
+    >
+      <span className="nav-icon">{l.icon}</span>
+      <span className="nav-label">{l.label}</span>
+      {l.due && due > 0 && <span className="badge">{due > 99 ? '99+' : due}</span>}
+    </NavLink>
+  );
+
   return (
-    <nav className="nav">
-      <div className="brand">
+    <>
+      {/* phone: compact top bar */}
+      <header className="topbar">
         <span className="flag" aria-hidden>
           <i />
           <i />
           <i />
         </span>
-        <span>Deutsch&nbsp;B1–C1</span>
-        {st > 0 && <span className="streak" title="Дней подряд">🔥 {st}</span>}
-      </div>
-      <div className="nav-profile">
-        <ProfileMenu />
-      </div>
-      <div className="nav-links">
-        {links.map((l) => (
-          <NavLink key={l.to} to={l.to} end={l.end} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-            <span className="nav-icon">{l.icon}</span>
-            <span className="nav-label">{l.label}</span>
-            {!!l.badge && <span className="badge">{l.badge > 99 ? '99+' : l.badge}</span>}
-          </NavLink>
-        ))}
-      </div>
-    </nav>
+        <ProfileMenu compact />
+        <span className="topbar-stats">
+          <span title="Серия дней">🔥 {st}</span>
+          <span title={`Уровень ${li.level} · ${li.rank}`}>
+            {li.icon} {li.level}
+          </span>
+        </span>
+      </header>
+      <nav className="nav">
+        <div className="brand">
+          <span className="flag" aria-hidden>
+            <i />
+            <i />
+            <i />
+          </span>
+          <span>Deutsch&nbsp;B1–C1</span>
+          {st > 0 && (
+            <span className="streak" title="Дней подряд">
+              🔥 {st}
+            </span>
+          )}
+        </div>
+        <div className="nav-profile">
+          <ProfileMenu />
+          <div className="nav-level" title={`${li.rank}: ${li.into}/${li.span} XP до следующего уровня`}>
+            <span>
+              {li.icon} Ур. {li.level} · {li.rank}
+            </span>
+            <div className="mini-bar">
+              <div style={{ width: `${Math.round((li.into / li.span) * 100)}%` }} />
+            </div>
+          </div>
+        </div>
+        <div className="nav-links">
+          {LINKS.map(link)}
+          <button type="button" className={`nav-link more-btn ${more || secondaryActive ? 'active' : ''}`} onClick={() => setMore(!more)}>
+            <span className="nav-icon">☰</span>
+            <span className="nav-label">Ещё</span>
+          </button>
+        </div>
+      </nav>
+      {more && (
+        <div className="sheet-backdrop" onClick={() => setMore(false)}>
+          <div className="sheet" onClick={(e) => e.stopPropagation()}>
+            <div className="sheet-grip" />
+            <div className="sheet-grid">
+              {LINKS.filter((l) => !l.primary).map((l) => (
+                <NavLink key={l.to} to={l.to} className="sheet-item">
+                  <span className="sheet-icon">{l.icon}</span>
+                  {l.label}
+                </NavLink>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
+}
+
+function AnimationsClass() {
+  const on = useStore((s) => s.settings.animations);
+  useEffect(() => {
+    document.body.classList.toggle('no-anim', !on);
+  }, [on]);
+  return null;
 }
 
 function ScrollTop() {
@@ -97,8 +176,10 @@ export function App() {
   return (
     <HashRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ScrollTop />
+      <AnimationsClass />
       <div className="layout">
         <Nav />
+        <CelebrationWatcher />
         <main className="main">
           <ErrorBoundary>
           <Routes>
@@ -115,6 +196,10 @@ export function App() {
             <Route path="/settings" element={<Settings />} />
             <Route path="/consolidation" element={<Consolidation />} />
             <Route path="/drill" element={<Drill />} />
+            <Route path="/words" element={<Words />} />
+            <Route path="/compete" element={<Compete />} />
+            <Route path="/exams" element={<Exams />} />
+            <Route path="/exam/:id" element={<ExamRunner />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           </ErrorBoundary>

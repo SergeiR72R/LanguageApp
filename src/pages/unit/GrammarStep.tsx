@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { Exercise, Unit } from '../../content/types';
+import { practiceExercises } from '../../content';
 import { useStore } from '../../lib/store';
 import { GRAMMAR_PASS } from '../../lib/steps';
 import { isLlmConfigured } from '../../lib/ai/providers';
@@ -36,7 +37,9 @@ export function GrammarStep({ unit, onNext }: { unit: Unit; onNext: () => void }
   const settings = useStore((s) => s.settings);
   const completeStep = useStore((s) => s.completeStep);
   const addCards = useStore((s) => s.addCards);
-  const [phase, setPhase] = useState<'lesson' | 'practice' | 'extra'>('lesson');
+  const [phase, setPhase] = useState<'lesson' | 'practice' | 'deep' | 'extra'>('lesson');
+  const deep = practiceExercises(unit.id);
+  const teilAPassed = (progress?.score ?? 0) >= GRAMMAR_PASS;
   const [run, setRun] = useState(0);
   const [extra, setExtra] = useState<Exercise[]>([]);
   const [busy, setBusy] = useState(false);
@@ -67,13 +70,53 @@ export function GrammarStep({ unit, onNext }: { unit: Unit; onNext: () => void }
       <Card>
         <GrammarLesson unit={unit} />
         <div className="row wrap">
-          <button className="btn primary" onClick={() => setPhase('practice')}>
-            К упражнениям ({unit.grammar.exercises.length}) →
+          <button className={`btn ${teilAPassed && !progress?.done && deep.length ? '' : 'primary'}`} onClick={() => setPhase('practice')}>
+            Часть A: основные упражнения ({unit.grammar.exercises.length}) →
           </button>
+          {deep.length > 0 && teilAPassed && (
+            <button className={`btn ${progress?.done ? '' : 'primary'}`} onClick={() => setPhase('deep')}>
+              Часть B: углубление ({deep.length}) →
+            </button>
+          )}
           {progress?.done && (
             <span className="pill ok">Пройдено · лучший результат {Math.round((progress.score ?? 0) * 100)}%</span>
           )}
         </div>
+      </Card>
+    );
+
+  if (phase === 'deep')
+    return (
+      <Card>
+        <details className="rule-peek">
+          <summary>Подсмотреть правило</summary>
+          <GrammarLesson unit={unit} />
+        </details>
+        <ExerciseSession
+          title={`Часть B · ${unit.grammar.topic}`}
+          exercises={deep}
+          onFinish={(r) => {
+            completeStep(unit.id, 'grammar', undefined, true);
+            addCards(
+              deep.map((_, i) => ({ id: `gx:${unit.id}:${i}`, kind: 'grammar' as const, unitId: unit.id, index: i, bank: true })),
+              r.outcomes.map((o) => (o.correct ? 4 : 1)),
+            );
+          }}
+          renderSummary={(r) => (
+            <>
+              <h3>✅ Часть B: {Math.round(r.score * 100)}%</h3>
+              <p>Грамматика юнита пройдена. Все задания добавлены в интервальное повторение — ошибочные вернутся уже завтра.</p>
+              <div className="row wrap">
+                <button className="btn primary" onClick={onNext}>
+                  Следующий шаг →
+                </button>
+                <button className="btn ghost" onClick={() => setPhase('lesson')}>
+                  К правилу
+                </button>
+              </div>
+            </>
+          )}
+        />
       </Card>
     );
 
@@ -118,7 +161,7 @@ export function GrammarStep({ unit, onNext }: { unit: Unit; onNext: () => void }
         exercises={unit.grammar.exercises}
         onFinish={(r) => {
           const passed = r.score >= GRAMMAR_PASS;
-          completeStep(unit.id, 'grammar', r.score, passed);
+          completeStep(unit.id, 'grammar', r.score, passed && deep.length === 0);
           // every exercise becomes an SRS card: mistakes come back tomorrow, correct ones in 3 days
           addCards(
             unit.grammar.exercises.map((_, i) => ({ id: `g:${unit.id}:${i}`, kind: 'grammar' as const, unitId: unit.id, index: i })),
@@ -134,7 +177,7 @@ export function GrammarStep({ unit, onNext }: { unit: Unit; onNext: () => void }
               </h3>
               <p>
                 {passed
-                  ? 'Отлично, тема усвоена. Упражнения добавлены в интервальное повторение.'
+                  ? deep.length ? 'Основа усвоена! Теперь часть B — углубление с более сложными заданиями.' : 'Отлично, тема усвоена. Упражнения добавлены в интервальное повторение.'
                   : `Для зачёта нужно ${Math.round(GRAMMAR_PASS * 100)}%. Перечитайте правило и попробуйте ещё раз — ошибочные задания уже добавлены в повторение.`}
               </p>
               {r.outcomes.some((o) => !o.correct) && (
@@ -152,7 +195,11 @@ export function GrammarStep({ unit, onNext }: { unit: Unit; onNext: () => void }
                 </details>
               )}
               <div className="row wrap">
-                {passed ? (
+                {passed && deep.length > 0 ? (
+                  <button className="btn primary" onClick={() => setPhase('deep')}>
+                    Часть B: углубление ({deep.length}) →
+                  </button>
+                ) : passed ? (
                   <button className="btn primary" onClick={onNext}>
                     Следующий шаг →
                   </button>
