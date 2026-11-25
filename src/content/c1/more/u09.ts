@@ -52,11 +52,11 @@ export const more: UnitMore = {
     },
     {
       type: 'gap',
-      prompt: 'Das Gemälde? Das hat man ___ ihm für eine lächerliche Summe abgekauft.',
+      prompt: 'Das Gemälde? Man hat ___ ihm für eine lächerliche Summe abgekauft.',
       answers: ['es'],
       hintRu: 'местоимение вместо «das Gemälde»',
       explanationRu:
-        'Порядок местоимений: Nom. → Akk. → Dat.: «man – es – ihm». Даже при «das» в Vorfeld объект можно повторить местоимением в разговорной речи; здесь «es» — правильная форма в позиции перед «ihm».',
+        'Порядок местоимений в среднем поле: Nom. → Akk. → Dat. Подлежащее «man» стоит в Vorfeld, затем «es» (Akk.) перед «ihm» (Dat.).',
     },
     {
       type: 'choice',

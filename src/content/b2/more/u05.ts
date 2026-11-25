@@ -252,7 +252,7 @@ export const more: UnitMore = {
         {
           label: '2',
           heading: 'Klaus, 58',
-          body: `Unser Sohn ist 29 und wohnt immer noch bei uns. Wir lieben ihn, keine Frage. Aber meine Frau und ich hatten uns zwar nicht auf ein leeres Haus gefreut, wohl aber auf ein bisschen mehr Zweisamkeit. Stattdessen streiten wir uns über nasse Handtücher im Bad und darüber, wer wann die Küche benutzt. Je länger das dauert, desto mehr wünsche ich mir, dass er endlich seinen eigenen Weg geht.`,
+          body: `Unser Sohn ist 29 und wohnt immer noch bei uns. Wir lieben ihn, keine Frage. Aber meine Frau und ich hatten uns nach all den Jahren auf ein bisschen mehr Zweisamkeit gefreut. Stattdessen streiten wir uns über nasse Handtücher im Bad und darüber, wer wann die Küche benutzt. Je länger das dauert, desto mehr wünsche ich mir, dass er endlich seinen eigenen Weg geht.`,
         },
         {
           label: '3',
