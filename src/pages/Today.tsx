@@ -11,6 +11,7 @@ import { Card, ProgressBar } from '../components/ui';
 import { activeProfile, listProfiles } from '../lib/profiles';
 import { dailyGoalXp, levelInfo, todayXp, totalXp } from '../lib/gamification';
 import { allPlayers } from '../lib/compete';
+import { isSyncEnabled } from '../lib/sync';
 
 function GoalRing({ value, goal }: { value: number; goal: number }) {
   const r = 46;
@@ -146,6 +147,13 @@ export function Today() {
       </section>
 
       <Duel />
+
+      {!isSyncEnabled() && (
+        <div className="info-box">
+          ☁️ Синхронизация не подключена — прогресс хранится только в этом браузере.{' '}
+          <Link to="/settings">Подключить</Link>, чтобы заниматься с телефона и других компьютеров.
+        </div>
+      )}
 
       {!isLlmConfigured(s.settings) && (
         <div className="info-box">

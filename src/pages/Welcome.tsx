@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { firstUnitOfLevel } from '../content';
 import { useStore } from '../lib/store';
 import { Card } from '../components/ui';
-import { SyncPanel } from '../components/SyncPanel';
 import { isSyncEnabled } from '../lib/sync';
 import { ProfileMenu } from '../components/ProfileMenu';
 import { activeProfile, listProfiles } from '../lib/profiles';
@@ -27,11 +26,9 @@ export function Welcome() {
       </p>
 
       {!isSyncEnabled() && (
-        <Card className="highlight">
-          <h3>☁️ Уже занимаетесь на другом устройстве?</h3>
-          <p className="muted small">Введите пароль синхронизации — загрузятся ваши профили и весь прогресс.</p>
-          <SyncPanel compact />
-        </Card>
+        <p className="small">
+          ☁️ Уже занимаетесь на другом устройстве? <Link to="/login">Войти по паролю синхронизации</Link>
+        </p>
       )}
 
       <Card className="highlight">

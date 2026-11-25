@@ -3,7 +3,8 @@ import { Component, useEffect, useState, type ReactNode } from 'react';
 import { levelInfo, totalXp } from './lib/gamification';
 import { CelebrationWatcher } from './components/Celebrate';
 import { Compete } from './pages/Compete';
-import { startAutoSync } from './lib/sync';
+import { isSyncEnabled, startAutoSync } from './lib/sync';
+import { Login, SKIP_LOGIN_KEY } from './pages/Login';
 
 startAutoSync();
 import { dueCards, streak, useStore } from './lib/store';
@@ -45,6 +46,7 @@ function Nav() {
   const { pathname } = useLocation();
   useEffect(() => setMore(false), [pathname]);
   const secondaryActive = LINKS.some((l) => !l.primary && l.to !== '/' && pathname.startsWith(l.to));
+  if (pathname === '/login') return null;
 
   const link = (l: (typeof LINKS)[number]) => (
     <NavLink
@@ -174,7 +176,15 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error?: Error }
 function FreshGuard({ children }: { children: ReactNode }) {
   const started = useStore((s) => !!s.startUnitId);
   const { pathname } = useLocation();
-  const free = ['/welcome', '/placement', '/settings'].some((p) => pathname.startsWith(p));
+  let skipped = false;
+  try {
+    skipped = localStorage.getItem(SKIP_LOGIN_KEY) === '1';
+  } catch {
+    /* ignore */
+  }
+  // new device/browser: ask for the sync password first
+  if (!started && !isSyncEnabled() && !skipped && pathname !== '/login') return <Navigate to="/login" replace />;
+  const free = ['/welcome', '/placement', '/settings', '/login'].some((p) => pathname.startsWith(p));
   if (!started && !free) return <Navigate to="/welcome" replace />;
   return <>{children}</>;
 }
@@ -198,6 +208,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/welcome" element={<Welcome />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/placement" element={<Placement />} />
             <Route path="/course" element={<Course />} />
             <Route path="/unit/:id" element={<UnitPage />} />

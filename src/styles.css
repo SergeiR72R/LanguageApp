@@ -572,3 +572,6 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
   .session-head { margin-top: -4px; }
   .page.narrow { gap: 12px; }
 }
+.login-page { padding-top: 6vh; }
+.login-hero { text-align: center; }
+.big-flag { width: 54px; height: 36px; border-radius: 6px; margin-bottom: 8px; display: inline-flex; }
