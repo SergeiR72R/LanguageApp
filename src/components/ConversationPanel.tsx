@@ -65,7 +65,7 @@ export function ConversationPanel({
     setTurns(history);
     setBusy(true);
     try {
-      const r = await conversationTurn(system, history);
+      const r = await conversationTurn(system, history, level);
       const withAnalysis = history.map((t, i) =>
         i === history.length - 1 ? { ...t, errors: r.errors, betterVersion: r.betterVersion, tipRu: r.tipRu } : t,
       );

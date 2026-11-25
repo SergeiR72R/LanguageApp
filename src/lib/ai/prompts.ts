@@ -1,6 +1,6 @@
 import type { Exercise, Level, Unit } from '../../content/types';
 import { MISTAKE_CATEGORIES, type MistakeCategory } from '../store';
-import { chatJson, type ChatMessage } from './llm';
+import { chat, chatJson, type ChatMessage } from './llm';
 import { structuralProblem } from '../exerciseCheck';
 import { checkAnswer } from '../grading';
 
@@ -116,33 +116,88 @@ export interface TurnResult {
   tipRu: string;
 }
 
+/** Role prompt for the conversation partner: plain spoken replies, no analysis (that is a separate request). */
 export function conversationSystemPrompt(level: Level, role: string, tasks: string[]): string {
   return `${role}
 Du führst ein mündliches Gespräch mit einem Deutschlernenden (Muttersprache Russisch, Niveau ${level}).
 Regeln:
-- Bleib in deiner Rolle. Antworte natürlich, gesprochen, 1–3 kurze Sätze, passend zum Niveau ${level}. Stelle meist eine Rückfrage, damit das Gespräch weitergeht.
-- Der Text des Lernenden stammt aus einer Spracherkennung: ignoriere fehlende Satzzeichen und Groß-/Kleinschreibung, bewerte aber Grammatik, Wortwahl und Satzbau.
-- Analysiere die LETZTE Äußerung des Lernenden auf Fehler.
-- Ziele des Lernenden (auf Russisch): ${tasks.join('; ')}
-Antworte NUR mit JSON:
-${ERROR_STYLE}
-Tippfehler der Spracherkennung (Groß-/Kleinschreibung, Satzzeichen, offensichtlich falsch erkannte Wörter) sind KEINE Fehler des Lernenden.
-{"reply":"deine Antwort in der Rolle (Deutsch)","errors":[{"original":"fehlerhafter Ausschnitt","correction":"korrigierter Ausschnitt","category":"${CATS}","ruleRu":"Regel kurz","explanationRu":"2–3 Sätze auf Russisch"}],"betterVersion":"natürlichere/korrekte Version der ganzen Äußerung des Lernenden (Deutsch)","tipRu":"optional: kurzer Tipp auf Russisch (Wortschatz/Ausdruck), sonst leer"}`;
+- Bleib in deiner Rolle und reagiere INHALTLICH auf das, was der Lernende zuletzt gesagt hat (gehe auf seine Aussage ein, beziehe dich auf Details).
+- Antworte natürlich und gesprochen, 1–3 kurze Sätze, passend zum Niveau ${level}. Stelle meist eine passende Rückfrage, damit das Gespräch weitergeht.
+- Wiederhole NIEMALS deine eigene Begrüßung oder eine frühere Frage wörtlich. Wiederhole oder korrigiere NICHT die Sätze des Lernenden – Fehler werden separat besprochen.
+- Wenn der Lernende etwas Unklares sagt, frag freundlich nach, was er meint.
+- Der Text des Lernenden stammt aus einer Spracherkennung: fehlende Satzzeichen oder einzelne falsch erkannte Wörter sind normal.
+- Gesprächsziele des Lernenden (zur Orientierung): ${tasks.join('; ')}
+Antworte nur mit deiner Gesprächsreplik als reinem Text, ohne Anführungszeichen, ohne Erklärungen, ohne JSON.`;
 }
 
-export async function conversationTurn(system: string, history: ConversationTurn[]): Promise<TurnResult> {
-  const messages: ChatMessage[] = [
-    { role: 'system', content: system },
-    ...history.map<ChatMessage>((t) => ({ role: t.role === 'ai' ? 'assistant' : 'user', content: t.text })),
-  ];
-  // the model's own previous turns must be plain text in history; we ask for JSON for the new turn
-  const r = await chatJson<Partial<TurnResult>>(messages, 0.6);
+const norm = (x: string) => x.toLowerCase().replace(/[^\p{L}\p{N} ]/gu, '').replace(/\s+/g, ' ').trim();
+
+/** The reply just echoes the learner or repeats an earlier partner line → regenerate. */
+function isEcho(reply: string, history: ConversationTurn[]): boolean {
+  const r = norm(reply);
+  if (!r) return true;
+  const lastUser = [...history].reverse().find((t) => t.role === 'user');
+  if (lastUser) {
+    const u = norm(lastUser.text);
+    if (r === u || (u.length > 15 && (r.includes(u) || u.includes(r)))) return true;
+  }
+  return history.some((t) => t.role === 'ai' && norm(t.text) === r);
+}
+
+/** Separate tutor request: analyse only the learner's last utterance (instructions in Russian → Russian explanations). */
+async function analyseUtterance(level: Level, question: string, answer: string): Promise<Omit<TurnResult, 'reply'>> {
+  const r = await chatJson<Partial<TurnResult>>(
+    [
+      {
+        role: 'system',
+        content: `Ты опытный преподаватель немецкого языка для русскоговорящих (уровень ученика ${level}). Ученик устно ответил собеседнику; текст получен распознаванием речи.
+Найди ошибки ученика: грамматика, порядок слов, падежи, предлоги, окончания, выбор слов, неуместный регистр (например, «du» на собеседовании).
+НЕ считай ошибками: отсутствие знаков препинания, заглавные/строчные буквы, явно неверно распознанные слова.
+${ERROR_STYLE}
+ВАЖНО: поля "ruleRu" и "explanationRu" пиши ТОЛЬКО по-русски. "original" и "correction" — по-немецки.
+Если ошибок нет — пустой список.
+Ответь ТОЛЬКО JSON:
+{"errors":[{"original":"...","correction":"...","category":"${CATS}","ruleRu":"...","explanationRu":"..."}],"betterVersion":"вся реплика ученика в исправленном, естественном виде (по-немецки)","tipRu":"необязательный совет по-русски (полезное выражение), иначе пустая строка"}`,
+      },
+      { role: 'user', content: `Реплика собеседника: «${question}»\nОтвет ученика: «${answer}»` },
+    ],
+    0.2,
+    'medium',
+  );
   return {
-    reply: String(r.reply ?? '').trim() || 'Entschuldigung, können Sie das wiederholen?',
     errors: sanitizeErrors(r.errors),
     betterVersion: String(r.betterVersion ?? ''),
     tipRu: String(r.tipRu ?? ''),
   };
+}
+
+export async function conversationTurn(system: string, history: ConversationTurn[], level: Level = 'B1'): Promise<TurnResult> {
+  const messages: ChatMessage[] = [
+    { role: 'system', content: system },
+    // many models expect the dialogue to start with a user turn
+    ...(history[0]?.role === 'ai' ? [{ role: 'user' as const, content: '(Das Gespräch beginnt.)' }] : []),
+    ...history.map<ChatMessage>((t) => ({ role: t.role === 'ai' ? 'assistant' : 'user', content: t.text })),
+  ];
+  const lastUser = [...history].reverse().find((t) => t.role === 'user')?.text ?? '';
+  const lastAi = [...history].reverse().find((t) => t.role === 'ai')?.text ?? '';
+
+  const replyTask = (async () => {
+    let reply = (await chat(messages, 0.8)).trim().replace(/^["„“»«]+|["“”«»]+$/g, '');
+    if (isEcho(reply, history)) {
+      reply = (
+        await chat(
+          [...messages, { role: 'system', content: 'Deine letzte Antwort hat den Lernenden oder dich selbst wiederholt. Reagiere jetzt inhaltlich NEU auf seine letzte Aussage und stelle eine neue Frage.' }],
+          0.9,
+        )
+      ).trim();
+    }
+    return reply;
+  })();
+  // analysis is optional: a failure there must not break the conversation
+  const analysisTask = analyseUtterance(level, lastAi, lastUser).catch(() => ({ errors: [], betterVersion: '', tipRu: '' }));
+
+  const [reply, analysis] = await Promise.all([replyTask, analysisTask]);
+  return { reply: reply || 'Entschuldigung, können Sie das noch einmal sagen?', ...analysis };
 }
 
 export interface ConversationSummary {
