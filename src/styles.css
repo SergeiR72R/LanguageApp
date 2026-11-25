@@ -575,3 +575,12 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 .login-page { padding-top: 6vh; }
 .login-hero { text-align: center; }
 .big-flag { width: 54px; height: 36px; border-radius: 6px; margin-bottom: 8px; display: inline-flex; }
+/* detailed error explanations */
+.error-list.detailed { list-style: decimal; padding-left: 1.4rem; }
+.error-list.detailed li { padding: 10px 0; }
+.err-fix { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 1.02rem; }
+.err-arrow { color: var(--muted); }
+.err-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 4px 0; }
+.err-rule { font-size: 0.9rem; }
+.err-expl { font-size: 0.92rem; line-height: 1.5; opacity: 0.9; }
+.analysis .error-list.detailed { margin: 4px 0 0; }

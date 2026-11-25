@@ -55,6 +55,7 @@ export function Mistakes() {
                   <span className="strike">{m.original}</span> → <strong className="ok-text de">{m.correction}</strong>{' '}
                   <SpeakButton text={m.correction} /> <span className="pill">{m.category}</span>
                 </div>
+                {m.ruleRu && <div className="err-rule small">{m.ruleRu}</div>}
                 <div className="muted">{m.explanationRu}</div>
                 <div className="tiny muted">
                   {m.date} · {m.source === 'writing' ? 'письмо' : m.source === 'speaking' ? 'разговор' : 'упражнение'}

@@ -136,6 +136,7 @@ export interface Mistake {
   correction: string;
   category: MistakeCategory;
   explanationRu: string;
+  ruleRu?: string;
   resolved?: boolean;
 }
 

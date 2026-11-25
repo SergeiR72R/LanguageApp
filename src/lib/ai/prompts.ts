@@ -11,7 +11,17 @@ export interface AiError {
   correction: string;
   category: MistakeCategory;
   explanationRu: string;
+  /** the rule in a few words, e.g. «helfen + Dativ» */
+  ruleRu?: string;
 }
+
+/** Shared instructions for how each error must be described. */
+const ERROR_STYLE = `Für JEDEN Fehler:
+- "original": NUR der fehlerhafte Ausschnitt, wörtlich aus dem Text des Lernenden (2–8 Wörter, so viel Kontext wie nötig) — nicht die ganze Äußerung.
+- "correction": derselbe Ausschnitt korrigiert.
+- "ruleRu": die Regel in wenigen Worten auf Russisch (z.B. «helfen + Dativ», «Verb im Nebensatz am Ende», «Adjektivendung nach dem bestimmten Artikel»).
+- "explanationRu": 2–3 Sätze auf Russisch: was genau falsch ist, warum (Regel), und ein kurzes zusätzliches Beispiel oder eine Merkhilfe.
+Fasse gleiche Fehler nicht zu einem langen Satz zusammen, jeder Fehler ein eigener Eintrag. Erfinde keine Fehler: wenn etwas korrekt ist, nicht aufführen.`;
 
 function sanitizeErrors(list: unknown): AiError[] {
   if (!Array.isArray(list)) return [];
@@ -23,6 +33,7 @@ function sanitizeErrors(list: unknown): AiError[] {
       correction: String(e.correction),
       category: (MISTAKE_CATEGORIES as string[]).includes(e.category) ? e.category : 'Sonstiges',
       explanationRu: String(e.explanationRu ?? e.explanation ?? ''),
+      ruleRu: e.ruleRu ? String(e.ruleRu) : undefined,
     }));
 }
 
@@ -52,7 +63,8 @@ export async function checkWriting(params: {
     {
       role: 'system',
       content: `Du bist ein erfahrener Prüfer für Deutsch als Fremdsprache (Goethe/telc, GER). Der Lernende ist russischer Muttersprachler und lernt auf Niveau ${params.level}.
-Bewerte den Text streng, aber fair. Finde ALLE Fehler (Grammatik, Wortschatz, Rechtschreibung, Zeichensetzung, Stil). Erkläre jeden Fehler kurz auf RUSSISCH.
+Bewerte den Text streng, aber fair. Finde ALLE Fehler (Grammatik, Wortschatz, Rechtschreibung, Zeichensetzung, Stil). Erkläre jeden Fehler auf RUSSISCH.
+${ERROR_STYLE}
 Antworte NUR mit JSON in diesem Format:
 {
  "score": 0-100,
@@ -60,7 +72,7 @@ Antworte NUR mit JSON in diesem Format:
  "summaryRu": "2-3 Sätze Gesamteindruck auf Russisch",
  "taskFulfillmentRu": "Wurden alle Punkte der Aufgabe behandelt? (Russisch)",
  "criteria": [{"name":"Aufgabenerfüllung","score":0-5},{"name":"Kohärenz","score":0-5},{"name":"Wortschatz","score":0-5},{"name":"Grammatik","score":0-5}],
- "errors": [{"original":"exakter fehlerhafter Ausschnitt aus dem Text","correction":"korrigierte Version","category":"${CATS}","explanationRu":"Erklärung auf Russisch"}],
+ "errors": [{"original":"exakter fehlerhafter Ausschnitt aus dem Text","correction":"korrigierte Version","category":"${CATS}","ruleRu":"Regel kurz","explanationRu":"2–3 Sätze auf Russisch"}],
  "correctedText": "der vollständige Text mit minimalen Korrekturen",
  "improvedVersion": "eine stilistisch verbesserte Version auf Niveau ${params.level === 'B1' ? 'B2' : 'C1'}, die die Ideen des Lernenden beibehält",
  "strengthsRu": ["..."],
@@ -113,7 +125,9 @@ Regeln:
 - Analysiere die LETZTE Äußerung des Lernenden auf Fehler.
 - Ziele des Lernenden (auf Russisch): ${tasks.join('; ')}
 Antworte NUR mit JSON:
-{"reply":"deine Antwort in der Rolle (Deutsch)","errors":[{"original":"fehlerhafter Ausschnitt","correction":"korrekt","category":"${CATS}","explanationRu":"kurze Erklärung auf Russisch"}],"betterVersion":"natürlichere/korrekte Version der ganzen Äußerung des Lernenden (Deutsch)","tipRu":"optional: kurzer Tipp auf Russisch (Wortschatz/Ausdruck), sonst leer"}`;
+${ERROR_STYLE}
+Tippfehler der Spracherkennung (Groß-/Kleinschreibung, Satzzeichen, offensichtlich falsch erkannte Wörter) sind KEINE Fehler des Lernenden.
+{"reply":"deine Antwort in der Rolle (Deutsch)","errors":[{"original":"fehlerhafter Ausschnitt","correction":"korrigierter Ausschnitt","category":"${CATS}","ruleRu":"Regel kurz","explanationRu":"2–3 Sätze auf Russisch"}],"betterVersion":"natürlichere/korrekte Version der ganzen Äußerung des Lernenden (Deutsch)","tipRu":"optional: kurzer Tipp auf Russisch (Wortschatz/Ausdruck), sonst leer"}`;
 }
 
 export async function conversationTurn(system: string, history: ConversationTurn[]): Promise<TurnResult> {

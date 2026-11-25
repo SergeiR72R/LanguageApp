@@ -1,20 +1,31 @@
 import type { WritingFeedback } from '../lib/ai/prompts';
 import { ProgressBar } from './ui';
+import { SpeakButton } from './Speak';
 
-export function ErrorList({ errors }: { errors: { original: string; correction: string; category: string; explanationRu: string }[] }) {
+export function ErrorList({
+  errors,
+}: {
+  errors: { original: string; correction: string; category: string; explanationRu: string; ruleRu?: string }[];
+}) {
   if (!errors.length) return <p className="ok-text">Ошибок не найдено 🎉</p>;
   return (
-    <ul className="error-list">
+    <ol className="error-list detailed">
       {errors.map((e, i) => (
         <li key={i}>
-          <div>
-            <span className="strike">{e.original}</span> → <strong className="ok-text">{e.correction}</strong>{' '}
-            <span className="pill">{e.category}</span>
+          <div className="err-fix">
+            <span className="strike">{e.original}</span>
+            <span className="err-arrow">→</span>
+            <strong className="ok-text de">{e.correction}</strong>
+            <SpeakButton text={e.correction} />
           </div>
-          <div className="muted">{e.explanationRu}</div>
+          <div className="err-meta">
+            <span className="pill">{e.category}</span>
+            {e.ruleRu && <strong className="err-rule">{e.ruleRu}</strong>}
+          </div>
+          {e.explanationRu && <div className="err-expl">{e.explanationRu}</div>}
         </li>
       ))}
-    </ul>
+    </ol>
   );
 }
 

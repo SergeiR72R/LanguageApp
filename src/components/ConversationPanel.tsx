@@ -135,17 +135,20 @@ export function ConversationPanel({
                 {t.errors && (
                   <div className="analysis">
                     {t.errors.length ? (
-                      <details>
-                        <summary>⚠️ Ошибок: {t.errors.length}</summary>
+                      <>
+                        <div className="small">
+                          <strong>⚠️ Ошибок: {t.errors.length}</strong>
+                        </div>
                         <ErrorList errors={t.errors} />
-                      </details>
+                      </>
                     ) : (
                       <span className="ok-text tiny">✓ без ошибок</span>
                     )}
                     {t.betterVersion && t.betterVersion.trim() !== t.text.trim() && (
-                      <div className="better">
-                        💡 <span className="de">{t.betterVersion}</span> <SpeakButton text={t.betterVersion} />
-                      </div>
+                      <details className="better">
+                        <summary className="small">💡 Показать весь ответ в исправленном виде</summary>
+                        <span className="de">{t.betterVersion}</span> <SpeakButton text={t.betterVersion} />
+                      </details>
                     )}
                     {t.tipRu && <div className="tiny muted">{t.tipRu}</div>}
                   </div>
