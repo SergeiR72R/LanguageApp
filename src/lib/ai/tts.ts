@@ -34,7 +34,35 @@ function pickVoice(name: string, fallbackIndex = 0): SpeechSynthesisVoice | unde
   return voices.find((v) => v.name === name) ?? voices[fallbackIndex % Math.max(1, voices.length)];
 }
 
-function speakBrowser(text: string, rate: number, voiceName: string, fallbackIndex: number, signal: AbortSignal, pitch = 1): Promise<void> {
+/**
+ * Chrome loads its voice list lazily: right after page load getVoices() is empty and the first utterance
+ * is spoken by a default (often non-German) voice. Wait until German voices are available (max ~2.5 s).
+ */
+let voicesPromise: Promise<void> | null = null;
+export function voicesReady(): Promise<void> {
+  if (typeof speechSynthesis === 'undefined' || germanVoices().length) return Promise.resolve();
+  voicesPromise ??= new Promise<void>((resolve) => {
+    const finish = () => {
+      clearInterval(poll);
+      clearTimeout(timer);
+      speechSynthesis.removeEventListener('voiceschanged', check);
+      resolve();
+    };
+    const check = () => germanVoices().length && finish();
+    speechSynthesis.addEventListener('voiceschanged', check);
+    const poll = setInterval(check, 100); // some browsers never fire voiceschanged
+    const timer = setTimeout(finish, 2500);
+    speechSynthesis.getVoices();
+  }).finally(() => (voicesPromise = null));
+  return voicesPromise;
+}
+
+// start loading the voice list as soon as the app starts
+if (typeof speechSynthesis !== 'undefined') void voicesReady();
+
+async function speakBrowser(text: string, rate: number, voiceName: string, fallbackIndex: number, signal: AbortSignal, pitch = 1): Promise<void> {
+  await voicesReady();
+  if (signal.aborted) return;
   return new Promise((resolve, reject) => {
     if (typeof speechSynthesis === 'undefined') return reject(new AiError('Браузер не поддерживает синтез речи.'));
     // Chrome cuts long utterances – split by sentences.
@@ -45,7 +73,7 @@ function speakBrowser(text: string, rate: number, voiceName: string, fallbackInd
       if (signal.aborted) return resolve();
       if (i >= chunks.length) return resolve();
       const u = new SpeechSynthesisUtterance(chunks[i++].trim());
-      u.lang = voice?.lang ?? 'de-DE';
+      u.lang = voice?.lang ?? 'de-DE'; // without a voice object the browser still picks a German one by lang
       if (voice) u.voice = voice;
       u.rate = rate;
       u.pitch = pitch;
