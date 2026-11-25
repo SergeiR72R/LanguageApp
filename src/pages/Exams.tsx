@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import type { ExamSpeakingTask, ExamWritingTask, Level, MockExam } from '../content/types';
-import { exams, getExam } from '../content';
+import { exams, loadExam } from '../content';
 import { useStore, type ExamResult } from '../lib/store';
 import { countWords } from '../lib/grading';
 import { isLlmConfigured } from '../lib/ai/providers';
@@ -97,9 +97,17 @@ function Timer({ minutes, onEnd }: { minutes: number; onEnd?: () => void }) {
 
 export function ExamRunner() {
   const { id = '' } = useParams();
-  const exam = getExam(id);
   const results = useStore((s) => s.examResults);
   const [module, setModule] = useState<Module | null>(null);
+  const [exam, setExam] = useState<MockExam | null | undefined>(undefined);
+  useEffect(() => {
+    let alive = true;
+    loadExam(id).then((e) => alive && setExam(e ?? null));
+    return () => {
+      alive = false;
+    };
+  }, [id]);
+  if (exam === undefined) return <Spinner text="Загружаю экзамен…" />;
   if (!exam) return <Navigate to="/exams" replace />;
 
   if (module)

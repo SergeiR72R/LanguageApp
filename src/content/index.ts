@@ -3,7 +3,8 @@ import type { Exercise, Level, MockExam, PlacementItem, Unit, UnitMore, VocabIte
 const unitModules = import.meta.glob<{ unit: Unit }>('./{b1,b2,c1}/u*.ts', { eager: true });
 const wordModules = import.meta.glob<{ words: VocabItem[] }>('./{b1,b2,c1}/words/u*.ts', { eager: true });
 const moreModules = import.meta.glob<{ more: UnitMore }>('./{b1,b2,c1}/more/u*.ts', { eager: true });
-const examModules = import.meta.glob<{ exam: MockExam }>('./exams/*.ts', { eager: true });
+// mock exams are large: loaded on demand
+const examModules = import.meta.glob<{ exam: MockExam }>('./exams/*.ts');
 const placementModules = import.meta.glob<{ placementItems: PlacementItem[] }>('./placement.ts', { eager: true });
 
 const LEVEL_ORDER: Level[] = ['B1', 'B2', 'C1'];
@@ -78,13 +79,24 @@ export function practiceExercises(unitId: string): Exercise[] {
   return mores.get(unitId)?.exercises ?? [];
 }
 
-export const exams: MockExam[] = Object.values(examModules)
-  .map((m) => m.exam)
-  .filter(Boolean)
+export interface ExamInfo {
+  id: string;
+  level: Level;
+  title: string;
+}
+
+/** "./exams/b1-2.ts" → { id: "b1-exam-2", level: "B1", title: "Übungstest B1 – 2" } */
+export const exams: ExamInfo[] = Object.keys(examModules)
+  .map((p) => {
+    const [, lvl, n] = /\/(b1|b2|c1)-(\d+)\.ts$/.exec(p) ?? [];
+    return { id: `${lvl}-exam-${n}`, level: lvl.toUpperCase() as Level, title: `Übungstest ${lvl.toUpperCase()} – ${n}` };
+  })
   .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 
-export function getExam(id: string): MockExam | undefined {
-  return exams.find((e) => e.id === id);
+export async function loadExam(id: string): Promise<MockExam | undefined> {
+  const m = /^(b1|b2|c1)-exam-(\d+)$/.exec(id);
+  const loader = m && examModules[`./exams/${m[1]}-${m[2]}.ts`];
+  return loader ? (await loader()).exam : undefined;
 }
 
 export function totalWordCount(): number {

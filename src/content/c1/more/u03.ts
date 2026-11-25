@@ -191,11 +191,11 @@ export const more: UnitMore = {
         {
           body: `Immer mehr Menschen wenden sich bewusst von den Nachrichten ab. [1] einer international angelegten Befragung meiden inzwischen fast vier von zehn Erwachsenen zumindest gelegentlich aktuelle Meldungen – ein Wert, der sich innerhalb weniger Jahre deutlich erhöht hat. Medienforscher sprechen von „Nachrichtenmüdigkeit“ und warnen, das Phänomen [2] langfristig die Grundlagen der demokratischen Meinungsbildung gefährden.
 
-Die Gründe, die die Befragten selbst nennen, sind vielfältig. Viele geben an, die ständige Flut negativer Schlagzeilen drücke auf ihre Stimmung; andere klagen, sie fühlten sich angesichts der Fülle an Informationen schlicht [3]. Wieder andere bemängeln, die Berichterstattung sei zu einseitig oder zu reißerisch, und bezweifeln, dass ihnen die Lektüre überhaupt einen Nutzen bringe.
+Die Gründe, die die Befragten selbst nennen, sind vielfältig. Viele geben an, die ständige Flut negativer Schlagzeilen drücke auf ihre Stimmung; andere klagen, sie fühlten sich angesichts der Fülle an Informationen schlicht [3]. Wieder andere bemängeln, die Berichterstattung sei zu einseitig oder zu reißerisch, und bezweifeln, dass ihnen die Lektüre überhaupt einen Nutzen bringe. Zudem zeigt sich, dass das Vertrauen in die Medien bei denjenigen, die Nachrichten meiden, deutlich geringer ausfällt als im Durchschnitt der Bevölkerung.
 
 Auffällig ist, dass sich gerade jüngere Menschen und Personen mit niedrigerem Bildungsabschluss abwenden. Dies ist [4] bedenklich, als diese Gruppen ohnehin seltener an Wahlen teilnehmen und in politischen Debatten unterrepräsentiert sind. Wer sich nicht informiert, so die Befürchtung, [5] zudem leichter für Desinformation empfänglich, die sich in sozialen Netzwerken weitgehend ungehindert verbreitet.
 
-Einige Redaktionen haben aus diesen Befunden bereits Konsequenzen gezogen. Statt ausschließlich über Krisen und Konflikte zu berichten, setzen sie verstärkt auf sogenannten konstruktiven Journalismus. [6] ist nicht gemeint, Probleme zu beschönigen oder nur noch positive Nachrichten zu verbreiten. Vielmehr sollen Beiträge neben der Beschreibung eines Missstands auch aufzeigen, welche Lösungsansätze es gibt und wo diese bereits erprobt werden.
+Einige Redaktionen haben aus diesen Befunden bereits Konsequenzen gezogen. Statt ausschließlich über Krisen und Konflikte zu berichten, setzen sie verstärkt auf sogenannten konstruktiven Journalismus. [6] ist nicht gemeint, Probleme zu beschönigen oder nur noch positive Nachrichten zu verbreiten. Vielmehr sollen Beiträge neben der Beschreibung eines Missstands auch aufzeigen, welche Lösungsansätze es gibt und wo diese bereits erprobt werden. Ein Regionalsender in Norddeutschland etwa begleitet seit zwei Jahren Gemeinden, die mit leer stehenden Ladenlokalen kämpfen, und stellt dabei ausführlich dar, welche Ideen anderswo funktioniert haben – vom genossenschaftlich betriebenen Dorfladen bis zur Zwischennutzung durch Kunstschaffende. Die Redaktion berichtet von ungewöhnlich vielen Zuschriften, in denen Leserinnen und Leser schreiben, sie fühlten sich endlich nicht mehr nur ohnmächtig.
 
 Kritiker [7] allerdings ein, dass die Grenze zwischen konstruktiver Berichterstattung und Aktivismus mitunter verschwimme. Journalisten hätten die Aufgabe, zu informieren und zu kontrollieren, nicht aber, ihr Publikum zu beruhigen. Die Befürworter halten dagegen, gerade die Kontrollfunktion der Medien laufe ins Leere, wenn das Publikum gar nicht mehr zuhöre.
 
@@ -375,7 +375,7 @@ Zitate werden auch künftig unverzichtbar bleiben; sie verleihen Texten Authenti
     {
       title: 'Kurznachrichten aus der Medienwelt',
       kind: 'monolog',
-      situation: 'Sie hören vier kurze Meldungen aus einer Nachrichtensendung im Radio.',
+      situation: 'Sie hören fünf kurze Meldungen aus einer Nachrichtensendung im Radio.',
       text: `Und nun die Nachrichten.
 
 Berlin. Die Bundesregierung will die Förderung des Lokaljournalismus ausbauen. Wie die Kulturstaatsministerin am Vormittag mitteilte, sollen kleine Regionalzeitungen ab dem kommenden Jahr Zuschüsse für die Zustellung erhalten. Die Ministerin betonte, eine vielfältige Presselandschaft sei für die Demokratie unverzichtbar. Der Verlegerverband begrüßte den Schritt grundsätzlich, nannte die geplante Summe jedoch völlig unzureichend.
@@ -384,7 +384,9 @@ Hamburg. Ein großes Nachrichtenportal hat einen Bericht über angebliche Mänge
 
 Brüssel. Die Europäische Kommission hat mehrere Online-Plattformen aufgefordert, entschiedener gegen gezielte Desinformation vorzugehen. Einem Bericht der Kommission zufolge wurden in den vergangenen sechs Monaten Tausende gefälschte Konten entdeckt, die koordiniert Falschmeldungen verbreitet haben sollen. Die Unternehmen haben nun vier Wochen Zeit, um Stellung zu nehmen.
 
-München. Ein bekannter Fernsehmoderator will von umstrittenen Werbeverträgen seines Senders nichts gewusst haben. In einer schriftlichen Erklärung hieß es, er sei über die Vereinbarungen zu keinem Zeitpunkt informiert worden. Der Sender selbst wollte sich zu den Vorwürfen zunächst nicht äußern und verwies auf eine laufende interne Prüfung.`,
+München. Ein bekannter Fernsehmoderator will von umstrittenen Werbeverträgen seines Senders nichts gewusst haben. In einer schriftlichen Erklärung hieß es, er sei über die Vereinbarungen zu keinem Zeitpunkt informiert worden. Der Sender selbst wollte sich zu den Vorwürfen zunächst nicht äußern und verwies auf eine laufende interne Prüfung.
+
+Wien. Ein Wiener Presseclub hat seinen diesjährigen Preis für Medienkritik an ein Rechercheteam vergeben, das monatelang die Finanzierung anonymer Nachrichtenseiten untersucht hatte. Die Jury erklärte, die Arbeit zeige beispielhaft, wie Desinformation gezielt finanziert werde. Die ausgezeichneten Journalistinnen kündigten an, das Preisgeld für die Fortsetzung ihrer Recherchen zu verwenden.`,
       playCount: 2,
       tasks: [
         {
@@ -414,6 +416,12 @@ München. Ein bekannter Fernsehmoderator will von umstrittenen Werbeverträgen s
               statement: 'Der Sender hat die Vorwürfe gegen den Moderator bereits zurückgewiesen.',
               answer: false,
               explanationRu: 'Телеканал «wollte sich … zunächst nicht äußern» и сослался на внутреннюю проверку.',
+            },
+            {
+              kind: 'tf',
+              statement: 'Das ausgezeichnete Team möchte mit dem Preisgeld seine Recherchen fortsetzen.',
+              answer: true,
+              explanationRu: 'Журналистки «kündigten an, das Preisgeld für die Fortsetzung ihrer Recherchen zu verwenden».',
             },
           ],
         },
@@ -460,6 +468,17 @@ München. Ein bekannter Fernsehmoderator will von umstrittenen Werbeverträgen s
               ],
               answer: 1,
               explanationRu: '«will … nichts gewusst haben»; в заявлении: «er sei über die Vereinbarungen zu keinem Zeitpunkt informiert worden».',
+            },
+            {
+              kind: 'mc',
+              question: 'Wofür wurde das Rechercheteam ausgezeichnet?',
+              options: [
+                'für eine Fernsehdokumentation über die Geschichte der Presseclubs',
+                'für eine Untersuchung zur Finanzierung anonymer Nachrichtenseiten',
+                'für ein Lehrbuch über den Umgang mit Desinformation',
+              ],
+              answer: 1,
+              explanationRu: 'Команда несколько месяцев исследовала, кто финансирует анонимные новостные сайты; жюри: работа показывает, «wie Desinformation gezielt finanziert werde».',
             },
           ],
         },

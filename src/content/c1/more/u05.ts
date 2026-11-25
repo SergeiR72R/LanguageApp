@@ -181,9 +181,11 @@ export const more: UnitMore = {
 
 Die Folgen dieser Entwicklung sind heute deutlich zu hören. In vielen Regionen sprechen vor allem ältere Menschen noch den örtlichen Dialekt, während Jugendliche allenfalls eine regional gefärbte Umgangssprache verwenden. [2] Sprachwissenschaftler beobachten zudem, dass sich kleinräumige Unterschiede abschleifen: An die Stelle zahlreicher Ortsmundarten treten großräumigere Regionalsprachen.
 
+Hinzu kommt die gestiegene Mobilität: Wer für Ausbildung oder Beruf mehrfach umzieht, passt seine Sprechweise der jeweiligen Umgebung an und gibt die Mundart seiner Herkunft an die eigenen Kinder kaum noch weiter. Auch die Medien haben ihren Anteil an dieser Entwicklung, denn in Radio und Fernsehen dominierte über Jahrzehnte eine weitgehend dialektfreie Standardsprache.
+
 Gleichzeitig lässt sich jedoch eine gegenläufige Entwicklung beobachten. [3] Bands singen auf Kölsch oder Bairisch und füllen damit große Hallen, Werbeagenturen setzen gezielt auf mundartliche Slogans, und in manchen Regionen werden Dialektkurse für Zugezogene angeboten. Das Image der Mundart hat sich offenbar gewandelt: Sie steht immer seltener für Rückständigkeit und immer häufiger für Authentizität und Verwurzelung.
 
-Fachleute warnen allerdings davor, diese Renaissance zu überschätzen. [4] Wer im Alltag nur noch einzelne Ausdrücke verwendet, um seine regionale Zugehörigkeit zu signalisieren, beherrscht die Mundart damit noch lange nicht. Mancher Linguist spricht in diesem Zusammenhang spöttisch von „Dialekt als Dekoration“.
+Fachleute warnen allerdings davor, diese Renaissance zu überschätzen. [4] Wer im Alltag nur noch einzelne Ausdrücke verwendet, um seine regionale Zugehörigkeit zu signalisieren, beherrscht die Mundart damit noch lange nicht. Mancher Linguist spricht in diesem Zusammenhang spöttisch von „Dialekt als Dekoration“. Ob aus dem neuen Prestige eine echte Weitergabe an die nächste Generation erwächst, ist jedenfalls offen.
 
 Bemerkenswert ist zudem, dass Dialekte keineswegs überall gleich bewertet werden. [5] Während etwa das Bairische oder das Schweizerdeutsche häufig als sympathisch empfunden werden, haben Sprecherinnen und Sprecher anderer Varietäten immer wieder mit Spott zu kämpfen. Studien zeigen, dass Bewerberinnen und Bewerber mit bestimmten Akzenten bei gleicher Qualifikation als weniger kompetent eingeschätzt werden.
 

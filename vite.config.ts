@@ -5,6 +5,19 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   base: './',
-  build: { chunkSizeWarningLimit: 2000 },
+  build: {
+    chunkSizeWarningLimit: 2500,
+    rollupOptions: {
+      output: {
+        // course content changes rarely: separate chunks so app updates don't re-download it
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) return 'vendor';
+          if (/src\/content\/(b1|b2|c1)\/words\//.test(id)) return 'words';
+          if (/src\/content\/(b1|b2|c1)\//.test(id)) return 'course';
+          return undefined;
+        },
+      },
+    },
+  },
   test: { environment: 'node' },
 });
