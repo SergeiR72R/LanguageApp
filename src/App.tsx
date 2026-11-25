@@ -170,6 +170,15 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error?: Error }
   }
 }
 
+/** A fresh device (nothing started yet) always lands on the welcome screen, where sync can be connected. */
+function FreshGuard({ children }: { children: ReactNode }) {
+  const started = useStore((s) => !!s.startUnitId);
+  const { pathname } = useLocation();
+  const free = ['/welcome', '/placement', '/settings'].some((p) => pathname.startsWith(p));
+  if (!started && !free) return <Navigate to="/welcome" replace />;
+  return <>{children}</>;
+}
+
 function Home() {
   const started = useStore((s) => !!s.startUnitId);
   return started ? <Today /> : <Navigate to="/welcome" replace />;
@@ -185,6 +194,7 @@ export function App() {
         <CelebrationWatcher />
         <main className="main">
           <ErrorBoundary>
+          <FreshGuard>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/welcome" element={<Welcome />} />
@@ -205,6 +215,7 @@ export function App() {
             <Route path="/exam/:id" element={<ExamRunner />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
+          </FreshGuard>
           </ErrorBoundary>
         </main>
       </div>

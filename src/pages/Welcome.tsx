@@ -27,7 +27,7 @@ export function Welcome() {
       </p>
 
       {!isSyncEnabled() && (
-        <Card>
+        <Card className="highlight">
           <h3>☁️ Уже занимаетесь на другом устройстве?</h3>
           <p className="muted small">Введите пароль синхронизации — загрузятся ваши профили и весь прогресс.</p>
           <SyncPanel compact />

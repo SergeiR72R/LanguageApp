@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { activeProfile, createProfile, listProfiles, switchProfile } from '../lib/profiles';
 import { useStore } from '../lib/store';
+import { isSyncEnabled } from '../lib/sync';
 
 export function newProfilePrompt() {
   const name = window.prompt('Имя нового ученика (например, «Анна»):');
@@ -45,6 +46,11 @@ export function ProfileMenu({ compact = false }: { compact?: boolean }) {
           <Link className="profile-item" to="/settings" onClick={() => setOpen(false)}>
             ⚙️ Управление профилями
           </Link>
+          {!isSyncEnabled() && (
+            <Link className="profile-item" to="/settings" onClick={() => setOpen(false)}>
+              ☁️ Войти (синхронизация)
+            </Link>
+          )}
         </div>
       )}
     </div>
