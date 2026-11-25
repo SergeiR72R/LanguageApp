@@ -114,7 +114,7 @@ export function Words() {
           </div>
           <ProgressBar value={card / batch.length} />
           <WordCard v={w.v} big />
-          <div className="row between">
+          <div className="row between learn-nav">
             <button className="btn ghost" disabled={card === 0} onClick={() => setCard(card - 1)}>
               ← Назад
             </button>

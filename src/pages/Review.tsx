@@ -67,9 +67,11 @@ function VocabReview({ card, onGrade }: { card: SrsCard; onGrade: (g: Grade) => 
   if (mode === 'recognize') {
     return (
       <div className="flash">
-        <div className="flash-front de">
-          {target} <SpeakButton text={target} />
-        </div>
+        {!shown && (
+          <div className="flash-front de">
+            {target} <SpeakButton text={target} />
+          </div>
+        )}
         {!shown ? (
           <button className="btn primary" autoFocus onClick={() => setShown(true)}>
             Показать перевод

@@ -517,3 +517,58 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 @media (min-width: 861px) { .word-card.big .word-img { max-width: 340px; } }
 @media (max-width: 600px) { .word-card.img-large .word-img { max-width: 170px; } }
 @media (min-width: 601px) { .step-tabs { flex-wrap: wrap; overflow: visible; } }
+
+/* ---------- fit word cards into the window (no scrolling to the grade buttons) ---------- */
+.flash { gap: 10px; }
+.flash-front { padding: 8px 0; }
+/* picture size follows the window height */
+.word-card.img-large .word-img { width: clamp(140px, 30vh, 300px); max-width: none; height: auto; }
+.word-card.big .word-img { width: clamp(150px, 34vh, 340px); max-width: none; height: auto; }
+/* wide screens: picture left, word and translation right */
+@media (min-width: 861px) {
+  .word-card.img-large { display: grid; grid-template-columns: auto 1fr; column-gap: 24px; align-items: center; text-align: left; }
+  .word-card.img-large .word-img { grid-row: 1 / span 5; margin: 0; }
+  .word-card.img-large > :not(.word-img) { grid-column: 2; }
+  .word-card.img-large .word-main, .word-card.img-large .word-forms { justify-content: flex-start; }
+}
+@media (min-width: 861px) and (max-height: 760px) {
+  .word-card.big { padding: 16px; }
+  .word-card.big .word-de { font-size: 1.6rem; }
+}
+/* grade buttons stay visible at the bottom of the window */
+.grade-row { position: sticky; bottom: 12px; z-index: 5; background: var(--surface); padding: 8px 0; border-radius: 12px; }
+@media (max-width: 860px) { .grade-row { bottom: calc(72px + env(safe-area-inset-bottom)); } }
+/* new-word cards: side-by-side on wide screens, navigation always visible */
+@media (min-width: 861px) {
+  .word-card.big.has-img { display: grid; grid-template-columns: auto 1fr; column-gap: 28px; align-items: center; text-align: left; }
+  .word-card.big.has-img .word-img { grid-row: 1 / span 5; margin: 0; width: clamp(160px, 40vh, 340px); }
+  .word-card.big.has-img > :not(.word-img) { grid-column: 2; }
+  .word-card.big.has-img .word-main, .word-card.big.has-img .word-forms { justify-content: flex-start; }
+}
+.learn-nav { position: sticky; bottom: 12px; z-index: 5; background: var(--surface); padding: 8px 0; margin-bottom: 0; }
+@media (max-width: 860px) {
+  .learn-nav { bottom: calc(72px + env(safe-area-inset-bottom)); }
+  .word-card.big .word-img { width: clamp(120px, 24vh, 220px); }
+}
+@media (max-width: 860px) {
+  .word-card.img-large .word-img { width: clamp(96px, 19vh, 170px); }
+  .flash-front { font-size: 1.4rem; padding: 4px 0; }
+  .word-card.img-large { padding: 12px; }
+  .word-card.img-large .word-example { font-size: 0.9rem; }
+}
+/* phones: revealed review card — small picture left, text right */
+@media (max-width: 860px) {
+  .word-card.img-large { display: grid; grid-template-columns: 32vw 1fr; column-gap: 12px; align-items: start; text-align: left; }
+  .word-card.img-large .word-img { grid-row: 1 / span 4; width: 100%; max-width: 160px; margin: 0; }
+  .word-card.img-large > :not(.word-img) { grid-column: 2; }
+  .word-card.img-large .word-example { grid-column: 1 / -1; }
+  .word-card.img-large .word-main, .word-card.img-large .word-forms { justify-content: flex-start; }
+  .word-card.img-large .word-de { font-size: 1.1rem; }
+}
+@media (max-width: 860px) {
+  .grade-row { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .grade-row .btn { padding: 10px 2px; font-size: 0.85rem; }
+  .grade-row .opt-key { display: none; }
+  .session-head { margin-top: -4px; }
+  .page.narrow { gap: 12px; }
+}

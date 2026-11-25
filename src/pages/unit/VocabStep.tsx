@@ -118,7 +118,7 @@ export function VocabStep({ unit, onNext }: { unit: Unit; onNext: () => void }) 
           </span>
         </div>
         <WordCard v={v} big />
-        <div className="row between">
+        <div className="row between learn-nav">
           <button className="btn ghost" disabled={card === 0} onClick={() => setCard(card - 1)}>
             ← Назад
           </button>
