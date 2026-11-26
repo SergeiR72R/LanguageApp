@@ -137,9 +137,7 @@ export const unit: Unit = {
   },
   vocab: [
     { de: 'Smartphone', article: 'das', plural: '-s', pos: 'noun', ru: 'смартфон', example: 'Mein Opa hat jetzt auch ein Smartphone.', exampleRu: 'У моего деда теперь тоже есть смартфон.', pronRu: 'СМАРТ-фоун' },
-    { de: 'Nachricht', article: 'die', plural: '-en', pos: 'noun', ru: 'сообщение; (мн. ч.) новости', example: 'Ich habe dir eine Nachricht geschrieben.', exampleRu: 'Я написал тебе сообщение.', pronRu: 'НАХ-рихьт' },
     { de: 'schicken', forms: 'schickt, hat geschickt', pos: 'verb', ru: 'отправлять, посылать', example: 'Kannst du mir die Fotos schicken?', exampleRu: 'Можешь прислать мне фотографии?' },
-    { de: 'zurückrufen', forms: 'ruft zurück, hat zurückgerufen', pos: 'verb', ru: 'перезвонить', example: 'Ich habe jetzt keine Zeit, ich rufe dich später zurück.', exampleRu: 'Сейчас у меня нет времени, я перезвоню тебе позже.', pronRu: 'цу-РЮК-ру-фэн' },
     { de: 'Anrufbeantworter', article: 'der', plural: '-', pos: 'noun', ru: 'автоответчик', example: 'Bitte sprechen Sie auf den Anrufbeantworter.', exampleRu: 'Пожалуйста, оставьте сообщение на автоответчике.', pronRu: 'АН-руф-бэ-ант-вор-та' },
     { de: 'erreichen', forms: 'erreicht, hat erreicht', pos: 'verb', ru: 'дозвониться, связаться; достичь', example: 'Ich habe dich gestern nicht erreicht.', exampleRu: 'Я вчера не смог до тебя дозвониться.', pronRu: 'эр-РАЙ-хьен' },
     { de: 'herunterladen', forms: 'lädt herunter, hat heruntergeladen', pos: 'verb', ru: 'скачивать, загружать', example: 'Ich habe die App gestern heruntergeladen.', exampleRu: 'Я вчера скачал это приложение.', pronRu: 'хэ-РУН-та-ла:-дэн' },
@@ -156,6 +154,8 @@ export const unit: Unit = {
     { de: 'Empfänger', article: 'der', plural: '-', pos: 'noun', ru: 'получатель', example: 'Der Empfänger war leider nicht zu Hause.', exampleRu: 'Получателя, к сожалению, не было дома.', pronRu: 'эм-ПФЭН-га' },
     { de: 'Zeitschrift', article: 'die', plural: '-en', pos: 'noun', ru: 'журнал', example: 'Beim Arzt lese ich gern Zeitschriften.', exampleRu: 'У врача я люблю читать журналы.', pronRu: 'ЦАЙТ-шрифт' },
     { de: 'Sendung', article: 'die', plural: '-en', pos: 'noun', ru: 'передача (по ТВ, радио); почтовое отправление', example: 'Um acht Uhr kommt eine Sendung über Russland.', exampleRu: 'В восемь часов будет передача о России.', pronRu: 'ЗЭН-дунг' },
+    { de: 'Akku', article: 'der', plural: '-s', pos: 'noun', ru: 'аккумулятор (телефона)', example: 'Mein Akku ist fast leer.', exampleRu: 'У меня почти сел аккумулятор.', pronRu: 'А-ку' },
+    { de: 'Ladegerät', article: 'das', plural: '-e', pos: 'noun', ru: 'зарядное устройство', example: 'Hast du ein Ladegerät für mein Handy?', exampleRu: 'У тебя есть зарядка для моего телефона?', pronRu: 'ЛА:-дэ-гэ-рэ:т' },
   ],
   listening: {
     title: 'Opa hat ein neues Smartphone',

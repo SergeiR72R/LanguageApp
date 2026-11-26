@@ -64,5 +64,5 @@ export const words: VocabItem[] = [
   { de: 'Pflegekraft', article: 'die', plural: '-¨e', pos: 'noun', ru: 'работник по уходу (сиделка, медсестра)', example: 'Im Krankenhaus fehlen viele Pflegekräfte.', exampleRu: 'В больнице не хватает многих медсестёр и сиделок.' },
   { de: 'Paketbote', article: 'der', plural: '-n', pos: 'noun', ru: 'курьер, доставщик посылок', example: 'Der Paketbote kommt meistens am Vormittag.', exampleRu: 'Курьер с посылками обычно приходит утром.' },
   { de: 'sortieren', forms: 'sortiert, hat sortiert', pos: 'verb', ru: 'сортировать', example: 'Im Lager sortiere ich die Pakete.', exampleRu: 'На складе я сортирую посылки.' },
-  { de: 'Streik', article: 'der', plural: '-s', pos: 'noun', ru: 'забастовка', example: 'Wegen des Streiks fahren heute keine Busse.', exampleRu: 'Из-за забастовки сегодня не ходят автобусы.', pronRu: 'дер ШТРАЙК' },
+  { de: 'Streik', article: 'der', plural: '-s', pos: 'noun', ru: 'забастовка', example: 'Heute gibt es einen Streik. Die Busse fahren nicht.', exampleRu: 'Сегодня забастовка. Автобусы не ходят.', pronRu: 'дер ШТРАЙК' },
 ];

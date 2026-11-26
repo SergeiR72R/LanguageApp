@@ -59,8 +59,8 @@ export const words: VocabItem[] = [
   { de: 'korrigieren', forms: 'korrigiert, hat korrigiert', pos: 'verb', ru: 'исправлять, проверять (ошибки)', example: 'Die Lehrerin korrigiert unsere Hausaufgaben.', exampleRu: 'Учительница проверяет наши домашние задания.' },
   { de: 'nachschlagen', forms: 'schlägt nach, hat nachgeschlagen', pos: 'verb', ru: 'посмотреть (в словаре, справочнике)', example: 'Das Wort schlage ich im Wörterbuch nach.', exampleRu: 'Это слово я посмотрю в словаре.' },
   { de: 'nachsprechen', forms: 'spricht nach, hat nachgesprochen', pos: 'verb', ru: 'повторять (за кем-то вслух)', example: 'Hören Sie und sprechen Sie nach.', exampleRu: 'Слушайте и повторяйте.' },
-  { de: 'sich merken', forms: 'merkt sich, hat sich gemerkt', pos: 'verb', ru: 'запоминать', example: 'Ich kann mir die Artikel nicht gut merken.', exampleRu: 'Я плохо запоминаю артикли.' },
-  { de: 'sich melden', forms: 'meldet sich, hat sich gemeldet', pos: 'verb', ru: 'поднять руку (на уроке); дать о себе знать', example: 'Wer die Antwort weiß, meldet sich.', exampleRu: 'Кто знает ответ, поднимает руку.' },
+  { de: 'sich merken', forms: 'merkt sich, hat sich gemerkt', pos: 'verb', ru: 'запоминать', example: 'Diese Wörter kann man sich leicht merken.', exampleRu: 'Эти слова легко запомнить.' },
+  { de: 'sich melden', forms: 'meldet sich, hat sich gemeldet', pos: 'verb', ru: 'поднять руку (на уроке); дать о себе знать', example: 'Ich weiß die Antwort und melde mich.', exampleRu: 'Я знаю ответ и поднимаю руку.' },
   { de: 'ausleihen', forms: 'leiht aus, hat ausgeliehen', pos: 'verb', ru: 'брать на время (в библиотеке)', example: 'In der Bibliothek kann man Bücher ausleihen.', exampleRu: 'В библиотеке можно брать книги.' },
   { de: 'schwierig', pos: 'adj', ru: 'трудный, сложный', example: 'Die Prüfung war nicht so schwierig.', exampleRu: 'Экзамен был не такой уж трудный.' },
 ];

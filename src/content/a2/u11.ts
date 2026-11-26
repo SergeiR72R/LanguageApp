@@ -56,7 +56,7 @@ export const unit: Unit = {
       ['teilnehmen', 'an + Dat', 'Ich nehme am Kurs teil.', 'Woran? – Daran.'],
     ],
     examples: [
-      { de: 'Ich warte auf die Ergebnisse der Prüfung.', ru: 'Я жду результатов экзамена.' },
+      { de: 'Ich warte auf mein Prüfungsergebnis.', ru: 'Я жду результата своего экзамена.' },
       { de: 'Wofür interessierst du dich? – Für Geschichte.', ru: 'Чем ты интересуешься? — Историей.' },
       { de: 'Wir freuen uns schon auf die Ferien.', ru: 'Мы уже радуемся предстоящим каникулам.' },
       { de: 'Sie hat sich sehr über die gute Note gefreut.', ru: 'Она очень обрадовалась хорошей оценке.' },
