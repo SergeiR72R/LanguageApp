@@ -1,4 +1,4 @@
-import { useStore } from '../store';
+import { useStore, type LlmProvider, type Settings } from '../store';
 import { llmEndpoint } from './providers';
 
 export interface ChatMessage {
@@ -13,16 +13,41 @@ const GROQ_FALLBACKS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b', 'qwen/qwen3
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+class NetworkError extends AiError {}
+
 async function post(baseUrl: string, headers: Record<string, string>, body: Record<string, unknown>): Promise<Response> {
-  try {
-    return await fetch(`${baseUrl}/chat/completions`, { method: 'POST', headers, body: JSON.stringify(body) });
-  } catch (e) {
-    throw new AiError(`Сеть недоступна или сервер не разрешает запросы из браузера: ${(e as Error).message}`);
+  // a dropped connection (or a gateway error page without CORS headers) surfaces as "Failed to fetch": retry before giving up
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await fetch(`${baseUrl}/chat/completions`, { method: 'POST', headers, body: JSON.stringify(body) });
+    } catch (e) {
+      if (attempt >= 1) throw new NetworkError(`Сеть недоступна или сервер не ответил (${(e as Error).message}).`);
+      await sleep(1500);
+    }
   }
 }
 
+/** Primary provider first; if it is unreachable or out of quota, the other free provider whose key is saved. */
 async function request(messages: ChatMessage[], json: boolean, temperature: number, effort: 'low' | 'medium' = 'low'): Promise<string> {
   const s = useStore.getState().settings;
+  try {
+    return await requestWith(s, messages, json, temperature, effort);
+  } catch (e) {
+    const status = (e as { status?: number }).status ?? 0;
+    const retryable = e instanceof NetworkError || (e as { quota?: boolean }).quota || status >= 500;
+    const alt: LlmProvider | null = s.llmProvider === 'groq' ? 'gemini' : s.llmProvider === 'gemini' ? 'groq' : null;
+    if (!retryable || !alt || !s.keys[alt]) {
+      if (e instanceof NetworkError)
+        throw new AiError(
+          `${e.message} Проверьте интернет и попробуйте ещё раз. Если повторяется — отключите для сайта блокировщики рекламы/VPN или добавьте в «Настройках» второй ключ (Groq или Gemini): приложение будет переключаться на него автоматически.`,
+        );
+      throw e;
+    }
+    return requestWith({ ...s, llmProvider: alt, llmModel: '' }, messages, json, temperature, effort);
+  }
+}
+
+async function requestWith(s: Settings, messages: ChatMessage[], json: boolean, temperature: number, effort: 'low' | 'medium'): Promise<string> {
   const { baseUrl, key, model } = llmEndpoint(s);
   if (!baseUrl) throw new AiError('Не настроен адрес API. Откройте «Настройки».');
   if (!key && s.llmProvider !== 'custom') throw new AiError('Не указан API-ключ. Откройте «Настройки» и добавьте бесплатный ключ.');
@@ -43,7 +68,14 @@ async function request(messages: ChatMessage[], json: boolean, temperature: numb
     // gpt-oss "thinks" before answering; low effort saves tokens (= free quota) and time
     if (m.startsWith('openai/gpt-oss')) body.reasoning_effort = effort;
 
-    const res = await post(baseUrl, headers, body);
+    let res: Response;
+    try {
+      res = await post(baseUrl, headers, body);
+    } catch (e) {
+      if (e instanceof NetworkError && i + 1 < models.length) continue;
+      throw e;
+    }
+    if (res.status >= 500 && i + 1 < models.length) continue;
     if (res.ok) {
       const data = await res.json();
       const content: string | undefined = data?.choices?.[0]?.message?.content;
@@ -62,7 +94,7 @@ async function request(messages: ChatMessage[], json: boolean, temperature: numb
       }
       // daily limit of this model: try the next free model
       if (i + 1 < models.length) continue;
-      throw new AiError('Дневной лимит бесплатного тарифа исчерпан для всех моделей (429). Он восстановится в течение суток.');
+      throw Object.assign(new AiError('Дневной лимит бесплатного тарифа исчерпан для всех моделей (429). Он восстановится в течение суток.'), { quota: true });
     }
     if (res.status === 401 || res.status === 403) throw new AiError(`Ключ API не принят (${res.status}). Проверьте ключ в настройках.`);
     // model removed/unavailable on this plan: try the next one
