@@ -21,13 +21,10 @@ export const words: VocabItem[] = [
 
   // Wohnen und Leben in der Zukunft
   { de: 'Wohnmobil', article: 'das', plural: '-e', pos: 'noun', ru: 'дом на колёсах, автодом', example: 'Mit dem Wohnmobil wollen wir durch Europa fahren.', exampleRu: 'На автодоме мы хотим поехать по Европе.', pronRu: 'ВО:Н-мо-би:ль' },
-  { de: 'Wohnwagen', article: 'der', plural: '-', pos: 'noun', ru: 'жилой прицеп, караван', example: 'Im Sommer wohnen sie im Wohnwagen am See.', exampleRu: 'Летом они живут в жилом прицепе у озера.' },
   { de: 'Kleingarten', article: 'der', plural: '-¨', pos: 'noun', ru: 'садовый участок (в городе)', example: 'Mein Nachbar hat einen Kleingarten am Stadtrand.', exampleRu: 'У моего соседа садовый участок на окраине города.' },
   { de: 'Häuschen', article: 'das', plural: '-', pos: 'noun', ru: 'домик', example: 'Wir hätten gern ein kleines Häuschen auf dem Land.', exampleRu: 'Мы хотели бы маленький домик в деревне.', pronRu: 'ХОЙС-хьен' },
-  { de: 'Bauernhof', article: 'der', plural: '-¨e', pos: 'noun', ru: 'крестьянский двор, ферма', example: 'Auf dem Bauernhof gibt es Kühe und Hühner.', exampleRu: 'На ферме есть коровы и куры.' },
   { de: 'Hütte', article: 'die', plural: '-n', pos: 'noun', ru: 'хижина, домик (в горах)', example: 'Wir werden eine Woche in einer Hütte in den Bergen wohnen.', exampleRu: 'Мы неделю будем жить в домике в горах.' },
   { de: 'Boot', article: 'das', plural: '-e', pos: 'noun', ru: 'лодка', example: 'Mein Vater träumt von einem eigenen Boot.', exampleRu: 'Мой отец мечтает о собственной лодке.' },
-  { de: 'Rentnerin', article: 'die', plural: '-nen', pos: 'noun', ru: 'пенсионерка', example: 'Meine Mutter ist Rentnerin und reist sehr viel.', exampleRu: 'Моя мама на пенсии и очень много путешествует.' },
   { de: 'Sprachreise', article: 'die', plural: '-n', pos: 'noun', ru: 'языковая поездка (поездка с языковым курсом)', example: 'Im Herbst mache ich eine Sprachreise nach Wien.', exampleRu: 'Осенью я поеду в Вену на языковые курсы.' },
   { de: 'Nichtraucher', article: 'der', plural: '-', pos: 'noun', ru: 'некурящий', example: 'Ab heute bin ich Nichtraucher!', exampleRu: 'С сегодняшнего дня я не курю!' },
 
@@ -38,20 +35,14 @@ export const words: VocabItem[] = [
 
   // Verben
   { de: 'vorhersagen', forms: 'sagt vorher, hat vorhergesagt', pos: 'verb', ru: 'предсказывать', example: 'Der Wetterbericht hat Regen vorhergesagt.', exampleRu: 'Прогноз погоды предсказал дождь.', pronRu: 'фор-ХЕ:Р-за:-гэн' },
-  { de: 'verreisen', forms: 'verreist, ist verreist', pos: 'verb', ru: 'уезжать (в поездку)', example: 'Im Juli werden wir zwei Wochen verreisen.', exampleRu: 'В июле мы уедем на две недели.' },
-  { de: 'aufhören', forms: 'hört auf, hat aufgehört; mit + Dat', pos: 'verb', ru: 'прекращать, бросать (что-то делать)', example: 'Mein Vater will mit dem Rauchen aufhören.', exampleRu: 'Мой отец хочет бросить курить.' },
   { de: 'sich ändern', forms: 'ändert sich, hat sich geändert', pos: 'verb', ru: 'меняться, изменяться', example: 'Unsere Pläne haben sich geändert.', exampleRu: 'Наши планы изменились.' },
-  { de: 'ausschlafen', forms: 'schläft aus, hat ausgeschlafen', pos: 'verb', ru: 'выспаться', example: 'Am Sonntag werde ich lange ausschlafen.', exampleRu: 'В воскресенье я буду долго спать.' },
   { de: 'anbauen', forms: 'baut an, hat angebaut', pos: 'verb', ru: 'выращивать (овощи)', example: 'Im Garten bauen wir Tomaten und Gurken an.', exampleRu: 'В саду мы выращиваем помидоры и огурцы.' },
   { de: 'weitermachen', forms: 'macht weiter, hat weitergemacht; mit + Dat', pos: 'verb', ru: 'продолжать', example: 'Nach der Prüfung werde ich mit dem Deutschkurs weitermachen.', exampleRu: 'После экзамена я продолжу заниматься на курсе немецкого.' },
 
   // Wie sicher?
   { de: 'wohl', pos: 'adv', ru: 'наверное, должно быть (предположение)', example: 'Er ist nicht da. Er wird wohl krank sein.', exampleRu: 'Его нет. Наверное, он заболел.' },
-  { de: 'möglich', pos: 'adj', ru: 'возможный', example: 'Ein Termin im Mai ist auch möglich.', exampleRu: 'Встреча в мае тоже возможна.' },
-  { de: 'sicher', pos: 'adj', ru: 'уверенный; надёжный; наверняка', example: 'Bist du sicher, dass der Kurs morgen beginnt?', exampleRu: 'Ты уверен, что курс начинается завтра?' },
   { de: 'hoffentlich', pos: 'adv', ru: 'надеюсь, будем надеяться', example: 'Hoffentlich wird das Wetter am Wochenende schön.', exampleRu: 'Надеюсь, погода на выходных будет хорошей.', pronRu: 'ХО-фэнт-лихь' },
   { de: 'vielleicht', pos: 'adv', ru: 'может быть', example: 'Vielleicht werde ich nächstes Jahr umziehen.', exampleRu: 'Может быть, в следующем году я перееду.' },
-  { de: 'später', pos: 'adv', ru: 'позже, потом', example: 'Später möchte ich in Spanien leben.', exampleRu: 'Позже я хотел бы жить в Испании.' },
   { de: 'nächstes Jahr', pos: 'phrase', ru: 'в следующем году', example: 'Nächstes Jahr werde ich siebzig.', exampleRu: 'В следующем году мне исполнится семьдесят.' },
 
   // Lebenspläne
@@ -68,4 +59,16 @@ export const words: VocabItem[] = [
   { de: 'Wer weiß?', pos: 'phrase', ru: 'Кто знает?', example: 'Werden wir irgendwann reich? Wer weiß?', exampleRu: 'Станем ли мы когда-нибудь богатыми? Кто знает?' },
   { de: 'Keine Ahnung.', pos: 'phrase', ru: 'Понятия не имею.', example: 'Was machst du nach der Schule? – Keine Ahnung.', exampleRu: 'Что ты будешь делать после школы? — Понятия не имею.' },
   { de: 'Ich bin gespannt!', pos: 'phrase', ru: 'Мне очень интересно! (жду с нетерпением)', example: 'Morgen bekomme ich das Ergebnis. Ich bin gespannt!', exampleRu: 'Завтра я получу результат. Жду с нетерпением!' },
+
+  // Glück und Zukunft
+  { de: 'Sternschnuppe', article: 'die', plural: '-n', pos: 'noun', ru: 'падающая звезда', example: 'Ich habe eine Sternschnuppe gesehen und mir etwas gewünscht.', exampleRu: 'Я увидел падающую звезду и загадал желание.', pronRu: 'ШТЕРН-шну-пэ' },
+  { de: 'Glücksbringer', article: 'der', plural: '-', pos: 'noun', ru: 'талисман (на счастье)', example: 'Mein Glücksbringer ist ein kleiner Stein.', exampleRu: 'Мой талисман — маленький камень.' },
+  { de: 'Geburtstagswunsch', article: 'der', plural: '-¨e', pos: 'noun', ru: 'желание на день рождения', example: 'Mein Geburtstagswunsch ist ein Tag mit der ganzen Familie.', exampleRu: 'Моё желание на день рождения — день со всей семьёй.' },
+  { de: 'Wahrsagerin', article: 'die', plural: '-nen', pos: 'noun', ru: 'гадалка, предсказательница', example: 'Die Wahrsagerin sagt: „Sie werden eine lange Reise machen.“', exampleRu: 'Гадалка говорит: «Вы отправитесь в долгое путешествие».', pronRu: 'ВА:Р-за:-гэ-рин' },
+  { de: 'Segelboot', article: 'das', plural: '-e', pos: 'noun', ru: 'парусная лодка', example: 'Mit einem Segelboot würde ich gern um die Welt fahren.', exampleRu: 'Я бы хотел обойти вокруг света на парусной лодке.' },
+  { de: 'zusammenziehen', forms: 'zieht zusammen, ist zusammengezogen', pos: 'verb', ru: 'съехаться, начать жить вместе', example: 'Nächstes Jahr werden meine Tochter und ihr Freund zusammenziehen.', exampleRu: 'В следующем году моя дочь и её парень будут жить вместе.' },
+  { de: 'ab morgen', pos: 'phrase', ru: 'с завтрашнего дня', example: 'Ab morgen werde ich jeden Tag spazieren gehen.', exampleRu: 'С завтрашнего дня я буду гулять каждый день.' },
+  { de: 'nie wieder', pos: 'phrase', ru: 'больше никогда', example: 'Ich werde nie wieder so viel Kuchen essen!', exampleRu: 'Я больше никогда не буду есть столько торта!' },
+  { de: 'in zehn Jahren', pos: 'phrase', ru: 'через десять лет', example: 'In zehn Jahren werde ich wahrscheinlich in Rente sein.', exampleRu: 'Через десять лет я, наверное, буду на пенсии.' },
+  { de: 'später einmal', pos: 'phrase', ru: 'когда-нибудь потом, в будущем', example: 'Später einmal möchte ich am Meer wohnen.', exampleRu: 'Когда-нибудь потом я хотел бы жить у моря.' },
 ];

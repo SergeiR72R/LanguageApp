@@ -147,7 +147,7 @@ export const unit: Unit = {
     { de: 'Nachtisch', article: 'der', plural: '-e', pos: 'noun', ru: 'десерт', example: 'Zum Nachtisch gibt es Eis mit Sahne.', exampleRu: 'На десерт есть мороженое со сливками.', pronRu: 'дер НАХ-тиш' },
     { de: 'Beilage', article: 'die', plural: '-n', pos: 'noun', ru: 'гарнир', example: 'Als Beilage gibt es Reis oder Kartoffeln.', exampleRu: 'На гарнир есть рис или картофель.', pronRu: 'ди БАЙ-ла:-ге' },
     { de: 'Portion', article: 'die', plural: '-en', pos: 'noun', ru: 'порция', example: 'Die Portion ist sehr groß.', exampleRu: 'Порция очень большая.', pronRu: 'ди пор-ЦЬО:Н' },
-    { de: 'Kellner', article: 'der', plural: '-', pos: 'noun', ru: 'официант (die Kellnerin — официантка)', example: 'Der Kellner bringt die Getränke.', exampleRu: 'Официант приносит напитки.', pronRu: 'дер КЕЛЬ-на' },
+    { de: 'Bedienung', article: 'die', plural: '-en', pos: 'noun', ru: 'обслуживание; официант(ка)', example: 'Die Bedienung bringt die Getränke.', exampleRu: 'Официантка приносит напитки.', pronRu: 'ди бе-ДИ:-нунг' },
     { de: 'Rechnung', article: 'die', plural: '-en', pos: 'noun', ru: 'счёт', example: 'Entschuldigung, die Rechnung, bitte!', exampleRu: 'Извините, счёт, пожалуйста!', pronRu: 'ди РЕХЬ-нунг' },
     { de: 'Trinkgeld', article: 'das', plural: '-er', pos: 'noun', ru: 'чаевые', example: 'In Deutschland gibt man etwa zehn Prozent Trinkgeld.', exampleRu: 'В Германии дают примерно десять процентов чаевых.', pronRu: 'дас ТРИНК-гельт' },
     { de: 'Besteck', article: 'das', plural: '-e', pos: 'noun', ru: 'столовые приборы', example: 'Das Besteck liegt neben dem Teller.', exampleRu: 'Столовые приборы лежат рядом с тарелкой.', pronRu: 'дас бе-ШТЕК' },

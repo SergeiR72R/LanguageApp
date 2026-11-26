@@ -5,9 +5,7 @@ export const words: VocabItem[] = [
   // kleine Wörter
   { de: 'und', pos: 'conj', ru: 'и, а', example: 'Das sind Anna und Paul.', exampleRu: 'Это Анна и Пауль.', pronRu: 'УНТ' },
   { de: 'auch', pos: 'adv', ru: 'тоже, также', example: 'Ich wohne auch in Berlin.', exampleRu: 'Я тоже живу в Берлине.', pronRu: 'АУХ' },
-  { de: 'hier', pos: 'adv', ru: 'здесь, тут', example: 'Ich wohne hier in Bonn.', exampleRu: 'Я живу здесь, в Бонне.', pronRu: 'ХИ:А' },
   { de: 'dort', pos: 'adv', ru: 'там', example: 'Das ist Kiel. Anna wohnt dort.', exampleRu: 'Это Киль. Анна живёт там.', pronRu: 'ДОРТ' },
-  { de: 'jetzt', pos: 'adv', ru: 'сейчас, теперь', example: 'Ich wohne jetzt in Köln.', exampleRu: 'Сейчас я живу в Кёльне.', pronRu: 'ЙЕЦТ' },
   { de: 'langsam', pos: 'adj', ru: 'медленный; медленно', example: 'Bitte sprechen Sie langsam.', exampleRu: 'Пожалуйста, говорите медленно.', pronRu: 'ЛАНГ-зам' },
 
   // im Kurs
@@ -35,4 +33,6 @@ export const words: VocabItem[] = [
   { de: 'Gruppe', article: 'die', plural: '-n', pos: 'noun', ru: 'группа', example: 'Die Gruppe ist international.', exampleRu: 'Группа интернациональная.', pronRu: 'ди ГРУ-пэ' },
   { de: 'genau', pos: 'adv', ru: 'точно; именно так', example: 'Sie kommen aus Polen? – Genau!', exampleRu: 'Вы из Польши? — Точно!', pronRu: 'гэ-НАУ' },
   { de: 'Ach so!', pos: 'phrase', ru: 'Ах вот как! Понятно!', example: 'Ich wohne jetzt in Bonn. – Ach so!', exampleRu: 'Я теперь живу в Бонне. — Ах вот как!', pronRu: 'АХ ЗО' },
+  { de: 'Bis bald!', pos: 'phrase', ru: 'До скорого!', example: 'Tschüss, Lena! Bis bald!', exampleRu: 'Пока, Лена! До скорого!', pronRu: 'БИС БАЛЬТ' },
+  { de: 'Grüß Gott!', pos: 'phrase', ru: 'Здравствуйте! (на юге Германии и в Австрии)', example: 'Grüß Gott, Frau Huber!', exampleRu: 'Здравствуйте, госпожа Хубер!', pronRu: 'ГРЮС ГОТ' },
 ];

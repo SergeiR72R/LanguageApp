@@ -146,6 +146,7 @@ export const unit: Unit = {
     ],
   },
   vocab: [
+    { de: 'einundzwanzig', pos: 'other', ru: 'двадцать один (21): сначала единицы, потом десятки', example: 'Paul ist einundzwanzig Jahre alt.', exampleRu: 'Паулю двадцать один год.', pronRu: 'АЙН-унт-цван-цихь' },
     { de: 'dreißig', pos: 'other', ru: 'тридцать (30)', example: 'Ich bin dreißig Jahre alt.', exampleRu: 'Мне тридцать лет.', pronRu: 'ДРАЙ-сихь' },
     { de: 'vierzig', pos: 'other', ru: 'сорок (40)', example: 'Das Handy kostet vierzig Euro.', exampleRu: 'Мобильный стоит сорок евро.', pronRu: 'ФИР-цихь' },
     { de: 'fünfzig', pos: 'other', ru: 'пятьдесят (50)', example: 'Frau Weber ist fünfzig Jahre alt.', exampleRu: 'Госпоже Вебер пятьдесят лет.', pronRu: 'ФЮНФ-цихь' },
@@ -159,7 +160,6 @@ export const unit: Unit = {
     { de: 'machen', forms: 'er macht, hat gemacht', pos: 'verb', ru: 'делать', example: 'Was machst du?', exampleRu: 'Что ты делаешь?', pronRu: 'МА-хэн' },
     { de: 'alt', pos: 'adj', ru: 'старый; (о возрасте) … лет', example: 'Wie alt bist du?', exampleRu: 'Сколько тебе лет?', pronRu: 'АЛЬТ' },
     { de: 'Jahr', article: 'das', plural: '-e', pos: 'noun', ru: 'год', example: 'Ich bin vierzig Jahre alt.', exampleRu: 'Мне сорок лет.', pronRu: 'дас ЯА' },
-    { de: 'Telefonnummer', article: 'die', plural: '-n', pos: 'noun', ru: 'номер телефона', example: 'Wie ist Ihre Telefonnummer?', exampleRu: 'Какой у Вас номер телефона?', pronRu: 'ди тэ-лэ-ФОН-ну-ма' },
     { de: 'Handy', article: 'das', plural: '-s', pos: 'noun', ru: 'мобильный телефон', example: 'Das Handy ist neu.', exampleRu: 'Мобильный — новый.', pronRu: 'дас ХЭН-ди' },
     { de: 'Adresse', article: 'die', plural: '-n', pos: 'noun', ru: 'адрес', example: 'Wie ist Ihre Adresse?', exampleRu: 'Какой у Вас адрес?', pronRu: 'ди а-ДРЕ-сэ' },
     { de: 'Straße', article: 'die', plural: '-n', pos: 'noun', ru: 'улица', example: 'Die Straße heißt Goethestraße.', exampleRu: 'Улица называется Гётештрассе.', pronRu: 'ди ШТРА-сэ' },

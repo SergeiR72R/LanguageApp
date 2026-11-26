@@ -5,14 +5,10 @@ export const words: VocabItem[] = [
   // Ärzte und Hilfe
   { de: 'Kinderarzt', article: 'der', plural: '-¨e', pos: 'noun', ru: 'детский врач, педиатр', example: 'Mit dem Baby gehen wir zum Kinderarzt.', exampleRu: 'С малышом мы идём к педиатру.' },
   { de: 'Augenarzt', article: 'der', plural: '-¨e', pos: 'noun', ru: 'окулист, глазной врач', example: 'Ich sehe schlecht, ich muss zum Augenarzt.', exampleRu: 'Я плохо вижу, мне нужно к окулисту.' },
-  { de: 'Facharzt', article: 'der', plural: '-¨e', pos: 'noun', ru: 'врач-специалист', example: 'Der Hausarzt schickt mich zu einem Facharzt.', exampleRu: 'Семейный врач направляет меня к специалисту.' },
   { de: 'Arzthelferin', article: 'die', plural: '-nen', pos: 'noun', ru: 'медицинская помощница (в практике врача)', example: 'Die Arzthelferin gibt mir einen Termin.', exampleRu: 'Помощница врача записывает меня на приём.', pronRu: 'ди АРЦТ-хэль-фэ-рин' },
   { de: 'Apotheker', article: 'der', plural: '-', pos: 'noun', ru: 'аптекарь, фармацевт', example: 'Fragen Sie Ihren Apotheker.', exampleRu: 'Спросите своего фармацевта.', pronRu: 'дер а-по-ТЕ:-ка' },
-  { de: 'Krankenwagen', article: 'der', plural: '-', pos: 'noun', ru: 'скорая помощь (машина)', example: 'Schnell, ruf einen Krankenwagen!', exampleRu: 'Быстрее, вызови скорую!' },
   { de: 'Notarzt', article: 'der', plural: '-¨e', pos: 'noun', ru: 'врач скорой помощи', example: 'Der Notarzt ist in zehn Minuten da.', exampleRu: 'Врач скорой помощи будет через десять минут.' },
-  { de: 'Wartezeit', article: 'die', plural: '-en', pos: 'noun', ru: 'время ожидания', example: 'Die Wartezeit beim Facharzt ist oft lang.', exampleRu: 'Ждать приёма у специалиста часто приходится долго.' },
   { de: 'Gesundheitskarte', article: 'die', plural: '-n', pos: 'noun', ru: 'карточка медицинской страховки', example: 'Haben Sie Ihre Gesundheitskarte dabei?', exampleRu: 'У вас с собой карточка медстраховки?' },
-  { de: 'absagen', forms: 'sagt ab, hat abgesagt', pos: 'verb', ru: 'отменить (встречу, приём)', example: 'Ich muss meinen Termin leider absagen.', exampleRu: 'К сожалению, мне нужно отменить приём.' },
   // Behandlung
   { de: 'Untersuchung', article: 'die', plural: '-en', pos: 'noun', ru: 'осмотр, обследование', example: 'Die Untersuchung dauert nur zehn Minuten.', exampleRu: 'Осмотр длится всего десять минут.', pronRu: 'ди ун-та-ЗУ:-хунг' },
   { de: 'Spritze', article: 'die', plural: '-n', pos: 'noun', ru: 'укол; шприц', example: 'Hast du Angst vor einer Spritze?', exampleRu: 'Ты боишься уколов?' },
@@ -32,7 +28,6 @@ export const words: VocabItem[] = [
   { de: 'Hustenbonbon', article: 'das', plural: '-s', pos: 'noun', ru: 'леденец от кашля', example: 'Möchtest du ein Hustenbonbon?', exampleRu: 'Хочешь леденец от кашля?' },
   // Krankheiten und Symptome
   { de: 'Krankheit', article: 'die', plural: '-en', pos: 'noun', ru: 'болезнь', example: 'Grippe ist eine gefährliche Krankheit.', exampleRu: 'Грипп — опасная болезнь.' },
-  { de: 'ansteckend', pos: 'adj', ru: 'заразный', example: 'Bleib zu Hause, die Grippe ist ansteckend!', exampleRu: 'Оставайся дома, грипп заразен!' },
   { de: 'Was fehlt Ihnen?', pos: 'phrase', ru: 'Что вас беспокоит? (вопрос врача)', example: 'Guten Tag, Frau Kurz. Was fehlt Ihnen denn?', exampleRu: 'Добрый день, госпожа Курц. Что вас беспокоит?' },
   { de: 'mir ist schlecht', pos: 'phrase', ru: 'меня тошнит, мне плохо', example: 'Nach dem Essen ist mir schlecht.', exampleRu: 'После еды меня тошнит.' },
   { de: 'allergisch', pos: 'adj', ru: 'с аллергией (allergisch gegen + Akk — аллергия на …)', example: 'Ich bin allergisch gegen Katzen.', exampleRu: 'У меня аллергия на кошек.' },
@@ -48,7 +43,6 @@ export const words: VocabItem[] = [
   { de: 'Magen', article: 'der', plural: '-¨', pos: 'noun', ru: 'желудок', example: 'Mein Magen tut weh.', exampleRu: 'У меня болит желудок.', pronRu: 'дер МА:-гэн' },
   { de: 'Lunge', article: 'die', plural: '-n', pos: 'noun', ru: 'лёгкое', example: 'Rauchen ist schlecht für die Lunge.', exampleRu: 'Курение вредно для лёгких.' },
   { de: 'Knochen', article: 'der', plural: '-', pos: 'noun', ru: 'кость', example: 'Zum Glück ist der Knochen nicht gebrochen.', exampleRu: 'К счастью, кость не сломана.' },
-  { de: 'Schulter', article: 'die', plural: '-n', pos: 'noun', ru: 'плечо', example: 'Meine Schulter tut seit gestern weh.', exampleRu: 'У меня со вчерашнего дня болит плечо.' },
   { de: 'atmen', forms: 'atmet, hat geatmet', pos: 'verb', ru: 'дышать', example: 'Bitte tief atmen!', exampleRu: 'Пожалуйста, глубоко дышите!' },
   // Gesund leben
   { de: 'ungesund', pos: 'adj', ru: 'вредный для здоровья', example: 'Zu viel Zucker ist ungesund.', exampleRu: 'Слишком много сахара вредно.' },
@@ -59,5 +53,12 @@ export const words: VocabItem[] = [
   { de: 'Vitamin', article: 'das', plural: '-e', pos: 'noun', ru: 'витамин', example: 'Obst hat viele Vitamine.', exampleRu: 'Во фруктах много витаминов.', pronRu: 'дас ви-та-МИ:Н' },
   { de: 'Schlaf', article: 'der', plural: '–', pos: 'noun', ru: 'сон', example: 'Schlaf ist sehr wichtig für die Gesundheit.', exampleRu: 'Сон очень важен для здоровья.' },
   { de: 'Stress', article: 'der', plural: '–', pos: 'noun', ru: 'стресс', example: 'Bei der Arbeit habe ich viel Stress.', exampleRu: 'На работе у меня много стресса.' },
-  { de: 'sich hinlegen', forms: 'legt sich hin, hat sich hingelegt', pos: 'verb', ru: 'прилечь', example: 'Ich bin müde, ich lege mich ein bisschen hin.', exampleRu: 'Я устал, прилягу немного.' },
+  // Noch mehr Wörter
+  { de: 'Rettungswagen', article: 'der', plural: '-', pos: 'noun', ru: 'машина скорой помощи', example: 'Der Rettungswagen bringt sie ins Krankenhaus.', exampleRu: 'Скорая везёт её в больницу.' },
+  { de: 'Notruf', article: 'der', plural: '-e', pos: 'noun', ru: 'экстренный вызов; номер экстренной службы', example: 'Der Notruf in Deutschland ist 112.', exampleRu: 'Номер экстренной службы в Германии — 112.' },
+  { de: 'Krücke', article: 'die', plural: '-n', pos: 'noun', ru: 'костыль', example: 'Mit dem Gips muss er an Krücken gehen.', exampleRu: 'С гипсом ему приходится ходить на костылях.', pronRu: 'ди КРЮ-кэ' },
+  { de: 'Bescheinigung', article: 'die', plural: '-en', pos: 'noun', ru: 'справка', example: 'Für die Schule brauche ich eine Bescheinigung vom Arzt.', exampleRu: 'Для школы мне нужна справка от врача.', pronRu: 'ди бэ-ШАЙ-ни-гунг' },
+  { de: 'Übelkeit', article: 'die', plural: '–', pos: 'noun', ru: 'тошнота', example: 'Gegen Übelkeit hilft oft Tee.', exampleRu: 'От тошноты часто помогает чай.', pronRu: 'ди Ю:-бэль-кайт' },
+  { de: 'jucken', forms: 'juckt, hat gejuckt', pos: 'verb', ru: 'чесаться, зудеть', example: 'Meine Haut juckt.', exampleRu: 'У меня чешется кожа.', pronRu: 'Ю-кэн' },
+  { de: 'sich schonen', forms: 'schont sich, hat sich geschont', pos: 'verb', ru: 'беречь себя', example: 'Sie müssen sich noch ein paar Tage schonen.', exampleRu: 'Вам нужно ещё несколько дней поберечься.' },
 ];

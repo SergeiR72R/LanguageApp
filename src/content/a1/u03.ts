@@ -308,7 +308,7 @@ export const unit: Unit = {
     ],
     examples: [
       { de: 'Guten Morgen! Wie geht es Ihnen?', ru: 'Доброе утро! Как Ваши дела?' },
-      { de: 'Danke, gut. Und Ihnen?', ru: 'Спасибо, хорошо. А Ваши?' },
+      { de: 'Danke, gut. Und Ihnen?', ru: 'Спасибо, хорошо. А у Вас?' },
       { de: 'Ich heiße Olga. Ich komme aus Russland.', ru: 'Меня зовут Ольга. Я из России.' },
       { de: 'Woher kommen Sie? – Aus Österreich.', ru: 'Откуда Вы? — Из Австрии.' },
       { de: 'Ich spreche Russisch und ein bisschen Deutsch.', ru: 'Я говорю по-русски и немного по-немецки.' },
@@ -415,7 +415,7 @@ export const unit: Unit = {
     { de: 'Auf Wiedersehen!', pos: 'phrase', ru: 'До свидания!', example: 'Danke! Auf Wiedersehen!', exampleRu: 'Спасибо! До свидания!', pronRu: 'ауф ВИ:-да-зэ:-эн' },
     { de: "Wie geht's?", pos: 'phrase', ru: 'Как дела? (знакомым, неформально)', example: "Hallo, Tom! Wie geht's?", exampleRu: 'Привет, Том! Как дела?', pronRu: 'ви: ГЭ:ТС' },
     { de: 'Wie geht es Ihnen?', pos: 'phrase', ru: 'Как Ваши дела? (вежливо)', example: 'Guten Tag! Wie geht es Ihnen?', exampleRu: 'Добрый день! Как Ваши дела?', pronRu: 'ви: ГЭ:Т эс И:-нэн' },
-    { de: 'gut', pos: 'adj', ru: 'хороший; хорошо', example: 'Gut, danke. Und Ihnen?', exampleRu: 'Хорошо, спасибо. А Вам?', pronRu: 'ГУ:Т' },
+    { de: 'gut', pos: 'adj', ru: 'хороший; хорошо', example: 'Gut, danke. Und Ihnen?', exampleRu: 'Хорошо, спасибо. А у Вас?', pronRu: 'ГУ:Т' },
     { de: 'Woher kommen Sie?', pos: 'phrase', ru: 'Откуда Вы?', example: 'Woher kommen Sie? – Aus Polen.', exampleRu: 'Откуда Вы? — Из Польши.', pronRu: 'во-ХЭ:А КО-мэн зи:' },
     { de: 'kommen', forms: 'ich komme, er kommt, Sie kommen', pos: 'verb', ru: 'приходить; быть родом (aus — из)', example: 'Olga kommt aus Moskau.', exampleRu: 'Ольга из Москвы.', pronRu: 'КО-мэн' },
     { de: 'aus', pos: 'prep', ru: 'из (откуда)', example: 'Ich komme aus Russland.', exampleRu: 'Я из России.', pronRu: 'АУС' },

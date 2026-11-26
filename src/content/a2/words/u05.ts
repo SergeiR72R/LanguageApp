@@ -3,8 +3,6 @@ import type { VocabItem } from '../../types';
 // Word bank A2 · Unit 05 — Alltag und Haushalt
 export const words: VocabItem[] = [
   // Morgens und abends
-  { de: 'Wecker', article: 'der', plural: '-', pos: 'noun', ru: 'будильник', example: 'Mein Wecker klingelt um sechs Uhr.', exampleRu: 'Мой будильник звонит в шесть часов.' },
-  { de: 'aufwachen', forms: 'wacht auf, ist aufgewacht', pos: 'verb', ru: 'просыпаться', example: 'Heute bin ich sehr früh aufgewacht.', exampleRu: 'Сегодня я проснулся очень рано.' },
   { de: 'verschlafen', forms: 'verschläft, hat verschlafen', pos: 'verb', ru: 'проспать', example: 'Ich habe verschlafen und den Bus verpasst.', exampleRu: 'Я проспал и опоздал на автобус.' },
   { de: 'wach', pos: 'adj', ru: 'бодрствующий, не спящий', example: 'Um sieben Uhr bin ich noch nicht richtig wach.', exampleRu: 'В семь часов я ещё не совсем проснулся.' },
   { de: 'sich kämmen', forms: 'kämmt sich, hat sich gekämmt', pos: 'verb', ru: 'причёсываться', example: 'Sie kämmt sich vor dem Spiegel.', exampleRu: 'Она причёсывается перед зеркалом.' },
@@ -12,13 +10,11 @@ export const words: VocabItem[] = [
   { de: 'sich abtrocknen', forms: 'trocknet sich ab, hat sich abgetrocknet', pos: 'verb', ru: 'вытираться (полотенцем)', example: 'Nach dem Duschen trockne ich mich ab.', exampleRu: 'После душа я вытираюсь.' },
   { de: 'sich die Zähne putzen', forms: 'putzt sich die Zähne, hat sich die Zähne geputzt', pos: 'phrase', ru: 'чистить зубы', example: 'Ich putze mir zweimal am Tag die Zähne.', exampleRu: 'Я чищу зубы два раза в день.' },
   { de: 'sich hinlegen', forms: 'legt sich hin, hat sich hingelegt', pos: 'verb', ru: 'прилечь', example: 'Nach dem Mittagessen lege ich mich kurz hin.', exampleRu: 'После обеда я ненадолго прилягу.' },
-  { de: 'sich erholen', forms: 'erholt sich, hat sich erholt', pos: 'verb', ru: 'отдыхать, восстанавливать силы', example: 'Im Urlaub haben wir uns gut erholt.', exampleRu: 'В отпуске мы хорошо отдохнули.' },
   { de: 'sich langweilen', forms: 'langweilt sich, hat sich gelangweilt', pos: 'verb', ru: 'скучать', example: 'Am Sonntag langweilen sich die Kinder oft.', exampleRu: 'В воскресенье дети часто скучают.' },
   { de: 'sich treffen', forms: 'trifft sich, hat sich getroffen', pos: 'verb', ru: 'встречаться', example: 'Wir treffen uns um acht vor dem Kino.', exampleRu: 'Мы встречаемся в восемь у кинотеатра.' },
   { de: 'sich verabreden', forms: 'verabredet sich, hat sich verabredet', pos: 'verb', ru: 'договориться о встрече', example: 'Ich habe mich mit Lena für Samstag verabredet.', exampleRu: 'Я договорился с Леной встретиться в субботу.' },
 
   // Im Bad
-  { de: 'Dusche', article: 'die', plural: '-n', pos: 'noun', ru: 'душ', example: 'Mein Sohn steht jeden Morgen eine halbe Stunde unter der Dusche.', exampleRu: 'Мой сын каждое утро полчаса стоит под душем.' },
   { de: 'Handtuch', article: 'das', plural: '-¨er', pos: 'noun', ru: 'полотенце', example: 'Die Handtücher liegen im Schrank im Bad.', exampleRu: 'Полотенца лежат в шкафу в ванной.' },
   { de: 'Seife', article: 'die', plural: '-n', pos: 'noun', ru: 'мыло', example: 'Wasch dir die Hände mit Seife!', exampleRu: 'Помой руки с мылом!' },
   { de: 'Zahnbürste', article: 'die', plural: '-n', pos: 'noun', ru: 'зубная щётка', example: 'Ich habe meine Zahnbürste zu Hause vergessen.', exampleRu: 'Я забыл свою зубную щётку дома.' },
@@ -44,8 +40,6 @@ export const words: VocabItem[] = [
   { de: 'wischen', forms: 'wischt, hat gewischt', pos: 'verb', ru: 'вытирать; мыть (пол)', example: 'Heute wische ich den Boden in der Küche.', exampleRu: 'Сегодня я мою пол на кухне.' },
   { de: 'gießen', forms: 'gießt, hat gegossen', pos: 'verb', ru: 'поливать', example: 'Kannst du im Urlaub meine Blumen gießen?', exampleRu: 'Можешь полить мои цветы, пока я в отпуске?' },
   { de: 'trocknen', forms: 'trocknet, hat getrocknet', pos: 'verb', ru: 'сушить; сохнуть', example: 'Die Wäsche trocknet auf dem Balkon.', exampleRu: 'Бельё сохнет на балконе.' },
-  { de: 'einschalten', forms: 'schaltet ein, hat eingeschaltet', pos: 'verb', ru: 'включать', example: 'Schalt bitte die Waschmaschine ein!', exampleRu: 'Включи, пожалуйста, стиральную машину!' },
-  { de: 'ausschalten', forms: 'schaltet aus, hat ausgeschaltet', pos: 'verb', ru: 'выключать', example: 'Hast du das Licht im Bad ausgeschaltet?', exampleRu: 'Ты выключил свет в ванной?' },
   { de: 'sauber machen', forms: 'macht sauber, hat sauber gemacht', pos: 'phrase', ru: 'убирать, наводить чистоту', example: 'Am Samstag machen wir die ganze Wohnung sauber.', exampleRu: 'В субботу мы убираем всю квартиру.' },
   { de: 'das Bett machen', pos: 'phrase', ru: 'заправлять кровать', example: 'Jeden Morgen mache ich das Bett.', exampleRu: 'Каждое утро я заправляю кровать.' },
   { de: 'den Tisch decken', pos: 'phrase', ru: 'накрывать на стол', example: 'Kannst du bitte den Tisch decken? Das Essen ist gleich fertig.', exampleRu: 'Можешь накрыть на стол? Еда сейчас будет готова.' },
@@ -53,10 +47,18 @@ export const words: VocabItem[] = [
   { de: 'Ordnung', article: 'die', plural: '–', pos: 'noun', ru: 'порядок', example: 'In der Küche ist immer Ordnung.', exampleRu: 'На кухне всегда порядок.' },
   { de: 'Unordnung', article: 'die', plural: '–', pos: 'noun', ru: 'беспорядок', example: 'Im Kinderzimmer ist schon wieder Unordnung.', exampleRu: 'В детской опять беспорядок.' },
   { de: 'Fleck', article: 'der', plural: '-en', pos: 'noun', ru: 'пятно', example: 'Auf dem Hemd ist ein Fleck.', exampleRu: 'На рубашке пятно.' },
-  { de: 'sauber', pos: 'adj', ru: 'чистый', example: 'Endlich ist die Wohnung wieder sauber.', exampleRu: 'Наконец квартира снова чистая.' },
   { de: 'schmutzig', pos: 'adj', ru: 'грязный', example: 'Deine Schuhe sind schmutzig, zieh sie bitte aus.', exampleRu: 'Твои ботинки грязные, сними их, пожалуйста.' },
   { de: 'ordentlich', pos: 'adj', ru: 'аккуратный, опрятный', example: 'Mein Mann ist sehr ordentlich.', exampleRu: 'Мой муж очень аккуратный.' },
-  { de: 'nass', pos: 'adj', ru: 'мокрый', example: 'Die Wäsche ist noch nass.', exampleRu: 'Бельё ещё мокрое.' },
-  { de: 'faul', pos: 'adj', ru: 'ленивый', example: 'Am Sonntag bin ich gern ein bisschen faul.', exampleRu: 'В воскресенье я люблю немного полениться.' },
-  { de: 'fleißig', pos: 'adj', ru: 'прилежный, трудолюбивый', example: 'Heute war ich fleißig: Ich habe die ganze Wohnung geputzt.', exampleRu: 'Сегодня я был трудолюбивым: я убрал всю квартиру.' },
+  // Ergänzungen
+  { de: 'Mülleimer', article: 'der', plural: '-', pos: 'noun', ru: 'мусорное ведро', example: 'Der Mülleimer steht unter der Spüle.', exampleRu: 'Мусорное ведро стоит под мойкой.' },
+  { de: 'Lappen', article: 'der', plural: '-', pos: 'noun', ru: 'тряпка', example: 'Mit dem Lappen putze ich den Tisch.', exampleRu: 'Тряпкой я вытираю стол.' },
+  { de: 'Bettwäsche', article: 'die', plural: '–', pos: 'noun', ru: 'постельное бельё', example: 'Jeden Samstag wechseln wir die Bettwäsche.', exampleRu: 'Каждую субботу мы меняем постельное бельё.' },
+  { de: 'Kleiderbügel', article: 'der', plural: '-', pos: 'noun', ru: 'плечики, вешалка для одежды', example: 'Häng das Hemd bitte auf einen Kleiderbügel.', exampleRu: 'Повесь, пожалуйста, рубашку на плечики.' },
+  { de: 'Shampoo', article: 'das', plural: '-s', pos: 'noun', ru: 'шампунь', example: 'Das Shampoo steht in der Dusche.', exampleRu: 'Шампунь стоит в душе.', pronRu: 'ШАМ-пу' },
+  { de: 'Creme', article: 'die', plural: '-s', pos: 'noun', ru: 'крем', example: 'Im Winter brauche ich eine Creme für die Hände.', exampleRu: 'Зимой мне нужен крем для рук.', pronRu: 'КРЕ:М' },
+  { de: 'Taschentuch', article: 'das', plural: '-¨er', pos: 'noun', ru: 'носовой платок, салфетка', example: 'Hast du ein Taschentuch für mich?', exampleRu: 'У тебя есть для меня носовой платок?' },
+  { de: 'Hausmann', article: 'der', plural: '-¨er', pos: 'noun', ru: 'мужчина, который ведёт домашнее хозяйство', example: 'Mein Mann ist jetzt Hausmann und kocht jeden Tag.', exampleRu: 'Мой муж теперь занимается домом и готовит каждый день.' },
+  { de: 'sich wohlfühlen', forms: 'fühlt sich wohl, hat sich wohlgefühlt', pos: 'verb', ru: 'хорошо себя чувствовать, чувствовать себя уютно', example: 'In der neuen Wohnung fühlen wir uns sehr wohl.', exampleRu: 'В новой квартире нам очень хорошо.' },
+  { de: 'sich entschuldigen', forms: 'entschuldigt sich, hat sich entschuldigt', pos: 'verb', ru: 'извиняться', example: 'Er hat sich für seinen Fehler entschuldigt.', exampleRu: 'Он извинился за свою ошибку.' },
+  { de: 'sich konzentrieren', forms: 'konzentriert sich, hat sich konzentriert', pos: 'verb', ru: 'сосредоточиться', example: 'Bei dem Lärm kann ich mich nicht konzentrieren.', exampleRu: 'При таком шуме я не могу сосредоточиться.' },
 ];

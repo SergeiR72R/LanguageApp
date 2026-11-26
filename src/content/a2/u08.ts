@@ -181,7 +181,7 @@ A: Toll! Aber ist es nicht langweilig?
 B: Nein, gar nicht. Am Wochenende gehen wir im Wald spazieren. Und die Kinder spielen auf dem Bauernhof von unseren Nachbarn. Am liebsten sind sie bei den Pferden.
 A: Und deine Arbeit? Du arbeitest doch noch in Frankfurt.
 B: Ja, das ist der größte Nachteil. Mit dem Zug brauche ich eine Stunde. Früher waren es nur zwanzig Minuten mit der U-Bahn.
-A: Das ist lang. Gibt es im Dorf Restaurants oder ein Kino?
+A: Gibt es im Dorf Restaurants oder ein Kino?
 B: Nur eine kleine Kneipe. Das Angebot ist in der Stadt natürlich besser. Aber die Luft ist viel sauberer, und ich schlafe besser.
 A: Vielleicht besuche ich euch bald.
 B: Gern! Im Mai ist es hier am schönsten.`,
