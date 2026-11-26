@@ -146,13 +146,13 @@ export const unit: Unit = {
     { de: 'Amt', article: 'das', plural: '-¨er', pos: 'noun', ru: 'ведомство, учреждение', example: 'Morgen muss ich aufs Amt, ich brauche einen neuen Pass.', exampleRu: 'Завтра мне надо идти в ведомство: мне нужен новый паспорт.', pronRu: 'дас АМТ' },
     { de: 'Bürgeramt', article: 'das', plural: '-¨er', pos: 'noun', ru: 'бюро обслуживания граждан (регистрация, паспорта)', example: 'Im Bürgeramt kann man seine Wohnung anmelden.', exampleRu: 'В бюро обслуживания граждан можно зарегистрировать квартиру.', pronRu: 'дас БЮР-га-амт' },
     { de: 'Personalausweis', article: 'der', plural: '-e', pos: 'noun', ru: 'удостоверение личности (ID-карта)', example: 'Bitte zeigen Sie Ihren Personalausweis.', exampleRu: 'Пожалуйста, покажите ваше удостоверение личности.', pronRu: 'дер пэр-зо-НА:ЛЬ-аус-вайс' },
-    { de: 'Reisepass', article: 'der', plural: '-¨e', pos: 'noun', ru: 'загранпаспорт, паспорт', example: 'Mein Reisepass ist nur noch drei Monate gültig.', exampleRu: 'Мой паспорт действителен только ещё три месяца.', pronRu: 'дер РАЙ-зэ-пас' },
-    { de: 'Formular', article: 'das', plural: '-e', pos: 'noun', ru: 'бланк, анкета', example: 'Füllen Sie bitte dieses Formular aus.', exampleRu: 'Заполните, пожалуйста, этот бланк.', pronRu: 'дас фор-му-ЛА:А' },
-    { de: 'ausfüllen', forms: 'füllt aus, hat ausgefüllt', pos: 'verb', ru: 'заполнять (бланк)', example: 'Ich habe das Formular schon zu Hause ausgefüllt.', exampleRu: 'Я уже заполнил бланк дома.', pronRu: 'АУС-фю-лэн' },
-    { de: 'unterschreiben', forms: 'unterschreibt, hat unterschrieben', pos: 'verb', ru: 'подписывать', example: 'Unterschreiben Sie bitte hier unten.', exampleRu: 'Подпишите, пожалуйста, здесь внизу.', pronRu: 'ун-та-ШРАЙ-бэн' },
-    { de: 'Unterschrift', article: 'die', plural: '-en', pos: 'noun', ru: 'подпись', example: 'Auf dem Formular fehlt noch Ihre Unterschrift.', exampleRu: 'На бланке ещё нет вашей подписи.', pronRu: 'ди УН-та-шрифт' },
+    { de: 'Antrag', article: 'der', plural: '-¨e', pos: 'noun', ru: 'заявление, заявка', example: 'Den Antrag für den neuen Pass können Sie auch online stellen.', exampleRu: 'Заявление на новый паспорт можно подать и онлайн.', pronRu: 'дер АН-тра:к' },
+    { de: 'Sachbearbeiter', article: 'der', plural: '-', pos: 'noun', ru: 'сотрудник (ведомства), который ведёт дело (die Sachbearbeiterin)', example: 'Die Sachbearbeiterin hat mir alles genau erklärt.', exampleRu: 'Сотрудница мне всё подробно объяснила.', pronRu: 'дер ЗАХ-бэ-ар-бай-та' },
+    { de: 'Bescheinigung', article: 'die', plural: '-en', pos: 'noun', ru: 'справка, свидетельство', example: 'Vom Arbeitgeber brauche ich eine Bescheinigung über mein Gehalt.', exampleRu: 'Мне нужна справка о зарплате от работодателя.', pronRu: 'ди бэ-ШАЙ-ни-гунг' },
+    { de: 'Öffnungszeiten', article: 'die', plural: '(nur Plural)', pos: 'noun', ru: 'часы работы', example: 'Die Öffnungszeiten vom Bürgeramt stehen im Internet.', exampleRu: 'Часы работы бюро обслуживания граждан указаны в интернете.', pronRu: 'ди ЁФ-нунгс-цай-тэн' },
+    { de: 'Geheimzahl', article: 'die', plural: '-en', pos: 'noun', ru: 'ПИН-код', example: 'Sagen Sie niemandem Ihre Geheimzahl!', exampleRu: 'Никому не говорите свой ПИН-код!', pronRu: 'ди гэ-ХАЙМ-ца:ль' },
     { de: 'beantragen', forms: 'beantragt, hat beantragt', pos: 'verb', ru: 'подавать заявление (на что-л.), оформлять', example: 'Ich möchte einen neuen Reisepass beantragen.', exampleRu: 'Я хочу оформить новый паспорт.', pronRu: 'бэ-АН-тра:-гэн' },
-    { de: 'Anmeldung', article: 'die', plural: '-en', pos: 'noun', ru: 'регистрация (по месту жительства); запись', example: 'Für die Anmeldung brauchen Sie einen Termin.', exampleRu: 'Для регистрации вам нужна запись на приём.', pronRu: 'ди АН-мэль-дунг' },
+    { de: 'Kontoauszug', article: 'der', plural: '-¨e', pos: 'noun', ru: 'выписка со счёта', example: 'Auf dem Kontoauszug sehe ich alle Zahlungen.', exampleRu: 'В выписке со счёта я вижу все платежи.', pronRu: 'дер КОН-то-аус-цу:к' },
     { de: 'Konto', article: 'das', plural: 'die Konten', pos: 'noun', ru: 'счёт (в банке)', example: 'Ich habe ein Konto bei einer Bank in der Nähe.', exampleRu: 'У меня есть счёт в банке поблизости.', pronRu: 'дас КОН-то' },
     { de: 'überweisen', forms: 'überweist, hat überwiesen', pos: 'verb', ru: 'переводить (деньги на счёт)', example: 'Ich überweise die Miete jeden Monat am Ersten.', exampleRu: 'Я перевожу квартплату каждый месяц первого числа.', pronRu: 'ю-ба-ВАЙ-зэн' },
     { de: 'Geldautomat', article: 'der', plural: '-en', forms: 'den Geldautomaten', pos: 'noun', ru: 'банкомат', example: 'Der Geldautomat ist direkt neben dem Eingang.', exampleRu: 'Банкомат прямо рядом со входом.', pronRu: 'дер ГЭЛЬТ-ау-то-ма:т' },
@@ -162,7 +162,7 @@ export const unit: Unit = {
     { de: 'Unterlagen', article: 'die', plural: '(nur Plural)', pos: 'noun', ru: 'документы, бумаги', example: 'Haben Sie alle Unterlagen dabei?', exampleRu: 'У вас с собой все документы?', pronRu: 'ди УН-та-ла:-гэн' },
     { de: 'gültig', pos: 'adj', ru: 'действительный (документ, билет)', example: 'Ihr Ausweis ist leider nicht mehr gültig.', exampleRu: 'Ваше удостоверение, к сожалению, больше не действительно.', pronRu: 'ГЮЛЬ-тихь' },
     { de: 'Paket', article: 'das', plural: '-e', pos: 'noun', ru: 'посылка', example: 'Ich muss noch ein Paket zur Post bringen.', exampleRu: 'Мне ещё надо отнести посылку на почту.', pronRu: 'дас па-КЭ:Т' },
-    { de: 'Briefmarke', article: 'die', plural: '-n', pos: 'noun', ru: 'почтовая марка', example: 'Wie viele Briefmarken brauche ich für diesen Brief?', exampleRu: 'Сколько марок мне нужно для этого письма?', pronRu: 'ди БРИ:Ф-мар-кэ' },
+    { de: 'Päckchen', article: 'das', plural: '-', pos: 'noun', ru: 'бандероль, маленькая посылка', example: 'Ein Päckchen ist billiger als ein Paket.', exampleRu: 'Бандероль дешевле, чем посылка.', pronRu: 'дас ПЭК-хьен' },
   ],
   listening: {
     title: 'Herr Novak im Bürgeramt',
@@ -176,7 +176,7 @@ B: Danke. Und Ihren Personalausweis, bitte. Oh, Ihr Ausweis ist leider nur noch 
 A: Wirklich? Das habe ich nicht gewusst. Kann ich hier einen neuen beantragen?
 B: Ja, aber dafür brauchen Sie einen extra Termin und ein neues Passfoto.
 A: Was kostet der neue Ausweis?
-B: Die Gebühr ist siebenunddreißig Euro. Sie können hier mit Karte bezahlen.
+B: Die Gebühr ist siebenunddreißig Euro.
 A: Gut. Und was kostet die Anmeldung?
 B: Die Anmeldung ist kostenlos. Unterschreiben Sie bitte hier unten. Danke, hier ist Ihre Bestätigung.
 A: Vielen Dank. Und wo mache ich den Termin für den Ausweis?
