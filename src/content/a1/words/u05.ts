@@ -3,16 +3,11 @@ import type { VocabItem } from '../../types';
 // Word bank A1 · Unit 05 — Zahlen, Alter, Kontakt
 export const words: VocabItem[] = [
   // Zahlen und Rechnen
-  { de: 'Zahl', article: 'die', plural: '-en', pos: 'noun', ru: 'число, цифра', example: 'Wie heißt die Zahl? – Vierzehn.', exampleRu: 'Как называется это число? — Четырнадцать.', pronRu: 'ди ЦАЛЬ' },
   { de: 'tausend', pos: 'other', ru: 'тысяча (1000)', example: 'Das Fahrrad kostet tausend Euro.', exampleRu: 'Велосипед стоит тысячу евро.', pronRu: 'ТАУ-зэнт' },
-  { de: 'plus', pos: 'other', ru: 'плюс', example: 'Zwei plus drei ist fünf.', exampleRu: 'Два плюс три — пять.', pronRu: 'ПЛУС' },
-  { de: 'minus', pos: 'other', ru: 'минус', example: 'Zehn minus vier ist sechs.', exampleRu: 'Десять минус четыре — шесть.', pronRu: 'МИ:-нус' },
-  { de: 'wie viel', pos: 'adv', ru: 'сколько', example: 'Wie viel ist zehn plus zehn?', exampleRu: 'Сколько будет десять плюс десять?', pronRu: 'ВИ: ФИ:ЛЬ' },
   { de: 'jung', pos: 'adj', ru: 'молодой', example: 'Paul ist jung, er ist zwanzig.', exampleRu: 'Пауль молодой, ему двадцать.', pronRu: 'ЮНГ' },
   { de: 'Alter', article: 'das', plural: '–', pos: 'noun', ru: 'возраст', example: 'Name, Alter, Adresse – bitte!', exampleRu: 'Имя, возраст, адрес — пожалуйста!', pronRu: 'дас АЛЬ-та' },
 
   // Telefon und Internet
-  { de: 'Nummer', article: 'die', plural: '-n', pos: 'noun', ru: 'номер', example: 'Ich habe eine neue Nummer.', exampleRu: 'У меня новый номер.', pronRu: 'ди НУ-ма' },
   { de: 'Vorwahl', article: 'die', plural: '-en', pos: 'noun', ru: 'телефонный код (города)', example: 'Die Vorwahl ist null, drei, null.', exampleRu: 'Код — ноль, три, ноль.', pronRu: 'ди ФОР-валь' },
   { de: 'Telefon', article: 'das', plural: '-e', pos: 'noun', ru: 'телефон', example: 'Das Telefon ist hier.', exampleRu: 'Телефон здесь.', pronRu: 'дас тэ-лэ-ФОН' },
   { de: 'telefonieren', forms: 'er telefoniert, hat telefoniert', pos: 'verb', ru: 'разговаривать по телефону', example: 'Ich telefoniere mit Anna.', exampleRu: 'Я разговариваю по телефону с Анной.', pronRu: 'тэ-лэ-фо-НИ:-рэн' },
@@ -35,4 +30,11 @@ export const words: VocabItem[] = [
   { de: 'Ort', article: 'der', plural: '-e', pos: 'noun', ru: 'место; населённый пункт (в анкете)', example: 'Postleitzahl und Ort: 50674 Köln', exampleRu: 'Индекс и населённый пункт: 50674 Кёльн', pronRu: 'дер ОРТ' },
   { de: 'SMS', article: 'die', plural: '-', pos: 'noun', ru: 'SMS-сообщение', example: 'Ich schreibe eine SMS.', exampleRu: 'Я пишу SMS.', pronRu: 'ди эс-эм-ЭС' },
   { de: 'Anruf', article: 'der', plural: '-e', pos: 'noun', ru: 'телефонный звонок', example: 'Danke für den Anruf!', exampleRu: 'Спасибо за звонок!', pronRu: 'дер АН-руф' },
+
+  // Fragen
+  { de: 'Wie alt sind Sie?', pos: 'phrase', ru: 'Сколько Вам лет?', example: 'Wie alt sind Sie? – Ich bin sechzig.', exampleRu: 'Сколько Вам лет? — Мне шестьдесят.', pronRu: 'ВИ: АЛЬТ ЗИНТ зи:' },
+  { de: 'Wie ist Ihre Adresse?', pos: 'phrase', ru: 'Какой у Вас адрес?', example: 'Wie ist Ihre Adresse? – Bergstraße 5, Bonn.', exampleRu: 'Какой у Вас адрес? — Бергштрассе 5, Бонн.', pronRu: 'ВИ: ист И:-рэ а-ДРЕ-сэ' },
+  { de: 'Wie ist Ihre Telefonnummer?', pos: 'phrase', ru: 'Какой у Вас номер телефона?', example: 'Wie ist Ihre Telefonnummer, bitte?', exampleRu: 'Какой у Вас номер телефона, пожалуйста?', pronRu: 'ВИ: ист И:-рэ тэ-лэ-ФОН-ну-ма' },
+  { de: 'Kontaktdaten', article: 'die', plural: 'nur Plural', pos: 'noun', ru: 'контактные данные', example: 'Hier sind meine Kontaktdaten.', exampleRu: 'Вот мои контактные данные.', pronRu: 'ди кон-ТАКТ-да-тэн' },
+  { de: 'erwachsen', pos: 'adj', ru: 'взрослый', example: 'Meine Kinder sind schon erwachsen.', exampleRu: 'Мои дети уже взрослые.', pronRu: 'эр-ВАК-сэн' },
 ];
