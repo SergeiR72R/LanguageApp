@@ -148,6 +148,7 @@ export const more: UnitMore = {
           body: `Sprechzeiten:
 Montag, Dienstag, Donnerstag: 8 bis 12 Uhr und 15 bis 18 Uhr
 Mittwoch und Freitag: 8 bis 12 Uhr, nachmittags geschlossen
+Am Wochenende ist die Praxis geschlossen.
 Urlaub: 22. Juli bis 9. August
 Sie brauchen einen Termin. Telefon: 0341 55 61 20`,
         },
