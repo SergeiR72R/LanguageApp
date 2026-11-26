@@ -6,7 +6,6 @@ export const words: VocabItem[] = [
   { de: 'gegenüber', forms: '+ Dat; nach Pronomen nachgestellt', pos: 'prep', ru: 'по отношению к; напротив', example: 'Der Händler hat sich mir gegenüber sehr unhöflich verhalten.', exampleRu: 'Продавец вёл себя по отношению ко мне очень невежливо.' },
   { de: 'entsprechend', forms: '+ Dat; vor- oder nachgestellt', pos: 'prep', ru: 'в соответствии с, согласно', example: 'Ihrem Wunsch entsprechend senden wir Ihnen die Unterlagen per Post.', exampleRu: 'В соответствии с вашим пожеланием мы отправим вам документы по почте.' },
   { de: 'anhand', forms: '+ Gen / anhand von + Dat', pos: 'prep', ru: 'на основании, по (документу, признаку)', example: 'Anhand der Seriennummer lässt sich das Kaufdatum feststellen.', exampleRu: 'По серийному номеру можно установить дату покупки.' },
-  { de: 'binnen', forms: '+ Dat (gehoben auch + Gen)', pos: 'prep', ru: 'в течение, в пределах (срока)', example: 'Bitte überweisen Sie den Betrag binnen zehn Tagen.', exampleRu: 'Пожалуйста, переведите сумму в течение десяти дней.' },
   { de: 'vorbehaltlich', forms: '+ Gen', pos: 'prep', ru: 'при условии, с оговоркой', example: 'Vorbehaltlich der Zustimmung des Vermieters dürfen Sie einen Hund halten.', exampleRu: 'При условии согласия арендодателя вы можете держать собаку.' },
 
   // ── Verträge & Bedingungen ───────────────────────────────────
@@ -152,7 +151,6 @@ export const words: VocabItem[] = [
   { de: 'irrtümlich', pos: 'adj', ru: 'ошибочный', example: 'Die Mahnung wurde Ihnen irrtümlich zugeschickt.', exampleRu: 'Напоминание было отправлено вам ошибочно.' },
   { de: 'anteilig', pos: 'adj', ru: 'пропорциональный, долевой', example: 'Bei einer Kündigung zur Monatsmitte wird der Beitrag anteilig erstattet.', exampleRu: 'При расторжении в середине месяца взнос возвращается пропорционально.' },
   { de: 'ausnahmslos', pos: 'adv', ru: 'без исключения', example: 'Die Regel gilt ausnahmslos für alle Mitglieder.', exampleRu: 'Правило действует для всех членов без исключения.' },
-  { de: 'zeitnah', pos: 'adj', ru: 'своевременный, в ближайшее время', example: 'Wir werden uns zeitnah bei Ihnen melden.', exampleRu: 'Мы свяжемся с вами в ближайшее время.' },
   { de: 'endgültig', pos: 'adj', ru: 'окончательный', example: 'Die Entscheidung der Schlichtungsstelle ist nicht endgültig.', exampleRu: 'Решение примирительной комиссии не является окончательным.' },
   { de: 'rückwirkend', pos: 'adj', ru: 'имеющий обратную силу, задним числом', example: 'Die Preiserhöhung darf nicht rückwirkend gelten.', exampleRu: 'Повышение цены не может действовать задним числом.' },
   { de: 'sinngemäß', pos: 'adj', ru: 'по смыслу, близко к тексту', example: 'Der Mitarbeiter sagte sinngemäß, das sei nicht sein Problem.', exampleRu: 'Сотрудник сказал примерно следующее: это не его проблема.' },

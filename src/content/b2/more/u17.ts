@@ -253,9 +253,9 @@ export const more: UnitMore = {
 
 Für die Angehörigen beginnt nach einem Todesfall oft eine mühsame Suche. Sie müssen zunächst herausfinden, bei welchen Diensten die verstorbene Person überhaupt angemeldet war. [2] Ohne Passwörter kommen sie aber häufig nicht weiter, und viele Anbieter reagieren auf Anfragen nur sehr langsam.
 
-Rechtlich ist die Lage in Deutschland inzwischen relativ klar. Der Bundesgerichtshof hat 2018 entschieden, dass digitale Konten genauso vererbt werden wie Briefe oder Tagebücher. [3] Im konkreten Fall hatten Eltern jahrelang darum gekämpft, Zugriff auf das Konto ihrer verstorbenen Tochter in einem sozialen Netzwerk zu bekommen. Sie hofften, darin Hinweise auf die Umstände ihres Todes zu finden.
+Rechtlich ist die Lage in Deutschland inzwischen relativ klar. Der Bundesgerichtshof hat 2018 entschieden, dass digitale Konten genauso vererbt werden wie Briefe oder Tagebücher. [3] Im konkreten Fall hatten Eltern jahrelang darum gekämpft, Zugriff auf das Konto ihrer verstorbenen Tochter in einem sozialen Netzwerk zu bekommen. Sie hofften, darin Hinweise auf die Umstände ihres Todes zu finden. Für die Anbieter bedeutet das Urteil vor allem zusätzlichen Aufwand: Sie müssen prüfen, ob eine Person tatsächlich erbberechtigt ist, und verlangen dafür in der Regel einen Erbschein.
 
-Verbraucherschützer raten deshalb dazu, sich rechtzeitig um den eigenen digitalen Nachlass zu kümmern. [4] Darin sollte man alle wichtigen Konten auflisten und festlegen, was mit ihnen geschehen soll: Soll ein Profil gelöscht oder als Gedenkseite weitergeführt werden? Wer darf auf die Fotos zugreifen?
+Verbraucherschützer raten deshalb dazu, sich rechtzeitig um den eigenen digitalen Nachlass zu kümmern. [4] Darin sollte man alle wichtigen Konten auflisten und festlegen, was mit ihnen geschehen soll: Soll ein Profil gelöscht oder als Gedenkseite weitergeführt werden? Wer darf auf die Fotos zugreifen? Manche Menschen möchten übrigens gar nicht, dass ihre Angehörigen sämtliche privaten Nachrichten lesen – auch das lässt sich in dem Dokument festhalten.
 
 Die Passwörter selbst gehören allerdings nicht ungeschützt auf einen Zettel in der Schreibtischschublade. [5] So muss man sich nur ein einziges Passwort merken und kann dieses zum Beispiel in einem versiegelten Umschlag bei einer Vertrauensperson hinterlegen.
 
