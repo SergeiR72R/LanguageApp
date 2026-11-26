@@ -257,9 +257,9 @@ Sabine`,
               },
               {
                 kind: 'match',
-                prompt: 'Frau Lee möchte am Wochenende etwas zusammen mit ihrer Tochter (8) machen.',
+                prompt: 'Frau Lee möchte am Samstag mit ihrer Tochter (8) etwas Neues lernen. Die Tochter hilft gern in der Küche.',
                 answer: 4,
-                explanationRu: 'e — родители и дети 6–10 лет готовят вместе, по субботам.',
+                explanationRu: 'e — родители и дети 6–10 лет вместе готовят, по субботам. Велопрогулка c — в воскресенье.',
               },
               {
                 kind: 'match',
@@ -723,7 +723,7 @@ B: Auf jeden Fall. Ich möchte nie wieder in einem Geschäft arbeiten.`,
           'Ihre Vermieterin, Frau Schubert, schreibt Ihnen: Am Donnerstag um 10 Uhr kommt ein Techniker und kontrolliert die Heizung in Ihrer Wohnung. Sie haben an diesem Tag keine Zeit. Schreiben Sie Frau Schubert eine E-Mail. Schreiben Sie etwas zu allen drei Punkten. Schreiben Sie 30–40 Wörter. Vergessen Sie nicht die Anrede und den Gruß.',
         instructionRu:
           'Ваша квартирная хозяйка, фрау Шуберт, пишет вам: в четверг в 10 часов придёт техник проверить отопление в вашей квартире. В этот день у вас нет времени. Напишите фрау Шуберт письмо (30–40 слов) по всем трём пунктам. Не забудьте обращение и приветствие в конце. Стиль — официальный (Sie).',
-        situationDe: 'E-Mail von Frau Schubert: „Am Donnerstag um 10 Uhr kommt ein Techniker und kontrolliert die Heizung in Ihrer Wohnung. Bitte sind Sie zu Hause.“',
+        situationDe: 'E-Mail von Frau Schubert: „Am Donnerstag um 10 Uhr kommt ein Techniker und kontrolliert die Heizung in Ihrer Wohnung. Bitte seien Sie an diesem Tag zu Hause.“',
         points: [
           'Bedanken Sie sich für die Information.',
           'Schreiben Sie, warum Sie am Donnerstag keine Zeit haben.',

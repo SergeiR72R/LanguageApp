@@ -157,7 +157,7 @@ export const more: UnitMore = {
           options: ['Anzeige a', 'Anzeige b', 'Anzeige c'],
           items: [
             { kind: 'match', prompt: 'Familie Lorenz: Wir sind vier Personen. Ein Balkon ist für uns wichtig.', answer: 1, explanationRu: 'Семье из четырёх человек нужна большая квартира с балконом — это объявление b: 3 комнаты и Balkon.' },
-            { kind: 'match', prompt: 'Herr Wolf ist allein. Er sucht eine Wohnung mit Küche und Bad, nicht teuer.', answer: 0, explanationRu: 'Объявление a: отдельная маленькая квартира с кухней и ванной за 390 евро.' },
+            { kind: 'match', prompt: 'Herr Wolf ist allein. Er sucht eine Wohnung für eine Person, kein Zimmer.', answer: 0, explanationRu: 'Ему нужна квартира, а не комната: объявление a — маленькая квартира (1 Zimmer, Küche, Bad). В объявлении c сдаётся только комната.' },
             { kind: 'match', prompt: 'Mila ist Studentin. Sie hat keine Möbel.', answer: 2, explanationRu: 'В объявлении c мебель уже есть: «Bett, Tisch, Stuhl und Schrank sind da».' },
           ],
         },
@@ -205,7 +205,7 @@ Deine Sofia`,
       title: 'Eine Nachricht von Frau Berg',
       kind: 'monolog',
       situation: 'Sie hören eine Nachricht auf dem Anrufbeantworter.',
-      text: 'Hallo, Herr Novak, hier ist Petra Berg. Die Wohnung ist noch frei. Sie hat zwei Zimmer, eine Küche und ein Bad. Das Wohnzimmer ist groß und hell. Der Balkon ist klein. Die Küche ist neu. Und die Wohnung ist nicht teuer! Bitte rufen Sie mich an. Danke und tschüss!',
+      text: 'Hallo, Herr Novak, hier ist Petra Berg. Die Wohnung ist noch frei. Sie hat zwei Zimmer, eine Küche und ein Bad. Das Wohnzimmer ist groß und hell. Der Balkon ist klein. Die Küche ist neu. Und die Wohnung ist nicht teuer! Vielen Dank und tschüss!',
       playCount: 2,
       tasks: [
         {
@@ -230,7 +230,7 @@ Deine Sofia`,
       title: 'Das Zimmer von Max',
       kind: 'dialog',
       speakers: { A: 'Mutter', B: 'Max' },
-      situation: 'Max zeigt seiner Mutter sein Zimmer.',
+      situation: 'Max und seine Mutter sprechen.',
       text: `A: Max, ist das dein Zimmer?
 B: Ja, Mama. Es ist klein, nur zwölf Quadratmeter.
 A: Und wo ist das Bett? Das ist ein Sofa.

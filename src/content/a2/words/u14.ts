@@ -1,0 +1,67 @@
+import type { VocabItem } from '../../types';
+
+// Word bank A2 · Unit 14 — Medien und Kommunikation
+export const words: VocabItem[] = [
+  // Handy und Telefon
+  { de: 'SIM-Karte', article: 'die', plural: '-n', pos: 'noun', ru: 'SIM-карта', example: 'Für das neue Handy brauche ich eine SIM-Karte.', exampleRu: 'Для нового телефона мне нужна SIM-карта.', pronRu: 'ЗИМ-кар-тэ' },
+  { de: 'Guthaben', article: 'das', plural: '–', pos: 'noun', ru: 'остаток денег на счёте (телефона)', example: 'Ich habe kein Guthaben mehr auf dem Handy.', exampleRu: 'У меня на телефоне закончились деньги.', pronRu: 'ГУ:-ха:-бэн' },
+  { de: 'Handyvertrag', article: 'der', plural: '-¨e', pos: 'noun', ru: 'договор на мобильную связь', example: 'Mein Handyvertrag kostet 15 Euro im Monat.', exampleRu: 'Мой договор на мобильную связь стоит 15 евро в месяц.' },
+  { de: 'PIN', article: 'die', plural: '-s', pos: 'noun', ru: 'ПИН-код', example: 'Bitte geben Sie Ihre PIN ein.', exampleRu: 'Пожалуйста, введите ваш ПИН-код.' },
+  { de: 'Handynummer', article: 'die', plural: '-n', pos: 'noun', ru: 'номер мобильного телефона', example: 'Kannst du mir deine Handynummer geben?', exampleRu: 'Можешь дать мне свой номер мобильного?', pronRu: 'ХЭН-ди-ну-ма' },
+  { de: 'Festnetz', article: 'das', plural: '–', pos: 'noun', ru: 'стационарная телефонная сеть', example: 'Rufen Sie mich bitte im Festnetz an, nicht auf dem Handy.', exampleRu: 'Позвоните мне, пожалуйста, на городской телефон, а не на мобильный.' },
+  { de: 'Rufnummer', article: 'die', plural: '-n', pos: 'noun', ru: 'номер телефона (офиц.)', example: 'Die Rufnummer steht auf der Webseite.', exampleRu: 'Номер телефона указан на сайте.' },
+  { de: 'Vorwahl', article: 'die', plural: '-en', pos: 'noun', ru: 'код города / страны', example: 'Die Vorwahl von Berlin ist 030.', exampleRu: 'Код Берлина — 030.', pronRu: 'ФО:Р-ва:ль' },
+  { de: 'Telefonat', article: 'das', plural: '-e', pos: 'noun', ru: 'телефонный разговор', example: 'Nach dem Telefonat war ich sehr froh.', exampleRu: 'После телефонного разговора я был очень рад.', pronRu: 'тэ-лэ-фо-НА:Т' },
+  { de: 'Mailbox', article: 'die', plural: '-en', pos: 'noun', ru: 'голосовая почта', example: 'Ich habe dir auf die Mailbox gesprochen.', exampleRu: 'Я оставил тебе сообщение на голосовой почте.', pronRu: 'МЭЙЛ-бокс' },
+  { de: 'auflegen', forms: 'legt auf, hat aufgelegt', pos: 'verb', ru: 'положить трубку', example: 'Sie hat einfach aufgelegt.', exampleRu: 'Она просто положила трубку.' },
+  { de: 'sich verwählen', forms: 'verwählt sich, hat sich verwählt', pos: 'verb', ru: 'ошибиться номером', example: 'Entschuldigung, ich habe mich verwählt.', exampleRu: 'Извините, я ошибся номером.' },
+  { de: 'Leitung', article: 'die', plural: '-en', pos: 'noun', ru: 'линия (телефонная)', example: 'Die Leitung ist besetzt, ich rufe später noch einmal an.', exampleRu: 'Линия занята, я позвоню позже ещё раз.' },
+  { de: 'Auf Wiederhören!', pos: 'phrase', ru: 'До свидания! (по телефону)', example: 'Vielen Dank für Ihren Anruf. Auf Wiederhören!', exampleRu: 'Большое спасибо за звонок. До свидания!' },
+  { de: 'stumm', pos: 'adj', ru: 'беззвучный, без звука', example: 'Im Kino ist mein Handy immer stumm.', exampleRu: 'В кино мой телефон всегда на беззвучном режиме.' },
+  { de: 'drücken', forms: 'drückt, hat gedrückt', pos: 'verb', ru: 'нажимать', example: 'Drücken Sie bitte die Taste 1.', exampleRu: 'Нажмите, пожалуйста, кнопку 1.' },
+  { de: 'Display', article: 'das', plural: '-s', pos: 'noun', ru: 'дисплей, экран', example: 'Das Display ist so klein, ich kann nichts lesen.', exampleRu: 'Дисплей такой маленький, я ничего не могу прочитать.', pronRu: 'дис-ПЛЭЙ' },
+  { de: 'Handyhülle', article: 'die', plural: '-n', pos: 'noun', ru: 'чехол для телефона', example: 'Ich kaufe eine rote Handyhülle.', exampleRu: 'Я куплю красный чехол для телефона.' },
+  { de: 'Handyladen', article: 'der', plural: 'die Handyläden', pos: 'noun', ru: 'магазин мобильных телефонов', example: 'Im Handyladen hat man mir sehr gut geholfen.', exampleRu: 'В магазине телефонов мне очень хорошо помогли.' },
+  { de: 'Kamera', article: 'die', plural: '-s', pos: 'noun', ru: 'камера, фотоаппарат', example: 'Das Handy hat eine sehr gute Kamera.', exampleRu: 'У этого телефона очень хорошая камера.' },
+  { de: 'Selfie', article: 'das', plural: '-s', pos: 'noun', ru: 'селфи', example: 'Wir haben vor dem Dom ein Selfie gemacht.', exampleRu: 'Мы сделали селфи перед собором.' },
+  { de: 'Funktion', article: 'die', plural: '-en', pos: 'noun', ru: 'функция', example: 'Ich kenne noch nicht alle Funktionen von meinem Handy.', exampleRu: 'Я ещё не знаю всех функций своего телефона.', pronRu: 'функ-ЦЬО:Н' },
+  { de: 'Lautstärke', article: 'die', plural: '–', pos: 'noun', ru: 'громкость', example: 'Kannst du die Lautstärke ein bisschen leiser machen?', exampleRu: 'Можешь сделать звук немного тише?', pronRu: 'ЛАУТ-штэр-кэ' },
+
+  // Computer und Internet
+  { de: 'Laptop', article: 'der', plural: '-s', pos: 'noun', ru: 'ноутбук', example: 'Für den Kurs brauchen Sie einen Laptop.', exampleRu: 'Для курса вам нужен ноутбук.', pronRu: 'ЛЭП-топ' },
+  { de: 'online', pos: 'adv', ru: 'онлайн, в интернете', example: 'Ich kaufe Bücher meistens online.', exampleRu: 'Книги я обычно покупаю онлайн.' },
+  { de: 'klicken', forms: 'klickt, hat geklickt', pos: 'verb', ru: 'щёлкать (мышкой), нажимать', example: 'Klicken Sie hier auf „Weiter“.', exampleRu: 'Нажмите здесь «Далее».' },
+  { de: 'Homepage', article: 'die', plural: '-s', pos: 'noun', ru: 'сайт, домашняя страница', example: 'Die Öffnungszeiten finden Sie auf unserer Homepage.', exampleRu: 'Часы работы вы найдёте на нашем сайте.', pronRu: 'ХОУМ-пэйдж' },
+  { de: 'sich abmelden', forms: 'meldet sich ab, hat sich abgemeldet', pos: 'verb', ru: 'выйти (из аккаунта); выписаться', example: 'Am Ende melde ich mich immer ab.', exampleRu: 'В конце я всегда выхожу из аккаунта.' },
+  { de: 'Profil', article: 'das', plural: '-e', pos: 'noun', ru: 'профиль (в интернете)', example: 'In meinem Profil ist ein Foto von meinem Hund.', exampleRu: 'В моём профиле фото моей собаки.', pronRu: 'про-ФИ:ЛЬ' },
+  { de: 'Chat', article: 'der', plural: '-s', pos: 'noun', ru: 'чат, переписка', example: 'Im Chat von unserer Familie gibt es jeden Tag neue Fotos.', exampleRu: 'В семейном чате каждый день новые фотографии.', pronRu: 'ЧЭТ' },
+  { de: 'chatten', forms: 'chattet, hat gechattet', pos: 'verb', ru: 'переписываться в чате', example: 'Abends chatte ich oft mit meiner Tochter.', exampleRu: 'По вечерам я часто переписываюсь с дочерью.', pronRu: 'ЧЭ-тэн' },
+  { de: 'Ordner', article: 'der', plural: '-', pos: 'noun', ru: 'папка', example: 'Die Fotos sind im Ordner „Urlaub“.', exampleRu: 'Фотографии лежат в папке «Отпуск».' },
+  { de: 'kopieren', forms: 'kopiert, hat kopiert', pos: 'verb', ru: 'копировать', example: 'Kannst du mir die Fotos auf den Laptop kopieren?', exampleRu: 'Можешь скопировать мне фотографии на ноутбук?' },
+  { de: 'einfügen', forms: 'fügt ein, hat eingefügt', pos: 'verb', ru: 'вставлять (текст, файл)', example: 'Kopieren Sie den Text und fügen Sie ihn hier ein.', exampleRu: 'Скопируйте текст и вставьте его сюда.' },
+  { de: 'scannen', forms: 'scannt, hat gescannt', pos: 'verb', ru: 'сканировать', example: 'Ich scanne das Formular und schicke es per E-Mail.', exampleRu: 'Я отсканирую анкету и отправлю её по электронной почте.', pronRu: 'СКЭ-нэн' },
+  { de: 'drucken', forms: 'druckt, hat gedruckt', pos: 'verb', ru: 'печатать (на принтере)', example: 'Der Drucker im Büro druckt nur schwarz-weiß.', exampleRu: 'Принтер в офисе печатает только чёрно-белым.' },
+
+  // Fernsehen, Radio, Medien
+  { de: 'Medien', article: 'die', plural: 'nur Plural', pos: 'noun', ru: 'СМИ, медиа', example: 'Kinder sollten nicht zu viel Zeit mit Medien verbringen.', exampleRu: 'Детям не следует проводить слишком много времени с гаджетами и СМИ.', pronRu: 'МЭ:-ди-эн' },
+  { de: 'Fernsehen', article: 'das', plural: '–', pos: 'noun', ru: 'телевидение', example: 'Was kommt heute im Fernsehen?', exampleRu: 'Что сегодня по телевизору?' },
+  { de: 'Programm', article: 'das', plural: '-e', pos: 'noun', ru: 'программа; телеканал', example: 'Im ersten Programm kommen um acht die Nachrichten.', exampleRu: 'На первом канале в восемь — новости.' },
+  { de: 'umschalten', forms: 'schaltet um, hat umgeschaltet', pos: 'verb', ru: 'переключить (канал)', example: 'Der Film ist langweilig, schalt doch bitte um!', exampleRu: 'Фильм скучный, переключи, пожалуйста!' },
+  { de: 'anmachen', forms: 'macht an, hat angemacht', pos: 'verb', ru: 'включить (разг.)', example: 'Kannst du bitte das Radio anmachen?', exampleRu: 'Можешь включить радио?' },
+  { de: 'ausmachen', forms: 'macht aus, hat ausgemacht', pos: 'verb', ru: 'выключить (разг.)', example: 'Mach bitte den Fernseher aus, wir essen jetzt.', exampleRu: 'Выключи, пожалуйста, телевизор, мы сейчас едим.' },
+  { de: 'Dokumentation', article: 'die', plural: '-en', pos: 'noun', ru: 'документальный фильм', example: 'Gestern habe ich eine Dokumentation über Tiere gesehen.', exampleRu: 'Вчера я посмотрел документальный фильм о животных.' },
+  { de: 'Podcast', article: 'der', plural: '-s', pos: 'noun', ru: 'подкаст', example: 'Im Zug höre ich einen Podcast auf Deutsch.', exampleRu: 'В поезде я слушаю подкаст на немецком.' },
+
+  // Post und Briefe
+  { de: 'Postfiliale', article: 'die', plural: '-n', pos: 'noun', ru: 'почтовое отделение', example: 'Wissen Sie, wo die nächste Postfiliale ist?', exampleRu: 'Вы не знаете, где ближайшее почтовое отделение?', pronRu: 'ПОСТ-фи-ли-а:-лэ' },
+  { de: 'Paketshop', article: 'der', plural: '-s', pos: 'noun', ru: 'пункт выдачи посылок', example: 'Das Paket liegt im Paketshop am Bahnhof.', exampleRu: 'Посылка лежит в пункте выдачи у вокзала.' },
+  { de: 'Briefträger', article: 'der', plural: '-', pos: 'noun', ru: 'почтальон', example: 'Der Briefträger kommt meistens um zehn Uhr.', exampleRu: 'Почтальон обычно приходит в десять часов.' },
+  { de: 'Briefträgerin', article: 'die', plural: '-nen', pos: 'noun', ru: 'почтальон (женщина)', example: 'Die Briefträgerin hat mir ein Paket gebracht.', exampleRu: 'Почтальонша принесла мне посылку.' },
+  { de: 'einwerfen', forms: 'wirft ein, hat eingeworfen', pos: 'verb', ru: 'опустить (письмо в ящик)', example: 'Kannst du den Brief bitte einwerfen?', exampleRu: 'Можешь, пожалуйста, бросить письмо в почтовый ящик?' },
+  { de: 'verschicken', forms: 'verschickt, hat verschickt', pos: 'verb', ru: 'рассылать, отправлять', example: 'Wir haben die Einladungen schon verschickt.', exampleRu: 'Мы уже разослали приглашения.' },
+  { de: 'Ansichtskarte', article: 'die', plural: '-n', pos: 'noun', ru: 'открытка с видом', example: 'Aus dem Urlaub schicke ich dir eine Ansichtskarte.', exampleRu: 'Из отпуска я пришлю тебе открытку.' },
+  { de: 'Brieffreundin', article: 'die', plural: '-nen', pos: 'noun', ru: 'подруга по переписке', example: 'Meine Brieffreundin wohnt in Österreich.', exampleRu: 'Моя подруга по переписке живёт в Австрии.' },
+  { de: 'erhalten', forms: 'erhält, hat erhalten', pos: 'verb', ru: 'получать (офиц.)', example: 'Ich habe Ihre E-Mail erhalten.', exampleRu: 'Я получил ваше электронное письмо.' },
+  { de: 'beantworten', forms: 'beantwortet, hat beantwortet', pos: 'verb', ru: 'отвечать (на что-то)', example: 'Ich habe deine E-Mail noch nicht beantwortet.', exampleRu: 'Я ещё не ответил на твоё письмо.' },
+  { de: 'Zettel', article: 'der', plural: '-', pos: 'noun', ru: 'записка, листок бумаги', example: 'Ich habe dir einen Zettel auf den Tisch gelegt.', exampleRu: 'Я оставил тебе записку на столе.' },
+];
