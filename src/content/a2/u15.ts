@@ -167,7 +167,7 @@ export const unit: Unit = {
     title: 'Ein Geschenk für die Eltern',
     kind: 'dialog',
     text: `A: Du, Lena, Mama und Papa haben nächsten Samstag Hochzeitstag. Dreißig Jahre! Was schenken wir ihnen?
-B: Gute Frage. Letztes Jahr haben wir ihnen ein Kochbuch geschenkt. Das war nicht so toll.
+B: Gute Frage, Paul. Letztes Jahr haben wir ihnen ein Kochbuch geschenkt. Das war nicht so toll.
 A: Papa wollte doch immer eine Ballonfahrt machen. Wir könnten ihnen eine Ballonfahrt schenken.
 B: Das ist zu teuer, oder? Eine Ballonfahrt für zwei kostet bestimmt 400 Euro.
 A: Wenn Tom auch mitmacht, zahlt jeder nur ungefähr 130 Euro.
@@ -181,7 +181,7 @@ B: Ja, schreib ihm eine Nachricht. Aber erzähl Mama und Papa nichts! Es soll ei
       { question: 'Was haben die Kinder den Eltern letztes Jahr geschenkt?', options: ['Ein Kochbuch.', 'Eine Ballonfahrt.', 'Ein Fotobuch.'], answer: 0 },
       { question: 'Warum ist die Ballonfahrt keine gute Idee?', options: ['Papa möchte das nicht.', 'Mama hat Angst vor dem Fliegen.', 'Tom macht nicht mit.'], answer: 1 },
       { question: 'Wer hat die alten Fotos?', options: ['Tom.', 'Die Oma.', 'Die Mutter.'], answer: 1 },
-      { question: 'Was macht der Bruder?', options: ['Er ruft die Oma an.', 'Er reserviert einen Tisch.', 'Er kauft ein Kochbuch.'], answer: 1 },
+      { question: 'Was macht Paul?', options: ['Er ruft die Oma an.', 'Er reserviert einen Tisch.', 'Er kauft ein Kochbuch.'], answer: 1 },
     ],
   },
   writing: {

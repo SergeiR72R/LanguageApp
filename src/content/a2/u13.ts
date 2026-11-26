@@ -175,11 +175,11 @@ A: Vielen Dank! Ach, noch eine Frage: Wo könnte ich hier schnell einen Kaffee k
 B: Direkt neben Gleis 7 gibt es einen Kiosk.
 A: Super, danke schön!`,
     questions: [
-      { question: 'Wo muss die Frau umsteigen?', options: ['In Leipzig.', 'In Dresden.', 'In Berlin.'], answer: 0 },
+      { question: 'In welcher Stadt muss man nach Dresden umsteigen?', options: ['In Leipzig.', 'In Dresden.', 'In Berlin.'], answer: 0 },
       { question: 'Wie viel Verspätung hat der ICE?', options: ['15 Minuten.', '30 Minuten.', '40 Minuten.'], answer: 2 },
-      { question: 'Welchen Tipp gibt der Mann?', options: ['Ein Taxi nehmen.', 'Den Regionalzug nehmen.', 'Morgen fahren.'], answer: 1 },
-      { question: 'Wann ist die Frau mit dem Regionalzug in Dresden?', options: ['Um 13:05 Uhr.', 'Um 13:40 Uhr.', 'Um 10:30 Uhr.'], answer: 0 },
-      { question: 'Wo kann die Frau Kaffee kaufen?', options: ['Im Zug.', 'Neben Gleis 7.', 'Am Eingang.'], answer: 1 },
+      { question: 'Welchen Tipp bekommt der Fahrgast?', options: ['Ein Taxi nehmen.', 'Den Regionalzug nehmen.', 'Morgen fahren.'], answer: 1 },
+      { question: 'Wann ist man mit dem Regionalzug in Dresden?', options: ['Um 13:05 Uhr.', 'Um 13:40 Uhr.', 'Um 10:30 Uhr.'], answer: 0 },
+      { question: 'Wo kann man schnell einen Kaffee kaufen?', options: ['Im Zug.', 'Neben Gleis 7.', 'Am Eingang.'], answer: 1 },
     ],
   },
   writing: {
