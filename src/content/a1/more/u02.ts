@@ -200,7 +200,7 @@ export const more: UnitMore = {
     {
       title: 'Auf dem Markt',
       kind: 'monolog',
-      situation: 'Sie sind auf dem Markt. Ein Mann ruft die Preise.',
+      situation: 'Sie sind auf dem Markt. Ein Verkäufer nennt die Preise.',
       text: 'Äpfel! Ein Kilo nur zwei Euro! Bananen! Ein Kilo drei Euro! Tomaten, ein Kilo vier Euro! Und heute ganz neu: Käse, nur sechs Euro! Kommen Sie, kommen Sie! Alles frisch!',
       playCount: 2,
       tasks: [

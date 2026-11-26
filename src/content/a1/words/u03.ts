@@ -9,7 +9,7 @@ export const words: VocabItem[] = [
   { de: 'Ukrainisch', forms: 'язык пишется с большой буквы', pos: 'other', ru: 'украинский язык', example: 'Olena spricht Ukrainisch und Russisch.', exampleRu: 'Олена говорит по-украински и по-русски.', pronRu: 'у-кра-И:-ниш' },
   { de: 'Polnisch', forms: 'язык пишется с большой буквы', pos: 'other', ru: 'польский язык', example: 'Marek spricht Polnisch.', exampleRu: 'Марек говорит по-польски.', pronRu: 'ПОЛЬ-ниш' },
   { de: 'Türkisch', forms: 'язык пишется с большой буквы', pos: 'other', ru: 'турецкий язык', example: 'Emre spricht Türkisch und Deutsch.', exampleRu: 'Эмре говорит по-турецки и по-немецки.', pronRu: 'ТЮР-киш' },
-  { de: 'Ukraine', article: 'die', plural: '–', forms: 'с артиклем: aus der Ukraine', pos: 'noun', ru: 'Украина', example: 'Olena kommt aus der Ukraine.', exampleRu: 'Олена с Украины.', pronRu: 'ди у-кра-И:-нэ' },
+  { de: 'Ukraine', article: 'die', plural: '–', forms: 'с артиклем: aus der Ukraine', pos: 'noun', ru: 'Украина', example: 'Olena kommt aus der Ukraine.', exampleRu: 'Олена из Украины.', pronRu: 'ди у-кра-И:-нэ' },
   { de: 'Türkei', article: 'die', plural: '–', forms: 'с артиклем: aus der Türkei', pos: 'noun', ru: 'Турция', example: 'Emre kommt aus der Türkei.', exampleRu: 'Эмре из Турции.', pronRu: 'ди тюр-КАЙ' },
   { de: 'Polen', forms: 'без артикля: aus Polen', pos: 'other', ru: 'Польша', example: 'Marek kommt aus Polen.', exampleRu: 'Марек из Польши.', pronRu: 'ПО:-лэн' },
   { de: 'Frankreich', forms: 'без артикля: aus Frankreich', pos: 'other', ru: 'Франция', example: 'Paris ist in Frankreich.', exampleRu: 'Париж находится во Франции.', pronRu: 'ФРАНК-райхь' },
