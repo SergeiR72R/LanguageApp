@@ -360,7 +360,8 @@ export const useStore = create<AppState>()(
         }
         if (!created.length) return;
         set((s) => ({ mistakes: [...created, ...s.mistakes].slice(0, 2000) }));
-        get().addCards(created.map((m) => ({ id: `m:${m.id}`, kind: 'mistake' as const, mistakeId: m.id, unitId: m.unitId })), 1);
+        const cards = created.filter(isReviewableMistake);
+        if (cards.length) get().addCards(cards.map((m) => ({ id: `m:${m.id}`, kind: 'mistake' as const, mistakeId: m.id, unitId: m.unitId })), 1);
       },
       updateMistake: (id, p) => set((s) => ({ mistakes: s.mistakes.map((m) => (m.id === id ? { ...m, ...p } : m)) })),
       deleteMistake: (id) =>
@@ -450,9 +451,33 @@ export function unitStatus(
   return 'open';
 }
 
-export function dueCards(s: Pick<AppState, 'cards'>, date = todayStr()): Card[] {
+/** Error types that make good review cards: forms of words and basic grammar. */
+const DRILLABLE: MistakeCategory[] = [
+  'Artikel/Genus',
+  'Kasus',
+  'Adjektivendung',
+  'Verbform/Konjugation',
+  'Zeitform',
+  'Präposition',
+  'Wortschatz/Lexik',
+  'Rechtschreibung',
+  'Wortstellung',
+];
+
+/**
+ * Only short, clear-cut mistakes become review cards (word forms, articles, cases, verb forms…).
+ * Style, phrasing and "other" remarks — especially from free conversation — stay in the error notebook only.
+ */
+export function isReviewableMistake(m: Pick<Mistake, 'category' | 'source' | 'correction'>): boolean {
+  if (!DRILLABLE.includes(m.category)) return false;
+  const words = m.correction.trim().split(/\s+/).filter(Boolean).length;
+  return words <= (m.source === 'speaking' ? 3 : 6);
+}
+
+export function dueCards(s: Pick<AppState, 'cards'> & Partial<Pick<AppState, 'mistakes'>>, date = todayStr()): Card[] {
+  const skip = new Set((s.mistakes ?? []).filter((m) => !isReviewableMistake(m)).map((m) => `m:${m.id}`));
   return Object.values(s.cards)
-    .filter((c) => c.srs.due <= date)
+    .filter((c) => c.srs.due <= date && !skip.has(c.id))
     .sort((a, b) => (a.srs.due < b.srs.due ? -1 : a.srs.due > b.srs.due ? 1 : a.srs.interval - b.srs.interval));
 }
 
