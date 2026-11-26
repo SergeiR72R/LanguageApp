@@ -38,13 +38,6 @@ export const more: UnitMore = {
       explanationRu: 'Здесь речь о прошлом (letzte Woche) — нужен претерит konnte без умлаута. könnte — это «мог бы».',
     },
     {
-      type: 'choice',
-      prompt: 'Welcher Satz ist ein Ratschlag (совет)?',
-      options: ['Du solltest mehr Fahrrad fahren.', 'Du konntest gut Fahrrad fahren.', 'Du hattest ein Fahrrad.'],
-      answer: 0,
-      explanationRu: 'Совет дают с помощью sollte: Du solltest … Два других предложения рассказывают о прошлом.',
-    },
-    {
       type: 'gap',
       prompt: 'Du hast Kopfschmerzen? Du ___ mehr Wasser trinken.',
       answers: ['solltest'],

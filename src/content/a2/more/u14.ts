@@ -25,13 +25,6 @@ export const more: UnitMore = {
     },
     {
       type: 'choice',
-      prompt: 'Weißt du, ob ich hier mit Karte ___?',
-      options: ['bezahlen kann', 'kann bezahlen', 'bezahle kann'],
-      answer: 0,
-      explanationRu: 'Модальный глагол kann стоит в самом конце, после инфинитива: … bezahlen kann.',
-    },
-    {
-      type: 'choice',
       prompt: 'Welcher Satz ist richtig?',
       options: ['Ich weiß nicht, wo ich die App herunterladen kann.', 'Ich weiß nicht, wo kann ich die App herunterladen.', 'Ich weiß nicht, wo ich kann die App herunterladen.'],
       answer: 0,
