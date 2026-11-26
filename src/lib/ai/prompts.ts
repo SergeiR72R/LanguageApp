@@ -63,7 +63,7 @@ export async function checkWriting(params: {
     {
       role: 'system',
       content: `Du bist ein erfahrener Prüfer für Deutsch als Fremdsprache (Goethe/telc, GER). Der Lernende ist russischer Muttersprachler und lernt auf Niveau ${params.level}.
-Bewerte den Text streng, aber fair. Finde ALLE Fehler (Grammatik, Wortschatz, Rechtschreibung, Zeichensetzung, Stil). Erkläre jeden Fehler auf RUSSISCH.
+Bewerte den Text streng, aber fair. Markierungen [?] stammen aus der Handschrifterkennung – ignoriere sie. Finde ALLE Fehler (Grammatik, Wortschatz, Rechtschreibung, Zeichensetzung, Stil). Erkläre jeden Fehler auf RUSSISCH.
 ${ERROR_STYLE}
 Antworte NUR mit JSON in diesem Format:
 {

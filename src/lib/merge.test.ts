@@ -3,7 +3,7 @@ import { mergeProfile } from './merge';
 import { newSrs } from './srs';
 
 const card = (id: string, reps: number, last = '2026-11-01') => ({ id, kind: 'vocab' as const, added: '2026-11-01', srs: { ...newSrs('2026-11-02'), reps, last } });
-const day = (answered: number) => ({ reviews: 0, correct: answered, answered, stepsDone: 0, newWords: 0, spokenTurns: 0, wordsWritten: 0, drills: 0, bankWords: 0 });
+const day = (answered: number) => ({ reviews: 0, correct: answered, answered, stepsDone: 0, newWords: 0, spokenTurns: 0, wordsWritten: 0, drills: 0, bankWords: 0, newVerbs: 0 });
 
 describe('mergeProfile', () => {
   const phone = {

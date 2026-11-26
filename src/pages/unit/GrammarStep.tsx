@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import type { Exercise, Unit } from '../../content/types';
 import { practiceExercises } from '../../content';
@@ -19,6 +20,11 @@ export function GrammarLesson({ unit }: { unit: Unit }) {
       </h2>
       <Markdown text={g.explanationRu} />
       {g.table && <Table rows={g.table} />}
+      {/Präposition|Rektion|Verben mit/i.test(g.topic) && (
+        <div className="info-box">
+          🔗 Управление глаголов нужно заучивать — для этого есть отдельный <Link to="/verbs">тренажёр глаголов с предлогами</Link>.
+        </div>
+      )}
       <h3>Примеры</h3>
       <ul className="examples">
         {g.examples.map((e, i) => (

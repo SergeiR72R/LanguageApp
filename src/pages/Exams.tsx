@@ -8,6 +8,7 @@ import { isLlmConfigured } from '../lib/ai/providers';
 import { checkWriting, evaluateSpeaking, type ExamSpeakingFeedback, type WritingFeedback } from '../lib/ai/prompts';
 import { ListeningPlayer, ReadingTexts, TaskBlock, Transcript, scoreTasks, type Answers } from '../components/Tasks';
 import { WritingFeedbackView } from '../components/WritingFeedbackView';
+import { HandwritingUpload } from '../components/HandwritingUpload';
 import { ConversationPanel } from '../components/ConversationPanel';
 import { useSpeechInput } from '../components/useSpeechInput';
 import { AiRequired, Card, ErrorBox, ProgressBar, Spinner } from '../components/ui';
@@ -369,6 +370,7 @@ function SchreibenModule({ exam, onExit }: { exam: MockExam; onExit: () => void 
               </li>
             ))}
           </ul>
+          {!fb && <HandwritingUpload onText={(t) => setTexts(texts.map((x, k) => (k === i ? (x.trim() ? `${x.trim()}\n\n${t}` : t) : x)))} />}
           <textarea
             className="writing-area"
             rows={10}

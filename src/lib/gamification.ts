@@ -120,6 +120,8 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'words-100', icon: '📚', title: 'Wortsammler', desc: '100 слов в изучении', check: (s) => vocabCount(s) >= 100 },
   { id: 'words-500', icon: '📖', title: 'Wortschatz-Profi', desc: '500 слов в изучении', check: (s) => vocabCount(s) >= 500 },
   { id: 'words-1500', icon: '🧠', title: 'Lexikon', desc: '1 500 слов в изучении', check: (s) => vocabCount(s) >= 1500 },
+  { id: 'verbs-50', icon: '🔗', title: 'Präpositionen-Profi', desc: '50 глаголов с управлением в изучении', check: (s) => Object.values(s.cards).filter((c) => c.kind === 'rektion').length >= 50 },
+  { id: 'verbs-200', icon: '⛓️', title: 'Rektion-Meister', desc: '200 глаголов с управлением в изучении', check: (s) => Object.values(s.cards).filter((c) => c.kind === 'rektion').length >= 200 },
   { id: 'mature-100', icon: '🌳', title: 'Fest verankert', desc: '100 слов закреплено надолго', check: (s) => matureCount(s) >= 100 },
   { id: 'answers-1000', icon: '✅', title: 'Tausendsassa', desc: '1 000 правильных ответов', check: (s) => sumAct(s, 'correct') >= 1000 },
   { id: 'talk-50', icon: '🗣️', title: 'Plaudertasche', desc: '50 реплик в разговоре с ИИ', check: (s) => sumAct(s, 'spokenTurns') >= 50 },

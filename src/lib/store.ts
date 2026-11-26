@@ -27,6 +27,7 @@ export interface Settings {
   speechRate: number;
   dailyMinutes: 20 | 40 | 60 | 90;
   newWordsPerDay: number;
+  newVerbsPerDay: number;
   reviewLimit: number;
   showRuHints: boolean;
   sounds: boolean;
@@ -50,6 +51,7 @@ export const defaultSettings: Settings = {
   speechRate: 0.95,
   dailyMinutes: 40,
   newWordsPerDay: 15,
+  newVerbsPerDay: 5,
   reviewLimit: 80,
   showRuHints: true,
   sounds: true,
@@ -78,7 +80,7 @@ export interface UnitProgress {
   completedDate?: string;
 }
 
-export type CardKind = 'vocab' | 'grammar' | 'mistake';
+export type CardKind = 'vocab' | 'grammar' | 'mistake' | 'rektion';
 
 export interface Card {
   id: string;
@@ -88,6 +90,8 @@ export interface Card {
   mistakeId?: string;
   /** true = from the unit's word bank / extra exercises instead of the core list */
   bank?: boolean;
+  /** verb government entry id (kind 'rektion') */
+  rektionId?: string;
   srs: SrsState;
   added: string;
 }
@@ -150,6 +154,7 @@ export interface DayActivity {
   wordsWritten: number;
   drills: number;
   bankWords: number;
+  newVerbs: number;
 }
 
 export interface WritingEntry {
@@ -236,6 +241,7 @@ export type PlanItem =
   | { kind: 'conversation' }
   | { kind: 'mistakes' }
   | { kind: 'words' }
+  | { kind: 'verbs' }
   | { kind: 'exam'; level: Level };
 
 const emptyDay = (): DayActivity => ({
@@ -248,6 +254,7 @@ const emptyDay = (): DayActivity => ({
   wordsWritten: 0,
   drills: 0,
   bankWords: 0,
+  newVerbs: 0,
 });
 
 export const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);

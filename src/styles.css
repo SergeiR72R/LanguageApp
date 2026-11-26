@@ -584,3 +584,24 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 .err-rule { font-size: 0.9rem; }
 .err-expl { font-size: 0.92rem; line-height: 1.5; opacity: 0.9; }
 .analysis .error-list.detailed { margin: 4px 0 0; }
+
+/* verb government trainer */
+.verb-card { border: 1px solid var(--border); border-radius: 12px; padding: 14px; background: var(--surface); margin: 8px 0; }
+.verb-card.big { padding: 24px; text-align: center; animation: card-in 0.35s ease; }
+.verb-main { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.verb-card.big .verb-main { justify-content: center; }
+.verb-de { font-size: 1.3rem; font-weight: 700; }
+.verb-card.big .verb-de { font-size: 2rem; }
+.verb-prep { font-size: 1.3rem; font-weight: 800; color: var(--accent); }
+.verb-card.big .verb-prep { font-size: 2rem; }
+.case { font-weight: 800; font-size: 0.95rem; padding: 2px 8px; border-radius: 8px; color: #fff; vertical-align: middle; }
+.case-akk { background: #2563eb; } .case-dat { background: #dc2626; } .case-gen { background: #9333ea; }
+.verb-ru { font-size: 1.05rem; margin: 6px 0; }
+.verb-note { margin-top: 8px; font-size: 0.9rem; background: var(--warn-soft); border-radius: 8px; padding: 6px 10px; }
+.verb-table { margin-top: 10px; }
+.verb-row { border-bottom: 1px dashed var(--border); padding: 6px 0; }
+.verb-row summary { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-weight: 400; }
+.verb-label { font-weight: 700; min-width: 220px; }
+.verb-row-ru { flex: 1; }
+.handwriting { margin-top: 10px; }
+.hw-preview { max-width: 100%; max-height: 360px; border-radius: 10px; margin: 6px 0; }

@@ -1,5 +1,6 @@
 import { allUnits, getUnit } from '../content';
 import { wordQueue, wordsLeftToday } from './words';
+import { verbQueue, verbsLeftToday } from './verbs';
 import { daysBetween, today } from './date';
 import { isLlmConfigured } from './ai/providers';
 import { currentUnitId, dueCards, type AppState, type PlanItem } from './store';
@@ -24,6 +25,7 @@ export function buildPlan(s: AppState): PlanItem[] {
   if (dueCards(s, d).length > 0 || Object.keys(s.cards).length > 0) items.push({ kind: 'review' });
 
   if (wordsLeftToday(s) > 0 && wordQueue(s, 1).length > 0) items.push({ kind: 'words' });
+  if (verbsLeftToday(s) > 0 && verbQueue(s, 1).length > 0) items.push({ kind: 'verbs' });
 
   const cur = currentUnitId(s);
   if (cur && getUnit(cur)) {
@@ -80,6 +82,8 @@ export function isPlanItemDone(s: AppState, item: PlanItem): boolean {
       return (s.activity[d]?.drills ?? 0) > 0;
     case 'words':
       return wordsLeftToday(s) === 0 || wordQueue(s, 1).length === 0;
+    case 'verbs':
+      return verbsLeftToday(s) === 0 || verbQueue(s, 1).length === 0;
     case 'exam':
       return s.examResults.some((r) => r.date === d && r.examId.startsWith(item.level.toLowerCase()));
   }

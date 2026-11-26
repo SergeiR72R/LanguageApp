@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { Exercise } from '../content/types';
-import { allUnits, practiceExercises, wordBank } from '../content';
+import { allUnits, practiceExercises, rektionItems, wordBank } from '../content';
+import { rektionExercise } from '../lib/rektion';
 import { shuffle } from '../lib/grading';
 import { useStore } from '../lib/store';
 import { vocabChoice, vocabChoiceFrom } from '../lib/vocab';
@@ -36,7 +37,8 @@ export function Consolidation() {
         .sort((a, b) => b.w - a.w + (Math.random() - 0.5) * 2)
         .slice(0, n)
         .map(({ ex, id }) => ({ ex, id }));
-    return shuffle([...pick([...gram, ...deep], 14), ...pick([...voc, ...bank], 12)], seed + 3);
+    const verbs = rektionItems.filter((r) => s.cards[r.id]).map((r) => ({ ex: rektionExercise(r, 1 + (seed % 4)), id: r.id, w: weak(r.id) }));
+    return shuffle([...pick([...gram, ...deep], 12), ...pick([...voc, ...bank], 10), ...pick(verbs, 6)], seed + 3);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [seed, done.length]);
   const exercises = items.map((x) => x.ex);

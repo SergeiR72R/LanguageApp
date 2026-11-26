@@ -1,10 +1,11 @@
-import type { Exercise, Level, MockExam, PlacementItem, Unit, UnitMore, VocabItem } from './types';
+import type { Exercise, Level, MockExam, PlacementItem, RektionItem, Unit, UnitMore, VocabItem } from './types';
 
 const unitModules = import.meta.glob<{ unit: Unit }>('./{b1,b2,c1}/u*.ts', { eager: true });
 const wordModules = import.meta.glob<{ words: VocabItem[] }>('./{b1,b2,c1}/words/u*.ts', { eager: true });
 const moreModules = import.meta.glob<{ more: UnitMore }>('./{b1,b2,c1}/more/u*.ts', { eager: true });
 // mock exams are large: loaded on demand
 const examModules = import.meta.glob<{ exam: MockExam }>('./exams/*.ts');
+const rektionModules = import.meta.glob<{ rektion: RektionItem[] }>('./rektion/*.ts', { eager: true });
 const placementModules = import.meta.glob<{ placementItems: PlacementItem[] }>('./placement.ts', { eager: true });
 
 const LEVEL_ORDER: Level[] = ['B1', 'B2', 'C1'];
@@ -102,3 +103,39 @@ export async function loadExam(id: string): Promise<MockExam | undefined> {
 export function totalWordCount(): number {
   return allUnits.reduce((a, u) => a + u.vocab.length + wordBank(u.id).length, 0);
 }
+
+// ---------------- verb government (Rektion) ----------------
+
+export interface RektionEntry extends RektionItem {
+  id: string;
+  level: Level;
+}
+
+const slug = (x: string) =>
+  x
+    .toLowerCase()
+    .replace(/ä/g, 'ae')
+    .replace(/ö/g, 'oe')
+    .replace(/ü/g, 'ue')
+    .replace(/ß/g, 'ss')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+
+/** All entries B1 → C1, duplicates across levels removed (first occurrence wins). */
+export const rektionItems: RektionEntry[] = (() => {
+  const out: RektionEntry[] = [];
+  const seen = new Set<string>();
+  for (const level of LEVEL_ORDER) {
+    const mod = Object.entries(rektionModules).find(([p]) => p.endsWith(`/${level.toLowerCase()}.ts`))?.[1];
+    for (const r of mod?.rektion ?? []) {
+      const key = `${r.verb}|${r.prep ?? ''}|${r.case}`.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({ ...r, level, id: `r:${slug(r.verb)}:${r.prep ?? r.case.toLowerCase()}` });
+    }
+  }
+  return out;
+})();
+
+const rektionById = new Map(rektionItems.map((r) => [r.id, r]));
+export const getRektion = (id: string) => rektionById.get(id);

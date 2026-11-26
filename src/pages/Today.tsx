@@ -100,6 +100,8 @@ function itemView(item: PlanItem, due: number): { icon: string; title: string; s
       return { icon: '🎯', title: 'Работа над ошибками', sub: 'ИИ составит упражнения по вашим частым ошибкам', to: '/drill' };
     case 'words':
       return { icon: '🆕', title: 'Слова дня', sub: 'Новая порция из словаря курса · ~10 мин', to: '/words' };
+    case 'verbs':
+      return { icon: '🔗', title: 'Управление глаголов', sub: 'Новые глаголы с предлогами и падежами · ~5 мин', to: '/verbs' };
     case 'exam':
       return { icon: '🎓', title: `Пробный экзамен Goethe ${item.level}`, sub: 'Уровень пройден — проверьте готовность к экзамену', to: '/exams' };
   }

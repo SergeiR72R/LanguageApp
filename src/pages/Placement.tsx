@@ -220,7 +220,7 @@ export function Placement() {
       <Card>
         <h3>С чего начать</h3>
         <p>
-          Рекомендуем начать с <strong>уровня {rec?.level}, юнит {rec?.order} из 10: «{rec?.title}»</strong> ({rec?.grammar.topicRu}).
+          Рекомендуем начать с <strong>уровня {rec?.level}, юнит {rec?.order} из {allUnits.filter((u) => u.level === rec?.level).length}: «{rec?.title}»</strong> ({rec?.grammar.topicRu}).
           Юниты до него останутся открытыми для самостоятельного повторения.
         </p>
         {writingAdjusted && (

@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUnit, practiceExercises } from '../content';
+import { getRektion, getUnit, practiceExercises } from '../content';
+import { rektionExercise } from '../lib/rektion';
 import { checkAnswer, shuffle, type CheckResult } from '../lib/grading';
 import type { Grade } from '../lib/srs';
 import { dueCards, useStore, type Card as SrsCard, type Mistake } from '../lib/store';
@@ -227,6 +228,10 @@ export function Review() {
               <div className="stat-cap">грамматика</div>
             </div>
             <div className="stat">
+              <div className="stat-num">{byKind('rektion')}</div>
+              <div className="stat-cap">глаголы с предлогами</div>
+            </div>
+            <div className="stat">
               <div className="stat-num">{byKind('mistake')}</div>
               <div className="stat-cap">ваши ошибки</div>
             </div>
@@ -325,6 +330,22 @@ export function Review() {
           </button>
         )}
         {c.kind === 'mistake' && mistake && <MistakeReview m={mistake} onGrade={grade} />}
+        {c.kind === 'rektion' && getRektion(c.rektionId ?? c.id) && (
+          <>
+            <div className="tiny muted">🔗 Управление глаголов</div>
+            <ExerciseView
+              key={c.id + pos}
+              ex={rektionExercise(getRektion(c.rektionId ?? c.id)!, c.srs.reps)}
+              seed={pos}
+              onDone={(o) => grade(o.correct ? 2 : 0)}
+            />
+          </>
+        )}
+        {c.kind === 'rektion' && !getRektion(c.rektionId ?? c.id) && (
+          <button className="btn" onClick={() => grade(3)}>
+            Пропустить
+          </button>
+        )}
         {c.kind === 'mistake' && !mistake && (
           <button className="btn" onClick={() => grade(3)}>
             Пропустить

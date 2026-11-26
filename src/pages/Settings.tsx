@@ -381,6 +381,16 @@ export function Settings() {
           </div>
         </label>
         <label className="field">
+          Новых глаголов с управлением в день
+          <div className="seg">
+            {[3, 5, 8, 12].map((n) => (
+              <button key={n} className={`seg-btn ${st.newVerbsPerDay === n ? 'active' : ''}`} onClick={() => s.updateSettings({ newVerbsPerDay: n })}>
+                {n}
+              </button>
+            ))}
+          </div>
+        </label>
+        <label className="field">
           Максимум карточек повторения за сессию
           <input
             className="text-input"

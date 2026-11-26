@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { firstUnitOfLevel } from '../content';
+import { allUnits, firstUnitOfLevel } from '../content';
 import { useStore } from '../lib/store';
 import { Card } from '../components/ui';
 import { isSyncEnabled } from '../lib/sync';
@@ -22,7 +22,7 @@ export function Welcome() {
       </div>
       <p className="lead">
         Персональный тренажёр немецкого от B1 до C1: слова, грамматика, аудирование, письмо и разговор с ИИ. Курс идёт
-        последовательно — 30 юнитов, каждый из 6 шагов, а интервальные повторения закрепляют пройденное.
+        последовательно — {allUnits.length} юнитов, каждый из 7 шагов, а интервальные повторения закрепляют пройденное.
       </p>
 
       {!isSyncEnabled() && (

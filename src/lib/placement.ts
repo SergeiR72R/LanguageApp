@@ -46,7 +46,7 @@ export function scorePlacement(items: PlacementItem[], answers: Record<string, n
   } else if (b2 < 0.65) {
     estimated = 'B1';
     recommended = firstUnitOfLevel('B2')!.id;
-    if (b2 < 0.4) recommended = b1Unit(6) ?? recommended; // B1 almost done, finish the hard B1 topics first
+    if (b2 < 0.4) recommended = b1Unit(10) ?? b1Unit(6) ?? recommended; // core B1 known: continue with the advanced B1 units
   } else if (c1 < 0.7) {
     estimated = 'B2';
     recommended = firstUnitOfLevel('C1')!.id;

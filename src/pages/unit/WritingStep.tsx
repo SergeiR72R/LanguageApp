@@ -6,6 +6,7 @@ import { isLlmConfigured } from '../../lib/ai/providers';
 import { checkWriting, type WritingFeedback } from '../../lib/ai/prompts';
 import { profileScopedKey } from '../../lib/profiles';
 import { WritingFeedbackView } from '../../components/WritingFeedbackView';
+import { HandwritingUpload } from '../../components/HandwritingUpload';
 import { AiRequired, Card, ErrorBox, Spinner } from '../../components/ui';
 
 const draftKey = (id: string) => profileScopedKey(`draft-writing-${id}`);
@@ -89,7 +90,8 @@ export function WritingStep({ unit, onNext }: { unit: Unit; onNext: () => void }
             ))}
           </ul>
         </details>
-        <textarea className="writing-area" rows={12} value={text} onChange={(e) => save(e.target.value)} placeholder="Schreiben Sie hier…" spellCheck={false} />
+        {ai && <HandwritingUpload onText={(t) => save(text.trim() ? `${text.trim()}\n\n${t}` : t)} />}
+        <textarea className="writing-area" rows={12} value={text} onChange={(e) => save(e.target.value)} placeholder="Schreiben Sie hier… или загрузите фото рукописного текста" spellCheck={false} />
         <div className="row between wrap">
           <span className={words >= W.minWords ? 'ok-text' : 'muted'}>
             {words} / {W.minWords}+ слов

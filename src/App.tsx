@@ -22,6 +22,7 @@ import { Settings } from './pages/Settings';
 import { Consolidation } from './pages/Consolidation';
 import { Drill } from './pages/Drill';
 import { Words } from './pages/Words';
+import { Verbs } from './pages/Verbs';
 import { Exams, ExamRunner } from './pages/Exams';
 
 const LINKS = [
@@ -29,6 +30,7 @@ const LINKS = [
   { to: '/course', label: 'Курс', icon: '🗺️', primary: true },
   { to: '/review', label: 'Повторение', icon: '🔁', primary: true, due: true },
   { to: '/words', label: 'Слова дня', icon: '🆕' },
+  { to: '/verbs', label: 'Глаголы', icon: '🔗' },
   { to: '/speak', label: 'Разговор', icon: '🗣️', primary: true },
   { to: '/exams', label: 'Экзамен', icon: '🎓' },
   { to: '/compete', label: 'Соревнование', icon: '🏆' },
@@ -221,6 +223,7 @@ export function App() {
             <Route path="/consolidation" element={<Consolidation />} />
             <Route path="/drill" element={<Drill />} />
             <Route path="/words" element={<Words />} />
+            <Route path="/verbs" element={<Verbs />} />
             <Route path="/compete" element={<Compete />} />
             <Route path="/exams" element={<Exams />} />
             <Route path="/exam/:id" element={<ExamRunner />} />

@@ -249,3 +249,28 @@ export interface MockExam {
   schreiben: { minutes: number; tasks: ExamWritingTask[] };
   sprechen: { minutes: number; tasks: ExamSpeakingTask[] };
 }
+
+// ======================================================================
+// Verb government (Rektion): verbs (and a few adjectives/nouns) with fixed prepositions or cases
+// ======================================================================
+export type RektionCase = 'Akk' | 'Dat' | 'Gen' | 'Akk+Dat';
+
+export interface RektionItem {
+  /** e.g. "warten", "sich interessieren", "teilnehmen" */
+  verb: string;
+  /** preposition, e.g. "auf"; omit for verbs that govern a pure case (helfen + Dat) */
+  prep?: string;
+  /** case after the preposition (or the object case if there is no preposition) */
+  case: RektionCase;
+  /** Russian meaning with the Russian government, e.g. "ждать (кого? что?)" */
+  ru: string;
+  /** natural German example sentence */
+  example: string;
+  exampleRu: string;
+  /** the example with the preposition replaced by ___ (or the article/pronoun for pure-case verbs), e.g. "Ich warte ___ den Bus." */
+  gap: string;
+  /** what fills the gap in `gap`, e.g. "auf" (or "dem" for "Ich helfe ___ Mann.") */
+  gapAnswer: string;
+  /** typical mistake of Russian speakers (Russian), optional */
+  noteRu?: string;
+}
