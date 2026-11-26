@@ -15,7 +15,7 @@ export function Login() {
           <i />
           <i />
         </span>
-        <h1>Deutsch B1–C1</h1>
+        <h1>Deutsch A1–C1</h1>
         <p className="muted">Вход на новом устройстве</p>
       </div>
       <Card className="highlight">

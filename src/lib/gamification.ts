@@ -102,7 +102,10 @@ export interface Achievement {
 const vocabCount = (s: Stats) => Object.values(s.cards).filter((c) => c.kind === 'vocab').length;
 const matureCount = (s: Stats) => Object.values(s.cards).filter((c) => c.kind === 'vocab' && isMature(c.srs)).length;
 const unitsDone = (s: Stats) => Object.values(s.units).filter((u) => u.completed).length;
-const levelDone = (s: Stats, lvl: string) => allUnits.filter((u) => u.level === lvl).every((u) => s.units[u.id]?.completed);
+const levelDone = (s: Stats, lvl: string) => {
+  const us = allUnits.filter((u) => u.level === lvl);
+  return us.length > 0 && us.every((u) => s.units[u.id]?.completed);
+};
 const sumAct = (s: Stats, k: keyof DayActivity) => Object.values(s.activity).reduce((a, d) => a + (d[k] ?? 0), 0);
 
 export const ACHIEVEMENTS: Achievement[] = [
@@ -110,6 +113,9 @@ export const ACHIEVEMENTS: Achievement[] = [
   { id: 'unit-1', icon: '🏁', title: 'Geschafft!', desc: 'Пройти первый юнит', check: (s) => unitsDone(s) >= 1 },
   { id: 'unit-5', icon: '🚀', title: 'In Fahrt', desc: 'Пройти 5 юнитов', check: (s) => unitsDone(s) >= 5 },
   { id: 'unit-15', icon: '🏔️', title: 'Halbzeit', desc: 'Пройти 15 юнитов', check: (s) => unitsDone(s) >= 15 },
+  { id: 'abc', icon: '🔤', title: 'ABC', desc: 'Освоить алфавит и правила чтения (юниты A1 1–3)', check: (s) => ['a1-01', 'a1-02', 'a1-03'].every((id) => s.units[id]?.completed) },
+  { id: 'a1', icon: '🌱', title: 'A1 erledigt', desc: 'Пройти весь уровень A1', check: (s) => levelDone(s, 'A1') },
+  { id: 'a2', icon: '🌿', title: 'A2 erledigt', desc: 'Пройти весь уровень A2', check: (s) => levelDone(s, 'A2') },
   { id: 'b1', icon: '🥉', title: 'B1 erledigt', desc: 'Пройти весь уровень B1', check: (s) => levelDone(s, 'B1') },
   { id: 'b2', icon: '🥈', title: 'B2 erledigt', desc: 'Пройти весь уровень B2', check: (s) => levelDone(s, 'B2') },
   { id: 'c1', icon: '🥇', title: 'C1 erledigt', desc: 'Пройти весь уровень C1', check: (s) => levelDone(s, 'C1') },

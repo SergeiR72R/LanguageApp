@@ -6,6 +6,17 @@ import { checkAnswer } from '../grading';
 
 const CATS = MISTAKE_CATEGORIES.join(' | ');
 
+
+/** One level up, for "improved version" suggestions. */
+const nextLevel = (l: Level): Level => (({ A1: 'A2', A2: 'B1', B1: 'B2', B2: 'C1', C1: 'C1' }) as const)[l];
+
+/** Beginners: grade by what is expected at their level and keep explanations very simple. */
+const beginnerNote = (l: Level) =>
+  l === 'A1' || l === 'A2'
+    ? `
+Der Lernende ist Anfänger (${l}). Bewerte nach den Erwartungen für ${l} (kurze, einfache Sätze sind völlig in Ordnung), erkläre jeden Fehler sehr einfach (auf Russisch, ohne komplizierte Fachbegriffe) und konzentriere dich auf die wichtigsten Fehler (Verbform, Wortstellung, Artikel, Rechtschreibung).`
+    : '';
+
 export interface AiError {
   original: string;
   correction: string;
@@ -63,7 +74,7 @@ export async function checkWriting(params: {
     {
       role: 'system',
       content: `Du bist ein erfahrener Prüfer für Deutsch als Fremdsprache (Goethe/telc, GER). Der Lernende ist russischer Muttersprachler und lernt auf Niveau ${params.level}.
-Bewerte den Text streng, aber fair. Markierungen [?] stammen aus der Handschrifterkennung – ignoriere sie. Finde ALLE Fehler (Grammatik, Wortschatz, Rechtschreibung, Zeichensetzung, Stil). Erkläre jeden Fehler auf RUSSISCH.
+Bewerte den Text streng, aber fair. Markierungen [?] stammen aus der Handschrifterkennung – ignoriere sie.${beginnerNote(params.level)} Finde ALLE Fehler (Grammatik, Wortschatz, Rechtschreibung, Zeichensetzung, Stil). Erkläre jeden Fehler auf RUSSISCH.
 ${ERROR_STYLE}
 Antworte NUR mit JSON in diesem Format:
 {
@@ -74,7 +85,7 @@ Antworte NUR mit JSON in diesem Format:
  "criteria": [{"name":"Aufgabenerfüllung","score":0-5},{"name":"Kohärenz","score":0-5},{"name":"Wortschatz","score":0-5},{"name":"Grammatik","score":0-5}],
  "errors": [{"original":"exakter fehlerhafter Ausschnitt aus dem Text","correction":"korrigierte Version","category":"${CATS}","ruleRu":"Regel kurz","explanationRu":"2–3 Sätze auf Russisch"}],
  "correctedText": "der vollständige Text mit minimalen Korrekturen",
- "improvedVersion": "eine stilistisch verbesserte Version auf Niveau ${params.level === 'B1' ? 'B2' : 'C1'}, die die Ideen des Lernenden beibehält",
+ "improvedVersion": "eine stilistisch verbesserte Version auf Niveau ${nextLevel(params.level)}, die die Ideen des Lernenden beibehält",
  "strengthsRu": ["..."],
  "improvementsRu": ["konkrete Tipps auf Russisch"]
 }`,
@@ -122,7 +133,15 @@ export function conversationSystemPrompt(level: Level, role: string, tasks: stri
 Du führst ein mündliches Gespräch mit einem Deutschlernenden (Muttersprache Russisch, Niveau ${level}).
 Regeln:
 - Bleib in deiner Rolle und reagiere INHALTLICH auf das, was der Lernende zuletzt gesagt hat (gehe auf seine Aussage ein, beziehe dich auf Details).
-- Antworte natürlich und gesprochen, 1–3 kurze Sätze, passend zum Niveau ${level}. Stelle meist eine passende Rückfrage, damit das Gespräch weitergeht.
+- Antworte natürlich und gesprochen, 1–3 kurze Sätze, passend zum Niveau ${level}. Stelle meist eine passende Rückfrage, damit das Gespräch weitergeht.${
+    level === 'A1'
+      ? `
+- WICHTIG, Anfänger (A1): Sprich sehr einfach und langsam: höchstens 2 sehr kurze Sätze (3–8 Wörter), nur Präsens, nur sehr häufige Wörter, eine einfache Frage pro Antwort. Wenn der Lernende nicht weiterweiß, Russisch schreibt oder nur ein Wort sagt, hilf ihm: gib zwei einfache Antwortmöglichkeiten zur Auswahl (z. B. „Tee oder Kaffee?“).`
+      : level === 'A2'
+        ? `
+- WICHTIG, Niveau A2: Sprich einfach: kurze Sätze, Alltagswörter, Präsens und Perfekt, keine komplizierten Nebensätze. Wenn der Lernende Schwierigkeiten hat, formuliere die Frage einfacher.`
+        : ''
+  }
 - Wiederhole NIEMALS deine eigene Begrüßung oder eine frühere Frage wörtlich. Wiederhole oder korrigiere NICHT die Sätze des Lernenden – Fehler werden separat besprochen.
 - Wenn der Lernende etwas Unklares sagt, frag freundlich nach, was er meint.
 - Der Text des Lernenden stammt aus einer Spracherkennung: fehlende Satzzeichen oder einzelne falsch erkannte Wörter sind normal.
@@ -401,7 +420,7 @@ export interface GeneratedListening {
 }
 
 export async function generateListening(unit: Unit): Promise<GeneratedListening> {
-  const len = unit.level === 'B1' ? '180-250' : unit.level === 'B2' ? '250-350' : '320-420';
+  const len = { A1: '50-90', A2: '100-160', B1: '180-250', B2: '250-350', C1: '320-420' }[unit.level];
   const r = await chatJson<GeneratedListening>(
     [
       {

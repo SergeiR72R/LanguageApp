@@ -87,7 +87,7 @@ function Nav() {
             <i />
             <i />
           </span>
-          <span>Deutsch&nbsp;B1–C1</span>
+          <span>Deutsch&nbsp;A1–C1</span>
           {st > 0 && (
             <span className="streak" title="Дней подряд">
               🔥 {st}
