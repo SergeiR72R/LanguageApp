@@ -212,7 +212,9 @@ Der Bus hält in zwölf Dörfern, immer für eine Stunde. Den genauen Fahrplan f
 2. Stock: Sport und Freizeit · Fahrräder · Spielwaren · Bücher und Schreibwaren
 1. Stock: Damenmode · Herrenmode · Kindermode · Schuhe
 Erdgeschoss: Kosmetik · Schmuck · Uhren · Taschen · Zeitschriften
-Untergeschoss: Lebensmittel · Getränke · Haushaltswaren · Töpfe und Küchengeräte`,
+Untergeschoss: Lebensmittel · Getränke · Haushaltswaren · Töpfe und Küchengeräte
+
+Öffnungszeiten: Montag bis Samstag 9:30–20:00 Uhr. Aufzüge und Rolltreppen finden Sie in der Mitte des Hauses.`,
         },
       ],
       tasks: [
