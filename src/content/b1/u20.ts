@@ -131,12 +131,12 @@ export const unit: Unit = {
       {
         type: 'transform',
         instructionRu: 'Сделайте отрицание всего предложения с помощью nicht.',
-        prompt: 'Ich habe die Aufgabenstellung gestern genau gelesen.',
+        prompt: 'Ich habe die Aufgabenstellung gestern gelesen.',
         answers: [
-          'Ich habe die Aufgabenstellung gestern nicht genau gelesen.',
-          'Ich habe gestern die Aufgabenstellung nicht genau gelesen.',
+          'Ich habe die Aufgabenstellung gestern nicht gelesen.',
+          'Ich habe gestern die Aufgabenstellung nicht gelesen.',
         ],
-        explanationRu: 'Дополнение с артиклем и gestern стоят перед nicht; nicht стоит перед модальным словом genau и причастием в конце.',
+        explanationRu: 'Дополнение с определённым артиклем и gestern стоят перед nicht; nicht стоит непосредственно перед причастием, которое закрывает рамку.',
       },
     ],
   },
