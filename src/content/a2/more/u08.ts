@@ -183,7 +183,7 @@ export const more: UnitMore = {
       texts: [
         {
           heading: 'Ferien auf dem Hof Sonnenwiese',
-          body: `Sie möchten Ruhe und Natur? Dann kommen Sie zu uns! Unser Hof liegt im Schwarzwald, drei Kilometer vom Dorf Kirchberg. Wir haben zwei Ferienwohnungen für zwei bis fünf Personen, beide mit Küche und Balkon.
+          body: `Sie möchten Ruhe und Natur? Dann kommen Sie zu uns! Unser Hof liegt im Schwarzwald, drei Kilometer vom Dorf Kirchberg entfernt. Wir haben zwei Ferienwohnungen für zwei bis fünf Personen, beide mit Küche und Balkon.
 
 Für Kinder: Jeden Morgen können sie mit uns die Tiere füttern – Kühe, Schafe, Hühner und unsere zwei Pferde. Reiten kostet 10 Euro pro Stunde.
 
