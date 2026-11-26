@@ -332,12 +332,13 @@ export const unit: Unit = {
       exampleRu: 'При просрочке платежа могут взиматься дополнительные сборы за напоминание.',
     },
     {
-      de: 'geltend machen',
-      forms: 'macht geltend, machte geltend, hat geltend gemacht',
-      pos: 'phrase',
-      ru: 'заявить (права, требования), предъявить',
-      example: 'Gewährleistungsansprüche müssen Sie gegenüber dem Verkäufer geltend machen.',
-      exampleRu: 'Гарантийные требования необходимо предъявлять продавцу.',
+      de: 'Rechtsschutzversicherung',
+      article: 'die',
+      plural: '-en',
+      pos: 'noun',
+      ru: 'страхование судебных расходов',
+      example: 'Zum Glück übernimmt meine Rechtsschutzversicherung die Kosten für den Anwalt.',
+      exampleRu: 'К счастью, моя страховка судебных расходов покрывает расходы на адвоката.',
     },
   ],
   listening: {
@@ -347,7 +348,7 @@ export const unit: Unit = {
 
 Guten Morgen! Stellen Sie sich vor: Sie haben online einen Kaffeevollautomaten für 600 Euro gekauft, und nach vier Monaten kommt plötzlich kein Kaffee mehr heraus. Was nun? Viele Kunden wenden sich zuerst an den Hersteller. Das ist aber nicht unbedingt der richtige Weg. Gemäß dem Bürgerlichen Gesetzbuch ist nämlich zunächst der Verkäufer Ihr Ansprechpartner. Laut Gesetz haben Sie gegenüber dem Händler zwei Jahre lang einen Anspruch auf Gewährleistung – unabhängig davon, ob der Hersteller zusätzlich eine Garantie gibt.
 
-Wichtig ist außerdem die sogenannte Beweislastumkehr. Tritt ein Mangel innerhalb des ersten Jahres auf, wird vermutet, dass er schon beim Kauf vorhanden war. Der Händler muss also das Gegenteil beweisen. Erst danach müssen Sie selbst nachweisen, dass das Gerät nicht durch falsche Bedienung beschädigt wurde – zum Beispiel anhand eines Gutachtens.
+Wichtig ist außerdem die sogenannte Beweislastumkehr. Tritt ein Mangel innerhalb des ersten Jahres auf, wird vermutet, dass er schon beim Kauf vorhanden war. Der Händler muss also das Gegenteil beweisen. Nach Ablauf dieses Jahres müssen dagegen Sie selbst nachweisen, dass der Mangel schon beim Kauf bestand – zum Beispiel anhand eines Gutachtens.
 
 Wie gehen Sie konkret vor? Schreiben Sie dem Händler eine kurze, sachliche Beanstandung, am besten per E-Mail oder Brief, damit Sie später einen Nachweis haben. Beschreiben Sie den Mangel genau und setzen Sie eine angemessene Frist, in der Regel zwei Wochen. Übrigens dürfen Sie als Käufer wählen, ob das Gerät repariert oder durch ein neues ersetzt werden soll. Erst wenn die Reparatur zweimal scheitert, können Sie vom Vertrag zurücktreten oder eine Preisminderung verlangen.
 
