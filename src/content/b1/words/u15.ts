@@ -104,8 +104,6 @@ export const words: VocabItem[] = [
   { de: 'sich beeilen', forms: 'beeilt sich, beeilte sich, hat sich beeilt', pos: 'verb', ru: 'торопиться', example: 'Wir müssen uns beeilen, sonst verpassen wir die letzte Bahn.', exampleRu: 'Нам нужно поторопиться, иначе мы пропустим последнюю электричку.' },
   { de: 'gelegentlich', pos: 'adv', ru: 'иногда, время от времени', example: 'Gelegentlich fahre ich mit dem Rad, meistens aber mit dem Bus.', exampleRu: 'Иногда я езжу на велосипеде, но чаще на автобусе.' },
   { de: 'Entfernung', article: 'die', plural: '-en', pos: 'noun', ru: 'расстояние', example: 'Die Entfernung zwischen Wohnung und Büro beträgt zwölf Kilometer.', exampleRu: 'Расстояние между квартирой и офисом — двенадцать километров.' },
-  { de: 'Erlaubnis', article: 'die', plural: '-se', pos: 'noun', ru: 'разрешение', example: 'Für das Parken im Hof braucht man eine Erlaubnis.', exampleRu: 'Чтобы парковаться во дворе, нужно разрешение.' },
-  { de: 'Verbot', article: 'das', plural: '-e', pos: 'noun', ru: 'запрет', example: 'Viele Fahrer halten sich nicht an das Verbot.', exampleRu: 'Многие водители не соблюдают этот запрет.' },
   { de: 'ungeduldig', pos: 'adj', ru: 'нетерпеливый', example: 'Nach einer Stunde im Stau wurden alle ungeduldig.', exampleRu: 'После часа в пробке все потеряли терпение.' },
   { de: 'ärgerlich', pos: 'adj', ru: 'досадный; раздосадованный', example: 'Es ist wirklich ärgerlich, dass der Bus schon wieder zu spät kommt.', exampleRu: 'Очень досадно, что автобус опять опаздывает.' },
 ];

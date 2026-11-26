@@ -162,11 +162,11 @@ export const unit: Unit = {
     { de: 'Vorstand', article: 'der', plural: '-¨e', pos: 'noun', ru: 'правление (клуба, организации)', example: 'Der Vorstand des Vereins trifft sich einmal im Monat.', exampleRu: 'Правление клуба собирается раз в месяц.' },
     { de: 'anfeuern', forms: 'feuert an, feuerte an, hat angefeuert', pos: 'verb', ru: 'подбадривать, болеть (за кого-л.)', example: 'Die Eltern feuern ihre Kinder am Spielfeldrand laut an.', exampleRu: 'Родители громко подбадривают детей у кромки поля.' },
     { de: 'Saison', article: 'die', plural: '-s', pos: 'noun', ru: 'сезон', example: 'In dieser Saison hat unser Team noch kein Spiel verloren.', exampleRu: 'В этом сезоне наша команда ещё не проиграла ни одной игры.' },
-    { de: 'Teilnehmer', article: 'der', plural: '-', pos: 'noun', ru: 'участник', example: 'Beim Stadtlauf gab es dieses Jahr über 3000 Teilnehmer.', exampleRu: 'В городском забеге в этом году было более 3000 участников.' },
+    { de: 'Tabelle', article: 'die', plural: '-n', pos: 'noun', ru: 'турнирная таблица; таблица', example: 'Nach fünf Siegen steht unser Team auf Platz eins der Tabelle.', exampleRu: 'После пяти побед наша команда занимает первое место в таблице.' },
     { de: 'Sportart', article: 'die', plural: '-en', pos: 'noun', ru: 'вид спорта', example: 'Welche Sportart ist in deinem Heimatland am beliebtesten?', exampleRu: 'Какой вид спорта самый популярный в твоей стране?' },
     { de: 'Ehrgeiz', article: 'der', plural: '–', pos: 'noun', ru: 'честолюбие, стремление к успеху', example: 'Mit viel Ehrgeiz hat sie es in die Nationalmannschaft geschafft.', exampleRu: 'Благодаря большому упорству она попала в национальную сборную.' },
     { de: 'Zusammenhalt', article: 'der', plural: '–', pos: 'noun', ru: 'сплочённость', example: 'In unserem kleinen Verein ist der Zusammenhalt besonders groß.', exampleRu: 'В нашем маленьком клубе особенно сильная сплочённость.' },
-    { de: 'sich anstrengen', forms: 'strengt sich an, strengte sich an, hat sich angestrengt', pos: 'verb', ru: 'стараться, прилагать усилия', example: 'Wenn wir gewinnen wollen, müssen wir uns mehr anstrengen.', exampleRu: 'Если мы хотим выиграть, нам нужно больше стараться.' },
+    { de: 'Kapitän', article: 'der', plural: '-e', pos: 'noun', ru: 'капитан (команды)', example: 'Die Mannschaft hat Lisa zur neuen Kapitänin gewählt.', exampleRu: 'Команда выбрала Лизу новым капитаном.' },
   ],
   listening: {
     title: 'Jana und der Ruderverein',
