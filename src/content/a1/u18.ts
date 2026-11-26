@@ -160,7 +160,7 @@ export const unit: Unit = {
     { de: 'kalt', pos: 'adj', ru: 'холодный, холодно', example: 'Heute ist es sehr kalt.', exampleRu: 'Сегодня очень холодно.', pronRu: 'КАЛЬТ' },
     { de: 'heiß', pos: 'adj', ru: 'жаркий, жарко; горячий', example: 'Im August ist es oft heiß.', exampleRu: 'В августе часто жарко.', pronRu: 'ХАЙС' },
     { de: 'Grad', article: 'der', plural: '-e', pos: 'noun', ru: 'градус', example: 'Heute sind es 25 Grad.', exampleRu: 'Сегодня 25 градусов.', pronRu: 'дер ГРА:Т' },
-    { de: 'Jahreszeit', article: 'die', plural: '-en', pos: 'noun', ru: 'время года', example: 'Welche Jahreszeit magst du?', exampleRu: 'Какое время года ты любишь?', pronRu: 'ди ЯА:-рэс-цайт' },
+    { de: 'Jahreszeit', article: 'die', plural: '-en', pos: 'noun', ru: 'время года', example: 'Welche Jahreszeit magst du?', exampleRu: 'Какое время года ты любишь?', pronRu: 'ди Я:-рэс-цайт' },
     { de: 'Frühling', article: 'der', plural: '-e', pos: 'noun', ru: 'весна', example: 'Im Frühling ist es oft schön.', exampleRu: 'Весной часто хорошая погода.', pronRu: 'дер ФРЮ:-линг' },
     { de: 'Sommer', article: 'der', plural: '-', pos: 'noun', ru: 'лето', example: 'Im Sommer schwimmen wir viel.', exampleRu: 'Летом мы много плаваем.', pronRu: 'дер ЗО-ма' },
     { de: 'Herbst', article: 'der', plural: '-e', pos: 'noun', ru: 'осень', example: 'Im Herbst regnet es oft.', exampleRu: 'Осенью часто идёт дождь.', pronRu: 'дер ХЕРПСТ' },

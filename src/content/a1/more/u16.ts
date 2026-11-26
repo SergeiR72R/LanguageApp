@@ -182,7 +182,7 @@ Im Wartezimmer bitte nicht telefonieren!`,
         {
           body: `Lieber Herr Braun,
 
-leider kann ich heute nicht zum Deutschkurs kommen. Ich bin krank. Mir tut der Rücken sehr weh, und ich kann nicht gut gehen. Der Arzt sagt, ich soll drei Tage zu Hause bleiben. Ich darf auch nicht lange sitzen. Am Montag will ich wieder kommen.
+leider kann ich heute nicht zum Deutschkurs kommen. Ich bin krank. Mir tut der Rücken sehr weh, und ich kann nicht gut gehen. Der Arzt sagt, ich soll drei Tage zu Hause bleiben. Ich darf auch nicht lange sitzen. Am Montag will ich wiederkommen.
 Bitte schreiben Sie kurz: Was sind die Hausaufgaben?
 
 Viele Grüße
@@ -197,7 +197,7 @@ Olga Iwanowa`,
             { kind: 'mc', question: 'Warum schreibt Olga?', options: ['Sie hat keine Zeit.', 'Sie ist krank.', 'Sie hat einen Termin.'], answer: 1, explanationRu: '«Ich bin krank» — Ольга больна.' },
             { kind: 'mc', question: 'Was tut Olga weh?', options: ['der Rücken', 'der Kopf', 'der Bauch'], answer: 0, explanationRu: '«Mir tut der Rücken sehr weh» — болит спина.' },
             { kind: 'mc', question: 'Wie lange soll Olga zu Hause bleiben?', options: ['eine Woche', 'zwei Tage', 'drei Tage'], answer: 2, explanationRu: '«ich soll drei Tage zu Hause bleiben» — три дня.' },
-            { kind: 'mc', question: 'Wann will Olga wieder in den Kurs kommen?', options: ['am Freitag', 'am Montag', 'morgen'], answer: 1, explanationRu: '«Am Montag will ich wieder kommen» — в понедельник.' },
+            { kind: 'mc', question: 'Wann will Olga wieder in den Kurs kommen?', options: ['am Freitag', 'am Montag', 'morgen'], answer: 1, explanationRu: '«Am Montag will ich wiederkommen» — в понедельник.' },
           ],
         },
       ],

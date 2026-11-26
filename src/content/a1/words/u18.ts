@@ -11,7 +11,7 @@ export const words: VocabItem[] = [
   { de: 'kühl', pos: 'adj', ru: 'прохладный', example: 'Am Abend ist es kühl.', exampleRu: 'Вечером прохладно.', pronRu: 'КЮ:ЛЬ' },
   { de: 'Gewitter', article: 'das', plural: '-', pos: 'noun', ru: 'гроза', example: 'Am Abend gibt es ein Gewitter.', exampleRu: 'Вечером будет гроза.', pronRu: 'дас гэ-ВИ-та' },
   { de: 'Nebel', article: 'der', plural: '-', pos: 'noun', ru: 'туман', example: 'Am Morgen gibt es oft Nebel.', exampleRu: 'Утром часто туман.', pronRu: 'дер НЕ:-бэль' },
-  { de: 'Temperatur', article: 'die', plural: '-en', pos: 'noun', ru: 'температура (воздуха)', example: 'Die Temperatur ist heute 15 Grad.', exampleRu: 'Температура сегодня 15 градусов.', pronRu: 'ди тэм-пэ-ра-ТУ:А' },
+  { de: 'Temperatur', article: 'die', plural: '-en', pos: 'noun', ru: 'температура (воздуха)', example: 'Wie ist die Temperatur heute?', exampleRu: 'Какая сегодня температура?', pronRu: 'ди тэм-пэ-ра-ТУ:А' },
   { de: 'Himmel', article: 'der', plural: '-', pos: 'noun', ru: 'небо', example: 'Der Himmel ist heute blau.', exampleRu: 'Небо сегодня голубое.', pronRu: 'дер ХИ-мэль' },
   { de: 'Wetterbericht', article: 'der', plural: '-e', pos: 'noun', ru: 'прогноз погоды', example: 'Was sagt der Wetterbericht?', exampleRu: 'Что говорит прогноз погоды?', pronRu: 'дер ВЕ-та-бэ-рихьт' },
   { de: 'Regenschirm', article: 'der', plural: '-e', pos: 'noun', ru: 'зонт', example: 'Nimm deinen Regenschirm mit!', exampleRu: 'Возьми с собой зонт!', pronRu: 'дер РЕ:-гэн-ширм' },

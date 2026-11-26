@@ -180,7 +180,7 @@ Akkusativ нужен после глаголов **haben, essen, trinken, möcht
 B: Guten Tag! Ich möchte einen Kaffee, bitte.
 A: Mit Milch?
 B: Ja, mit Milch, bitte.
-A: Möchten Sie auch etwas essen? Wir haben Kuchen, Brötchen und Suppe.
+A: Möchten Sie auch etwas? Wir haben Kuchen, Brötchen und Suppe.
 B: Haben Sie Apfelkuchen?
 A: Nein, leider. Es gibt heute keinen Apfelkuchen.
 B: Schade. Ich möchte eine Suppe.
@@ -217,7 +217,7 @@ A: Also: ein Kaffee, eine Suppe und ein Wasser. Danke!`,
   speaking: {
     scenarioRu: 'Вы в кафе. Официант спрашивает, что вы хотите. Закажите напиток и еду, скажите, что вы любите или не любите.',
     aiRole:
-      'Sie sind Kellner im Café „Sonne“. Der Gast lernt Deutsch (A1). Sprechen Sie sehr einfach und langsam, nur kurze Sätze im Präsens. Fragen Sie: Was möchten Sie? Möchten Sie auch etwas essen? Mit Milch? Sie haben: Kaffee, Tee, Saft, Wasser, Brötchen, Kuchen, Suppe, Ei. Es gibt heute keinen Fisch. Wenn der Gast nicht weiterweiß, helfen Sie mit zwei Möglichkeiten: „Kaffee oder Tee?“. Am Ende sagen Sie den Preis ganz einfach: „Das macht 8 Euro.“',
+      'Sie sind Kellner im Café „Sonne“. Der Gast lernt Deutsch (A1). Sprechen Sie sehr einfach und langsam, nur kurze Sätze im Präsens. Fragen Sie: Was möchten Sie? Möchten Sie auch Kuchen oder eine Suppe? Mit Milch? Sie haben: Kaffee, Tee, Saft, Wasser, Brötchen, Kuchen, Suppe, Ei. Es gibt heute keinen Fisch. Wenn der Gast nicht weiterweiß, helfen Sie mit zwei Möglichkeiten: „Kaffee oder Tee?“. Am Ende sagen Sie den Preis ganz einfach: „Das macht 8 Euro.“',
     opener: 'Guten Tag! Was möchten Sie?',
     tasksRu: [
       'Закажите напиток: «Ich möchte einen / eine / ein …, bitte».',
