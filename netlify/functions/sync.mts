@@ -16,10 +16,25 @@ function sameSecret(a: string, b: string): boolean {
   return diff === 0;
 }
 
+/** The app is also served from GitHub Pages, which calls this function cross-origin. */
+const ALLOWED_ORIGINS = [/^https:\/\/sergeir72r\.github\.io$/i, /^https:\/\/([a-z0-9-]+--)?steady-gecko-ea3333\.netlify\.app$/i, /^http:\/\/localhost(:\d+)?$/];
+let cors: Record<string, string> = {};
+
 const json = (status: number, body: unknown) =>
-  new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+  new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store', ...cors } });
 
 export default async (req: Request, _context: Context) => {
+  const origin = req.headers.get('origin') ?? '';
+  cors = ALLOWED_ORIGINS.some((r) => r.test(origin))
+    ? {
+        'access-control-allow-origin': origin,
+        'access-control-allow-methods': 'GET, PUT, OPTIONS',
+        'access-control-allow-headers': 'content-type, x-sync-password',
+        'access-control-max-age': '86400',
+        vary: 'Origin',
+      }
+    : {};
+  if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
   const secret = Netlify.env.get('SYNC_PASSWORD');
   if (!secret) return json(503, { error: 'Синхронизация не настроена: задайте переменную SYNC_PASSWORD в настройках Netlify.' });
   const given = req.headers.get('x-sync-password') ?? '';

@@ -37,7 +37,16 @@ interface SyncConfig {
 const SYNC_KEY = 'deutsch-trainer-sync';
 const REGISTRY_KEY = 'deutsch-trainer-profiles';
 const BASE_KEY = 'deutsch-trainer-v1';
-const ENDPOINT = '/api/sync';
+/**
+ * On Netlify the function is same-origin. Elsewhere (GitHub Pages) the Netlify function is called cross-origin:
+ * first the free branch deploy "live", then the production site.
+ */
+const NETLIFY = 'steady-gecko-ea3333.netlify.app';
+const HOST = typeof location === 'undefined' ? 'localhost' : location.hostname;
+const ENDPOINTS = HOST.endsWith('.netlify.app') || HOST === 'localhost'
+  ? ['/api/sync']
+  : [`https://live--${NETLIFY}/api/sync`, `https://${NETLIFY}/api/sync`];
+let endpointIdx = 0;
 const keyFor = (id: string) => (id === 'default' ? BASE_KEY : `${BASE_KEY}:${id}`);
 
 function readJson<T>(key: string): T | null {
@@ -147,21 +156,32 @@ function applyLocal(h: Household, c: SyncConfig) {
 }
 
 async function request(method: 'GET' | 'PUT', password: string, body?: unknown): Promise<unknown> {
-  let res: Response;
-  try {
-    res = await fetch(ENDPOINT, {
-      method,
-      headers: { 'content-type': 'application/json', 'x-sync-password': password },
-      body: body === undefined ? undefined : JSON.stringify(body),
-      cache: 'no-store',
-    });
-  } catch {
-    throw new Error('Нет связи с сервером синхронизации.');
+  let lastError: Error | null = null;
+  // keep using the endpoint that worked; on a network error / missing function try the next one
+  for (let n = 0; n < ENDPOINTS.length; n++) {
+    const url = ENDPOINTS[(endpointIdx + n) % ENDPOINTS.length];
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        method,
+        headers: { 'content-type': 'application/json', 'x-sync-password': password },
+        body: body === undefined ? undefined : JSON.stringify(body),
+        cache: 'no-store',
+      });
+    } catch {
+      lastError = new Error('Нет связи с сервером синхронизации.');
+      continue;
+    }
+    if (res.status === 404) {
+      lastError = new Error('Сервер синхронизации не найден.');
+      continue;
+    }
+    endpointIdx = (endpointIdx + n) % ENDPOINTS.length;
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error((data as { error?: string }).error ?? `Ошибка синхронизации ${res.status}`);
+    return data;
   }
-  if (res.status === 404) throw new Error('Сервер синхронизации не найден: сайт должен публиковаться из GitHub (см. Настройки).');
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error((data as { error?: string }).error ?? `Ошибка синхронизации ${res.status}`);
-  return data;
+  throw lastError ?? new Error('Нет связи с сервером синхронизации.');
 }
 
 let running: Promise<void> | null = null;
