@@ -23,4 +23,5 @@ export const words: VocabItem[] = [
   { de: 'nur', pos: 'adv', ru: 'только', example: 'Das kostet nur zwei Euro.', exampleRu: 'Это стоит всего два евро.', pronRu: 'НУ:А' },
   { de: 'sehr', pos: 'adv', ru: 'очень', example: 'Danke sehr!', exampleRu: 'Большое спасибо!', pronRu: 'ЗЭ:А' },
   { de: 'nie', pos: 'adv', ru: 'никогда', example: 'Tom ist nie müde.', exampleRu: 'Том никогда не устаёт.', pronRu: 'НИ:' },
+  { de: 'Meter', article: 'der', plural: '–', forms: 'после числа: zwei Meter', pos: 'noun', ru: 'метр', example: 'Das Zimmer ist vier Meter lang.', exampleRu: 'Комната длиной четыре метра.', pronRu: 'дер МЭ:-та' },
 ];

@@ -156,7 +156,7 @@ export const more: UnitMore = {
         },
         {
           label: 'Larissa, 62',
-          body: 'Ich gehe im Herbst in Rente. Mein Mann und ich träumen von einem kleinen Haus auf dem Land. Wir würden gern Gemüse im eigenen Garten haben und vielleicht ein paar Hühner. Unsere Kinder finden die Idee verrückt. Aber wir haben schon ein Haus gesehen, nur dreißig Kilometer von der Stadt.',
+          body: 'Ich gehe im Herbst in Rente. Mein Mann und ich träumen von einem kleinen Haus auf dem Land. Wir hätten gern einen Gemüsegarten und vielleicht ein paar Hühner. Unsere Kinder finden die Idee verrückt. Aber wir haben schon ein Haus gesehen, nur dreißig Kilometer von der Stadt.',
         },
         {
           label: 'Bernd, 66',

@@ -54,13 +54,11 @@ export const words: VocabItem[] = [
   { de: 'Hochwasser', article: 'das', plural: '-', pos: 'noun', ru: 'наводнение, паводок', example: 'Nach dem langen Regen gibt es am Fluss Hochwasser.', exampleRu: 'После долгого дождя на реке паводок.' },
   { de: 'Waldbrand', article: 'der', plural: '-¨e', pos: 'noun', ru: 'лесной пожар', example: 'Im Sommer gibt es oft Waldbrände, weil es so trocken ist.', exampleRu: 'Летом часто бывают лесные пожары, потому что очень сухо.' },
   { de: 'Feuer', article: 'das', plural: '-', pos: 'noun', ru: 'огонь, пожар', example: 'Im Wald darf man kein Feuer machen.', exampleRu: 'В лесу нельзя разводить огонь.', pronRu: 'дас ФОЙ-а' },
-  { de: 'Teich', article: 'der', plural: '-e', pos: 'noun', ru: 'пруд', example: 'Im Teich im Park leben viele Fische.', exampleRu: 'В пруду в парке живёт много рыб.', pronRu: 'дер ТАЙХЬ' },
   { de: 'Nationalpark', article: 'der', plural: '-s', pos: 'noun', ru: 'национальный парк', example: 'Im Nationalpark werden Tiere und Pflanzen geschützt.', exampleRu: 'В национальном парке охраняют животных и растения.' },
   { de: 'Biene', article: 'die', plural: '-n', pos: 'noun', ru: 'пчела', example: 'Die Bienen fliegen von Blume zu Blume.', exampleRu: 'Пчёлы летают от цветка к цветку.' },
   { de: 'Schmetterling', article: 'der', plural: '-e', pos: 'noun', ru: 'бабочка', example: 'Im Garten sitzt ein bunter Schmetterling.', exampleRu: 'В саду сидит пёстрая бабочка.', pronRu: 'дер ШМЭ-та-линг' },
 
   // Mehr Haushalt und Energie
-  { de: 'Mülleimer', article: 'der', plural: '-', pos: 'noun', ru: 'мусорное ведро', example: 'Der Mülleimer steht unter der Spüle.', exampleRu: 'Мусорное ведро стоит под раковиной.', pronRu: 'дер МЮЛЬ-ай-ма' },
   { de: 'Glühbirne', article: 'die', plural: '-n', pos: 'noun', ru: 'лампочка (накаливания)', example: 'Die Glühbirne in der Küche ist kaputt.', exampleRu: 'Лампочка на кухне перегорела.', pronRu: 'ди ГЛЮ:-бир-нэ' },
   { de: 'Wärme', article: 'die', plural: '–', pos: 'noun', ru: 'тепло', example: 'Mach das Fenster zu, sonst geht die Wärme raus.', exampleRu: 'Закрой окно, а то тепло уходит.', pronRu: 'ди ВЭР-мэ' },
   { de: 'Wasserhahn', article: 'der', plural: '-¨e', pos: 'noun', ru: 'водопроводный кран', example: 'Mach bitte den Wasserhahn zu, wenn du dir die Zähne putzt.', exampleRu: 'Закрывай, пожалуйста, кран, когда чистишь зубы.' },

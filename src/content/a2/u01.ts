@@ -17,7 +17,7 @@ export const unit: Unit = {
     topicRu: 'Перфект: повторение, неправильные глаголы, haben или sein',
     explanationRu: `**Перфект** (Perfekt) — главное прошедшее время в разговорной речи. Вы уже знаете его с уровня A1: «Ich habe gearbeitet», «Ich bin gefahren». В этом юните мы повторим правила и выучим много **неправильных глаголов** — они нужны, чтобы рассказать о своей жизни.
 
-**Как строится перфект:** **haben** или **sein** (спрягается и стоит на 2-м месте) + **Partizip II** (причастие, стоит в самом конце предложения).
+**Как строится перфект:** **haben** или **sein** (спрягается и стоит на 2-м месте) + **Partizip II** (причастие, стоит в самом конце).
 
 - Ich **habe** in Moskau Maschinenbau **studiert**.
 - 1990 **bin** ich nach Kiew **gezogen**.
@@ -25,7 +25,7 @@ export const unit: Unit = {
 **Как образуется Partizip II:**
 
 - правильные глаголы: **ge- … -t**: machen → gemacht, arbeiten → gearbeitet, heiraten → geheiratet;
-- неправильные глаголы: **ge- … -en**, часто с другой гласной: schreiben → geschrieben, finden → gefunden, sprechen → gesprochen. Эти формы нужно учить наизусть (см. таблицу);
+- неправильные глаголы: **ge- … -en**, часто с другой гласной: schreiben → geschrieben, finden → gefunden, sprechen → gesprochen. Их нужно учить наизусть (см. таблицу);
 - отделяемые глаголы: ge- стоит в середине: aufwachsen → auf**ge**wachsen, anfangen → an**ge**fangen;
 - **без ge-**: глаголы на -ieren (studieren → studiert) и глаголы с приставками be-, ver-, er- (bekommen → bekommen, verlieren → verloren, erzählen → erzählt).
 
@@ -160,7 +160,7 @@ export const unit: Unit = {
     { de: 'aufwachsen', forms: 'wächst auf, ist aufgewachsen', pos: 'verb', ru: 'вырасти, расти', example: 'Meine Frau ist in Odessa aufgewachsen.', exampleRu: 'Моя жена выросла в Одессе.', pronRu: 'АУФ-вак-сэн' },
     { de: 'Ausbildung', article: 'die', plural: '-en', pos: 'noun', ru: 'профессиональное обучение (на рабочую профессию)', example: 'Er hat eine Ausbildung als Koch gemacht.', exampleRu: 'Он выучился на повара.', pronRu: 'ди АУС-биль-дунг' },
     { de: 'Studium', article: 'das', plural: 'die Studien', pos: 'noun', ru: 'учёба в вузе', example: 'Das Studium hat fünf Jahre gedauert.', exampleRu: 'Учёба длилась пять лет.', pronRu: 'дас ШТУ-ди-ум' },
-    { de: 'Prüfung', article: 'die', plural: '-en', pos: 'noun', ru: 'экзамен', example: 'Morgen habe ich eine Prüfung.', exampleRu: 'Завтра у меня экзамен.', pronRu: 'ди ПРЮ-фунг' },
+    { de: 'Diplom', article: 'das', plural: '-e', pos: 'noun', ru: 'диплом', example: 'Ich habe mein Diplom 1983 bekommen.', exampleRu: 'Я получил диплом в 1983 году.', pronRu: 'дас ди-ПЛО:М' },
     { de: 'bestehen', forms: 'besteht, hat bestanden', pos: 'verb', ru: 'сдать (экзамен), выдержать', example: 'Sie hat die Prüfung mit „sehr gut“ bestanden.', exampleRu: 'Она сдала экзамен на «отлично».', pronRu: 'бэ-ШТЕ-эн' },
     { de: 'Stelle', article: 'die', plural: '-n', pos: 'noun', ru: 'место работы, должность', example: 'Mein Sohn hat eine Stelle in Hamburg gefunden.', exampleRu: 'Мой сын нашёл работу в Гамбурге.', pronRu: 'ди ШТЭ-ле' },
     { de: 'heiraten', forms: 'heiratet, hat geheiratet', pos: 'verb', ru: 'жениться, выйти замуж', example: 'Wir haben 1982 geheiratet.', exampleRu: 'Мы поженились в 1982 году.', pronRu: 'ХАЙ-ра-тэн' },

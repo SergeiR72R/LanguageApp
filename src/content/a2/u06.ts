@@ -169,7 +169,7 @@ export const unit: Unit = {
 B: Ja, auf den Namen Sokolow, für zwei Personen.
 A: Ah ja. Bitte, der kleine Tisch am Fenster. Hier ist die Speisekarte. Möchten Sie schon etwas trinken?
 B: Ja, meine Frau nimmt den roten Wein, und ich möchte ein Wasser.
-A: Gern. Haben Sie auch schon ein Essen gewählt?
+A: Gern. Haben Sie auch schon gewählt?
 B: Ja. Als Vorspeise nehmen wir zweimal die Kartoffelsuppe. Dann möchte ich das große Schnitzel mit Pommes, und meine Frau nimmt den Fisch mit Reis.
 A: Sehr gut.
 B: Entschuldigung! Die Suppe ist leider kalt.

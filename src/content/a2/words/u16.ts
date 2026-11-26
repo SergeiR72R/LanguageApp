@@ -35,7 +35,6 @@ export const words: VocabItem[] = [
 
   // Körper und Training
   { de: 'schwitzen', forms: 'schwitzt, hat geschwitzt', pos: 'verb', ru: 'потеть', example: 'Beim Joggen schwitze ich sehr.', exampleRu: 'Когда бегаю, я сильно потею.' },
-  { de: 'sich verletzen', forms: 'verletzt sich, hat sich verletzt', pos: 'verb', ru: 'пораниться, получить травму', example: 'Er hat sich beim Fußball am Knie verletzt.', exampleRu: 'Он повредил колено во время футбола.' },
   { de: 'Verletzung', article: 'die', plural: '-en', pos: 'noun', ru: 'травма, ранение', example: 'Sie hat eine Verletzung am Knie und kann nicht spielen.', exampleRu: 'У неё травма колена, и она не может играть.' },
   { de: 'anstrengend', pos: 'adj', ru: 'утомительный, тяжёлый', example: 'Das Training heute war sehr anstrengend.', exampleRu: 'Сегодняшняя тренировка была очень тяжёлой.' },
   { de: 'aktiv', pos: 'adj', ru: 'активный', example: 'Auch im Alter möchte ich aktiv bleiben.', exampleRu: 'И в старости я хочу оставаться активным.' },

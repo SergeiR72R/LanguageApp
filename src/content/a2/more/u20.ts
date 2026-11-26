@@ -269,7 +269,7 @@ Untergeschoss: Lebensmittel · Getränke · Haushaltswaren · Töpfe und Küchen
           heading: 'Betreff: Endlich in Leipzig!',
           body: `Lieber Sven,
 
-entschuldige, dass ich so lange nicht geschrieben habe. Die letzten Wochen waren sehr stressig. Wie du weißt, habe ich im Oktober eine neue Stelle in einem Hotel in Leipzig angefangen. Die Arbeit an der Rezeption gefällt mir sehr gut, und meine Kollegen sind nett. Nur die Arbeitszeiten sind nicht so toll: Oft muss ich am Wochenende arbeiten.
+entschuldige, dass ich so lange nicht geschrieben habe. Die letzten Wochen waren sehr stressig. Wie du weißt, habe ich im September eine neue Stelle in einem Hotel in Leipzig angefangen. Die Arbeit an der Rezeption gefällt mir sehr gut, und meine Kollegen sind nett. Nur die Arbeitszeiten sind nicht so toll: Oft muss ich am Wochenende arbeiten.
 
 Eine Wohnung habe ich auch schon gefunden. Sie ist nicht groß, aber hell und ruhig, und ich kann mit dem Fahrrad zur Arbeit fahren. Am 15. November mache ich eine kleine Party in meiner neuen Wohnung. Ich würde mich sehr freuen, wenn du kommst! Du kannst gern bei mir übernachten, ich habe ein Gästebett.
 
