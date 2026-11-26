@@ -1,0 +1,256 @@
+import type { UnitMore } from '../../types';
+
+export const more: UnitMore = {
+  exercises: [
+    {
+      type: 'choice',
+      audio: 'Be',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['B', 'P', 'D', 'W'],
+      answer: 0,
+      explanationRu: 'Be [бэ] — это B. P называется «пэ», D — «дэ», W — «вэ».',
+    },
+    {
+      type: 'choice',
+      audio: 'Pe',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['B', 'P', 'R', 'T'],
+      answer: 1,
+      explanationRu: 'Pe [пэ] — это P. Она похожа на русскую «Р», но называется «пэ».',
+    },
+    {
+      type: 'choice',
+      audio: 'Fau',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['F', 'W', 'V', 'U'],
+      answer: 2,
+      explanationRu: 'Fau [фау] — это V. Буква F называется «эф», W — «вэ», U — «у».',
+    },
+    {
+      type: 'choice',
+      audio: 'Ypsilon',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['U', 'I', 'J', 'Y'],
+      answer: 3,
+      explanationRu: 'Ypsilon [ЮП-си-лон] — это Y. Не путайте с U [у] и J [йот].',
+    },
+    {
+      type: 'choice',
+      audio: 'Ix',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['X', 'H', 'I', 'K'],
+      answer: 0,
+      explanationRu: 'Ix [икс] — это X. Буква H называется «ха», I — «и», K — «ка».',
+    },
+    {
+      type: 'choice',
+      audio: 'Ku',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['K', 'Q', 'U', 'C'],
+      answer: 1,
+      explanationRu: 'Ku [ку] — это Q. K называется «ка», U — «у», C — «цэ».',
+    },
+    {
+      type: 'choice',
+      audio: 'Eszett',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['S', 'Z', 'ß', 'X'],
+      answer: 2,
+      explanationRu: 'Eszett [эс-ЦЭТ] — это ß. Буква S называется «эс», Z — «цэт».',
+    },
+    {
+      type: 'choice',
+      audio: 'Ge',
+      prompt: 'Послушайте. Какую букву вы слышите?',
+      options: ['J', 'G', 'C', 'K'],
+      answer: 1,
+      explanationRu: 'Ge [гэ] — это G. J называется «йот», C — «цэ», K — «ка».',
+    },
+    {
+      type: 'gap',
+      audio: 'Em, A, Em, A',
+      prompt: 'Слово диктуют по буквам. Напишите его: ___',
+      answers: ['Mama'],
+      explanationRu: 'Em = M, A = A. Получается Mama — мама.',
+    },
+    {
+      type: 'gap',
+      audio: 'Te, E, E',
+      prompt: 'Слово диктуют по буквам. Напишите его: ___',
+      answers: ['Tee'],
+      hintRu: 'чай',
+      explanationRu: 'Te = T, E = E, E = E. Получается Tee [ТЭ:] — чай. Двойная ee — это долгое «э».',
+    },
+    {
+      type: 'gap',
+      audio: 'Zett, O, O',
+      prompt: 'Слово диктуют по буквам. Напишите его: ___',
+      answers: ['Zoo'],
+      explanationRu: 'Zett = Z, O = O, O = O. Получается Zoo [ЦО:] — зоопарк.',
+    },
+    {
+      type: 'gap',
+      audio: 'Be, U, Es',
+      prompt: 'Слово диктуют по буквам. Напишите его: ___',
+      answers: ['Bus'],
+      explanationRu: 'Be = B, U = U, Es = S. Получается Bus — автобус.',
+    },
+    {
+      type: 'gap',
+      audio: 'Name',
+      prompt: 'Напишите слово, которое слышите: ___',
+      answers: ['Name'],
+      hintRu: 'имя',
+      explanationRu: 'Name [НА:-мэ] — имя. Это существительное, поэтому пишется с большой буквы. Конечная e читается как короткое «э».',
+    },
+    {
+      type: 'gap',
+      audio: 'Hallo',
+      prompt: 'Напишите слово, которое слышите: ___',
+      answers: ['Hallo'],
+      explanationRu: 'Hallo [ха-ЛО:] — привет. В середине две буквы l, в начале — H (звук «х»).',
+    },
+    {
+      type: 'choice',
+      audio: 'Tschüss!',
+      prompt: 'Что вы слышите?',
+      options: ['Hallo!', 'Tschüss!', 'Danke!', 'Bitte!'],
+      answer: 1,
+      explanationRu: 'Tschüss [ЧЮС] — пока. Сочетание tsch читается как русское «ч».',
+    },
+    {
+      type: 'choice',
+      prompt: 'Как читается слово «Zoo»?',
+      options: ['ЗО:', 'ЦО:', 'ЗУ:'],
+      answer: 1,
+      explanationRu: 'Немецкая Z — это всегда «ц», а двойная oo — долгое «о»: [ЦО:].',
+    },
+    {
+      type: 'choice',
+      prompt: 'Как читается слово «Haus» (дом)?',
+      options: ['НАУС', 'ХАУС', 'ХАУЗ'],
+      answer: 1,
+      explanationRu: 'H — это «х», au — «ау», а s в конце слова — глухое «с»: [ХАУС].',
+    },
+    {
+      type: 'choice',
+      prompt: 'Какая буква читается как русское «в»?',
+      options: ['V', 'W', 'B'],
+      answer: 1,
+      explanationRu: 'Звук «в» — это буква W: Wasser [ВА-са]. V обычно читается «ф», а B — «б».',
+    },
+    {
+      type: 'choice',
+      prompt: 'Какая буква читается как русское «ц»?',
+      options: ['Z', 'S', 'X'],
+      answer: 0,
+      explanationRu: 'Z — это «ц»: Zimmer [ЦИ-ма]. S читается «з» или «с», X — «кс».',
+    },
+    {
+      type: 'choice',
+      prompt: 'Как называется буква J?',
+      options: ['Jott', 'Ge', 'Ix'],
+      answer: 0,
+      explanationRu: 'J называется Jott [йот] и читается как «й»: ja [Я:]. Ge — это G, Ix — это X.',
+    },
+    {
+      type: 'choice',
+      prompt: 'Буква ß читается как…',
+      options: ['с', 'б', 'в'],
+      answer: 0,
+      explanationRu: 'ß похожа на «б» или «В», но это глухое «с»: Straße [ШТРА:-сэ] — улица.',
+    },
+    {
+      type: 'choice',
+      prompt: 'Как продиктовать по буквам слово «Wein» (вино)?',
+      options: ['We, E, I, En', 'Fau, E, I, En', 'We, A, I, En'],
+      answer: 0,
+      explanationRu: 'W = We, E = E, I = I, N = En. Звук «ай» пишется буквами e + i.',
+    },
+    {
+      type: 'gap',
+      prompt: 'Wie ___ Sie? – Ich heiße Peter.',
+      answers: ['heißen', 'heissen'],
+      explanationRu: 'Вопрос «Как Вас зовут?» — Wie heißen Sie? С вежливым Sie глагол заканчивается на -en.',
+    },
+    {
+      type: 'choice',
+      prompt: 'Что значит «Wie bitte?»',
+      options: ['Как, простите? (я не расслышал)', 'Как дела?', 'Пожалуйста.'],
+      answer: 0,
+      explanationRu: '«Wie bitte?» говорят, когда не расслышали или не поняли и просят повторить.',
+    },
+  ],
+  reading: [],
+  listening: [
+    {
+      title: 'Im Deutschkurs',
+      kind: 'monolog',
+      situation: 'Sie hören eine Lehrerin im Deutschkurs.',
+      text: 'Hallo und guten Tag! Ich heiße Maria Weber. Weber – ich buchstabiere: We, E, Be, E, Er. Ich bin die Lehrerin. Und Sie? Wie heißen Sie? Bitte buchstabieren Sie Ihren Namen. Langsam, bitte! Danke.',
+      playCount: 2,
+      tasks: [
+        {
+          instructionDe: 'Hören Sie den Text. Richtig oder falsch?',
+          instructionRu: 'Послушайте текст. Верно или неверно?',
+          items: [
+            { kind: 'tf', statement: 'Die Lehrerin heißt Maria.', answer: true, explanationRu: 'Она говорит: «Ich heiße Maria Weber».' },
+            { kind: 'tf', statement: 'Weber schreibt man mit V.', answer: false, explanationRu: 'Она диктует «We» — это буква W, а не V («Fau»).' },
+            { kind: 'tf', statement: '„Weber“ hat fünf Buchstaben.', answer: true, explanationRu: 'We, E, Be, E, Er — пять букв: W-E-B-E-R.' },
+          ],
+        },
+        {
+          instructionDe: 'Hören Sie noch einmal. Was ist richtig?',
+          instructionRu: 'Послушайте ещё раз. Что правильно?',
+          items: [
+            {
+              kind: 'mc',
+              question: 'Wie schreibt man den Namen?',
+              options: ['Weber', 'Veber', 'Wepper'],
+              answer: 0,
+              explanationRu: 'We, E, Be, E, Er = Weber.',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Im Büro',
+      kind: 'dialog',
+      situation: 'Sie hören ein Gespräch in einem Büro.',
+      speakers: { A: 'Mitarbeiter', B: 'Lena Müller' },
+      text: `A: Guten Tag! Wie heißen Sie, bitte?
+B: Ich heiße Lena Müller.
+A: Müller mit Ü?
+B: Ja, mit Ü. Em, Ü, El, El, E, Er.
+A: Danke. Und Lena?
+B: El, E, En, A.
+A: Danke, Frau Müller.`,
+      playCount: 2,
+      tasks: [
+        {
+          instructionDe: 'Hören Sie den Text. Richtig oder falsch?',
+          instructionRu: 'Послушайте диалог. Верно или неверно?',
+          items: [
+            { kind: 'tf', statement: 'Die Frau heißt Lena Müller.', answer: true, explanationRu: 'Она говорит: «Ich heiße Lena Müller».' },
+            { kind: 'tf', statement: 'Müller schreibt man mit U.', answer: false, explanationRu: 'Мужчина спрашивает «Müller mit Ü?», и она отвечает: «Ja, mit Ü».' },
+            { kind: 'tf', statement: '„Lena“ hat vier Buchstaben.', answer: true, explanationRu: 'El, E, En, A — четыре буквы: L-E-N-A.' },
+          ],
+        },
+        {
+          instructionDe: 'Hören Sie noch einmal. Was ist richtig?',
+          instructionRu: 'Послушайте ещё раз. Что правильно?',
+          items: [
+            {
+              kind: 'mc',
+              question: 'Müller schreibt man mit …',
+              options: ['einem L', 'zwei L', 'drei L'],
+              answer: 1,
+              explanationRu: 'Она диктует «El, El» — две буквы L: Müller.',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};

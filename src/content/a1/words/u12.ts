@@ -25,7 +25,7 @@ export const words: VocabItem[] = [
   { de: 'Versichertenkarte', article: 'die', plural: '-n', pos: 'noun', ru: 'карточка медицинской страховки', example: 'Ich muss meine Versichertenkarte mitbringen.', exampleRu: 'Мне нужно взять с собой карточку страховки.', pronRu: 'ди фэр-ЗИХЬ-а-тэн-кар-тэ' },
   { de: 'dringend', pos: 'adj', ru: 'срочный; срочно', example: 'Ich brauche dringend einen Termin.', exampleRu: 'Мне срочно нужен приём.', pronRu: 'ДРИН-гэнт' },
   { de: 'möglich', pos: 'adj', ru: 'возможный; возможно', example: 'Ist ein Termin am Freitag möglich?', exampleRu: 'Возможна запись на пятницу?', pronRu: 'МЁ:К-лихь' },
-  { de: 'zurückrufen', forms: 'er ruft zurück', pos: 'verb', ru: 'перезванивать', example: 'Ich rufe morgen zurück.', exampleRu: 'Я перезвоню завтра.', pronRu: 'цу-РЮК-ру:-фэн' },
+  { de: 'nachmittags', pos: 'adv', ru: 'после обеда, во второй половине дня (регулярно)', example: 'Die Praxis ist nachmittags geschlossen.', exampleRu: 'После обеда кабинет врача закрыт.', pronRu: 'НАХ-ми-та:кс' },
   { de: 'vorbeikommen', forms: 'er kommt vorbei', pos: 'verb', ru: 'заходить, заглядывать (ненадолго)', example: 'Kannst du heute vorbeikommen?', exampleRu: 'Ты можешь сегодня зайти?', pronRu: 'фор-БАЙ-ко-мэн' },
   // Redemittel
   { de: 'Das geht.', pos: 'phrase', ru: 'Так можно. / Это подходит.', example: 'Am Montag um zehn? Ja, das geht.', exampleRu: 'В понедельник в десять? Да, это подходит.', pronRu: 'дас ГЕ:Т' },

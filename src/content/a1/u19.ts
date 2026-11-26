@@ -164,9 +164,9 @@ export const unit: Unit = {
     { de: 'Alles Gute!', pos: 'phrase', ru: 'Всего хорошего! (пожелание, поздравление)', example: 'Alles Gute zum Geburtstag!', exampleRu: 'Всего хорошего в день рождения! (С днём рождения!)', pronRu: 'А-лес ГУ:-тэ' },
     { de: 'Torte', article: 'die', plural: '-n', pos: 'noun', ru: 'торт', example: 'Die Torte ist sehr lecker.', exampleRu: 'Торт очень вкусный.', pronRu: 'ди ТОР-тэ' },
     { de: 'Kerze', article: 'die', plural: '-n', pos: 'noun', ru: 'свеча', example: 'Wir brauchen noch zwei Kerzen.', exampleRu: 'Нам нужны ещё две свечи.', pronRu: 'ди КЭР-цэ' },
-    { de: 'absagen', forms: 'sagt ab, hat abgesagt', pos: 'verb', ru: 'отказываться (от встречи), отменять', example: 'Ich muss die Party leider absagen.', exampleRu: 'К сожалению, мне придётся отказаться от вечеринки.', pronRu: 'АП-за-гэн' },
+    { de: 'Überraschung', article: 'die', plural: '-en', pos: 'noun', ru: 'сюрприз', example: 'Die Party ist eine Überraschung!', exampleRu: 'Эта вечеринка — сюрприз!', pronRu: 'ди ю-ба-РА-шунг' },
     { de: 'zusagen', forms: 'sagt zu, hat zugesagt', pos: 'verb', ru: 'принять приглашение, пообещать прийти', example: 'Fünf Gäste haben schon zugesagt.', exampleRu: 'Пять гостей уже согласились прийти.', pronRu: 'ЦУ:-за-гэн' },
-    { de: 'leider', pos: 'adv', ru: 'к сожалению', example: 'Ich habe leider keine Zeit.', exampleRu: 'К сожалению, у меня нет времени.', pronRu: 'ЛАЙ-да' },
+    { de: 'mitbringen', forms: 'bringt mit, hat mitgebracht', pos: 'verb', ru: 'приносить с собой', example: 'Was soll ich mitbringen?', exampleRu: 'Что мне принести?', pronRu: 'МИТ-брин-гэн' },
     { de: 'denn', forms: 'союз: глагол после него на 2-м месте', pos: 'conj', ru: 'потому что', example: 'Ich komme nicht, denn ich bin krank.', exampleRu: 'Я не приду, потому что я болен.', pronRu: 'ДЭН' },
   ],
   listening: {

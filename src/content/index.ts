@@ -48,19 +48,24 @@ export const lemmaKey = (v: VocabItem) => `${v.article ?? ''} ${v.de}`.toLowerCa
 /**
  * Word banks were written in parallel, so a word can appear in several of them.
  * Keep only its first occurrence in course order (core vocab of all units first).
+ * B1–C1 and A1/A2 are de-duplicated separately: learned word cards are stored by their position in the
+ * de-duplicated list, so adding the beginner levels must not shift the B1–C1 lists.
  */
 const wordBanks = (() => {
   const raw = new Map<string, VocabItem[]>(Object.entries(wordModules).map(([p, m]) => [idFromPath(p), m.words ?? []]));
-  const seen = new Set<string>(allUnits.flatMap((u) => u.vocab.map(lemmaKey)));
   const out = new Map<string, VocabItem[]>();
-  for (const u of allUnits) {
-    const list = (raw.get(u.id) ?? []).filter((v) => {
-      const k = lemmaKey(v);
-      if (seen.has(k)) return false;
-      seen.add(k);
-      return true;
-    });
-    out.set(u.id, list);
+  const groups = [allUnits.filter((u) => u.level === 'A1' || u.level === 'A2'), allUnits.filter((u) => u.level !== 'A1' && u.level !== 'A2')];
+  for (const group of groups) {
+    const seen = new Set<string>(group.flatMap((u) => u.vocab.map(lemmaKey)));
+    for (const u of group) {
+      const list = (raw.get(u.id) ?? []).filter((v) => {
+        const k = lemmaKey(v);
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      });
+      out.set(u.id, list);
+    }
   }
   return out;
 })();

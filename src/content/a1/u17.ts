@@ -150,7 +150,7 @@ Was **hast** du am Wochenende **gemacht**? — Что ты делал(а) в в�
   vocab: [
     { de: 'Beruf', article: 'der', plural: '-e', pos: 'noun', ru: 'профессия', example: 'Was sind Sie von Beruf?', exampleRu: 'Кто вы по профессии?', pronRu: 'дер бэ-РУ:Ф' },
     { de: 'Arbeit', article: 'die', plural: '-en', pos: 'noun', ru: 'работа', example: 'Meine Arbeit ist interessant.', exampleRu: 'Моя работа интересная.', pronRu: 'ди АР-байт' },
-    { de: 'arbeiten', forms: 'er arbeitet, hat gearbeitet', pos: 'verb', ru: 'работать', example: 'Ich arbeite in einem Büro.', exampleRu: 'Я работаю в офисе.', pronRu: 'АР-бай-тэн' },
+    { de: 'Arbeitsplatz', article: 'der', plural: '-¨e', pos: 'noun', ru: 'рабочее место', example: 'Mein Arbeitsplatz ist am Fenster.', exampleRu: 'Моё рабочее место у окна.', pronRu: 'дер АР-байтс-плац' },
     { de: 'Lehrer', article: 'der', plural: '-', pos: 'noun', ru: 'учитель (die Lehrerin — учительница)', example: 'Mein Bruder ist Lehrer.', exampleRu: 'Мой брат — учитель.', pronRu: 'дер ЛЕ:-ра' },
     { de: 'Verkäufer', article: 'der', plural: '-', pos: 'noun', ru: 'продавец (die Verkäuferin — продавщица)', example: 'Die Verkäuferin ist sehr nett.', exampleRu: 'Продавщица очень милая.', pronRu: 'дер фэа-КОЙ-фа' },
     { de: 'Koch', article: 'der', plural: '-¨e', pos: 'noun', ru: 'повар (die Köchin)', example: 'Er arbeitet als Koch.', exampleRu: 'Он работает поваром.', pronRu: 'дер КОХ' },
@@ -163,7 +163,7 @@ Was **hast** du am Wochenende **gemacht**? — Что ты делал(а) в в�
     { de: 'Firma', article: 'die', plural: 'die Firmen', pos: 'noun', ru: 'фирма', example: 'Ich arbeite bei einer Firma in Köln.', exampleRu: 'Я работаю в одной фирме в Кёльне.', pronRu: 'ди ФИР-ма' },
     { de: 'Büro', article: 'das', plural: '-s', pos: 'noun', ru: 'офис, контора', example: 'Sie arbeitet im Büro.', exampleRu: 'Она работает в офисе.', pronRu: 'дас бю-РО:' },
     { de: 'Fabrik', article: 'die', plural: '-en', pos: 'noun', ru: 'фабрика, завод', example: 'Er hat in einer Fabrik gearbeitet.', exampleRu: 'Он работал на заводе.', pronRu: 'ди фа-БРИК' },
-    { de: 'Krankenhaus', article: 'das', plural: '-¨er', pos: 'noun', ru: 'больница', example: 'Sie arbeitet im Krankenhaus.', exampleRu: 'Она работает в больнице.', pronRu: 'дас КРАН-кен-хаус' },
+    { de: 'Werkstatt', article: 'die', plural: 'die Werkstätten', pos: 'noun', ru: 'мастерская, автосервис', example: 'Das Auto ist in der Werkstatt.', exampleRu: 'Машина в автосервисе.', pronRu: 'ди ВЕРК-штат' },
     { de: 'Chef', article: 'der', plural: '-s', pos: 'noun', ru: 'начальник (die Chefin — начальница)', example: 'Mein Chef ist sehr nett.', exampleRu: 'Мой начальник очень приятный.', pronRu: 'дер ШЕФ' },
     { de: 'Kollege', article: 'der', plural: '-n', pos: 'noun', ru: 'коллега (die Kollegin — коллега-женщина)', example: 'Das ist mein Kollege Tim.', exampleRu: 'Это мой коллега Тим.', pronRu: 'дер ко-ЛЕ:-гэ' },
     { de: 'verdienen', forms: 'er verdient, hat verdient', pos: 'verb', ru: 'зарабатывать', example: 'Er verdient nicht viel.', exampleRu: 'Он зарабатывает немного.', pronRu: 'фэа-ДИ:-нэн' },
