@@ -240,7 +240,7 @@ A: Abgemacht!`,
     scenarioRu: 'Формат «Sprechen, Teil 1»: вы и ваша однокурсница хотите после экзамена вместе съездить куда-нибудь на выходные. Спланируйте поездку вместе.',
     aiRole:
       'Sie sind Marta, eine Kurskollegin aus dem B1-Kurs. Nach der Prüfung möchten Sie mit Ihrem Gesprächspartner einen Wochenendausflug machen. Besprechen Sie gemeinsam Reiseziel, Termin, Verkehrsmittel, Übernachtung und Programm. Machen Sie eigene Vorschläge, reagieren Sie auf die Vorschläge des Partners, widersprechen Sie manchmal höflich und suchen Sie gemeinsam eine Lösung. Sprechen Sie natürlich und auf B1-Niveau.',
-    opener: 'Endlich ist die Prüfung bald vorbei! Wollen wir danach nicht zusammen ein Wochenende wegfahren? Hast du schon eine Idee, wohin?',
+    opener: 'Bald ist die Prüfung endlich vorbei! Wollen wir danach nicht zusammen ein Wochenende wegfahren? Hast du schon eine Idee, wohin?',
     tasksRu: [
       'Предложите цель поездки и обоснуйте её (Ich schlage vor, dass … / Wie wäre es mit …?).',
       'Договоритесь о дате, транспорте и ночёвке; начинайте некоторые фразы с обстоятельства (Am Samstag fahren wir …).',
