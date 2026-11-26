@@ -172,7 +172,7 @@ Sie brauchen einen Termin. Telefon: 0341 55 61 20`,
       texts: [
         {
           body: `Liebe Sabine,
-es tut mir leid, ich kann am Freitag leider nicht ins Kino gehen. Ich muss bis 20 Uhr arbeiten. Kannst du am Samstag? Der Film ist auch am Samstag um 19 Uhr. Am Sonntag kann ich nicht. Ich muss meine Mutter besuchen, sie hat am 12. Mai Geburtstag.
+es tut mir leid, ich kann am Freitag nicht ins Kino gehen. Ich muss bis 20 Uhr arbeiten. Kannst du am Samstag? Der Film ist auch am Samstag um 19 Uhr. Am Sonntag kann ich nicht. Ich muss meine Mutter besuchen, sie hat am 12. Mai Geburtstag.
 Liebe Grüße
 Olga`,
         },

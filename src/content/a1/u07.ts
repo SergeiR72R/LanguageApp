@@ -151,7 +151,7 @@ export const unit: Unit = {
     { de: 'Zimmer', article: 'das', plural: '–', pos: 'noun', ru: 'комната', example: 'Das Zimmer ist hell.', exampleRu: 'Комната светлая.', pronRu: 'дас ЦИ-ма' },
     { de: 'Küche', article: 'die', plural: '-n', pos: 'noun', ru: 'кухня', example: 'Die Küche ist sehr klein.', exampleRu: 'Кухня очень маленькая.', pronRu: 'ди КЮ-хье' },
     { de: 'Bad', article: 'das', plural: '-¨er', pos: 'noun', ru: 'ванная (комната)', example: 'Das Bad ist neu.', exampleRu: 'Ванная новая.', pronRu: 'дас БАТ' },
-    { de: 'Schlafzimmer', article: 'das', plural: '–', pos: 'noun', ru: 'спальня', example: 'Das Schlafzimmer ist ruhig.', exampleRu: 'В спальне тихо.', pronRu: 'дас ШЛАФ-ци-ма' },
+    { de: 'Schlafzimmer', article: 'das', plural: '–', pos: 'noun', ru: 'спальня', example: 'Das Schlafzimmer ist klein.', exampleRu: 'Спальня маленькая.', pronRu: 'дас ШЛАФ-ци-ма' },
     { de: 'Wohnzimmer', article: 'das', plural: '–', pos: 'noun', ru: 'гостиная', example: 'Das Wohnzimmer ist groß.', exampleRu: 'Гостиная большая.', pronRu: 'дас ВОН-ци-ма' },
     { de: 'Balkon', article: 'der', plural: '-e', pos: 'noun', ru: 'балкон', example: 'Der Balkon ist klein.', exampleRu: 'Балкон маленький.', pronRu: 'дер баль-КОН' },
     { de: 'Tisch', article: 'der', plural: '-e', pos: 'noun', ru: 'стол', example: 'Der Tisch ist neu.', exampleRu: 'Стол новый.', pronRu: 'дер ТИШ' },

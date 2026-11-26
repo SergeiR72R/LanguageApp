@@ -193,7 +193,7 @@ B: Dann wünsche ich euch eine gute Reise!`,
     minWords: 50,
     usefulPhrases: [
       'Liebe Grüße aus …!',
-      'Wir sind seit Montag in … / am Meer / in den Bergen.',
+      'Wir sind jetzt schon drei Tage in … / am Meer / in den Bergen.',
       'Wir wohnen in einem kleinen Hotel direkt am Strand.',
       'Gestern sind wir auf die Insel … gefahren.',
       'Das Wetter ist super / leider nicht so gut.',

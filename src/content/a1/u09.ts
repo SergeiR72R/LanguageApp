@@ -191,7 +191,7 @@ A: Und fünfzig Cent zurück. Danke schön und tschüss!`,
     questions: [
       { question: 'Was kostet ein Kilo Tomaten?', options: ['2,50 Euro', '3 Euro', '9,50 Euro'], answer: 1 },
       { question: 'Wie viele Kilo Kartoffeln kauft die Frau?', options: ['ein Kilo', 'zwei Kilo', 'drei Kilo'], answer: 1 },
-      { question: 'Gibt es Äpfel?', options: ['Ja, sie kosten zwei Euro.', 'Nein.', 'Ja, aber nur drei.'], answer: 1 },
+      { question: 'Gibt es Äpfel?', options: ['Ja, sie kosten zwei Euro.', 'Nein.', 'Ja, nur drei.'], answer: 1 },
       { question: 'Was kauft die Frau noch?', options: ['Bananen', 'Eier', 'Käse'], answer: 0 },
       { question: 'Was kostet alles zusammen?', options: ['9,50 Euro', '10 Euro', '50 Cent'], answer: 0 },
     ],

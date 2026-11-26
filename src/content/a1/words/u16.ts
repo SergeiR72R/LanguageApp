@@ -22,13 +22,11 @@ export const words: VocabItem[] = [
   { de: 'Krankenkasse', article: 'die', plural: '-n', pos: 'noun', ru: 'больничная касса (медицинская страховка)', example: 'Bei welcher Krankenkasse sind Sie?', exampleRu: 'В какой больничной кассе вы застрахованы?', pronRu: 'ди КРАН-кен-ка-сэ' },
   { de: 'Pflaster', article: 'das', plural: '-', pos: 'noun', ru: 'пластырь', example: 'Hast du ein Pflaster für mich?', exampleRu: 'У тебя есть для меня пластырь?', pronRu: 'дас ПФЛАС-та' },
   { de: 'Krankenwagen', article: 'der', plural: '-', pos: 'noun', ru: 'машина скорой помощи', example: 'Bitte rufen Sie einen Krankenwagen!', exampleRu: 'Пожалуйста, вызовите скорую помощь!', pronRu: 'дер КРАН-кен-ва:-гэн' },
-  { de: 'Thermometer', article: 'das', plural: '-', pos: 'noun', ru: 'градусник, термометр', example: 'Wo ist das Thermometer?', exampleRu: 'Где градусник?', pronRu: 'дас тэр-мо-МЕ:-та' },
   // Krankheiten
   { de: 'Erkältung', article: 'die', plural: '-en', pos: 'noun', ru: 'простуда', example: 'Ich habe eine Erkältung.', exampleRu: 'У меня простуда.', pronRu: 'ди эа-КЕЛЬ-тунг' },
   { de: 'Husten', article: 'der', plural: '–', pos: 'noun', ru: 'кашель', example: 'Der Husten ist schon besser.', exampleRu: 'Кашель уже лучше.', pronRu: 'дер ХУ:С-тэн' },
   { de: 'Schnupfen', article: 'der', plural: '–', pos: 'noun', ru: 'насморк', example: 'Im Winter habe ich oft Schnupfen.', exampleRu: 'Зимой у меня часто насморк.', pronRu: 'дер ШНУП-фэн' },
   { de: 'Grippe', article: 'die', plural: '-n', pos: 'noun', ru: 'грипп', example: 'Meine Frau hat Grippe.', exampleRu: 'У моей жены грипп.', pronRu: 'ди ГРИ-пэ' },
-  { de: 'Gesundheit', article: 'die', plural: '–', pos: 'noun', ru: 'здоровье; Gesundheit! — Будьте здоровы! (когда чихают)', example: 'Sport ist gut für die Gesundheit.', exampleRu: 'Спорт полезен для здоровья.', pronRu: 'ди гэ-ЗУНТ-хайт' },
   { de: 'husten', forms: 'er hustet, hat gehustet', pos: 'verb', ru: 'кашлять', example: 'Das Kind hustet in der Nacht.', exampleRu: 'Ребёнок кашляет ночью.', pronRu: 'ХУ:С-тэн' },
   { de: 'rauchen', forms: 'er raucht, hat geraucht', pos: 'verb', ru: 'курить', example: 'Sie dürfen hier nicht rauchen.', exampleRu: 'Здесь нельзя курить.', pronRu: 'РАУ-хэн' },
   { de: 'verletzt', pos: 'adj', ru: 'раненый, травмированный', example: 'Der Mann ist am Bein verletzt.', exampleRu: 'У мужчины травма ноги.', pronRu: 'фэа-ЛЕЦТ' },

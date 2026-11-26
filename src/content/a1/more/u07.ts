@@ -146,7 +146,7 @@ export const more: UnitMore = {
       title: 'Wohnungsanzeigen',
       textType: 'Anzeigen',
       texts: [
-        { label: 'a', body: 'Kleine Wohnung: 1 Zimmer, Küche, Bad. 35 m², hell und ruhig. Kein Balkon. 390 Euro. Tel. 0176 445 582' },
+        { label: 'a', body: 'Kleine Wohnung: 1 Zimmer, Küche, Bad. 35 m², hell, nicht laut. Kein Balkon. 390 Euro. Tel. 0176 445 582' },
         { label: 'b', body: '3-Zimmer-Wohnung: Wohnzimmer, 2 Schlafzimmer, Küche, Bad und Balkon. 85 m². Die Küche ist neu. 890 Euro. Tel. 030 771 234' },
         { label: 'c', body: 'Zimmer frei! 18 m². Bett, Tisch, Stuhl und Schrank sind da. Küche und Bad für 3 Personen. 320 Euro. E-Mail: zimmer-frei@post.de' },
       ],
@@ -166,7 +166,7 @@ export const more: UnitMore = {
           instructionRu: 'Прочитайте объявления ещё раз. Верно или неверно?',
           items: [
             { kind: 'tf', statement: 'Das Zimmer in Anzeige c ist 18 m² groß.', answer: true, explanationRu: 'В объявлении c написано «18 m²».' },
-            { kind: 'tf', statement: 'Die Wohnung in Anzeige a ist laut.', answer: false, explanationRu: 'Квартира a «hell und ruhig» — светлая и тихая, а не шумная.' },
+            { kind: 'tf', statement: 'Die Wohnung in Anzeige a ist laut.', answer: false, explanationRu: 'Квартира a «hell, nicht laut» — светлая и не шумная.' },
           ],
         },
       ],
@@ -178,7 +178,7 @@ export const more: UnitMore = {
         {
           body: `Liebe Oma,
 
-ich habe jetzt eine Wohnung in Leipzig! Sie ist klein: ein Zimmer, eine Küche und ein Bad. Das Zimmer ist hell und sehr schön. Das Bett ist neu, der Schrank ist alt. Ein Sofa ist noch nicht da. Die Küche ist klein, da ist kein Tisch. Und ein Balkon ist da! Er ist klein und ruhig. Meine Nachbarin heißt Frau Schulz. Sie ist sehr nett.
+ich habe jetzt eine Wohnung in Leipzig! Sie ist klein: ein Zimmer, eine Küche und ein Bad. Das Zimmer ist hell und sehr schön. Das Bett ist neu, der Schrank ist alt. Ein Sofa ist noch nicht da. Die Küche ist klein, da ist kein Tisch. Und ein Balkon ist da! Er ist klein und schön. Meine Nachbarin heißt Frau Schulz. Sie ist sehr nett.
 
 Viele Grüße
 Deine Sofia`,
@@ -193,7 +193,7 @@ Deine Sofia`,
             { kind: 'tf', statement: 'Die Wohnung hat drei Zimmer.', answer: false, explanationRu: 'Только одна комната: «ein Zimmer, eine Küche und ein Bad».' },
             { kind: 'tf', statement: 'Das Bett ist alt.', answer: false, explanationRu: 'Кровать новая: «Das Bett ist neu». Старый — шкаф.' },
             { kind: 'tf', statement: 'Ein Sofa ist noch nicht da.', answer: true, explanationRu: 'Так и написано: «Ein Sofa ist noch nicht da».' },
-            { kind: 'tf', statement: 'Der Balkon ist groß.', answer: false, explanationRu: 'Балкон маленький: «Er ist klein und ruhig».' },
+            { kind: 'tf', statement: 'Der Balkon ist groß.', answer: false, explanationRu: 'Балкон маленький: «Er ist klein und schön».' },
             { kind: 'tf', statement: 'Frau Schulz ist nett.', answer: true, explanationRu: '«Sie ist sehr nett» — соседка очень милая.' },
           ],
         },
@@ -239,7 +239,7 @@ A: Ach so! Und der Schrank? Ist er neu?
 B: Nein, er ist alt. Das ist Omas Schrank.
 A: Und die Lampe? Sie ist sehr schön.
 B: Ja, die Lampe ist neu.
-A: Das Zimmer ist wirklich gemütlich, Max!`,
+A: Das Zimmer ist wirklich schön, Max!`,
       playCount: 2,
       tasks: [
         {

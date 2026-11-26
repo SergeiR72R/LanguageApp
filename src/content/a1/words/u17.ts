@@ -19,7 +19,7 @@ export const words: VocabItem[] = [
   { de: 'Kollegin', article: 'die', plural: '-nen', pos: 'noun', ru: 'коллега (женщина)', example: 'Meine Kollegin heißt Sabine.', exampleRu: 'Мою коллегу зовут Сабина.', pronRu: 'ди ко-ЛЕ:-гин' },
   { de: 'Chefin', article: 'die', plural: '-nen', pos: 'noun', ru: 'начальница', example: 'Die Chefin ist heute nicht da.', exampleRu: 'Начальницы сегодня нет.', pronRu: 'ди ШЕ-фин' },
   { de: 'Uniform', article: 'die', plural: '-en', pos: 'noun', ru: 'униформа, форма', example: 'Der Polizist trägt eine Uniform.', exampleRu: 'Полицейский носит форму.', pronRu: 'ди у-ни-ФОРМ' },
-  { de: 'Arbeitstag', article: 'der', plural: '-e', pos: 'noun', ru: 'рабочий день', example: 'Mein Arbeitstag beginnt um 8 Uhr.', exampleRu: 'Мой рабочий день начинается в 8 часов.', pronRu: 'дер АР-байтс-та:к' },
+  { de: 'Arbeiter', article: 'der', plural: '-', pos: 'noun', ru: 'рабочий (die Arbeiterin)', example: 'Er ist Arbeiter in einer Fabrik.', exampleRu: 'Он рабочий на заводе.', pronRu: 'дер АР-бай-та' },
   // Arbeitsort
   { de: 'Laden', article: 'der', plural: '-¨', pos: 'noun', ru: 'магазин, лавка', example: 'Sie arbeitet in einem Laden.', exampleRu: 'Она работает в магазине.', pronRu: 'дер ЛА:-дэн' },
   { de: 'Kunde', article: 'der', plural: '-n', pos: 'noun', ru: 'клиент, покупатель', example: 'Der Kunde möchte bezahlen.', exampleRu: 'Клиент хочет заплатить.', pronRu: 'дер КУН-дэ' },

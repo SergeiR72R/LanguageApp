@@ -22,12 +22,12 @@ export const words: VocabItem[] = [
   { de: 'Bild', article: 'das', plural: '-er', pos: 'noun', ru: 'картина', example: 'Das Bild ist sehr schön.', exampleRu: 'Картина очень красивая.', pronRu: 'дас БИЛЬТ' },
   { de: 'Kühlschrank', article: 'der', plural: '-¨e', pos: 'noun', ru: 'холодильник', example: 'Der Kühlschrank ist leer.', exampleRu: 'Холодильник пустой.', pronRu: 'дер КЮЛЬ-шранк' },
   { de: 'Herd', article: 'der', plural: '-e', pos: 'noun', ru: 'плита', example: 'Der Herd ist alt.', exampleRu: 'Плита старая.', pronRu: 'дер ХЭРТ' },
-  { de: 'Waschmaschine', article: 'die', plural: '-n', pos: 'noun', ru: 'стиральная машина', example: 'Die Waschmaschine ist kaputt.', exampleRu: 'Стиральная машина сломалась.', pronRu: 'ди ВАШ-ма-ши:-нэ' },
+  { de: 'Fernseher', article: 'der', plural: '–', pos: 'noun', ru: 'телевизор', example: 'Der Fernseher ist sehr groß.', exampleRu: 'Телевизор очень большой.', pronRu: 'дер ФЭРН-зэ-а' },
   { de: 'Quadratmeter', article: 'der', plural: '–', pos: 'noun', ru: 'квадратный метр (м²)', example: 'Die Wohnung hat 60 Quadratmeter.', exampleRu: 'Площадь квартиры — 60 м².', pronRu: 'дер ква-ДРАТ-мэ-та' },
   // Wie ist die Wohnung?
   { de: 'dunkel', pos: 'adj', ru: 'тёмный', example: 'Das Schlafzimmer ist dunkel.', exampleRu: 'Спальня тёмная.', pronRu: 'ДУН-кель' },
-  { de: 'gemütlich', pos: 'adj', ru: 'уютный', example: 'Das Wohnzimmer ist gemütlich.', exampleRu: 'Гостиная уютная.', pronRu: 'ге-МЮТ-лихь' },
+  { de: 'praktisch', pos: 'adj', ru: 'практичный, удобный', example: 'Die Küche ist sehr praktisch.', exampleRu: 'Кухня очень удобная.', pronRu: 'ПРАК-тиш' },
   { de: 'modern', pos: 'adj', ru: 'современный', example: 'Die Küche ist sehr modern.', exampleRu: 'Кухня очень современная.', pronRu: 'мо-ДЭРН' },
-  { de: 'ruhig', pos: 'adj', ru: 'тихий, спокойный', example: 'Die Wohnung ist ruhig.', exampleRu: 'Квартира тихая.', pronRu: 'РУ-ихь' },
+  { de: 'Arbeitszimmer', article: 'das', plural: '–', pos: 'noun', ru: 'кабинет', example: 'Das Arbeitszimmer ist klein.', exampleRu: 'Кабинет маленький.', pronRu: 'дас АР-байтс-ци-ма' },
   { de: 'laut', pos: 'adj', ru: 'шумный, громкий', example: 'Die Straße ist laut.', exampleRu: 'Улица шумная.', pronRu: 'ЛАУТ' },
 ];

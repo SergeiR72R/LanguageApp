@@ -20,7 +20,6 @@ export const words: VocabItem[] = [
   { de: 'Partnerin', article: 'die', plural: '-nen', pos: 'noun', ru: 'партнёрша, спутница жизни', example: 'Seine Partnerin kommt aus Polen.', exampleRu: 'Его спутница из Польши.', pronRu: 'ди ПАРТ-нэ-рин' },
   { de: 'Freund', article: 'der', plural: '-e', pos: 'noun', ru: 'друг; парень (бойфренд)', example: 'Das ist mein Freund Paul.', exampleRu: 'Это мой друг Пауль.', pronRu: 'дер ФРОЙНТ' },
   { de: 'Freundin', article: 'die', plural: '-nen', pos: 'noun', ru: 'подруга; девушка (подруга)', example: 'Meine Freundin wohnt in Bonn.', exampleRu: 'Моя подруга живёт в Бонне.', pronRu: 'ди ФРОЙН-дин' },
-  { de: 'heiraten', forms: 'er heiratet, hat geheiratet', pos: 'verb', ru: 'жениться, выходить замуж', example: 'Mein Bruder heiratet im Mai.', exampleRu: 'Мой брат женится в мае.', pronRu: 'ХАЙ-ра-тэн' },
   { de: 'lieben', forms: 'er liebt, hat geliebt', pos: 'verb', ru: 'любить', example: 'Ich liebe meine Familie.', exampleRu: 'Я люблю свою семью.', pronRu: 'ЛИ:-бэн' },
   { de: 'besuchen', forms: 'er besucht, hat besucht', pos: 'verb', ru: 'навещать, посещать', example: 'Ich besuche meine Eltern.', exampleRu: 'Я навещаю своих родителей.', pronRu: 'бэ-ЗУ-хэн' },
 
@@ -33,4 +32,9 @@ export const words: VocabItem[] = [
   // Haustiere
   { de: 'Hund', article: 'der', plural: '-e', pos: 'noun', ru: 'собака', example: 'Unser Hund heißt Bello.', exampleRu: 'Нашу собаку зовут Белло.', pronRu: 'дер ХУНТ' },
   { de: 'Katze', article: 'die', plural: '-n', pos: 'noun', ru: 'кошка', example: 'Meine Katze ist drei Jahre alt.', exampleRu: 'Моей кошке три года.', pronRu: 'ди КА-цэ' },
+
+  // Familie im Alltag
+  { de: 'Mama', article: 'die', plural: '-s', pos: 'noun', ru: 'мама (разг.)', example: 'Mama, wo ist Papa?', exampleRu: 'Мама, где папа?', pronRu: 'ди МА-ма' },
+  { de: 'Papa', article: 'der', plural: '-s', pos: 'noun', ru: 'папа (разг.)', example: 'Mein Papa heißt Igor.', exampleRu: 'Моего папу зовут Игорь.', pronRu: 'дер ПА-па' },
+  { de: 'allein', pos: 'adv', ru: 'один, одна (без других)', example: 'Mein Opa wohnt allein.', exampleRu: 'Мой дедушка живёт один.', pronRu: 'а-ЛАЙН' },
 ];

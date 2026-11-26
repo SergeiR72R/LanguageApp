@@ -36,7 +36,7 @@ export const words: VocabItem[] = [
   { de: 'landen', forms: 'landet, ist gelandet', pos: 'verb', ru: 'приземляться', example: 'Das Flugzeug ist pünktlich in Berlin gelandet.', exampleRu: 'Самолёт вовремя приземлился в Берлине.' },
   { de: 'Schiff', article: 'das', plural: '-e', pos: 'noun', ru: 'корабль, теплоход', example: 'Mit dem Schiff fahren wir auf die Insel.', exampleRu: 'На теплоходе мы плывём на остров.' },
   { de: 'Fähre', article: 'die', plural: '-n', pos: 'noun', ru: 'паром', example: 'Die Fähre fährt jede Stunde.', exampleRu: 'Паром ходит каждый час.', pronRu: 'ди ФЭ:-рэ' },
-  { de: 'Hafen', article: 'der', plural: '-¨', pos: 'noun', ru: 'порт, гавань', example: 'Am Abend gehen wir im Hafen spazieren.', exampleRu: 'Вечером мы гуляем в порту.' },
+  { de: 'Hafen', article: 'der', plural: 'die Häfen', pos: 'noun', ru: 'порт, гавань', example: 'Am Abend gehen wir im Hafen spazieren.', exampleRu: 'Вечером мы гуляем в порту.' },
 
   // Natur & Landschaft
   { de: 'Küste', article: 'die', plural: '-n', pos: 'noun', ru: 'побережье', example: 'An der Küste ist es oft windig.', exampleRu: 'На побережье часто ветрено.' },

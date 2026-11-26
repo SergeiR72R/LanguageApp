@@ -7,7 +7,6 @@ export const words: VocabItem[] = [
   { de: 'Abendessen', article: 'das', plural: '–', pos: 'noun', ru: 'ужин', example: 'Das Abendessen ist sehr lecker.', exampleRu: 'Ужин очень вкусный.', pronRu: 'дас А-бэнт-э-сэн' },
   { de: 'Hunger', article: 'der', plural: '–', pos: 'noun', ru: 'голод', example: 'Ich habe Hunger.', exampleRu: 'Я голоден.', pronRu: 'дер ХУН-га' },
   { de: 'Durst', article: 'der', plural: '–', pos: 'noun', ru: 'жажда', example: 'Hast du Durst?', exampleRu: 'Ты хочешь пить?', pronRu: 'дер ДУРСТ' },
-  { de: 'frühstücken', forms: 'er frühstückt', pos: 'verb', ru: 'завтракать', example: 'Wir frühstücken zusammen.', exampleRu: 'Мы завтракаем вместе.', pronRu: 'ФРЮ-штю-кен' },
   { de: 'kochen', forms: 'er kocht', pos: 'verb', ru: 'готовить, варить', example: 'Mein Mann kocht sehr gut.', exampleRu: 'Мой муж очень хорошо готовит.', pronRu: 'КО-хен' },
   // Essen
   { de: 'Fisch', article: 'der', plural: '-e', pos: 'noun', ru: 'рыба', example: 'Ich mag keinen Fisch.', exampleRu: 'Я не люблю рыбу.', pronRu: 'дер ФИШ' },
@@ -23,6 +22,8 @@ export const words: VocabItem[] = [
   { de: 'Schokolade', article: 'die', plural: '-n', pos: 'noun', ru: 'шоколад', example: 'Magst du Schokolade?', exampleRu: 'Ты любишь шоколад?', pronRu: 'ди шо-ко-ЛА-дэ' },
   { de: 'süß', pos: 'adj', ru: 'сладкий', example: 'Der Kuchen ist sehr süß.', exampleRu: 'Пирог очень сладкий.', pronRu: 'ЗЮС' },
   // Getränke
+  { de: 'Getränk', article: 'das', plural: '-e', pos: 'noun', ru: 'напиток', example: 'Was kostet ein Getränk?', exampleRu: 'Сколько стоит напиток?', pronRu: 'дас ге-ТРЭНК' },
+  { de: 'Kakao', article: 'der', plural: '-s', pos: 'noun', ru: 'какао', example: 'Die Kinder trinken Kakao.', exampleRu: 'Дети пьют какао.', pronRu: 'дер ка-КАУ' },
   { de: 'Bier', article: 'das', plural: '-e', pos: 'noun', ru: 'пиво', example: 'Ein Bier, bitte!', exampleRu: 'Одно пиво, пожалуйста!', pronRu: 'дас БИ:А' },
   { de: 'Wein', article: 'der', plural: '-e', pos: 'noun', ru: 'вино', example: 'Meine Frau trinkt keinen Wein.', exampleRu: 'Моя жена не пьёт вино.', pronRu: 'дер ВАЙН' },
   // Geschirr und Besteck

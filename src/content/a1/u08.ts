@@ -189,7 +189,7 @@ B: Gut, eine Tomatensuppe, bitte. Und ein Wasser.
 A: Also: ein Kaffee, eine Suppe und ein Wasser. Danke!`,
     questions: [
       { question: 'Was trinkt der Gast?', options: ['Tee und Wasser', 'Kaffee und Wasser', 'Saft und Kaffee'], answer: 1 },
-      { question: 'Gibt es Apfelkuchen?', options: ['Ja.', 'Nein.', 'Ja, aber nur ein Stück.'], answer: 1 },
+      { question: 'Gibt es Apfelkuchen?', options: ['Ja.', 'Nein.', 'Ja, nur ein Stück.'], answer: 1 },
       { question: 'Was isst der Gast?', options: ['ein Brötchen', 'eine Suppe', 'einen Kuchen'], answer: 1 },
       { question: 'Wie ist die Suppe?', options: ['sehr lecker', 'nicht lecker', 'kalt'], answer: 0 },
       { question: 'Was hat das Café?', options: ['Kuchen, Brötchen und Suppe', 'nur Kuchen', 'Fisch und Fleisch'], answer: 0 },

@@ -28,7 +28,7 @@ export const words: VocabItem[] = [
   { de: 'Ansage', article: 'die', plural: '-n', pos: 'noun', ru: 'объявление (по радио, по громкоговорителю)', example: 'Hören Sie die Ansage am Bahnhof genau.', exampleRu: 'Внимательно слушайте объявление на вокзале.' },
   { de: 'Kleinanzeige', article: 'die', plural: '-n', pos: 'noun', ru: 'частное объявление', example: 'Ich habe mein altes Fahrrad über eine Kleinanzeige verkauft.', exampleRu: 'Я продал свой старый велосипед через объявление.', pronRu: 'КЛАЙН-ан-цай-гэ' },
   { de: 'Wegweiser', article: 'der', plural: '-', pos: 'noun', ru: 'указатель (схема этажей, указатель дороги)', example: 'Der Wegweiser im Kaufhaus zeigt alle Abteilungen.', exampleRu: 'Указатель в универмаге показывает все отделы.', pronRu: 'ВЕ:К-вай-зэр' },
-  { de: 'Etage', article: 'die', plural: '-n', pos: 'noun', ru: 'этаж', example: 'Die Sportabteilung ist in der dritten Etage.', exampleRu: 'Спортивный отдел — на третьем этаже.', pronRu: 'э-ТА:-жэ' },
+  { de: 'Etage', article: 'die', plural: '-n', pos: 'noun', ru: 'этаж', example: 'Die Toiletten sind in der ersten Etage.', exampleRu: 'Туалеты на втором этаже (в Германии этажи считают после Erdgeschoss).', pronRu: 'э-ТА:-жэ' },
   { de: 'Rolltreppe', article: 'die', plural: '-n', pos: 'noun', ru: 'эскалатор', example: 'Nehmen Sie die Rolltreppe in den ersten Stock.', exampleRu: 'Поднимитесь на эскалаторе на второй этаж.' },
 
   // Aufgaben lösen

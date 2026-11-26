@@ -5,13 +5,13 @@ export const words: VocabItem[] = [
   // Wo kaufen wir ein?
   { de: 'Markt', article: 'der', plural: '-¨e', pos: 'noun', ru: 'рынок', example: 'Der Markt ist sehr schön.', exampleRu: 'Рынок очень красивый.', pronRu: 'дер МАРКТ' },
   { de: 'Bäckerei', article: 'die', plural: '-en', pos: 'noun', ru: 'пекарня, булочная', example: 'Die Bäckerei ist hier links.', exampleRu: 'Пекарня здесь слева.', pronRu: 'ди бэ-кэ-РАЙ' },
-  { de: 'Verkäufer', article: 'der', plural: '–', pos: 'noun', ru: 'продавец', example: 'Der Verkäufer ist sehr nett.', exampleRu: 'Продавец очень любезный.', pronRu: 'дер фэа-КОЙ-фа' },
+  { de: 'Lebensmittel', article: 'die', plural: 'только мн. ч.', pos: 'noun', ru: 'продукты питания', example: 'Die Lebensmittel sind hier billig.', exampleRu: 'Продукты здесь дешёвые.', pronRu: 'ди ЛЕ-бэнс-ми-тэль' },
   { de: 'Verkäuferin', article: 'die', plural: '-nen', pos: 'noun', ru: 'продавщица', example: 'Die Verkäuferin heißt Frau Huber.', exampleRu: 'Продавщицу зовут фрау Хубер.', pronRu: 'ди фэа-КОЙ-фэ-рин' },
-  { de: 'Angebot', article: 'das', plural: '-e', pos: 'noun', ru: 'предложение; товар по акции', example: 'Die Bananen sind heute im Angebot.', exampleRu: 'Бананы сегодня по акции.', pronRu: 'дас АН-ге-бот' },
+  { de: 'Pfund', article: 'das', plural: '-e (после числа: 2 Pfund)', pos: 'noun', ru: 'полкило (500 г)', example: 'Ein Pfund Tomaten, bitte.', exampleRu: 'Полкило помидоров, пожалуйста.', pronRu: 'дас ПФУНТ' },
   { de: 'Preis', article: 'der', plural: '-e', pos: 'noun', ru: 'цена', example: 'Der Preis ist gut.', exampleRu: 'Цена хорошая.', pronRu: 'дер ПРАЙС' },
   { de: 'Einkaufszettel', article: 'der', plural: '–', pos: 'noun', ru: 'список покупок', example: 'Wo ist mein Einkaufszettel?', exampleRu: 'Где мой список покупок?', pronRu: 'дер АЙН-кауфс-цэ-тэль' },
   { de: 'bezahlen', forms: 'er bezahlt', pos: 'verb', ru: 'платить', example: 'Wo bezahle ich, bitte?', exampleRu: 'Где мне заплатить, пожалуйста?', pronRu: 'бэ-ЦА-лен' },
-  { de: 'zusammen', pos: 'adv', ru: 'вместе, всего', example: 'Das macht zusammen 8 Euro.', exampleRu: 'Всего с вас 8 евро.', pronRu: 'цу-ЗА-мэн' },
+  { de: 'Karotte', article: 'die', plural: '-n', pos: 'noun', ru: 'морковь', example: 'Die Karotten sind frisch.', exampleRu: 'Морковь свежая.', pronRu: 'ди ка-РО-тэ' },
   { de: 'frisch', pos: 'adj', ru: 'свежий', example: 'Das Brot ist ganz frisch.', exampleRu: 'Хлеб совсем свежий.', pronRu: 'ФРИШ' },
   // Mengen und Verpackungen
   { de: 'Liter', article: 'der', plural: '–', pos: 'noun', ru: 'литр', example: 'Ich brauche zwei Liter Milch.', exampleRu: 'Мне нужно два литра молока.', pronRu: 'дер ЛИ-та' },

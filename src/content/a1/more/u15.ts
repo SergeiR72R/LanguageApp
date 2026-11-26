@@ -231,7 +231,7 @@ A: Nein, sie sind dunkelblau.
 B: Und woher sind sie?
 A: Aus dem Kaufhaus am Markt. Sie kosten nur dreißig Euro.
 B: Toll! Ich brauche auch Schuhe. Gehen wir am Samstag zusammen einkaufen?
-A: Ja, gern! Ich brauche noch eine Mütze für den Winter.`,
+A: Ja, gern! Ich brauche noch eine Jacke für den Winter.`,
       playCount: 2,
       tasks: [
         {
@@ -247,7 +247,7 @@ A: Ja, gern! Ich brauche noch eine Mütze für den Winter.`,
           instructionRu: 'Выберите правильный ответ a, b или c.',
           items: [
             { kind: 'mc', question: 'Was kosten die Schuhe?', options: ['13 Euro', '30 Euro', '33 Euro'], answer: 1, explanationRu: '«Sie kosten nur dreißig Euro».' },
-            { kind: 'mc', question: 'Was braucht Lisa noch?', options: ['eine Mütze', 'einen Schal', 'eine Jacke'], answer: 0, explanationRu: '«Ich brauche noch eine Mütze für den Winter».' },
+            { kind: 'mc', question: 'Was braucht Lisa noch?', options: ['einen Mantel', 'eine Jacke', 'einen Pullover'], answer: 1, explanationRu: '«Ich brauche noch eine Jacke für den Winter».' },
           ],
         },
       ],

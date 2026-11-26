@@ -20,15 +20,14 @@ export const words: VocabItem[] = [
   { de: 'Eis', article: 'das', plural: '–', pos: 'noun', ru: 'лёд; мороженое', example: 'Im Sommer essen wir gern Eis.', exampleRu: 'Летом мы любим есть мороженое.', pronRu: 'дас АЙС' },
   { de: 'Schneemann', article: 'der', plural: '-¨er', pos: 'noun', ru: 'снеговик', example: 'Die Kinder bauen einen Schneemann.', exampleRu: 'Дети лепят снеговика.', pronRu: 'дер ШНЕ:-ман' },
   { de: 'Regenbogen', article: 'der', plural: '-¨', pos: 'noun', ru: 'радуга', example: 'Schau mal, ein Regenbogen!', exampleRu: 'Смотри, радуга!', pronRu: 'дер РЕ:-гэн-бо:-гэн' },
-  { de: 'Sonnenschein', article: 'der', plural: '–', pos: 'noun', ru: 'солнечный свет, солнце', example: 'Heute gibt es viel Sonnenschein.', exampleRu: 'Сегодня много солнца.', pronRu: 'дер ЗО-нэн-шайн' },
   { de: 'Sonnencreme', article: 'die', plural: '-s', pos: 'noun', ru: 'солнцезащитный крем', example: 'Hast du Sonnencreme dabei?', exampleRu: 'У тебя есть с собой крем от солнца?', pronRu: 'ди ЗО-нэн-крэ:м' },
   // Natur und Ausflug
-  { de: 'Meer', article: 'das', plural: '-e', pos: 'noun', ru: 'море', example: 'Das Meer ist heute warm.', exampleRu: 'Море сегодня тёплое.', pronRu: 'дас МЕ:А' },
-  { de: 'Strand', article: 'der', plural: '-¨e', pos: 'noun', ru: 'пляж', example: 'Der Strand ist sehr schön.', exampleRu: 'Пляж очень красивый.', pronRu: 'дер ШТРАНТ' },
+  { de: 'Hitze', article: 'die', plural: '–', pos: 'noun', ru: 'жара', example: 'Bei Hitze trinke ich viel Wasser.', exampleRu: 'В жару я пью много воды.', pronRu: 'ди ХИ-цэ' },
+  { de: 'Schlitten', article: 'der', plural: '-', pos: 'noun', ru: 'санки; Schlitten fahren — кататься на санках', example: 'Im Winter fahren die Kinder Schlitten.', exampleRu: 'Зимой дети катаются на санках.', pronRu: 'дер ШЛИ-тэн' },
   { de: 'Berg', article: 'der', plural: '-e', pos: 'noun', ru: 'гора', example: 'Der Berg ist sehr hoch.', exampleRu: 'Гора очень высокая.', pronRu: 'дер БЕРК' },
   { de: 'Picknick', article: 'das', plural: '-s', pos: 'noun', ru: 'пикник', example: 'Wir machen ein Picknick im Park.', exampleRu: 'Мы устраиваем пикник в парке.', pronRu: 'дас ПИК-ник' },
   { de: 'Urlaub', article: 'der', plural: '-e', pos: 'noun', ru: 'отпуск', example: 'Im Sommer haben wir zwei Wochen Urlaub.', exampleRu: 'Летом у нас две недели отпуска.', pronRu: 'дер У:А-лауп' },
-  { de: 'Sand', article: 'der', plural: '–', pos: 'noun', ru: 'песок', example: 'Der Sand am Strand ist heiß.', exampleRu: 'Песок на пляже горячий.', pronRu: 'дер ЗАНТ' },
+  { de: 'Sand', article: 'der', plural: '–', pos: 'noun', ru: 'песок', example: 'Die Kinder spielen im Sand.', exampleRu: 'Дети играют в песке.', pronRu: 'дер ЗАНТ' },
   { de: 'baden', forms: 'er badet, hat gebadet', pos: 'verb', ru: 'купаться', example: 'Die Kinder baden im See.', exampleRu: 'Дети купаются в озере.', pronRu: 'БА:-дэн' },
   { de: 'grillen', forms: 'er grillt, hat gegrillt', pos: 'verb', ru: 'жарить на гриле', example: 'Am Samstag haben wir gegrillt.', exampleRu: 'В субботу мы жарили шашлыки (на гриле).', pronRu: 'ГРИ-лэн' },
 ];
