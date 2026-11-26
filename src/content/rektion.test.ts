@@ -3,6 +3,7 @@ import type { RektionItem } from './types';
 
 const mods = import.meta.glob<{ rektion: RektionItem[] }>('./rektion/*.ts', { eager: true });
 const PREPS = ['an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'über', 'um', 'unter', 'von', 'vor', 'zu', 'zwischen', 'hinter', 'neben', 'durch', 'ohne', 'gegenüber', 'wegen', 'außer', 'seit', 'entgegen'];
+const CONTRACTIONS: Record<string, string[]> = { an: ['am', 'ans'], in: ['im', 'ins'], zu: ['zum', 'zur'], bei: ['beim'], von: ['vom'], auf: ['aufs'], für: ['fürs'], um: ['ums'] };
 const MIN: Record<string, number> = { b1: 160, b2: 130, c1: 90 };
 
 describe('verb government lists', () => {
@@ -22,7 +23,7 @@ describe('verb government lists', () => {
         expect(r.gapAnswer.trim().length, w).toBeGreaterThan(0);
         expect(r.example.length, w).toBeGreaterThan(10);
         expect(r.ru.length, w).toBeGreaterThan(2);
-        if (r.prep) expect(r.gapAnswer.toLowerCase(), `${w}: gapAnswer should be the preposition`).toBe(r.prep);
+        if (r.prep) expect([r.prep, ...(CONTRACTIONS[r.prep] ?? [])], `${w}: gapAnswer should be the preposition (or its contraction)`).toContain(r.gapAnswer.toLowerCase());
         const k = `${r.verb}|${r.prep ?? ''}|${r.case}`.toLowerCase();
         expect(keys.has(k), `${w}: duplicate`).toBe(false);
         keys.add(k);

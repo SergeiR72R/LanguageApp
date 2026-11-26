@@ -94,7 +94,7 @@ export const words: VocabItem[] = [
   { de: 'Einsamkeit', article: 'die', plural: '–', pos: 'noun', ru: 'одиночество', example: 'Viele alte Menschen leiden unter Einsamkeit.', exampleRu: 'Многие пожилые люди страдают от одиночества.' },
   { de: 'einsam', pos: 'adj', ru: 'одинокий', example: 'Seit die Kinder ausgezogen sind, fühlt sich mein Vater manchmal einsam.', exampleRu: 'С тех пор как дети съехали, отец иногда чувствует себя одиноким.' },
   { de: 'vergesslich', pos: 'adj', ru: 'забывчивый', example: 'Mein Opa wird immer vergesslicher und sucht ständig seine Brille.', exampleRu: 'Мой дедушка становится всё забывчивее и постоянно ищет очки.' },
-  { de: 'Fürsorge', article: 'die', plural: '–', pos: 'noun', ru: 'забота, попечение', example: 'Wir danken den Pflegern für ihre liebevolle Fürsorge.', exampleRu: 'Мы благодарим сиделок за их заботу.' },
+  { de: 'Fürsorge', article: 'die', plural: '–', pos: 'noun', ru: 'забота, попечение', example: 'Wir danken den Pflegern für ihre liebevolle Fürsorge.', exampleRu: 'Мы благодарим сиделок за их тёплую заботу.' },
   { de: 'Nachbarschaftshilfe', article: 'die', plural: '–', pos: 'noun', ru: 'соседская взаимопомощь', example: 'Dank der Nachbarschaftshilfe kann die alte Dame noch allein wohnen.', exampleRu: 'Благодаря помощи соседей пожилая дама ещё может жить одна.' },
   { de: 'abhängig', forms: 'von + Dat', pos: 'adj', ru: 'зависимый (от кого-л.)', example: 'Mit 25 ist er finanziell immer noch von seinen Eltern abhängig.', exampleRu: 'В 25 лет он всё ещё финансово зависит от родителей.' },
 
