@@ -139,7 +139,7 @@ export const more: UnitMore = {
     },
     {
       type: 'transform',
-      instructionRu: 'Замените придаточное предложное группой с wegen или aufgrund (номинализация).',
+      instructionRu: 'Замените придаточное предложной группой с wegen или aufgrund (номинализация).',
       prompt: 'Weil die Preise stark gestiegen sind, kaufen viele Menschen weniger Bio-Produkte.',
       answers: [
         'Wegen des starken Anstiegs der Preise kaufen viele Menschen weniger Bio-Produkte.',
