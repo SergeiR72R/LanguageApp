@@ -37,7 +37,7 @@ export const words: VocabItem[] = [
   { de: 'brechen', forms: 'bricht, hat gebrochen', pos: 'verb', ru: 'ломать', example: 'Er hat sich den Arm gebrochen.', exampleRu: 'Он сломал руку.' },
   { de: 'Wunde', article: 'die', plural: '-n', pos: 'noun', ru: 'рана', example: 'Die Wunde ist nicht groß.', exampleRu: 'Рана небольшая.' },
   { de: 'schwach', pos: 'adj', ru: 'слабый', example: 'Nach der Grippe fühle ich mich noch schwach.', exampleRu: 'После гриппа я ещё чувствую слабость.' },
-  { de: 'schwanger', pos: 'adj', ru: 'беременная', example: 'Meine Frau ist schwanger.', exampleRu: 'Моя жена беременна.' },
+  { de: 'Wärmflasche', article: 'die', plural: '-n', pos: 'noun', ru: 'грелка', example: 'Bei Bauchschmerzen hilft eine Wärmflasche.', exampleRu: 'При боли в животе помогает грелка.', pronRu: 'ди ВЭРМ-фла-шэ' },
   // Der Körper
   { de: 'Haut', article: 'die', plural: '-¨e', pos: 'noun', ru: 'кожа', example: 'Die Salbe ist gut für trockene Haut.', exampleRu: 'Мазь хороша для сухой кожи.' },
   { de: 'Magen', article: 'der', plural: '-¨', pos: 'noun', ru: 'желудок', example: 'Mein Magen tut weh.', exampleRu: 'У меня болит желудок.', pronRu: 'дер МА:-гэн' },
@@ -57,7 +57,7 @@ export const words: VocabItem[] = [
   { de: 'Rettungswagen', article: 'der', plural: '-', pos: 'noun', ru: 'машина скорой помощи', example: 'Der Rettungswagen bringt sie ins Krankenhaus.', exampleRu: 'Скорая везёт её в больницу.' },
   { de: 'Notruf', article: 'der', plural: '-e', pos: 'noun', ru: 'экстренный вызов; номер экстренной службы', example: 'Der Notruf in Deutschland ist 112.', exampleRu: 'Номер экстренной службы в Германии — 112.' },
   { de: 'Krücke', article: 'die', plural: '-n', pos: 'noun', ru: 'костыль', example: 'Mit dem Gips muss er an Krücken gehen.', exampleRu: 'С гипсом ему приходится ходить на костылях.', pronRu: 'ди КРЮ-кэ' },
-  { de: 'Bescheinigung', article: 'die', plural: '-en', pos: 'noun', ru: 'справка', example: 'Für die Schule brauche ich eine Bescheinigung vom Arzt.', exampleRu: 'Для школы мне нужна справка от врача.', pronRu: 'ди бэ-ШАЙ-ни-гунг' },
+  { de: 'Behandlung', article: 'die', plural: '-en', pos: 'noun', ru: 'лечение', example: 'Die Behandlung dauert zwei Wochen.', exampleRu: 'Лечение длится две недели.', pronRu: 'ди бэ-ХАНД-лунг' },
   { de: 'Übelkeit', article: 'die', plural: '–', pos: 'noun', ru: 'тошнота', example: 'Gegen Übelkeit hilft oft Tee.', exampleRu: 'От тошноты часто помогает чай.', pronRu: 'ди Ю:-бэль-кайт' },
   { de: 'jucken', forms: 'juckt, hat gejuckt', pos: 'verb', ru: 'чесаться, зудеть', example: 'Meine Haut juckt.', exampleRu: 'У меня чешется кожа.', pronRu: 'Ю-кэн' },
   { de: 'sich schonen', forms: 'schont sich, hat sich geschont', pos: 'verb', ru: 'беречь себя', example: 'Sie müssen sich noch ein paar Tage schonen.', exampleRu: 'Вам нужно ещё несколько дней поберечься.' },

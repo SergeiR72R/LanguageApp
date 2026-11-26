@@ -19,7 +19,7 @@ export const words: VocabItem[] = [
   { de: 'Armee', article: 'die', plural: '-n', pos: 'noun', ru: 'армия', example: 'Nach der Schule war mein Bruder zwei Jahre bei der Armee.', exampleRu: 'После школы мой брат два года служил в армии.', pronRu: 'ди ар-МЕ:' },
   { de: 'Rentnerin', article: 'die', plural: '-nen', pos: 'noun', ru: 'пенсионерка', example: 'Meine Nachbarin ist Rentnerin und hat viel Zeit.', exampleRu: 'Моя соседка — пенсионерка, и у неё много времени.' },
   { de: 'wechseln', forms: 'wechselt, hat gewechselt', pos: 'verb', ru: 'менять, сменить', example: 'Ich habe nur einmal die Stelle gewechselt.', exampleRu: 'Я только один раз сменил место работы.', pronRu: 'ВЭК-сэльн' },
-  { de: 'aufhören', forms: 'hört auf, hat aufgehört', pos: 'verb', ru: 'прекращать, переставать', example: 'Mit 63 habe ich aufgehört zu arbeiten.', exampleRu: 'В 63 года я перестал работать.' },
+  { de: 'aufhören', forms: 'hört auf, hat aufgehört', pos: 'verb', ru: 'прекращать, переставать', example: 'Mit 63 habe ich mit der Arbeit aufgehört.', exampleRu: 'В 63 года я перестал работать.' },
   { de: 'gründen', forms: 'gründet, hat gegründet', pos: 'verb', ru: 'основать, создать', example: 'Mein Onkel hat 1992 eine Firma gegründet.', exampleRu: 'Мой дядя в 1992 году основал фирму.' },
   // Verben im Perfekt
   { de: 'auswandern', forms: 'wandert aus, ist ausgewandert', pos: 'verb', ru: 'эмигрировать, переселиться в другую страну', example: 'Meine Familie ist 1995 nach Deutschland ausgewandert.', exampleRu: 'Моя семья эмигрировала в Германию в 1995 году.' },

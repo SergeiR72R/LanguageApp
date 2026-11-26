@@ -60,7 +60,7 @@ export const words: VocabItem[] = [
   { de: 'Kapuze', article: 'die', plural: '-n', pos: 'noun', ru: 'капюшон', example: 'Ich suche eine Jacke mit Kapuze.', exampleRu: 'Я ищу куртку с капюшоном.', pronRu: 'ди ка-ПУ:-цэ' },
   { de: 'kurzärmelig', pos: 'adj', ru: 'с короткими рукавами', example: 'Im Sommer trage ich kurzärmelige Hemden.', exampleRu: 'Летом я ношу рубашки с короткими рукавами.', pronRu: 'КУРЦ-эр-мэ-лихь' },
   { de: 'Muster', article: 'das', plural: '-', pos: 'noun', ru: 'узор, рисунок (на ткани)', example: 'Das Muster auf dem Kleid gefällt mir.', exampleRu: 'Мне нравится узор на платье.' },
-  { de: 'Kleiderbügel', article: 'der', plural: '-', pos: 'noun', ru: 'вешалка (плечики)', example: 'Häng den Mantel bitte auf einen Kleiderbügel.', exampleRu: 'Повесь, пожалуйста, пальто на вешалку.', pronRu: 'дер КЛАЙ-да-бю:-гэль' },
+  { de: 'langärmelig', pos: 'adj', ru: 'с длинными рукавами', example: 'Für den Herbst brauche ich ein langärmeliges Hemd.', exampleRu: 'На осень мне нужна рубашка с длинными рукавами.', pronRu: 'ЛАНГ-эр-мэ-лихь' },
   { de: 'Schaufenster', article: 'das', plural: '-', pos: 'noun', ru: 'витрина', example: 'Im Schaufenster habe ich eine schöne Jacke gesehen.', exampleRu: 'В витрине я увидел красивую куртку.', pronRu: 'дас ШАУ-фэн-ста' },
-  { de: 'Tüte', article: 'die', plural: '-n', pos: 'noun', ru: 'пакет', example: 'Brauchen Sie eine Tüte?', exampleRu: 'Вам нужен пакет?', pronRu: 'ди ТЮ:-тэ' },
+  { de: 'Damenmode', article: 'die', plural: '–', pos: 'noun', ru: 'женская одежда (отдел)', example: 'Die Damenmode finden Sie im ersten Stock.', exampleRu: 'Женская одежда — на втором этаже.' },
 ];
