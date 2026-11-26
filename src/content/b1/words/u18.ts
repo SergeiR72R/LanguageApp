@@ -69,8 +69,6 @@ export const words: VocabItem[] = [
 
   // Konflikte & Versöhnung
   { de: 'lügen', forms: 'log, hat gelogen', pos: 'verb', ru: 'лгать, врать', example: 'Wer einmal lügt, dem glaubt man nicht.', exampleRu: 'Кто однажды солгал, тому больше не верят (пословица).' },
-  { de: 'verraten', forms: 'verrät, verriet, hat verraten', pos: 'verb', ru: 'выдать (тайну); предать', example: 'Verrat bitte niemandem, was ich dir gerade erzählt habe!', exampleRu: 'Пожалуйста, никому не выдавай то, что я тебе только что рассказал!' },
-  { de: 'lästern', forms: 'über + Akk', pos: 'verb', ru: 'злословить, сплетничать', example: 'In der Pause lästern einige Kolleginnen über die neue Chefin.', exampleRu: 'В перерыве некоторые коллеги злословят о новой начальнице.' },
   { de: 'Entschuldigung', article: 'die', plural: '-en', pos: 'noun', ru: 'извинение', example: 'Er hat meine Entschuldigung zum Glück angenommen.', exampleRu: 'К счастью, он принял мои извинения.' },
   { de: 'Konflikt', article: 'der', plural: '-e', pos: 'noun', ru: 'конфликт', example: 'Konflikte unter Freunden sollte man offen ansprechen.', exampleRu: 'Конфликты между друзьями стоит обсуждать открыто.' },
   { de: 'Wutanfall', article: 'der', plural: '-¨e', pos: 'noun', ru: 'приступ ярости, истерика', example: 'Als das Spiel verloren war, bekam der Kleine einen Wutanfall.', exampleRu: 'Когда игра была проиграна, у малыша случилась истерика.' },
