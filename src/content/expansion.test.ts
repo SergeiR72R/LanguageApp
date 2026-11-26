@@ -1,12 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import type { Exercise, ListeningText, MockExam, ReadingText, Task, Unit, UnitMore, VocabItem } from './types';
 
-const units = Object.values(import.meta.glob<{ unit: Unit }>('./{b1,b2,c1}/u*.ts', { eager: true })).map((m) => m.unit);
-const wordMods = import.meta.glob<{ words: VocabItem[] }>('./{b1,b2,c1}/words/u*.ts', { eager: true });
-const moreMods = import.meta.glob<{ more: UnitMore }>('./{b1,b2,c1}/more/u*.ts', { eager: true });
+const units = Object.values(import.meta.glob<{ unit: Unit }>('./{a1,a2,b1,b2,c1}/u*.ts', { eager: true })).map((m) => m.unit);
+const wordMods = import.meta.glob<{ words: VocabItem[] }>('./{a1,a2,b1,b2,c1}/words/u*.ts', { eager: true });
+const moreMods = import.meta.glob<{ more: UnitMore }>('./{a1,a2,b1,b2,c1}/more/u*.ts', { eager: true });
 const examMods = import.meta.glob<{ exam: MockExam }>('./exams/*.ts', { eager: true });
 
-const MIN_WORDS: Record<string, number> = { b1: 75, b2: 120, c1: 130 };
+const MIN_WORDS: Record<string, number> = { a1: 15, a2: 35, b1: 75, b2: 120, c1: 130 };
+/** beginner texts are short */
+const MIN_READING: Record<string, number> = { a1: 35, a2: 60 };
+const levelOf = (where: string) => /\b(a1|a2|b1|b2|c1)\b|\/(a1|a2|b1|b2|c1)[/-]/.exec(where)?.slice(1).find(Boolean) ?? '';
 export const lemmaKey = (v: VocabItem) => `${v.article ?? ''} ${v.de}`.toLowerCase().replace(/\s+/g, ' ').trim();
 
 function checkTask(t: Task, where: string) {
@@ -31,7 +34,7 @@ function checkTask(t: Task, where: string) {
 function checkReading(r: ReadingText, where: string) {
   expect(r.texts.length, where).toBeGreaterThan(0);
   const words = r.texts.reduce((a, t) => a + t.body.split(/\s+/).length, 0);
-  expect(words, `${where} too short`).toBeGreaterThan(80);
+  expect(words, `${where} too short`).toBeGreaterThan(MIN_READING[levelOf(where)] ?? 80);
   r.tasks.forEach((t, i) => checkTask(t, `${where} task ${i}`));
 }
 
@@ -89,14 +92,16 @@ describe('extra practice', () => {
     it(path, () => {
       const m = mod.more;
       expect(m, `${path} must export const more`).toBeDefined();
+      const unit = units.find((u) => `./${u.level.toLowerCase()}/more/u${String(u.order).padStart(2, '0')}.ts` === path);
+      const steps = unit?.steps;
       expect(m.exercises.length, `${path} exercises`).toBeGreaterThanOrEqual(18);
       m.exercises.forEach((ex, i) => checkExercise(ex, `${path} ex ${i}`));
-      expect(m.reading.length, `${path} reading`).toBeGreaterThanOrEqual(2);
+      expect(m.reading.length, `${path} reading`).toBeGreaterThanOrEqual(steps && !steps.includes('reading') ? 0 : 2);
       m.reading.forEach((r, i) => {
         checkReading(r, `${path} reading ${i}`);
         r.tasks.forEach((t) => t.items.forEach((it) => expect(it.explanationRu, `${path} reading ${i}: explanationRu required`).toBeTruthy()));
       });
-      expect(m.listening.length, `${path} listening`).toBeGreaterThanOrEqual(2);
+      expect(m.listening.length, `${path} listening`).toBeGreaterThanOrEqual(steps ? 1 : 2);
       m.listening.forEach((l, i) => checkListening(l, `${path} listening ${i}`));
     });
   }
@@ -124,15 +129,16 @@ describe('mock exams', () => {
 });
 
 describe('completeness', () => {
-  it('every unit has a word bank and extra practice; 3 mock exams per level', () => {
+  it('every unit has a word bank and extra practice; mock exams for every level', () => {
     for (const u of units) {
       const n = String(u.order).padStart(2, '0');
       const lvl = u.level.toLowerCase();
       expect(wordMods[`./${lvl}/words/u${n}.ts`], `${u.id} word bank`).toBeDefined();
       expect(moreMods[`./${lvl}/more/u${n}.ts`], `${u.id} extra practice`).toBeDefined();
     }
-    for (const lvl of ['b1', 'b2', 'c1']) {
-      expect(Object.keys(examMods).filter((p) => p.includes(`/${lvl}-`)).length, `${lvl} exams`).toBe(3);
+    for (const [lvl, n] of [['a1', 2], ['a2', 2], ['b1', 3], ['b2', 3], ['c1', 3]] as const) {
+      if (!units.some((u) => u.level.toLowerCase() === lvl)) continue;
+      expect(Object.keys(examMods).filter((p) => p.includes(`/${lvl}-`)).length, `${lvl} exams`).toBe(n);
     }
   });
 });

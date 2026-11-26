@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Exercise, PlacementItem, Unit } from './types';
 
-const unitModules = import.meta.glob<{ unit: Unit }>('./{b1,b2,c1}/u*.ts', { eager: true });
+const unitModules = import.meta.glob<{ unit: Unit }>('./{a1,a2,b1,b2,c1}/u*.ts', { eager: true });
 const placementModules = import.meta.glob<{ placementItems: PlacementItem[] }>('./placement.ts', { eager: true });
 
 function checkExercise(ex: Exercise, where: string) {
@@ -61,7 +61,7 @@ describe('course units', () => {
       });
       it('has listening', () => {
         const words = u.listening.text.split(/\s+/).length;
-        expect(words).toBeGreaterThan(120);
+        expect(words).toBeGreaterThan(u.level === 'A1' ? 35 : u.level === 'A2' ? 80 : 120);
         expect(u.listening.questions.length).toBe(5);
         for (const q of u.listening.questions) {
           expect(q.answer).toBeLessThan(q.options.length);
@@ -73,10 +73,31 @@ describe('course units', () => {
         }
       });
       it('has writing and speaking', () => {
-        expect(u.writing.points.length).toBeGreaterThanOrEqual(3);
-        expect(u.writing.minWords).toBeGreaterThan(50);
-        expect(u.speaking.readAloud.length).toBe(3);
-        expect(u.speaking.tasksRu.length).toBeGreaterThanOrEqual(3);
+        if (!u.steps || u.steps.includes('writing')) {
+          expect(u.writing.points.length).toBeGreaterThanOrEqual(3);
+          expect(u.writing.minWords).toBeGreaterThan(u.level === 'A1' ? 15 : u.level === 'A2' ? 35 : 50);
+        }
+        expect(u.speaking.readAloud.length).toBeGreaterThanOrEqual(3);
+        if (u.speaking.aiRole.trim()) expect(u.speaking.tasksRu.length).toBeGreaterThanOrEqual(3);
+      });
+      if (u.level === 'A1') {
+        it('A1 words have a pronunciation hint', () => {
+          for (const v of u.vocab) expect(v.pronRu, `${u.id} ${v.de} pronRu`).toBeTruthy();
+        });
+      }
+      if (u.steps?.includes('phonics') || u.phonics) {
+        it('has a letters & sounds lesson', () => {
+          expect(u.steps, `${u.id}: steps must include 'phonics'`).toContain('phonics');
+          expect(u.phonics!.groups.length).toBeGreaterThan(0);
+          for (const g of u.phonics!.groups)
+            for (const it of g.items) {
+              expect(it.examples.length, `${u.id} ${it.grapheme}`).toBeGreaterThanOrEqual(2);
+              for (const e of it.examples) expect(e.pronRu, `${u.id} ${e.de}`).toBeTruthy();
+            }
+        });
+      }
+      it('audio exercises have audio text', () => {
+        for (const ex of u.grammar.exercises) if ((ex.type === 'choice' || ex.type === 'gap') && 'audio' in ex) expect(ex.audio!.trim().length).toBeGreaterThan(0);
       });
     });
   }
@@ -96,7 +117,7 @@ describe('placement test', () => {
       if (it.skill === 'listening') expect(it.audio, it.id).toBeTruthy();
       if (it.skill === 'reading') expect(it.context, it.id).toBeTruthy();
     }
-    for (const band of ['A2', 'B1', 'B2', 'C1'] as const) {
+    for (const band of ['A1', 'A2', 'B1', 'B2', 'C1'] as const) {
       expect(items.filter((i) => i.band === band).length).toBeGreaterThanOrEqual(8);
     }
   });

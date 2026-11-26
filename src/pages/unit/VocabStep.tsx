@@ -36,6 +36,7 @@ export function WordCard({ v, big, imgLarge }: { v: VocabItem; big?: boolean; im
           {v.plural && <span>мн. ч.: {pluralForm(v)}</span>} {v.forms && <span>{v.forms}</span>}
         </div>
       )}
+      {v.pronRu && <div className="pron" title="Примерное произношение; ЗАГЛАВНЫМИ — ударный слог">[{v.pronRu}]</div>}
       <div className="word-ru">{v.ru}</div>
       <div className="word-example">
         <span className="de">{v.example}</span> <SpeakButton text={v.example} />

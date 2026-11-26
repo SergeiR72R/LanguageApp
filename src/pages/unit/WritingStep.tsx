@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Unit } from '../../content/types';
 import { useStore, type WritingEntry } from '../../lib/store';
 import { countWords } from '../../lib/grading';
@@ -7,6 +7,7 @@ import { checkWriting, type WritingFeedback } from '../../lib/ai/prompts';
 import { profileScopedKey } from '../../lib/profiles';
 import { WritingFeedbackView } from '../../components/WritingFeedbackView';
 import { HandwritingUpload } from '../../components/HandwritingUpload';
+import { UmlautKeys } from '../../components/ExerciseView';
 import { AiRequired, Card, ErrorBox, Spinner } from '../../components/ui';
 
 const draftKey = (id: string) => profileScopedKey(`draft-writing-${id}`);
@@ -21,6 +22,7 @@ export function WritingStep({ unit, onNext }: { unit: Unit; onNext: () => void }
   const writings = useStore((s) => s.writings);
   const previous = writings.filter((w) => w.unitId === unit.id);
   const done = useStore((s) => !!s.units[unit.id]?.steps.writing?.done);
+  const areaRef = useRef<HTMLTextAreaElement | null>(null);
   const [text, setText] = useState(() => {
     try {
       return localStorage.getItem(draftKey(unit.id)) ?? '';
@@ -91,7 +93,27 @@ export function WritingStep({ unit, onNext }: { unit: Unit; onNext: () => void }
           </ul>
         </details>
         {ai && <HandwritingUpload onText={(t) => save(text.trim() ? `${text.trim()}\n\n${t}` : t)} />}
-        <textarea className="writing-area" rows={12} value={text} onChange={(e) => save(e.target.value)} placeholder="Schreiben Sie hier… или загрузите фото рукописного текста" spellCheck={false} />
+        <textarea
+          ref={areaRef}
+          className="writing-area"
+          rows={12}
+          value={text}
+          onChange={(e) => save(e.target.value)}
+          placeholder="Schreiben Sie hier… или загрузите фото рукописного текста"
+          spellCheck={false}
+        />
+        <UmlautKeys
+          onInsert={(ch) => {
+            const el = areaRef.current;
+            const a = el?.selectionStart ?? text.length;
+            const b = el?.selectionEnd ?? text.length;
+            save(text.slice(0, a) + ch + text.slice(b));
+            setTimeout(() => {
+              el?.focus();
+              el?.setSelectionRange(a + ch.length, a + ch.length);
+            }, 0);
+          }}
+        />
         <div className="row between wrap">
           <span className={words >= W.minWords ? 'ok-text' : 'muted'}>
             {words} / {W.minWords}+ слов

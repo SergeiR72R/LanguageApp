@@ -24,6 +24,7 @@ export function scorePlacement(items: PlacementItem[], answers: Record<string, n
     bySkill[it.skill].correct += ok;
     bySkill[it.skill].total += 1;
   }
+  const a1 = acc(byBand, 'A1');
   const a2 = acc(byBand, 'A2');
   const b1 = acc(byBand, 'B1');
   const b2 = acc(byBand, 'B2');
@@ -31,11 +32,22 @@ export function scorePlacement(items: PlacementItem[], answers: Record<string, n
 
   let estimated: PlacementResult['estimated'];
   let recommended: string;
-  const b1Unit = (pos: number) => allUnits.filter((u) => u.level === 'B1')[pos]?.id;
+  const unitAt = (level: 'A1' | 'A2' | 'B1', pos: number) => allUnits.filter((u) => u.level === level)[pos]?.id;
+  const b1Unit = (pos: number) => unitAt('B1', pos);
+  const hasA1 = !!byBand.A1?.total;
 
-  if (a2 < 0.6) {
+  if (hasA1 && a1 < 0.4) {
+    estimated = 'A1';
+    recommended = firstUnitOfLevel('A1')!.id; // from the alphabet
+  } else if (hasA1 && a1 < 0.75) {
+    estimated = 'A1';
+    recommended = unitAt('A1', 3) ?? firstUnitOfLevel('A1')!.id; // reading is fine: skip the letters & sounds units
+  } else if (a2 < 0.5) {
+    estimated = 'A1';
+    recommended = firstUnitOfLevel('A2')?.id ?? firstUnitOfLevel('B1')!.id;
+  } else if (a2 < 0.75) {
     estimated = 'A2';
-    recommended = firstUnitOfLevel('B1')!.id;
+    recommended = unitAt('A2', 10) ?? firstUnitOfLevel('B1')!.id;
   } else if (b1 < 0.5) {
     estimated = 'A2';
     recommended = firstUnitOfLevel('B1')!.id;
@@ -67,14 +79,14 @@ export function parseCefr(s: string): number | undefined {
 /**
  * The multiple-choice test measures recognition; free writing shows active command.
  * If the writing sample is two or more levels below the level we would start at,
- * start one level lower (never below B1).
+ * start one level lower (never below A2).
  */
 export function adjustForWriting(unitId: string, writingCefr: string): { unitId: string; adjusted: boolean } {
   const unit = allUnits.find((u) => u.id === unitId);
   const w = parseCefr(writingCefr);
   if (!unit || w === undefined) return { unitId, adjusted: false };
   const startRank = RANK[unit.level];
-  if (startRank - w < 2 || unit.level === 'B1') return { unitId, adjusted: false };
-  const lower = unit.level === 'C1' ? 'B2' : 'B1';
+  if (startRank - w < 2 || startRank <= RANK.A2) return { unitId, adjusted: false };
+  const lower = unit.level === 'C1' ? 'B2' : unit.level === 'B2' ? 'B1' : 'A2';
   return { unitId: firstUnitOfLevel(lower)!.id, adjusted: true };
 }

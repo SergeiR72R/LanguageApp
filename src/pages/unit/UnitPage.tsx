@@ -1,6 +1,8 @@
+import { useMemo } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { allUnits, getUnit, unitIndex } from '../../content';
-import { STEPS, type StepId } from '../../lib/steps';
+import { unitSteps, type StepId } from '../../lib/steps';
+import { PhonicsStep } from './PhonicsStep';
 import { unitStatus, useStore } from '../../lib/store';
 import { pendingSteps } from '../../lib/daily';
 import { VocabStep } from './VocabStep';
@@ -17,6 +19,9 @@ export function UnitPage() {
   const unit = getUnit(id);
   const s = useStore();
   const nav = useNavigate();
+  // Without a step in the URL, open the first unfinished step — fixed when the unit is opened, so finishing a step
+  // keeps its results on screen until the learner presses "next".
+  const firstPending = useMemo(() => (unit ? pendingSteps(useStore.getState(), unit.id)[0] : undefined), [unit]);
   if (!unit) return <Navigate to="/course" replace />;
   const status = unitStatus(s, unit.id);
   const up = s.units[unit.id];
@@ -35,7 +40,8 @@ export function UnitPage() {
     );
   }
 
-  const current = (step as StepId | undefined) ?? pendingSteps(s, unit.id)[0] ?? 'vocab';
+  const STEPS = unitSteps(unit);
+  const current = (step as StepId | undefined) ?? firstPending ?? STEPS[0].id;
   const idx = unitIndex(unit.id);
   const nextUnit = allUnits[idx + 1];
 
@@ -75,6 +81,7 @@ export function UnitPage() {
         ))}
       </div>
 
+      {current === 'phonics' && <PhonicsStep unit={unit} onNext={goNext} />}
       {current === 'vocab' && <VocabStep unit={unit} onNext={goNext} />}
       {current === 'grammar' && <GrammarStep unit={unit} onNext={goNext} />}
       {current === 'reading' && <ReadingStep unit={unit} onNext={goNext} />}

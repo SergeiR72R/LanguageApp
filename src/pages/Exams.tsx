@@ -34,7 +34,7 @@ function PointsPill({ p }: { p?: number }) {
 
 export function Exams() {
   const results = useStore((s) => s.examResults);
-  const levels: Level[] = ['B1', 'B2', 'C1'];
+  const levels: Level[] = ['A1', 'A2', 'B1', 'B2', 'C1'];
   return (
     <div className="page">
       <h1>🎓 Подготовка к экзамену Goethe-Zertifikat</h1>
@@ -48,7 +48,7 @@ export function Exams() {
         return (
           <section key={lvl} className="level-block">
             <h2>
-              <span className={`level-badge l-${lvl}`}>{lvl}</span> Goethe-Zertifikat {lvl}
+              <span className={`level-badge l-${lvl}`}>{lvl}</span> {lvl === 'A1' ? 'Goethe-Zertifikat A1: Start Deutsch 1' : `Goethe-Zertifikat ${lvl}`}
             </h2>
             {list.length === 0 && <p className="muted">Скоро.</p>}
             <div className="unit-grid">

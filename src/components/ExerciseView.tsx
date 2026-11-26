@@ -3,6 +3,7 @@ import type { Exercise } from '../content/types';
 import { checkAnswer, normalize, shuffle, type CheckResult } from '../lib/grading';
 import { fillGaps } from '../lib/exerciseCheck';
 import { useStore } from '../lib/store';
+import { speak } from '../lib/ai/tts';
 import { SpeakButton } from './Speak';
 import { sfx } from '../lib/sound';
 import { xpPop } from './Celebrate';
@@ -19,7 +20,7 @@ function expectedOf(ex: Exercise): string {
     case 'choice':
       return fillGaps(ex.prompt, ex.options[ex.answer]);
     case 'gap':
-      return fillGaps(ex.prompt, ex.answers[0]);
+      return ex.audio ? ex.answers[0] : fillGaps(ex.prompt, ex.answers[0]);
     case 'order':
       return ex.words.join(' ');
     case 'transform':
@@ -30,9 +31,9 @@ function expectedOf(ex: Exercise): string {
 export function exerciseInstruction(ex: Exercise): string {
   switch (ex.type) {
     case 'choice':
-      return 'Выберите правильный вариант';
+      return ex.audio ? 'Слушайте и выберите' : 'Выберите правильный вариант';
     case 'gap':
-      return 'Вставьте пропущенное';
+      return ex.audio ? 'Слушайте и пишите' : 'Вставьте пропущенное';
     case 'order':
       return 'Составьте предложение';
     case 'transform':
@@ -49,6 +50,23 @@ export function ExerciseView({ ex, onDone, seed }: { ex: Exercise; onDone: (o: E
   const [overridden, setOverridden] = useState(false);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
+  const audio = ex.type === 'choice' || ex.type === 'gap' ? ex.audio : undefined;
+
+  // listening exercises play their audio once when shown
+  useEffect(() => {
+    if (audio) void speak(audio, { rate: 0.85 }).catch(() => {});
+  }, [audio, ex]);
+
+  const insertChar = (ch: string) => {
+    const el = inputRef.current;
+    const start = el?.selectionStart ?? text.length;
+    const end = el?.selectionEnd ?? text.length;
+    setText(text.slice(0, start) + ch + text.slice(end));
+    setTimeout(() => {
+      el?.focus();
+      el?.setSelectionRange(start + ch.length, start + ch.length);
+    }, 0);
+  };
 
   const tokens = useMemo(() => (ex.type === 'order' ? shuffle(ex.words.map((w, i) => ({ w, i })), seed) : []), [ex, seed]);
 
@@ -102,6 +120,12 @@ export function ExerciseView({ ex, onDone, seed }: { ex: Exercise; onDone: (o: E
   return (
     <div className="exercise" onKeyDown={onKey}>
       <div className="ex-instruction">{exerciseInstruction(ex)}</div>
+      {audio && (
+        <div className="ex-audio">
+          <SpeakButton text={audio} rate={0.85} label=" Слушать" className="big" />
+          <SpeakButton text={audio} rate={0.6} label=" медленно 🐢" />
+        </div>
+      )}
 
       {ex.type === 'transform' && <div className="ex-prompt de">{ex.prompt}</div>}
       {ex.type === 'order' && <div className="ex-prompt ru">{ex.translationRu}</div>}
@@ -138,6 +162,7 @@ export function ExerciseView({ ex, onDone, seed }: { ex: Exercise; onDone: (o: E
           )}
         </div>
       )}
+      {(ex.type === 'gap' || ex.type === 'transform') && !result && <UmlautKeys onInsert={insertChar} />}
       {ex.type === 'gap' && ex.hintRu && !result && <div className="hint">💡 {ex.hintRu}</div>}
 
       {ex.type === 'choice' && (
@@ -262,4 +287,24 @@ function ChoiceHotkeys({ ex, disabled, onPick }: { ex: Exercise; disabled: boole
     return () => window.removeEventListener('keydown', h);
   }, [ex, disabled, onPick]);
   return null;
+}
+
+/** ä ö ü ß buttons for keyboards without a German layout. */
+export function UmlautKeys({ onInsert }: { onInsert: (ch: string) => void }) {
+  return (
+    <div className="umlaut-keys" aria-label="Немецкие буквы">
+      {['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'].map((ch) => (
+        <button
+          key={ch}
+          type="button"
+          className="key"
+          tabIndex={-1}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => onInsert(ch)}
+        >
+          {ch}
+        </button>
+      ))}
+    </div>
+  );
 }

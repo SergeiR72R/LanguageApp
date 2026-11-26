@@ -1,14 +1,14 @@
 import type { Exercise, Level, MockExam, PlacementItem, RektionItem, Unit, UnitMore, VocabItem } from './types';
 
-const unitModules = import.meta.glob<{ unit: Unit }>('./{b1,b2,c1}/u*.ts', { eager: true });
-const wordModules = import.meta.glob<{ words: VocabItem[] }>('./{b1,b2,c1}/words/u*.ts', { eager: true });
-const moreModules = import.meta.glob<{ more: UnitMore }>('./{b1,b2,c1}/more/u*.ts', { eager: true });
+const unitModules = import.meta.glob<{ unit: Unit }>('./{a1,a2,b1,b2,c1}/u*.ts', { eager: true });
+const wordModules = import.meta.glob<{ words: VocabItem[] }>('./{a1,a2,b1,b2,c1}/words/u*.ts', { eager: true });
+const moreModules = import.meta.glob<{ more: UnitMore }>('./{a1,a2,b1,b2,c1}/more/u*.ts', { eager: true });
 // mock exams are large: loaded on demand
 const examModules = import.meta.glob<{ exam: MockExam }>('./exams/*.ts');
 const rektionModules = import.meta.glob<{ rektion: RektionItem[] }>('./rektion/*.ts', { eager: true });
 const placementModules = import.meta.glob<{ placementItems: PlacementItem[] }>('./placement.ts', { eager: true });
 
-const LEVEL_ORDER: Level[] = ['B1', 'B2', 'C1'];
+const LEVEL_ORDER: Level[] = ['A1', 'A2', 'B1', 'B2', 'C1'];
 
 export const allUnits: Unit[] = Object.values(unitModules)
   .map((m) => m.unit)
@@ -39,7 +39,7 @@ export function firstUnitOfLevel(level: Level): Unit | undefined {
 
 /** "./b1/words/u03.ts" → "b1-03" */
 const idFromPath = (path: string) => {
-  const m = /\.\/(b1|b2|c1)\/\w+\/u(\d+)\.ts$/.exec(path);
+  const m = /\.\/(a1|a2|b1|b2|c1)\/\w+\/u(\d+)\.ts$/.exec(path);
   return m ? `${m[1]}-${m[2]}` : '';
 };
 
@@ -89,13 +89,13 @@ export interface ExamInfo {
 /** "./exams/b1-2.ts" → { id: "b1-exam-2", level: "B1", title: "Übungstest B1 – 2" } */
 export const exams: ExamInfo[] = Object.keys(examModules)
   .map((p) => {
-    const [, lvl, n] = /\/(b1|b2|c1)-(\d+)\.ts$/.exec(p) ?? [];
+    const [, lvl, n] = /\/(a1|a2|b1|b2|c1)-(\d+)\.ts$/.exec(p) ?? [];
     return { id: `${lvl}-exam-${n}`, level: lvl.toUpperCase() as Level, title: `Übungstest ${lvl.toUpperCase()} – ${n}` };
   })
   .sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true }));
 
 export async function loadExam(id: string): Promise<MockExam | undefined> {
-  const m = /^(b1|b2|c1)-exam-(\d+)$/.exec(id);
+  const m = /^(a1|a2|b1|b2|c1)-exam-(\d+)$/.exec(id);
   const loader = m && examModules[`./exams/${m[1]}-${m[2]}.ts`];
   return loader ? (await loader()).exam : undefined;
 }
@@ -121,7 +121,7 @@ const slug = (x: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 
-/** All entries B1 → C1, duplicates across levels removed (first occurrence wins). */
+/** All entries A2 → C1, duplicates across levels removed (first occurrence wins). */
 export const rektionItems: RektionEntry[] = (() => {
   const out: RektionEntry[] = [];
   const seen = new Set<string>();

@@ -4,12 +4,14 @@ import { verbQueue, verbsLeftToday } from './verbs';
 import { daysBetween, today } from './date';
 import { isLlmConfigured } from './ai/providers';
 import { currentUnitId, dueCards, type AppState, type PlanItem } from './store';
-import { STEPS, type StepId } from './steps';
+import { STEPS, unitSteps, type StepId } from './steps';
 
 /** Next not-done steps of a unit, in the fixed sequence. */
 export function pendingSteps(s: Pick<AppState, 'units'>, unitId: string): StepId[] {
   const up = s.units[unitId];
-  return STEPS.map((x) => x.id).filter((id) => !up?.steps[id]?.done);
+  return unitSteps(getUnit(unitId))
+    .map((x) => x.id)
+    .filter((id) => !up?.steps[id]?.done);
 }
 
 /**
@@ -45,7 +47,7 @@ export function buildPlan(s: AppState): PlanItem[] {
   if (completed >= 1 && (!last || daysBetween(last, d) >= 7)) items.push({ kind: 'consolidation' });
 
   // exam training once a level is finished (and every 2 weeks after that until all mock exams are done)
-  for (const level of ['B1', 'B2', 'C1'] as const) {
+  for (const level of ['A1', 'A2', 'B1', 'B2', 'C1'] as const) {
     const lvlUnits = allUnits.filter((u) => u.level === level);
     const finished = lvlUnits.length > 0 && lvlUnits.every((u) => s.units[u.id]?.completed);
     const lastExam = s.examResults.filter((r) => r.examId.startsWith(level.toLowerCase())).map((r) => r.date).sort().pop();

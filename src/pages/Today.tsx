@@ -4,7 +4,7 @@ import { allUnits, getUnit, unitIndex } from '../content';
 import { buildPlan, isPlanItemDone } from '../lib/daily';
 import { formatDateRu, today } from '../lib/date';
 import { isMature } from '../lib/srs';
-import { STEPS, stepMeta } from '../lib/steps';
+import { stepMeta, unitSteps as stepsOf } from '../lib/steps';
 import { currentUnitId, dueCards, streak, useStore, type PlanItem } from '../lib/store';
 import { isLlmConfigured } from '../lib/ai/providers';
 import { Card, ProgressBar } from '../components/ui';
@@ -122,7 +122,8 @@ export function Today() {
   const cur = currentUnitId(s);
   const unit = cur ? getUnit(cur) : undefined;
   const up = cur ? s.units[cur] : undefined;
-  const unitSteps = STEPS.filter((x) => up?.steps[x.id]?.done).length;
+  const uSteps = stepsOf(unit);
+  const unitSteps = uSteps.filter((x) => up?.steps[x.id]?.done).length;
   const vocabCards = Object.values(s.cards).filter((c) => c.kind === 'vocab');
   const mature = vocabCards.filter((c) => isMature(c.srs)).length;
   const completedUnits = allUnits.filter((u) => s.units[u.id]?.completed).length;
@@ -217,7 +218,7 @@ export function Today() {
                 {unit.titleRu} · {unit.grammar.topicRu}
               </p>
               <div className="steps-mini">
-                {STEPS.map((x) => (
+                {uSteps.map((x) => (
                   <Link
                     key={x.id}
                     to={`/unit/${unit.id}/${x.id}`}
@@ -228,7 +229,7 @@ export function Today() {
                   </Link>
                 ))}
               </div>
-              <ProgressBar value={unitSteps / STEPS.length} />
+              <ProgressBar value={unitSteps / uSteps.length} />
               <Link to={`/unit/${unit.id}`} className="btn primary">
                 Открыть юнит
               </Link>

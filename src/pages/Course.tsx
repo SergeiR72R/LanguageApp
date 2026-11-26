@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { levels, unitsOfLevel } from '../content';
-import { STEPS } from '../lib/steps';
+import { unitSteps } from '../lib/steps';
 import { unitStatus, useStore } from '../lib/store';
 import { ProgressBar } from '../components/ui';
 
-const LEVEL_RU = {
+const LEVEL_RU: Record<string, string> = {
+  A1: 'С нуля: алфавит и чтение, знакомство, семья, покупки, время, город — простые фразы о себе.',
+  A2: 'Базовый уровень: прошлое время, быт, работа, врач, путешествия — короткие разговоры и письма.',
   B1: 'Самостоятельный пользователь: работа, быт, путешествия, своё мнение.',
   B2: 'Свободное общение: дискуссии, аргументация, СМИ, сложные тексты.',
   C1: 'Продвинутый уровень: академический и профессиональный язык, стиль, нюансы.',
@@ -37,7 +39,8 @@ export function Course() {
               {units.map((u) => {
                 const st = unitStatus(s, u.id);
                 const up = s.units[u.id];
-                const steps = STEPS.filter((x) => up?.steps[x.id]?.done).length;
+                const all = unitSteps(u);
+                const steps = all.filter((x) => up?.steps[x.id]?.done).length;
                 const inner = (
                   <>
                     <div className="unit-num">{st === 'done' ? '✓' : st === 'locked' ? '🔒' : u.order}</div>
@@ -45,7 +48,7 @@ export function Course() {
                       <div className="unit-title">{u.title}</div>
                       <div className="unit-sub">{u.titleRu}</div>
                       <div className="unit-gram">🧩 {u.grammar.topic}</div>
-                      {st !== 'locked' && <ProgressBar value={steps / STEPS.length} />}
+                      {st !== 'locked' && <ProgressBar value={steps / all.length} />}
                       {up?.steps.test?.score !== undefined && (
                         <div className="tiny muted">Тест: {Math.round((up.steps.test.score ?? 0) * 100)}%</div>
                       )}

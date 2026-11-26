@@ -1,7 +1,10 @@
-// Content schema for the German B1–C1 course.
+// Content schema for the German A1–C1 course.
 // All explanations/translations for the learner are in Russian; learning material is in German.
 
-export type Level = 'B1' | 'B2' | 'C1';
+export type Level = 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
+
+/** Steps a unit can have (see lib/steps.ts). Default for all units: everything except 'phonics'. */
+export type UnitStepId = 'phonics' | 'vocab' | 'grammar' | 'reading' | 'listening' | 'writing' | 'speaking' | 'test';
 
 export type PartOfSpeech = 'noun' | 'verb' | 'adj' | 'adv' | 'phrase' | 'prep' | 'conj' | 'other';
 
@@ -19,12 +22,16 @@ export interface VocabItem {
   /** Natural German example sentence using the word */
   example: string;
   exampleRu: string;
+  /** A1/A2: approximate pronunciation in Cyrillic with the stressed syllable in CAPITALS, e.g. "ГУ-тэн МОР-ген" */
+  pronRu?: string;
 }
 
 export interface ChoiceExercise {
   type: 'choice';
-  /** German sentence with ___ for the gap or a question */
+  /** German sentence with ___ for the gap or a question. With `audio`, may be a short Russian question ("Какое слово вы слышите?") */
   prompt: string;
+  /** German text played by TTS (listening exercise): "hear and choose" */
+  audio?: string;
   options: string[];
   /** index into options */
   answer: number;
@@ -33,8 +40,10 @@ export interface ChoiceExercise {
 
 export interface GapExercise {
   type: 'gap';
-  /** German sentence containing exactly one ___ */
+  /** German sentence containing exactly one ___ (with `audio`: e.g. "Напишите слово: ___") */
   prompt: string;
+  /** German text played by TTS: dictation ("hear and write") */
+  audio?: string;
   /** Accepted answers (case-insensitive compare, trimmed). First is canonical. */
   answers: string[];
   hintRu?: string;
@@ -68,6 +77,25 @@ export interface MCQ {
   answer: number;
 }
 
+/** A1 starter units: letters and sounds, taught with audio (TTS) and example words. */
+export interface PhonicsItem {
+  /** what is written, e.g. "A a", "ei", "sch", "ä" */
+  grapheme: string;
+  /** what the TTS should say for it (letter name like "Be", or a short word); default: first example word */
+  say?: string;
+  /** how it sounds, explained in Russian, e.g. "как русское «ай»" */
+  soundRu: string;
+  noteRu?: string;
+  /** 2–4 short example words */
+  examples: { de: string; ru: string; pronRu: string }[];
+}
+
+export interface PhonicsLesson {
+  /** short explanation in Russian (simple markdown) */
+  introRu: string;
+  groups: { titleRu: string; items: PhonicsItem[] }[];
+}
+
 export interface Unit {
   /** e.g. "b1-01" */
   id: string;
@@ -79,6 +107,10 @@ export interface Unit {
   titleRu: string;
   /** Short Russian description of what the learner can do after the unit */
   goalsRu: string[];
+  /** Override the unit's steps (A1 starter units). Default: vocab, grammar, reading, listening, writing, speaking, test */
+  steps?: UnitStepId[];
+  /** Letters & sounds lesson (step 'phonics') */
+  phonics?: PhonicsLesson;
   grammar: {
     topic: string; // German name of topic
     topicRu: string;
@@ -96,7 +128,7 @@ export interface Unit {
     title: string;
     /** 'monolog' or 'dialog'. For dialogs, each line starts with "A: " or "B: " */
     kind: 'monolog' | 'dialog';
-    /** German text, 150–300 words (B1), 220–380 (B2), 280–450 (C1). Uses unit vocab & grammar. */
+    /** German text, 40–120 words (A1), 100–180 (A2), 150–300 (B1), 220–380 (B2), 280–450 (C1). Uses unit vocab & grammar. */
     text: string;
     /** 5 comprehension questions in German */
     questions: MCQ[];
@@ -112,7 +144,7 @@ export interface Unit {
   speaking: {
     /** Scenario description for the learner in Russian */
     scenarioRu: string;
-    /** Role the AI plays, in German, e.g. "Sie sind Personalchefin bei einer Firma in München..." */
+    /** Role the AI plays, in German, e.g. "Sie sind Personalchefin bei einer Firma in München..." Empty = only read-aloud practice */
     aiRole: string;
     /** First line the AI says (German) */
     opener: string;
@@ -127,7 +159,7 @@ export interface Unit {
 export interface PlacementItem {
   id: string;
   /** Difficulty band the item measures */
-  band: 'A2' | 'B1' | 'B2' | 'C1';
+  band: 'A1' | 'A2' | 'B1' | 'B2' | 'C1';
   skill: 'grammar' | 'vocab' | 'reading' | 'listening';
   /** For reading items – short German text shown before the question */
   context?: string;
