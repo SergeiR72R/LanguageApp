@@ -1,0 +1,65 @@
+import type { VocabItem } from '../../types';
+
+// Word bank A2 · Unit 04 — Wohnen und Umziehen
+export const words: VocabItem[] = [
+  // Wohnung suchen und mieten
+  { de: 'Mietvertrag', article: 'der', plural: '-¨e', pos: 'noun', ru: 'договор аренды', example: 'Morgen unterschreiben wir den Mietvertrag.', exampleRu: 'Завтра мы подписываем договор аренды.', pronRu: 'МИ:Т-фер-трак' },
+  { de: 'Kaltmiete', article: 'die', plural: '-n', pos: 'noun', ru: 'аренда без коммунальных расходов', example: 'Die Kaltmiete ist 520 Euro im Monat.', exampleRu: 'Аренда без коммуналки — 520 евро в месяц.' },
+  { de: 'Warmmiete', article: 'die', plural: '-n', pos: 'noun', ru: 'аренда с коммунальными расходами', example: 'Die Warmmiete ist 700 Euro, mit Heizung und Wasser.', exampleRu: 'Аренда с коммуналкой — 700 евро, с отоплением и водой.' },
+  { de: 'Besichtigung', article: 'die', plural: '-en', pos: 'noun', ru: 'осмотр (квартиры)', example: 'Die Besichtigung ist am Samstag um zehn Uhr.', exampleRu: 'Осмотр квартиры — в субботу в десять часов.', pronRu: 'бе-ЗИХЬ-ти-гунг' },
+  { de: 'besichtigen', forms: 'besichtigt, hat besichtigt', pos: 'verb', ru: 'осматривать (квартиру, город)', example: 'Wir haben gestern drei Wohnungen besichtigt.', exampleRu: 'Вчера мы осмотрели три квартиры.' },
+  { de: 'mieten', forms: 'mietet, hat gemietet', pos: 'verb', ru: 'снимать, арендовать', example: 'Wir mieten eine Wohnung in der Stadt.', exampleRu: 'Мы снимаем квартиру в городе.' },
+  { de: 'vermieten', forms: 'vermietet, hat vermietet', pos: 'verb', ru: 'сдавать (в аренду)', example: 'Frau Berg vermietet ein Zimmer an Studenten.', exampleRu: 'Госпожа Берг сдаёт комнату студентам.' },
+  { de: 'Quadratmeter', article: 'der', plural: '-', pos: 'noun', ru: 'квадратный метр (m²)', example: 'Die Wohnung hat 65 Quadratmeter.', exampleRu: 'В квартире 65 квадратных метров.', pronRu: 'кфа-ДРА:Т-ме:-та' },
+  { de: 'Lage', article: 'die', plural: '-n', pos: 'noun', ru: 'расположение', example: 'Die Lage ist super: Der Bahnhof ist nur fünf Minuten weg.', exampleRu: 'Расположение отличное: вокзал всего в пяти минутах.' },
+  { de: 'Altbau', article: 'der', plural: '-ten', pos: 'noun', ru: 'старый дом (постройки до ~1950 г.)', example: 'Wir wohnen in einem Altbau. Die Zimmer sind sehr hoch.', exampleRu: 'Мы живём в старом доме. Комнаты очень высокие.' },
+  { de: 'Neubau', article: 'der', plural: '-ten', pos: 'noun', ru: 'новостройка', example: 'Das Haus ist ein Neubau, hier ist alles neu.', exampleRu: 'Дом — новостройка, здесь всё новое.' },
+  { de: 'Hochhaus', article: 'das', plural: '-¨er', pos: 'noun', ru: 'многоэтажный дом, высотка', example: 'Meine Tante wohnt in einem Hochhaus im zwölften Stock.', exampleRu: 'Моя тётя живёт в высотке на двенадцатом этаже.' },
+  { de: 'Einfamilienhaus', article: 'das', plural: '-¨er', pos: 'noun', ru: 'частный дом (на одну семью)', example: 'Viele Familien träumen von einem Einfamilienhaus mit Garten.', exampleRu: 'Многие семьи мечтают о собственном доме с садом.' },
+  { de: 'Wohngemeinschaft', article: 'die', plural: '-en', pos: 'noun', ru: 'квартира, которую снимают вместе (сокр. WG)', example: 'Mein Sohn wohnt in einer Wohngemeinschaft mit zwei Studenten.', exampleRu: 'Мой сын живёт в квартире вместе с двумя студентами.' },
+  { de: 'Stadtrand', article: 'der', plural: '-¨er', pos: 'noun', ru: 'окраина города', example: 'Am Stadtrand sind die Wohnungen billiger.', exampleRu: 'На окраине квартиры дешевле.' },
+  { de: 'möbliert', pos: 'adj', ru: 'с мебелью, меблированный', example: 'Das Zimmer ist möbliert: Bett, Schrank und Tisch sind schon da.', exampleRu: 'Комната с мебелью: кровать, шкаф и стол уже есть.' },
+  { de: 'günstig', pos: 'adj', ru: 'выгодный, недорогой', example: 'Die Wohnung ist klein, aber günstig.', exampleRu: 'Квартира маленькая, но недорогая.' },
+  { de: 'zentral', pos: 'adj', ru: 'в центре, удобно расположенный', example: 'Unsere Wohnung liegt sehr zentral.', exampleRu: 'Наша квартира расположена в самом центре.' },
+  { de: 'eng', pos: 'adj', ru: 'тесный, узкий', example: 'Mit drei Kindern ist die Wohnung zu eng.', exampleRu: 'С тремя детьми квартира слишком тесная.' },
+  { de: 'zur Miete wohnen', pos: 'phrase', ru: 'жить на съёмной квартире', example: 'Wir haben kein Haus, wir wohnen zur Miete.', exampleRu: 'У нас нет дома, мы снимаем жильё.' },
+
+  // Im Haus
+  { de: 'Treppe', article: 'die', plural: '-n', pos: 'noun', ru: 'лестница', example: 'Der Aufzug ist kaputt, wir nehmen die Treppe.', exampleRu: 'Лифт сломан, мы идём по лестнице.' },
+  { de: 'Treppenhaus', article: 'das', plural: '-¨er', pos: 'noun', ru: 'подъезд, лестничная клетка', example: 'Im Treppenhaus dürfen keine Fahrräder stehen.', exampleRu: 'В подъезде нельзя ставить велосипеды.' },
+  { de: 'Hausmeister', article: 'der', plural: '-', pos: 'noun', ru: 'завхоз, управляющий домом', example: 'Die Heizung ist kalt. Ich rufe den Hausmeister an.', exampleRu: 'Батарея холодная. Я позвоню завхозу.' },
+  { de: 'Briefkasten', article: 'der', plural: '-¨', pos: 'noun', ru: 'почтовый ящик', example: 'Auf dem Briefkasten steht noch der alte Name.', exampleRu: 'На почтовом ящике ещё старое имя.' },
+  { de: 'Klingel', article: 'die', plural: '-n', pos: 'noun', ru: 'звонок (у двери)', example: 'Unsere Klingel ist kaputt. Bitte klopfen Sie!', exampleRu: 'Наш звонок сломан. Пожалуйста, стучите!' },
+  { de: 'klingeln', forms: 'klingelt, hat geklingelt', pos: 'verb', ru: 'звонить (в дверь)', example: 'Es hat geklingelt. Machst du bitte die Tür auf?', exampleRu: 'В дверь позвонили. Откроешь, пожалуйста?' },
+  { de: 'Dach', article: 'das', plural: '-¨er', pos: 'noun', ru: 'крыша', example: 'Auf dem Dach sitzt eine Katze.', exampleRu: 'На крыше сидит кошка.' },
+  { de: 'Decke', article: 'die', plural: '-n', pos: 'noun', ru: 'потолок; одеяло', example: 'Die Lampe hängt an der Decke.', exampleRu: 'Лампа висит на потолке.' },
+  { de: 'Heizung', article: 'die', plural: '-en', pos: 'noun', ru: 'отопление; батарея', example: 'Im Winter ist die Heizung immer an.', exampleRu: 'Зимой отопление всегда включено.' },
+  { de: 'Steckdose', article: 'die', plural: '-n', pos: 'noun', ru: 'розетка', example: 'Neben dem Bett ist keine Steckdose.', exampleRu: 'Рядом с кроватью нет розетки.', pronRu: 'ШТЕК-до:-зе' },
+  { de: 'Garage', article: 'die', plural: '-n', pos: 'noun', ru: 'гараж', example: 'Das Auto steht in der Garage.', exampleRu: 'Машина стоит в гараже.', pronRu: 'га-РА:-же' },
+  { de: 'Lärm', article: 'der', plural: '–', pos: 'noun', ru: 'шум', example: 'Die Straße ist laut, der Lärm stört mich.', exampleRu: 'Улица шумная, шум мне мешает.' },
+  { de: 'Nachbarschaft', article: 'die', plural: '-en', pos: 'noun', ru: 'соседи; окрестности', example: 'In unserer Nachbarschaft gibt es einen Spielplatz.', exampleRu: 'В нашем районе есть детская площадка.' },
+
+  // Möbel und Einrichtung
+  { de: 'Sessel', article: 'der', plural: '-', pos: 'noun', ru: 'кресло', example: 'Opa sitzt gern im Sessel am Fenster.', exampleRu: 'Дедушка любит сидеть в кресле у окна.' },
+  { de: 'Kommode', article: 'die', plural: '-n', pos: 'noun', ru: 'комод', example: 'Die Socken liegen in der Kommode.', exampleRu: 'Носки лежат в комоде.' },
+  { de: 'Kleiderschrank', article: 'der', plural: '-¨e', pos: 'noun', ru: 'платяной шкаф', example: 'Der Kleiderschrank steht im Schlafzimmer.', exampleRu: 'Платяной шкаф стоит в спальне.' },
+  { de: 'Nachttisch', article: 'der', plural: '-e', pos: 'noun', ru: 'тумбочка у кровати', example: 'Meine Brille liegt auf dem Nachttisch.', exampleRu: 'Мои очки лежат на тумбочке.' },
+  { de: 'Spiegel', article: 'der', plural: '-', pos: 'noun', ru: 'зеркало', example: 'Wir hängen den Spiegel neben die Tür.', exampleRu: 'Мы вешаем зеркало рядом с дверью.' },
+  { de: 'Vorhang', article: 'der', plural: '-¨e', pos: 'noun', ru: 'занавеска, штора', example: 'Die Vorhänge hängen schon am Fenster.', exampleRu: 'Шторы уже висят на окне.' },
+  { de: 'Kissen', article: 'das', plural: '-', pos: 'noun', ru: 'подушка', example: 'Auf dem Sofa liegen drei Kissen.', exampleRu: 'На диване лежат три подушки.' },
+  { de: 'Pflanze', article: 'die', plural: '-n', pos: 'noun', ru: 'растение', example: 'Ich stelle die Pflanze ans Fenster.', exampleRu: 'Я ставлю растение к окну.' },
+  { de: 'Badewanne', article: 'die', plural: '-n', pos: 'noun', ru: 'ванна', example: 'Das Bad hat leider keine Badewanne, nur eine Dusche.', exampleRu: 'В ванной, к сожалению, нет ванны, только душ.' },
+  { de: 'Waschbecken', article: 'das', plural: '-', pos: 'noun', ru: 'раковина (умывальник)', example: 'Die Seife liegt am Waschbecken.', exampleRu: 'Мыло лежит у раковины.' },
+  { de: 'Herd', article: 'der', plural: '-e', pos: 'noun', ru: 'плита', example: 'Der Topf steht auf dem Herd.', exampleRu: 'Кастрюля стоит на плите.' },
+
+  // Umziehen
+  { de: 'Umzugskarton', article: 'der', plural: '-s', pos: 'noun', ru: 'коробка для переезда', example: 'Wir brauchen noch zwanzig Umzugskartons.', exampleRu: 'Нам нужно ещё двадцать коробок для переезда.' },
+  { de: 'Transporter', article: 'der', plural: '-', pos: 'noun', ru: 'фургон, грузовой микроавтобус', example: 'Für den Umzug haben wir einen Transporter gemietet.', exampleRu: 'Для переезда мы взяли напрокат фургон.' },
+  { de: 'packen', forms: 'packt, hat gepackt', pos: 'verb', ru: 'упаковывать, складывать', example: 'Hast du die Bücher schon in die Kisten gepackt?', exampleRu: 'Ты уже упаковал книги в коробки?' },
+  { de: 'auspacken', forms: 'packt aus, hat ausgepackt', pos: 'verb', ru: 'распаковывать', example: 'Wir packen heute die Küche aus.', exampleRu: 'Сегодня мы распаковываем кухню.' },
+  { de: 'aufhängen', forms: 'hängt auf, hat aufgehängt', pos: 'verb', ru: 'повесить (картину, бельё)', example: 'Am Wochenende hänge ich die Bilder auf.', exampleRu: 'На выходных я повешу картины.' },
+  { de: 'streichen', forms: 'streicht, hat gestrichen', pos: 'verb', ru: 'красить (стены)', example: 'Wir haben das Kinderzimmer gelb gestrichen.', exampleRu: 'Мы покрасили детскую в жёлтый цвет.', pronRu: 'ШТРАЙ-хьен' },
+  { de: 'renovieren', forms: 'renoviert, hat renoviert', pos: 'verb', ru: 'делать ремонт', example: 'Vor dem Einzug renovieren wir die Wohnung.', exampleRu: 'Перед въездом мы делаем в квартире ремонт.' },
+  { de: 'tragen', forms: 'trägt, hat getragen', pos: 'verb', ru: 'нести, носить', example: 'Kannst du mir helfen? Die Kiste ist so schwer, ich kann sie nicht allein tragen.', exampleRu: 'Можешь мне помочь? Ящик такой тяжёлый, я не могу нести его один.' },
+  { de: 'stecken', forms: 'steckt, hat gesteckt; wohin? + Akk', pos: 'verb', ru: 'засовывать, вставлять', example: 'Ich stecke den Schlüssel in die Tasche.', exampleRu: 'Я кладу ключ в карман (сумку).' },
+];

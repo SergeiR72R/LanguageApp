@@ -4,14 +4,14 @@ import type { RektionItem } from './types';
 const mods = import.meta.glob<{ rektion: RektionItem[] }>('./rektion/*.ts', { eager: true });
 const PREPS = ['an', 'auf', 'aus', 'bei', 'für', 'gegen', 'in', 'mit', 'nach', 'über', 'um', 'unter', 'von', 'vor', 'zu', 'zwischen', 'hinter', 'neben', 'durch', 'ohne', 'gegenüber', 'wegen', 'außer', 'seit', 'entgegen'];
 const CONTRACTIONS: Record<string, string[]> = { an: ['am', 'ans'], in: ['im', 'ins'], zu: ['zum', 'zur'], bei: ['beim'], von: ['vom'], auf: ['aufs'], für: ['fürs'], um: ['ums'] };
-const MIN: Record<string, number> = { b1: 160, b2: 130, c1: 90 };
+const MIN: Record<string, number> = { a2: 50, b1: 160, b2: 130, c1: 90 };
 
 describe('verb government lists', () => {
   it('loads', () => expect(mods).toBeDefined());
   for (const [path, mod] of Object.entries(mods)) {
     it(path, () => {
-      const lvl = path.match(/\/(b1|b2|c1)\.ts$/)?.[1];
-      expect(lvl, `${path}: file must be b1.ts, b2.ts or c1.ts`).toBeTruthy();
+      const lvl = path.match(/\/(a2|b1|b2|c1)\.ts$/)?.[1];
+      expect(lvl, `${path}: file must be a2.ts, b1.ts, b2.ts or c1.ts`).toBeTruthy();
       expect(Array.isArray(mod.rektion), `${path} must export const rektion`).toBe(true);
       expect(mod.rektion.length, `${path} too few`).toBeGreaterThanOrEqual(MIN[lvl!]);
       const keys = new Set<string>();
