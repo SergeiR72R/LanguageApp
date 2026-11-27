@@ -289,22 +289,23 @@ function ChoiceHotkeys({ ex, disabled, onPick }: { ex: Exercise; disabled: boole
   return null;
 }
 
-/** ä ö ü ß buttons for keyboards without a German layout. */
+/** ä ö ü ß buttons for keyboards without a German layout (labelled, so they are not mistaken for a hint). */
 export function UmlautKeys({ onInsert }: { onInsert: (ch: string) => void }) {
+  const [upper, setUpper] = useState(false);
+  const keys = upper ? ['Ä', 'Ö', 'Ü'] : ['ä', 'ö', 'ü', 'ß'];
   return (
-    <div className="umlaut-keys" aria-label="Немецкие буквы">
-      {['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'].map((ch) => (
-        <button
-          key={ch}
-          type="button"
-          className="key"
-          tabIndex={-1}
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={() => onInsert(ch)}
-        >
+    <div className="umlaut-keys" aria-label="Ввод немецких букв">
+      <span className="umlaut-label" title="Кнопки для ввода немецких букв, если на клавиатуре нет немецкой раскладки. Это не подсказка.">
+        ⌨️ ввод букв:
+      </span>
+      {keys.map((ch) => (
+        <button key={ch} type="button" className="key" tabIndex={-1} onMouseDown={(e) => e.preventDefault()} onClick={() => onInsert(ch)}>
           {ch}
         </button>
       ))}
+      <button type="button" className="key shift" tabIndex={-1} title="Заглавные" onMouseDown={(e) => e.preventDefault()} onClick={() => setUpper(!upper)}>
+        ⇧
+      </button>
     </div>
   );
 }

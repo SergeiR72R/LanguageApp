@@ -621,6 +621,8 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 
 /* listening exercises and German letter keys */
 .ex-audio { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 4px 0 10px; }
-.umlaut-keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
-.umlaut-keys .key { min-width: 36px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--border, #d1d5db); background: var(--surface, #fff); color: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; }
+.umlaut-keys { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin: 4px 0; opacity: 0.75; }
+.umlaut-keys:hover, .umlaut-keys:focus-within { opacity: 1; }
+.umlaut-label { font-size: 0.75rem; color: var(--muted, #6b7280); margin-right: 2px; }
+.umlaut-keys .key { min-width: 28px; padding: 2px 6px; border-radius: 6px; font-size: 0.85rem !important; border: 1px solid var(--border, #d1d5db); background: var(--surface, #fff); color: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; }
 .umlaut-keys .key:hover { background: rgba(37, 99, 235, 0.08); }
