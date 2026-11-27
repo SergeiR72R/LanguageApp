@@ -12,6 +12,7 @@ import { activeProfile, listProfiles } from '../lib/profiles';
 import { dailyGoalXp, levelInfo, todayXp, totalXp } from '../lib/gamification';
 import { allPlayers } from '../lib/compete';
 import { isSyncEnabled } from '../lib/sync';
+import { HeroCard } from '../components/HeroCard';
 
 function GoalRing({ value, goal }: { value: number; goal: number }) {
   const r = 46;
@@ -206,6 +207,7 @@ export function Today() {
         </Card>
 
         <div className="stack">
+          <HeroCard />
           {unit ? (
             <Card>
               <div className="eyebrow">

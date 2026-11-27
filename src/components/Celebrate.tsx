@@ -3,6 +3,7 @@ import { useStore } from '../lib/store';
 import { dailyGoalXp, levelInfo, todayXp, totalXp, unlockedAchievements } from '../lib/gamification';
 import { sfx } from '../lib/sound';
 import { today } from '../lib/date';
+import { SLOTS, slotXp, unlockedCount, wardrobe } from '../lib/avatar/catalog';
 
 // ---------------- confetti ----------------
 
@@ -131,6 +132,43 @@ export function CelebrationWatcher() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lvl, unlocked, goalReached]);
+
+  // new wardrobe items unlocked by today's work
+  const av = s.avatar;
+  const xpBySlot = slotXp(s);
+  const counts = av ? SLOTS.map((x) => unlockedCount(x.slot, av.look.gender, xpBySlot[x.slot])).join(',') : '';
+  useEffect(() => {
+    const st = useStore.getState();
+    const a = st.avatar;
+    if (!a) return;
+    const xp = slotXp(st);
+    const seen = a.seen ?? {};
+    const fresh: { icon: string; name: string }[] = [];
+    const update: Record<string, number> = {};
+    for (const x of SLOTS) {
+      const n = unlockedCount(x.slot, a.look.gender, xp[x.slot]);
+      const before = seen[x.slot];
+      if (before === undefined) update[x.slot] = n; // first time: no flood of toasts for past work
+      else if (n > before) {
+        update[x.slot] = n;
+        for (const it of wardrobe(x.slot, a.look.gender).slice(before, n)) fresh.push({ icon: x.icon, name: it.name });
+      }
+    }
+    if (Object.keys(update).length) st.setAvatar({ seen: update });
+    if (fresh.length) {
+      push({
+        icon: '🎁',
+        title: fresh.length === 1 ? 'Новая вещь в гардеробе!' : `${fresh.length} новые вещи в гардеробе!`,
+        text: `${fresh
+          .slice(0, 3)
+          .map((f) => `${f.icon} ${f.name}`)
+          .join(', ')}${fresh.length > 3 ? '…' : ''} — примерьте в разделе «Мой герой».`,
+      });
+      confetti(80);
+      sfx.fanfare();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [counts]);
 
   return (
     <div className="toasts">

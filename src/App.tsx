@@ -3,6 +3,7 @@ import { Component, useEffect, useState, type ReactNode } from 'react';
 import { levelInfo, totalXp } from './lib/gamification';
 import { CelebrationWatcher } from './components/Celebrate';
 import { Compete } from './pages/Compete';
+import { AvatarPage } from './pages/AvatarPage';
 import { isSyncEnabled, startAutoSync } from './lib/sync';
 import { Login, SKIP_LOGIN_KEY } from './pages/Login';
 
@@ -34,6 +35,7 @@ const LINKS = [
   { to: '/speak', label: 'Разговор', icon: '🗣️', primary: true },
   { to: '/exams', label: 'Экзамен', icon: '🎓' },
   { to: '/compete', label: 'Соревнование', icon: '🏆' },
+  { to: '/avatar', label: 'Мой герой', icon: '🧑‍🎨' },
   { to: '/mistakes', label: 'Ошибки', icon: '📕' },
   { to: '/progress', label: 'Прогресс', icon: '📈' },
   { to: '/settings', label: 'Настройки', icon: '⚙️' },
@@ -225,6 +227,7 @@ export function App() {
             <Route path="/words" element={<Words />} />
             <Route path="/verbs" element={<Verbs />} />
             <Route path="/compete" element={<Compete />} />
+            <Route path="/avatar" element={<AvatarPage />} />
             <Route path="/exams" element={<Exams />} />
             <Route path="/exam/:id" element={<ExamRunner />} />
             <Route path="*" element={<Navigate to="/" replace />} />

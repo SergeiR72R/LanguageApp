@@ -1,3 +1,4 @@
+import { slotXp, validEquipped, type AvatarState } from './avatar/catalog';
 import { activeProfile, listProfiles, readProfileState, type Profile } from './profiles';
 import { useStore, defaultSettings, streak, type AppState } from './store';
 import { bestStreak, lastWeekXp, levelInfo, todayXp, totalXp, unlockedAchievements, weekXp } from './gamification';
@@ -17,9 +18,10 @@ export interface PlayerStats {
   words: number;
   units: number;
   achievements: number;
+  avatar?: AvatarState;
 }
 
-type S = Pick<AppState, 'activity' | 'units' | 'cards' | 'examResults' | 'mistakes' | 'writings' | 'conversations' | 'settings'>;
+type S = Pick<AppState, 'activity' | 'units' | 'cards' | 'examResults' | 'mistakes' | 'writings' | 'conversations' | 'settings' | 'consolidations' | 'avatar'>;
 
 function normalize(raw: Record<string, unknown> | null): S {
   const r = (raw ?? {}) as Partial<S>;
@@ -31,6 +33,8 @@ function normalize(raw: Record<string, unknown> | null): S {
     mistakes: r.mistakes ?? [],
     writings: r.writings ?? [],
     conversations: r.conversations ?? [],
+    consolidations: r.consolidations ?? [],
+    avatar: r.avatar,
     settings: { ...defaultSettings, ...(r.settings ?? {}) },
   };
 }
@@ -53,6 +57,7 @@ export function statsFor(s: S, profile: Profile, me: boolean): PlayerStats {
     words: Object.values(s.cards).filter((c) => c.kind === 'vocab').length,
     units: Object.values(s.units).filter((u) => u.completed).length,
     achievements: unlockedAchievements(s).length,
+    avatar: s.avatar ? { ...s.avatar, equipped: validEquipped(s.avatar, slotXp(s)) } : undefined,
   };
 }
 

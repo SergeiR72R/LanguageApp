@@ -18,6 +18,7 @@ export type ProfileData = Partial<
     | 'reports'
     | 'celebrated'
     | 'plan'
+    | 'avatar'
   >
 >;
 
@@ -131,5 +132,6 @@ export function mergeProfile(local: ProfileData, remote: ProfileData, newer: 'lo
     reports: unionBy(local.reports, remote.reports, (r) => `${r.date}|${JSON.stringify(r.exercise)}|${r.given}`),
     celebrated: n.celebrated ?? o.celebrated,
     plan: n.plan ?? o.plan,
+    avatar: n.avatar ?? o.avatar,
   };
 }

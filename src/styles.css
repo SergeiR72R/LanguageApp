@@ -626,3 +626,49 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 .umlaut-label { font-size: 0.75rem; color: var(--muted, #6b7280); margin-right: 2px; }
 .umlaut-keys .key { min-width: 28px; padding: 2px 6px; border-radius: 6px; font-size: 0.85rem !important; border: 1px solid var(--border, #d1d5db); background: var(--surface, #fff); color: inherit; font-size: 1rem; font-weight: 700; cursor: pointer; }
 .umlaut-keys .key:hover { background: rgba(37, 99, 235, 0.08); }
+
+/* ---------- avatar & wardrobe ---------- */
+.av-page { display: grid; grid-template-columns: minmax(220px, 320px) 1fr; gap: 20px; align-items: start; }
+.av-preview { position: sticky; top: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 12px; }
+.av-big { width: 100%; height: auto; display: block; border-radius: 12px; background: var(--surface-2); }
+.av-panel { min-width: 0; }
+.av-options { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.av-option { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: inherit; font: inherit; font-size: 0.78rem; cursor: pointer; }
+.av-option.active { border-color: var(--accent, #2563eb); box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.25); }
+.av-option svg { background: var(--surface-2); border-radius: 8px; }
+.av-swatches { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+.av-swatch { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border); cursor: pointer; }
+.av-swatch.active { outline: 3px solid var(--accent, #2563eb); outline-offset: 1px; }
+.av-panel h4 { margin: 10px 0 2px; }
+.av-slot-tabs { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+.av-slot-tab { display: flex; flex-direction: column; align-items: center; padding: 6px 2px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); color: inherit; font: inherit; cursor: pointer; }
+.av-slot-tab.active { border-color: var(--accent, #2563eb); background: var(--surface-2); }
+.av-slot-icon { font-size: 1.4rem; }
+.av-slot-head h3 { margin: 6px 0 2px; }
+.av-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
+.av-item { display: flex; flex-direction: column; align-items: stretch; gap: 3px; padding: 6px; border: 2px solid var(--border); border-radius: 12px; background: var(--surface); color: inherit; font: inherit; text-align: center; cursor: pointer; }
+.av-item .av-thumb { width: 100%; height: 96px; background: var(--surface-2); border-radius: 8px; }
+.av-item-name { font-size: 0.74rem; line-height: 1.15; min-height: 2.3em; }
+.av-item-meta { font-size: 0.7rem; opacity: 0.75; }
+.av-item.r1 { border-color: #60a5fa; }
+.av-item.r2 { border-color: #a855f7; }
+.av-item.r3 { border-color: #f59e0b; box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.25); }
+.av-item.on { outline: 3px solid #16a34a; outline-offset: 1px; }
+.av-item.locked { cursor: default; opacity: 0.55; }
+.av-item.locked .av-thumb { filter: grayscale(1) brightness(0.9); }
+.av-start .btn { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.av-mini { display: flex; align-items: center; gap: 12px; }
+.av-mini svg { flex-shrink: 0; background: var(--surface-2); border-radius: 12px; }
+.center { text-align: center; }
+@media (max-width: 760px) {
+  .av-page { grid-template-columns: 1fr; }
+  .av-preview { position: static; max-width: 170px; margin: 0 auto; padding: 8px; }
+  .av-slot-tabs { grid-template-columns: repeat(4, 1fr); }
+  .av-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
+}
+.heroes { display: flex; flex-wrap: wrap; gap: 14px; margin: 6px 0 16px; }
+.hero { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); color: inherit; text-decoration: none; }
+.hero.me { border-color: var(--accent); }
+.hero svg { background: var(--surface-2); border-radius: 10px; }
+.hero-empty { font-size: 3rem; width: 110px; text-align: center; }
+.lb-avatar svg { border-radius: 50%; background: var(--surface-2); vertical-align: middle; }

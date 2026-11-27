@@ -3,6 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware';
 import { activeStorageKey } from './profiles';
 import type { Exercise, Level } from '../content/types';
 import { allUnits, unitIndex } from '../content';
+import type { AvatarState } from './avatar/catalog';
 import { today as todayStr } from './date';
 import { newSrs, schedule, type Grade, type SrsState } from './srs';
 import type { StepId } from './steps';
@@ -209,7 +210,10 @@ export interface AppState {
   /** gamification bookkeeping: achievements already celebrated, last level seen, day the daily goal was celebrated */
   celebrated: { achievements: string[]; level: number; goalDay: string };
   plan?: { date: string; items: PlanItem[] };
+  /** the learner's character and what it wears */
+  avatar?: AvatarState;
 
+  setAvatar: (p: Partial<AvatarState>) => void;
   updateSettings: (p: Partial<Settings>) => void;
   setKey: (provider: LlmProvider, key: string) => void;
   setPlacement: (r: PlacementResult, startUnitId: string) => void;
@@ -274,6 +278,7 @@ const initialData = {
   reports: [],
   celebrated: { achievements: [], level: 1, goalDay: '' },
   plan: undefined,
+  avatar: undefined,
 };
 
 export const useStore = create<AppState>()(
@@ -282,6 +287,11 @@ export const useStore = create<AppState>()(
       ...initialData,
 
       updateSettings: (p) => set((s) => ({ settings: { ...s.settings, ...p } })),
+      setAvatar: (p) =>
+        set((s) => {
+          const base = s.avatar ?? (p.look ? { look: p.look, equipped: {} } : undefined);
+          return base ? { avatar: { ...base, ...p, equipped: { ...base.equipped, ...(p.equipped ?? {}) }, seen: { ...(base.seen ?? {}), ...(p.seen ?? {}) } } } : {};
+        }),
       setKey: (provider, key) => set((s) => ({ settings: { ...s.settings, keys: { ...s.settings.keys, [provider]: key } } })),
 
       setPlacement: (r, startUnitId) => set({ placement: r, startUnitId, plan: undefined }),

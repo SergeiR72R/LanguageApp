@@ -1,3 +1,4 @@
+import { Avatar } from '../components/Avatar';
 import { Link } from 'react-router-dom';
 import { allPlayers, lastWeekChampion, type PlayerStats } from '../lib/compete';
 import { useStore } from '../lib/store';
@@ -20,7 +21,7 @@ export function Compete() {
   const row = (p: PlayerStats, i: number) => (
     <div key={p.profile.id} className={`lb-row ${p.me ? 'me' : ''}`}>
       <span className="lb-place">{MEDALS[i] ?? i + 1}</span>
-      <span className="lb-avatar">{p.profile.emoji}</span>
+      <span className="lb-avatar">{p.avatar ? <Avatar look={p.avatar.look} equipped={p.avatar.equipped} view="face" size={34} /> : p.profile.emoji}</span>
       <span className="lb-name">
         {p.profile.name} {champ?.profile.id === p.profile.id && <span title="Чемпион прошлой недели">👑</span>}
         <span className="tiny muted">
@@ -38,6 +39,17 @@ export function Compete() {
   return (
     <div className="page">
       <h1>🏆 Соревнование</h1>
+      {players.some((p) => p.avatar) && (
+        <div className="heroes">
+          {players.map((p) => (
+            <Link key={p.profile.id} to={p.me ? '/avatar' : '#'} className={`hero ${p.me ? 'me' : ''}`} onClick={(e) => !p.me && e.preventDefault()}>
+              {p.avatar ? <Avatar look={p.avatar.look} equipped={p.avatar.equipped} size={110} /> : <span className="hero-empty">{p.profile.emoji}</span>}
+              <span className="small">{p.profile.name}</span>
+              {!p.avatar && p.me && <span className="tiny">Создать героя →</span>}
+            </Link>
+          ))}
+        </div>
+      )}
       {players.length < 2 ? (
         <Card className="highlight">
           <p>Добавьте второго ученика — и вы будете соревноваться: недельный рейтинг по XP, дуэль, чемпион недели 👑.</p>
