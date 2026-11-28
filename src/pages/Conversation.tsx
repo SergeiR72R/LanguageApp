@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Level } from '../content/types';
-import { allUnits, getUnit } from '../content';
+import { allUnits, levels, getUnit } from '../content';
 import { currentUnitId, unitStatus, useStore } from '../lib/store';
 import { isLlmConfigured } from '../lib/ai/providers';
 import { ConversationPanel } from '../components/ConversationPanel';
@@ -61,7 +61,13 @@ export function Conversation() {
   const [key, setKey] = useState(0);
   const cur = currentUnitId(s);
   const level: Level = (cur ? getUnit(cur)?.level : undefined) ?? 'B1';
-  const openUnits = allUnits.filter((u) => unitStatus(s, u.id) !== 'locked');
+  // topics: everything already opened plus the whole current level; beginner levels only for those who started there
+  const startLevel = s.startUnitId ? getUnit(s.startUnitId)?.level : undefined;
+  const floor = Math.min(levels.indexOf(startLevel ?? 'A1'), levels.indexOf('B1'));
+  const curUnit = cur ? getUnit(cur) : undefined;
+  const openUnits = allUnits
+    .filter((u) => levels.indexOf(u.level) >= floor && (unitStatus(s, u.id) !== 'locked' || u.level === level))
+    .sort((a, b) => (a.id === cur ? -1 : b.id === cur ? 1 : (a.level === level ? 0 : 1) - (b.level === level ? 0 : 1) || allUnits.indexOf(a) - allUnits.indexOf(b)));
 
   if (!isLlmConfigured(s.settings))
     return (
@@ -158,6 +164,8 @@ export function Conversation() {
                 }
               >
                 <span className={`level-badge l-${u.level}`}>{u.level}</span> {u.order}. {u.title}
+                {u.id === curUnit?.id && <span className="pill accent"> текущий</span>}
+                {unitStatus(s, u.id) === 'locked' && <span className="tiny muted"> · впереди</span>}
               </button>
             ))}
           </div>
