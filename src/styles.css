@@ -691,3 +691,5 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 .pron-tips li { margin: 6px 0; }
 .syl { padding: 0 2px; border-radius: 3px; margin-right: 1px; }
 .syl.ok { background: rgba(22, 163, 74, 0.15); } .syl.warn { background: rgba(217, 119, 6, 0.22); } .syl.bad { background: rgba(220, 38, 38, 0.22); }
+.separate { margin-top: 14px; border-top: 1px dashed var(--border); padding-top: 10px; }
+.separate summary { cursor: pointer; font-weight: 600; }

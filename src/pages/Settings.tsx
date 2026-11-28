@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
-import { useStore, type LlmProvider } from '../lib/store';
+import { useStore, type AppState, type LlmProvider } from '../lib/store';
+import type { ProfileData } from '../lib/merge';
+import { separateProfiles } from '../lib/repair';
+import { isSyncEnabled, syncNow } from '../lib/sync';
 import { PROVIDERS, browserSttSupported, providerInfo } from '../lib/ai/providers';
 import { chat, listModels } from '../lib/ai/llm';
 import { germanVoices, onVoicesReady, speak } from '../lib/ai/tts';
 import { Card, ErrorBox, Spinner } from '../components/ui';
 import { newProfilePrompt } from '../components/ProfileMenu';
 import { SyncPanel } from '../components/SyncPanel';
-import { EMOJIS, activeProfile, deleteProfile, listProfiles, switchProfile, updateProfile, type Profile } from '../lib/profiles';
+import { EMOJIS, activeProfile, deleteProfile, listProfiles, readProfileState, switchProfile, updateProfile, type Profile } from '../lib/profiles';
 
 function ProfilesCard() {
   const [profiles, setProfiles] = useState<Profile[]>(listProfiles());
@@ -65,7 +68,71 @@ function ProfilesCard() {
       <button className="btn" onClick={newProfilePrompt}>
         ➕ Добавить ученика
       </button>
+      {profiles.length > 1 && <SeparateProgress profiles={profiles.filter((p) => p.id !== me.id)} me={me} />}
     </Card>
+  );
+}
+
+/** Undo an accidental mix: remove another learner's progress from the active profile. */
+function SeparateProgress({ profiles, me }: { profiles: Profile[]; me: Profile }) {
+  const [other, setOther] = useState(profiles[0]?.id ?? '');
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState('');
+  const [err, setErr] = useState('');
+  const run = async () => {
+    const o = profiles.find((p) => p.id === other);
+    if (!o) return;
+    if (!confirm(`Убрать из профиля «${me.name}» всё, что совпадает с прогрессом «${o.name}»? Перед этим будет сохранена резервная копия.`)) return;
+    setBusy(true);
+    setErr('');
+    try {
+      // latest data of both learners first
+      if (isSyncEnabled()) await syncNow().catch(() => {});
+      const theirs = readProfileState(o.id) as ProfileData | null;
+      if (!theirs) throw new Error(`Нет данных профиля «${o.name}» на этом устройстве.`);
+      const st = useStore.getState();
+      const mine: ProfileData = Object.fromEntries(Object.entries(st).filter(([, v]) => typeof v !== 'function')) as ProfileData;
+      try {
+        localStorage.setItem(`deutsch-trainer-backup:${me.id}:${Date.now()}`, JSON.stringify(mine));
+      } catch {
+        /* storage full: continue without backup */
+      }
+      const { state, report: r } = separateProfiles(mine, theirs);
+      useStore.setState(state as Partial<AppState>);
+      if (isSyncEnabled()) await syncNow();
+      setMsg(
+        `Готово. Убрано: ошибок ${r.mistakes}, текстов ${r.writings}, разговоров ${r.conversations}, карточек ${r.cards}, юнитов ${r.units} (и шагов ${r.steps}), дней активности ${r.days}, результатов экзаменов ${r.exams}, контрольных ${r.consolidations}.` +
+          (isSyncEnabled() ? ' Очищенная версия отправлена в облако и заменит смешанные копии на других устройствах.' : ''),
+      );
+    } catch (e) {
+      setErr((e as Error).message);
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <details className="separate">
+      <summary>🧹 В этот профиль попал чужой прогресс?</summary>
+      <p className="small">
+        Уберёт из профиля <strong>{me.name}</strong> всё, что в точности совпадает с прогрессом другого ученика: его ошибки,
+        тексты, разговоры, карточки, пройденные им шаги, экзамены и дни активности. Ваши собственные записи останутся.
+      </p>
+      <div className="row wrap">
+        <select value={other} onChange={(e) => setOther(e.target.value)}>
+          {profiles.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.emoji} {p.name}
+            </option>
+          ))}
+        </select>
+        <button className="btn danger" disabled={busy} onClick={() => void run()}>
+          Убрать чужой прогресс
+        </button>
+        {busy && <Spinner />}
+      </div>
+      {msg && <div className="ok-text small">{msg}</div>}
+      <ErrorBox error={err} />
+    </details>
   );
 }
 

@@ -213,6 +213,8 @@ export interface AppState {
   plan?: { date: string; items: PlanItem[]; done?: string[] };
   /** the learner's character and what it wears */
   avatar?: AvatarState;
+  /** raised when a profile is cleaned up: sync then replaces older copies instead of merging with them */
+  epoch?: number;
 
   setAvatar: (p: Partial<AvatarState>) => void;
   updateSettings: (p: Partial<Settings>) => void;

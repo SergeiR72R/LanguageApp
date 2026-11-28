@@ -19,6 +19,7 @@ export type ProfileData = Partial<
     | 'celebrated'
     | 'plan'
     | 'avatar'
+    | 'epoch'
   >
 >;
 
@@ -106,6 +107,10 @@ function unionBy<T>(a: T[] = [], b: T[] = [], key: (x: T) => string, combine?: (
  * `newer` decides plain values such as the chosen start unit or settings.
  */
 export function mergeProfile(local: ProfileData, remote: ProfileData, newer: 'local' | 'remote'): ProfileData {
+  // a cleaned-up profile (higher epoch) replaces older copies completely
+  const le = local.epoch ?? 0;
+  const re = remote.epoch ?? 0;
+  if (le !== re) return le > re ? local : remote;
   const n = newer === 'local' ? local : remote;
   const o = newer === 'local' ? remote : local;
   const settings = n.settings || o.settings ? { ...(o.settings ?? {}), ...(n.settings ?? {}) } : undefined;
