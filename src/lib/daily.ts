@@ -14,6 +14,11 @@ export function pendingSteps(s: Pick<AppState, 'units'>, unitId: string): StepId
     .filter((id) => !up?.steps[id]?.done);
 }
 
+/** More cards are due than the daily review limit — new material should wait. */
+export function reviewOverloaded(s: Pick<AppState, 'cards' | 'mistakes' | 'settings'>, d = today()): boolean {
+  return dueCards(s, d).length > s.settings.reviewLimit;
+}
+
 /**
  * Build today's plan:
  * 1. SRS review (consolidation of everything learned so far) – always first.
@@ -26,8 +31,12 @@ export function buildPlan(s: AppState): PlanItem[] {
   const items: PlanItem[] = [];
   if (dueCards(s, d).length > 0 || Object.keys(s.cards).length > 0) items.push({ kind: 'review' });
 
-  if (wordsLeftToday(s) > 0 && wordQueue(s, 1).length > 0) items.push({ kind: 'words' });
-  if (verbsLeftToday(s) > 0 && verbQueue(s, 1).length > 0) items.push({ kind: 'verbs' });
+  // New words and verbs make tomorrow's review longer: when the review queue is already over the daily limit,
+  // today's plan works it off first instead of adding more.
+  if (!reviewOverloaded(s, d)) {
+    if (wordsLeftToday(s) > 0 && wordQueue(s, 1).length > 0) items.push({ kind: 'words' });
+    if (verbsLeftToday(s) > 0 && verbQueue(s, 1).length > 0) items.push({ kind: 'verbs' });
+  }
 
   const cur = currentUnitId(s);
   if (cur && getUnit(cur)) {
