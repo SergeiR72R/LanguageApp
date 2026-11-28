@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { activeStorageKey } from './profiles';
+import { activeProfile, storageKeyFor } from './profiles';
 import type { Exercise, Level } from '../content/types';
 import { allUnits, unitIndex } from '../content';
 import type { AvatarState } from './avatar/catalog';
@@ -283,6 +283,13 @@ const initialData = {
   avatar: undefined,
 };
 
+let bound: string | null = null;
+/** The profile whose data this page holds in memory (fixed at page load). */
+export function boundProfileId(): string {
+  if (bound === null) bound = activeProfile().id;
+  return bound;
+}
+
 export const useStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -409,11 +416,12 @@ export const useStore = create<AppState>()(
     {
       name: 'deutsch-trainer-v1',
       version: 1,
-      // the actual key depends on the active learner profile
+      // The key belongs to the profile that was active when the page loaded. It never follows a later change of the
+      // active profile: switching profiles reloads the page, and anything saved in between must stay with its owner.
       storage: createJSONStorage(() => ({
-        getItem: () => localStorage.getItem(activeStorageKey()),
-        setItem: (_name, value) => localStorage.setItem(activeStorageKey(), value),
-        removeItem: () => localStorage.removeItem(activeStorageKey()),
+        getItem: () => localStorage.getItem(storageKeyFor(boundProfileId())),
+        setItem: (_name, value) => localStorage.setItem(storageKeyFor(boundProfileId()), value),
+        removeItem: () => localStorage.removeItem(storageKeyFor(boundProfileId())),
       })),
       merge: (persisted, current) => {
         const p = (persisted ?? {}) as Partial<AppState>;

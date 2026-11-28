@@ -63,8 +63,9 @@ export function profileScopedKey(key: string): string {
   return id === 'default' ? key : `${key}:${id}`;
 }
 
+/** Reload straight onto the start page; no route change first (that would let the old profile's page save again). */
 function reload() {
-  location.hash = '#/';
+  location.replace(`${location.pathname}${location.search}#/`);
   location.reload();
 }
 

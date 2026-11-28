@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { mergeProfile, type ProfileData } from './merge';
-import { useStore } from './store';
+import { boundProfileId, useStore } from './store';
 
 /**
  * Cloud sync of the whole household (all learner profiles) through the Netlify function /api/sync.
@@ -147,8 +147,13 @@ function applyLocal(h: Household, c: SyncConfig) {
   for (const id of h.deleted) localStorage.removeItem(keyFor(id));
   const active = h.profiles.some((p) => p.id === reg.active) ? reg.active : h.profiles[0]?.id ?? 'default';
   writeJson(REGISTRY_KEY, { profiles: h.profiles.length ? h.profiles : reg.profiles, active, deleted: h.deleted });
+  if (active !== boundProfileId()) {
+    // the profile shown on this page no longer exists (or another one is active): start over with the right one
+    location.reload();
+    return;
+  }
   const activeAfter = JSON.stringify(readJson(keyFor(active)) ?? null);
-  if (activeBefore !== activeAfter || active !== reg.active) {
+  if (activeBefore !== activeAfter) {
     applying = true;
     // reload the live store from the merged data
     Promise.resolve(useStore.persist.rehydrate()).finally(() => (applying = false));
@@ -237,8 +242,8 @@ export function startAutoSync() {
   useStore.subscribe(() => {
     if (applying || !config()) return;
     const c = config()!;
-    const reg = registry();
-    c.updated[reg.active] = Date.now();
+    // changes in memory belong to the profile loaded on this page, even while a profile switch is reloading it
+    c.updated[boundProfileId()] = Date.now();
     saveConfig(c);
     dirty = true;
     schedule(15_000);
