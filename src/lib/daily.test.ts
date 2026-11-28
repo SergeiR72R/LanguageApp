@@ -29,3 +29,13 @@ it('adds new words only while the review queue is within the daily limit', () =>
   expect(plan.some((i) => i.kind === 'words')).toBe(false);
   expect(plan[0].kind).toBe('review');
 });
+
+it('a finished review stays checked when new cards become due later the same day', async () => {
+  const { isPlanItemDone, planItemKey } = await import('./daily');
+  const { today } = await import('./date');
+  useStore.setState({ cards: {}, plan: { date: today(), items: [{ kind: 'review' }] } });
+  expect(isPlanItemDone(useStore.getState(), { kind: 'review' })).toBe(true);
+  useStore.getState().markPlanDone([planItemKey({ kind: 'review' })]);
+  useStore.setState({ cards: due(5) }); // words learned in a unit step later today
+  expect(isPlanItemDone(useStore.getState(), { kind: 'review' })).toBe(true);
+});

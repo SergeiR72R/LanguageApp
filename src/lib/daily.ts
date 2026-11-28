@@ -75,12 +75,16 @@ export function buildPlan(s: AppState): PlanItem[] {
   return items;
 }
 
-/** Is a plan item finished today? */
+export const planItemKey = (item: PlanItem) => JSON.stringify(item);
+
+/** Is a plan item finished today? Once finished it stays checked for the rest of the day. */
 export function isPlanItemDone(s: AppState, item: PlanItem): boolean {
   const d = today();
+  if (s.plan?.date === d && s.plan.done?.includes(planItemKey(item))) return true;
   switch (item.kind) {
     case 'review':
-      return dueCards(s, d).length === 0;
+      // all due cards done, or today's limit reached (the rest moves to tomorrow)
+      return dueCards(s, d).length === 0 || (s.activity[d]?.reviews ?? 0) >= s.settings.reviewLimit;
     case 'step': {
       const sp = s.units[item.unitId]?.steps[item.step];
       return !!sp?.done;

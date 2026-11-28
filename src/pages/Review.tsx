@@ -4,6 +4,7 @@ import { getRektion, getUnit, practiceExercises } from '../content';
 import { rektionExercise } from '../lib/rektion';
 import { checkAnswer, shuffle, type CheckResult } from '../lib/grading';
 import type { Grade } from '../lib/srs';
+import { planItemKey } from '../lib/daily';
 import { dueCards, useStore, type Card as SrsCard, type Mistake } from '../lib/store';
 import { findVocab, withArticle } from '../lib/vocab';
 import { ExerciseView } from '../components/ExerciseView';
@@ -196,8 +197,11 @@ export function Review() {
     if (finished) {
       confetti(90);
       sfx.success();
+      // the day's review is done (also when new cards become due later today)
+      const st = useStore.getState();
+      if (!practice && (dueCards(st).length === 0 || queue!.length >= st.settings.reviewLimit)) st.markPlanDone([planItemKey({ kind: 'review' })]);
     }
-  }, [finished]);
+  }, [finished]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const start = (practiceMode = false) => {
     const source = practiceMode ? shuffle(Object.values(s.cards)).slice(0, 25) : due.slice(0, s.settings.reviewLimit);

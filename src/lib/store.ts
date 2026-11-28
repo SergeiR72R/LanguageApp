@@ -209,7 +209,8 @@ export interface AppState {
   reports: { date: string; exercise: Exercise; given: string }[];
   /** gamification bookkeeping: achievements already celebrated, last level seen, day the daily goal was celebrated */
   celebrated: { achievements: string[]; level: number; goalDay: string };
-  plan?: { date: string; items: PlanItem[] };
+  /** today's plan; `done` keeps items checked once finished, even if new cards become due later in the day */
+  plan?: { date: string; items: PlanItem[]; done?: string[] };
   /** the learner's character and what it wears */
   avatar?: AvatarState;
 
@@ -233,7 +234,8 @@ export interface AppState {
   setCelebrated: (p: Partial<AppState['celebrated']>) => void;
   addReport: (r: { exercise: Exercise; given: string }) => void;
   clearReports: () => void;
-  setPlan: (plan: { date: string; items: PlanItem[] }) => void;
+  setPlan: (plan: { date: string; items: PlanItem[]; done?: string[] }) => void;
+  markPlanDone: (keys: string[]) => void;
   importState: (data: Partial<AppState>) => void;
   resetAll: () => void;
 }
@@ -397,7 +399,9 @@ export const useStore = create<AppState>()(
       addReport: (r) => set((s) => ({ reports: [...(s.reports ?? []), { ...r, date: todayStr() }].slice(-200) })),
       clearReports: () => set({ reports: [] }),
       setCelebrated: (p) => set((s) => ({ celebrated: { ...s.celebrated, ...p } })),
-      setPlan: (plan) => set({ plan }),
+      setPlan: (plan) => set((s) => ({ plan: { ...plan, done: plan.done ?? (s.plan?.date === plan.date ? s.plan.done : undefined) } })),
+      markPlanDone: (keys) =>
+        set((s) => (s.plan ? { plan: { ...s.plan, done: [...new Set([...(s.plan.done ?? []), ...keys])] } } : {})),
 
       importState: (data) => set({ ...initialData, ...data, settings: { ...defaultSettings, ...(data.settings ?? {}) } }),
       resetAll: () => set({ ...initialData, settings: get().settings }),

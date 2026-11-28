@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { allUnits, getUnit, unitIndex } from '../content';
-import { buildPlan, isPlanItemDone } from '../lib/daily';
+import { buildPlan, isPlanItemDone, planItemKey } from '../lib/daily';
 import { formatDateRu, today } from '../lib/date';
 import { isMature } from '../lib/srs';
 import { stepMeta, unitSteps as stepsOf } from '../lib/steps';
@@ -119,7 +119,13 @@ export function Today() {
 
   const items = s.plan?.date === d ? s.plan.items : buildPlan(s);
   const due = dueCards(s).length;
-  const done = items.filter((it) => isPlanItemDone(s, it)).length;
+  const doneItems = items.filter((it) => isPlanItemDone(s, it));
+  const done = doneItems.length;
+  // remember finished items, so e.g. the review stays checked when new cards become due later today
+  const toMark = doneItems.map(planItemKey).filter((k) => s.plan?.date === d && !s.plan.done?.includes(k));
+  useEffect(() => {
+    if (toMark.length) useStore.getState().markPlanDone(toMark);
+  }, [toMark.join('|')]); // eslint-disable-line react-hooks/exhaustive-deps
   const cur = currentUnitId(s);
   const unit = cur ? getUnit(cur) : undefined;
   const up = cur ? s.units[cur] : undefined;
