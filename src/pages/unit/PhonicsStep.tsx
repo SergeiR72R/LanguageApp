@@ -7,6 +7,8 @@ import { ExerciseSession } from '../../components/ExerciseSession';
 import { SpeakButton } from '../../components/Speak';
 import { Markdown } from '../../components/Markdown';
 import { Card } from '../../components/ui';
+import { PronunciationCheck } from '../../components/PronunciationCheck';
+import { isAzureConfigured } from '../../lib/ai/pronunciation';
 
 /** Letters and sounds are spoken a little slower than normal speech. */
 const SLOW = 0.8;
@@ -85,6 +87,12 @@ function Tile({ it, open, onOpen }: { it: PhonicsItem; open: boolean; onOpen: ()
               <strong className="de">{e.de}</strong> <span className="pron">[{e.pronRu}]</span> <span className="muted">— {e.ru}</span>
             </div>
           ))}
+          {isAzureConfigured() && (
+            <div className="tiny">
+              Прочитайте слова подряд: <span className="de">{it.examples.map((e) => e.de).join(', ')}</span>
+              <PronunciationCheck sentence={it.examples.map((e) => e.de).join(', ')} compact />
+            </div>
+          )}
         </div>
       )}
     </div>

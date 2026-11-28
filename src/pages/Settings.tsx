@@ -107,7 +107,7 @@ export function Settings() {
 
   const exportData = () => {
     const { settings, ...rest } = useStore.getState();
-    const data = { ...rest, settings: { ...settings, keys: { groq: '', gemini: '', openrouter: '', custom: '' } } };
+    const data = { ...rest, settings: { ...settings, keys: { groq: '', gemini: '', openrouter: '', custom: '', azure: '' } } };
     const json = JSON.stringify(data, (_, v) => (typeof v === 'function' ? undefined : v), 2);
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
@@ -263,6 +263,20 @@ export function Settings() {
             Встроенное распознавание (Chrome, Edge, Safari). {browserSttSupported() ? '✅ Поддерживается этим браузером.' : '❌ Этот браузер не поддерживает.'}
           </p>
         )}
+      </Card>
+
+      <Card>
+        <h2>🗣️ Оценка произношения (Azure)</h2>
+        <p className="muted">
+          Azure AI Speech сравнивает именно звучание с эталоном: оценка точности, беглости, полноты и интонации, по каждому слову и
+          слогу. Используется в заданиях «Прочитайте вслух». Бесплатный тариф F0 — 5 часов аудио в месяц (тысячи фраз). Без ключа
+          работает обычное распознавание речи.
+        </p>
+        <label className="field">
+          Ключ Azure Speech (Key 1)
+          <input className="text-input" type="password" value={st.keys.azure ?? ''} onChange={(e) => s.setKey('azure', e.target.value.trim())} placeholder="из портала Azure → ресурс Speech → Keys and Endpoint" />
+        </label>
+        {st.keys.azure ? <div className="ok-text small">✅ Оценка произношения включена.</div> : null}
       </Card>
 
       <Card>

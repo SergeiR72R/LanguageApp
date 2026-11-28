@@ -7,9 +7,25 @@ import type { Transcript } from '../lib/ai/stt';
 import { SpeakButton } from './Speak';
 import { useSpeechInput } from './useSpeechInput';
 import { ErrorBox, Spinner } from './ui';
+import { isAzureConfigured } from '../lib/ai/pronunciation';
+import { PronunciationCheck } from './PronunciationCheck';
 
 /** Listen → repeat → compare what the recogniser heard with the target sentence. */
 export function ReadAloud({ sentence, onAttempt }: { sentence: string; onAttempt?: (accuracy: number) => void }) {
+  // with an Azure key: real pronunciation assessment instead of "was it recognised"
+  if (isAzureConfigured())
+    return (
+      <div className="read-aloud">
+        <div className="de ra-sentence">
+          {sentence} <SpeakButton text={sentence} /> <SpeakButton text={sentence} rate={0.7} label="медл." />
+        </div>
+        <PronunciationCheck sentence={sentence} onScore={onAttempt} />
+      </div>
+    );
+  return <ReadAloudStt sentence={sentence} onAttempt={onAttempt} />;
+}
+
+function ReadAloudStt({ sentence, onAttempt }: { sentence: string; onAttempt?: (accuracy: number) => void }) {
   const mic = useSpeechInput();
   const settings = useStore((s) => s.settings);
   const addMistakes = useStore((s) => s.addMistakes);

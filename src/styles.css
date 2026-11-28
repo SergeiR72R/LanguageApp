@@ -672,3 +672,22 @@ details > summary { cursor: pointer; font-weight: 600; margin: 6px 0; }
 .hero svg { background: var(--surface-2); border-radius: 10px; }
 .hero-empty { font-size: 3rem; width: 110px; text-align: center; }
 .lb-avatar svg { border-radius: 50%; background: var(--surface-2); vertical-align: middle; }
+
+/* ---------- pronunciation assessment ---------- */
+.pron-check { margin-top: 6px; }
+.pron-audio { height: 32px; max-width: 220px; }
+.pron-result { margin-top: 8px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-2); }
+.pron-scores { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pron-total { font-size: 1.6rem; font-weight: 800; min-width: 54px; text-align: center; border-radius: 10px; padding: 2px 8px; color: #fff; }
+.pron-total.ok { background: #16a34a; } .pron-total.warn { background: #d97706; } .pron-total.bad { background: #dc2626; }
+.pron-words { margin: 8px 0 4px; font-size: 1.15rem; line-height: 1.9; }
+.pron-word { padding: 1px 4px; margin-right: 3px; border-radius: 5px; cursor: help; }
+.pron-word.ok { background: rgba(22, 163, 74, 0.14); }
+.pron-word.warn { background: rgba(217, 119, 6, 0.2); }
+.pron-word.bad { background: rgba(220, 38, 38, 0.2); text-decoration: underline wavy #dc2626; }
+.pron-word.omitted { color: var(--muted); text-decoration: line-through; }
+.pron-word.inserted { color: #dc2626; font-style: italic; }
+.pron-tips { margin: 6px 0 0; padding-left: 18px; }
+.pron-tips li { margin: 6px 0; }
+.syl { padding: 0 2px; border-radius: 3px; margin-right: 1px; }
+.syl.ok { background: rgba(22, 163, 74, 0.15); } .syl.warn { background: rgba(217, 119, 6, 0.22); } .syl.bad { background: rgba(220, 38, 38, 0.22); }

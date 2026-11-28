@@ -14,7 +14,7 @@ export interface Settings {
   llmProvider: LlmProvider;
   llmModel: string;
   customBaseUrl: string;
-  keys: { groq: string; gemini: string; openrouter: string; custom: string };
+  keys: { groq: string; gemini: string; openrouter: string; custom: string; azure?: string };
   sttProvider: 'groq' | 'browser';
   sttModel: string;
   ttsProvider: 'browser' | 'gemini';
@@ -216,7 +216,7 @@ export interface AppState {
 
   setAvatar: (p: Partial<AvatarState>) => void;
   updateSettings: (p: Partial<Settings>) => void;
-  setKey: (provider: LlmProvider, key: string) => void;
+  setKey: (provider: LlmProvider | 'azure', key: string) => void;
   setPlacement: (r: PlacementResult, startUnitId: string) => void;
   setStartUnit: (unitId: string) => void;
   completeStep: (unitId: string, step: StepId, score?: number, done?: boolean) => void;
