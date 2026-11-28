@@ -25,9 +25,10 @@ const m = (p: Partial<Mistake>): Mistake => ({
   ...p,
 });
 
-it('keeps word forms and basic grammar, drops phrasing remarks from conversations', () => {
-  expect(isReviewableMistake(m({ category: 'Verbform/Konjugation', correction: 'fährt' }))).toBe(true);
-  expect(isReviewableMistake(m({ category: 'Kasus', correction: 'mit dem Bus' }))).toBe(true);
+it('keeps word forms and basic grammar from writing/exercises, nothing from conversations', () => {
+  expect(isReviewableMistake(m({ category: 'Verbform/Konjugation', correction: 'fährt' }))).toBe(false);
+  expect(isReviewableMistake(m({ source: 'writing', category: 'Verbform/Konjugation', correction: 'fährt' }))).toBe(true);
+  expect(isReviewableMistake(m({ source: 'exercise', category: 'Kasus', correction: 'mit dem Bus' }))).toBe(true);
   expect(isReviewableMistake(m({ category: 'Sonstiges', correction: 'kommen Sie bitte herein' }))).toBe(false);
   expect(isReviewableMistake(m({ category: 'Stil/Register', correction: 'gern' }))).toBe(false);
   expect(isReviewableMistake(m({ category: 'Wortschatz/Lexik', correction: 'kommen Sie bitte herein' }))).toBe(false);
@@ -38,7 +39,7 @@ it('hides existing cards of such mistakes from the review queue', () => {
   const card = (id: string): Card => ({ id, kind: 'mistake', srs: { due: '2026-01-01', interval: 1, ease: 2.5, reps: 0, lapses: 0 } }) as Card;
   const due = dueCards({
     cards: { 'm:a': card('m:a'), 'm:b': card('m:b') },
-    mistakes: [m({ id: 'a', category: 'Sonstiges', correction: 'kommen Sie bitte herein' }), m({ id: 'b', correction: 'fährt' })],
+    mistakes: [m({ id: 'a', category: 'Sonstiges', correction: 'kommen Sie bitte herein' }), m({ id: 'b', source: 'writing', correction: 'fährt' })],
   });
   expect(due.map((c) => c.id)).toEqual(['m:b']);
 });

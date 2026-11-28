@@ -476,12 +476,13 @@ const DRILLABLE: MistakeCategory[] = [
 
 /**
  * Only short, clear-cut mistakes become review cards (word forms, articles, cases, verb forms…).
- * Style, phrasing and "other" remarks — especially from free conversation — stay in the error notebook only.
+ * Style, phrasing and "other" remarks, and everything from free conversation, stay in the error notebook only.
  */
 export function isReviewableMistake(m: Pick<Mistake, 'category' | 'source' | 'correction'>): boolean {
+  // mistakes from free conversation stay in the error notebook only
+  if (m.source === 'speaking') return false;
   if (!DRILLABLE.includes(m.category)) return false;
-  const words = m.correction.trim().split(/\s+/).filter(Boolean).length;
-  return words <= (m.source === 'speaking' ? 3 : 6);
+  return m.correction.trim().split(/\s+/).filter(Boolean).length <= 6;
 }
 
 export function dueCards(s: Pick<AppState, 'cards'> & Partial<Pick<AppState, 'mistakes'>>, date = todayStr()): Card[] {
